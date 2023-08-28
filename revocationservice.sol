@@ -48,7 +48,6 @@ contract RevocationService{
             }
         }
         return isRevoked;
-
     }   
 
     function testRevocation() public{
