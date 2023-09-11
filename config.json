@@ -1,0 +1,13 @@
+
+
+
+ {
+	"contract" : {
+		"address" : "0x20481060f88F9Dec4545a444c3f5Baf6075affD1"
+	},
+	 "test" : "test",
+	"blockchain" : {
+		"rpcEndpoint" : "http://127.0.0.1:7545"
+	}
+
+}

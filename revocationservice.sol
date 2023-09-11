@@ -26,6 +26,17 @@ contract RevocationService{
         issuer = msg.sender;
     }
 
+    /*
+    This function is used to register new issuers.
+    Register did of issuers and public keys. (maybe in the form of DID Docs).
+    input: did doc
+    */
+    function registerIssuers() public{
+
+    }
+
+
+
     function revokeInBloomFilter(uint256[numberOfHashFunctions] memory indexes) public{
 
         //only issuer can perform the revocation

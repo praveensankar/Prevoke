@@ -1,8 +1,7 @@
 package main
 
-
-
 func main()  {
 	//testAries()
-	testIssuer()
+	config,_ := parseConfig()
+	testIssuer(config)
 }

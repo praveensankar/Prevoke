@@ -1,0 +1,31 @@
+package main
+
+import (
+	"fmt"
+	"github.com/spf13/viper"
+)
+
+type Config struct{
+	SmartContractAddress string
+	BlockchainRpcEndpoint string
+}
+
+func (config Config) printConfig()  {
+	fmt.Println("smart contract address: ",config.SmartContractAddress)
+	fmt.Println("blockchain rpc endpoint: ",config.BlockchainRpcEndpoint)
+}
+
+
+func parseConfig() (Config, error){
+
+	viper.SetConfigFile("config.json")// name of config file (without extension)
+	viper.SetConfigType("json")
+	viper.AddConfigPath(".")
+	_ = viper.ReadInConfig()
+	fmt.Println(viper.Get("test"))
+	config := Config{}
+	config.SmartContractAddress = viper.GetString("contract.address")
+	config.BlockchainRpcEndpoint = viper.GetString("blockchain.rpcEndpoint")
+	//config.printConfig()
+	return config, nil
+}
