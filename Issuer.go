@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 )
@@ -17,7 +18,8 @@ type Issuer struct{
 	name string
 	credentialStore []verifiable.Credential
 	vcCounter int
-	ethClient *ethclient.Client
+	blockchainEndPoint *ethclient.Client
+	RevocationServiceAddress common.Address
 }
 
 func (issuer *Issuer) bootstrap(config Config) {
@@ -27,10 +29,12 @@ func (issuer *Issuer) bootstrap(config Config) {
 
 	// connect to the blockchain network
 	var err error
-	issuer.ethClient, err = ethclient.Dial(config.BlockchainRpcEndpoint)
+	issuer.blockchainEndPoint, err = ethclient.Dial(config.BlockchainRpcEndpoint)
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	issuer.RevocationServiceAddress = common.HexToAddress(config.SmartContractAddress)
 
 
 

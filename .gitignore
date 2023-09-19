@@ -1,2 +1,8 @@
-
+/node_modules
+artifacts/
+/RevocationService.bin
+.idea/
+package-lock.json
 *.xml
+artifacts/RevocationService.json
+artifacts/RevocationService_metadata.json

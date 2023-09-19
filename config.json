@@ -1,13 +1,19 @@
 
 
-
  {
 	"contract" : {
-		"address" : "0x20481060f88F9Dec4545a444c3f5Baf6075affD1"
+		"address" : "0x32e1330bf971E17B7d2A72366C127F76C9675605"
 	},
 	 "test" : "test",
 	"blockchain" : {
-		"rpcEndpoint" : "http://127.0.0.1:7545"
-	}
+		"rpcEndpoint" : "http://127.0.0.1:7545",
+		"_comment" : "use ganache blockchain address (deployed locally) as endpoint"
 
+	},
+	 "account" : {
+		 "address" : "0x1cc52460662dA42dD42A3732d07Fa6acC542753A",
+		 "privateKey": "f098dc23714f9aeca5633c9958a9e0391c5498951b8ad1d601931f11ad597e22",
+		 "passphrase": "simple phrase",
+		 "_comment": "sender info - account used in ganache to deploy smart contract"
+	 }
 }

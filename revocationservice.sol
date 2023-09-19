@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 
 pragma solidity >=0.4.16 <0.9.0;
-import "hardhat/console.sol";
+// import "hardhat/console.sol";
 
 contract RevocationService{
     
@@ -70,9 +70,9 @@ contract RevocationService{
        string memory vc1Status = checkRevocationStatusInBloomFilter(vc1) ? "revoked" : "not revoked";
        string memory vc2Status = checkRevocationStatusInBloomFilter(vc2) ? "revoked" : "not revoked";
        string memory vc3Status = checkRevocationStatusInBloomFilter(vc3) ? "revoked" : "not revoked";
-        console.log(
-            "vc1 status : %s \n vc2 status : %s\n vc3 status : %s", vc1Status, vc2Status, vc3Status
-        );
+        // console.log(
+        //     "vc1 status : %s \n vc2 status : %s\n vc3 status : %s", vc1Status, vc2Status, vc3Status
+        // );
     }
 
    
