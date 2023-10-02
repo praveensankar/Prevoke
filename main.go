@@ -3,6 +3,8 @@ package main
 func main()  {
 	//testAries()
 	config,_ := parseConfig()
-	QueryContract(config)
+	//testConnectionToBlockchain(config)
+	testSmartContract(config)
+
 	//testIssuer(config)
 }
