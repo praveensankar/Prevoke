@@ -13,7 +13,6 @@ import (
 	"log"
 	"math"
 	"math/big"
-	"sync"
 )
 
 type BlockchainNode struct {
@@ -266,15 +265,6 @@ func testConnectionToBlockchain(config Config){
 	node.sendLegacyTransaction(config.privateKey, config.otherAccounts[0])
 	_ = createNewKeyStore()
 
-	var waitGroupforBlocksListener sync.WaitGroup
 
-	waitGroupforBlocksListener.Add(1)
-	go func(node BlockchainNode) {
-		defer waitGroupforBlocksListener.Done()
-		node.listenForNewBlocks()
-	}(node)
-
-
-	waitGroupforBlocksListener.Wait()
 }
 

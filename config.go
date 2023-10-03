@@ -8,6 +8,7 @@ import (
 type Config struct{
 	SmartContractAddress string
 	BlockchainRpcEndpoint string
+	BlockchainWebSocketEndPoint string
 	senderAddress string
 	privateKey string
 	passPhrase string
@@ -33,6 +34,7 @@ func parseConfig() (Config, error){
 	config := Config{}
 	config.SmartContractAddress = viper.GetString("contract.address")
 	config.BlockchainRpcEndpoint = viper.GetString("blockchain.rpcEndpoint")
+	config.BlockchainWebSocketEndPoint = viper.GetString("blockchain.wsEndPoint")
 	config.senderAddress = viper.GetString("account.address")
 	config.privateKey = viper.GetString("account.privateKey")
 	config.passPhrase = viper.GetString("account.passphrase")

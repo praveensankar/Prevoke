@@ -4,12 +4,16 @@ import (
 	"context"
 	"crypto/ecdsa"
 	"fmt"
+	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"log"
 	"math/big"
+	"sync"
+	"time"
 )
 
 
@@ -88,9 +92,9 @@ func WriteToContract(config Config){
 	}
 
 
-	index1 := big.NewInt(50)
-	index2 := big.NewInt(60)
-	index3 := big.NewInt(70)
+	index1 := big.NewInt(505)
+	index2 := big.NewInt(605)
+	index3 := big.NewInt(705)
 
 	indexes := [3]*big.Int{index1, index2, index3}
 
@@ -110,7 +114,53 @@ func WriteToContract(config Config){
 }
 
 
+func SubscribeToEvents(config Config){
+	client, err :=  ethclient.Dial(config.BlockchainWebSocketEndPoint)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	revocationServiceSmartContract := common.HexToAddress(config.SmartContractAddress)
+
+	query := ethereum.FilterQuery{
+		Addresses: []common.Address{revocationServiceSmartContract},
+	}
+
+	logs := make(chan types.Log)
+
+	sub, err := client.SubscribeFilterLogs(context.Background(), query, logs)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	stopListener := time.NewTimer(5 * time.Second)
+	for {
+		select {
+		case err := <-sub.Err():
+			log.Fatal(err)
+		case <-stopListener.C:
+			fmt.Println("\n stopping the listener")
+			return
+		case vLog := <-logs:
+			fmt.Println("new event ",vLog) // pointer to event log
+		}
+	}
+}
+
+
 func testSmartContract(config Config){
 	ReadFromContract(config)
 	WriteToContract(config)
+
+
+	var waitGroupforBlocksListener sync.WaitGroup
+
+	waitGroupforBlocksListener.Add(1)
+	go func(config Config) {
+		defer waitGroupforBlocksListener.Done()
+		SubscribeToEvents(config)
+	}(config)
+
+
+	waitGroupforBlocksListener.Wait()
 }

@@ -3,6 +3,7 @@
 pragma solidity >=0.4.16 <0.9.0;
 // import "hardhat/console.sol";
 
+
 contract RevocationService{
     
     
@@ -16,7 +17,6 @@ contract RevocationService{
     // storing bloom filters as maps
     mapping(uint256=>bool) public bloomFilter;
 
-    // merkle tree accumulator
 
     // issuer is the owner of the contract
     address public issuer;
