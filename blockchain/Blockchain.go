@@ -1,4 +1,4 @@
-package main
+package blockchain
 
 import (
 	"context"
@@ -250,21 +250,5 @@ func (node BlockchainNode) listenForNewBlocks(){
 }
 
 
-func testConnectionToBlockchain(config Config){
 
-	// set up blockchain node
-	node := BlockchainNode{rpcEndPoint: config.BlockchainRpcEndpoint}
-
-	// get balance
-	node.getBalance(config.SmartContractAddress)
-
-	node.queryBlock()
-	node.doTransaction(config.privateKey)
-	//node.sendEther(config.privateKey,1, config.otherAccounts[0])
-	//node.sendTransaction()
-	node.sendLegacyTransaction(config.privateKey, config.otherAccounts[0])
-	_ = createNewKeyStore()
-
-
-}
 

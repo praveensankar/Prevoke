@@ -1,44 +1,47 @@
-package main
+package config
 
 import (
 	"fmt"
 	"github.com/spf13/viper"
+	"log"
 )
 
 type Config struct{
 	SmartContractAddress string
 	BlockchainRpcEndpoint string
 	BlockchainWebSocketEndPoint string
-	senderAddress string
-	privateKey string
-	passPhrase string
-	otherAccounts []string
+	SenderAddress string
+	PrivateKey    string
+	passPhrase    string
+	OtherAccounts []string
 }
 
 func (config Config) printConfig()  {
 	fmt.Println("smart contract address: ",config.SmartContractAddress)
 	fmt.Println("blockchain rpc endpoint: ",config.BlockchainRpcEndpoint)
-	fmt.Println("sender address: ",config.senderAddress)
-	fmt.Println("sender private key: ",config.privateKey)
+	fmt.Println("sender address: ",config.SenderAddress)
+	fmt.Println("sender private key: ",config.PrivateKey)
 	fmt.Println("sender pass phrase: ",config.passPhrase)
-	fmt.Println("other accounts in ganache test network : ", config.otherAccounts)
+	fmt.Println("other accounts in ganache test network : ", config.OtherAccounts)
 }
 
 
-func parseConfig() (Config, error){
+func ParseConfig() (Config, error){
 
-	viper.SetConfigFile("config.json")// name of config file (without extension)
-	viper.SetConfigType("json")
-	viper.AddConfigPath(".")
-	_ = viper.ReadInConfig()
+
+
+	err := viper.ReadInConfig()
+	if err!=nil{
+		log.Fatal("error reading config file for viper.\t", err)
+	}
 	config := Config{}
 	config.SmartContractAddress = viper.GetString("contract.address")
 	config.BlockchainRpcEndpoint = viper.GetString("blockchain.rpcEndpoint")
 	config.BlockchainWebSocketEndPoint = viper.GetString("blockchain.wsEndPoint")
-	config.senderAddress = viper.GetString("account.address")
-	config.privateKey = viper.GetString("account.privateKey")
+	config.SenderAddress = viper.GetString("account.address")
+	config.PrivateKey = viper.GetString("account.privateKey")
 	config.passPhrase = viper.GetString("account.passphrase")
-	config.otherAccounts = viper.GetStringSlice("otherAccounts")
+	config.OtherAccounts = viper.GetStringSlice("otherAccounts")
 
 	//"account1" :  "0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A",
 	//	"account2" : "0x6C3d120Ee76E635d7b221a996718a8277BeA973f",

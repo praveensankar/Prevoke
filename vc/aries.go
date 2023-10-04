@@ -1,4 +1,4 @@
-package main
+package vc
 
 import (
 	"fmt"

@@ -1,4 +1,4 @@
-package main
+package contracts
 
 import (
 	"context"
@@ -10,9 +10,9 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/praveensankar/Revocation-Service/config"
 	"log"
 	"math/big"
-	"sync"
 	"time"
 )
 
@@ -21,7 +21,7 @@ const key = `<<json object from keystore>>`
 
 
 
-func ReadFromContract(config Config) {
+func ReadFromContract(config config.Config) {
 
 	// step 1: connect to a blockchain node using RPC endpoint
 	ethClient, err := ethclient.Dial(config.BlockchainRpcEndpoint)
@@ -50,13 +50,13 @@ func ReadFromContract(config Config) {
 }
 
 
-func WriteToContract(config Config){
+func WriteToContract(config config.Config){
 	client, err :=  ethclient.Dial(config.BlockchainRpcEndpoint)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	privateKey, err := crypto.HexToECDSA(config.privateKey)
+	privateKey, err := crypto.HexToECDSA(config.PrivateKey)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -92,9 +92,9 @@ func WriteToContract(config Config){
 	}
 
 
-	index1 := big.NewInt(505)
-	index2 := big.NewInt(605)
-	index3 := big.NewInt(705)
+	index1 := big.NewInt(515)
+	index2 := big.NewInt(625)
+	index3 := big.NewInt(735)
 
 	indexes := [3]*big.Int{index1, index2, index3}
 
@@ -114,7 +114,7 @@ func WriteToContract(config Config){
 }
 
 
-func SubscribeToEvents(config Config){
+func SubscribeToEvents(config config.Config){
 	client, err :=  ethclient.Dial(config.BlockchainWebSocketEndPoint)
 	if err != nil {
 		log.Fatal(err)
@@ -147,20 +147,3 @@ func SubscribeToEvents(config Config){
 	}
 }
 
-
-func testSmartContract(config Config){
-	ReadFromContract(config)
-	WriteToContract(config)
-
-
-	var waitGroupforBlocksListener sync.WaitGroup
-
-	waitGroupforBlocksListener.Add(1)
-	go func(config Config) {
-		defer waitGroupforBlocksListener.Done()
-		SubscribeToEvents(config)
-	}(config)
-
-
-	waitGroupforBlocksListener.Wait()
-}

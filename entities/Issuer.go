@@ -1,10 +1,12 @@
-package main
+package entities
 
 import (
 	"fmt"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
+	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/praveensankar/Revocation-Service/vc"
 )
 
 type IIsser interface {
@@ -22,7 +24,7 @@ type Issuer struct{
 	RevocationServiceAddress common.Address
 }
 
-func (issuer *Issuer) bootstrap(config Config) {
+func (issuer *Issuer) bootstrap(config config.Config) {
 
 	// register public keys at the revocation service
 	// ideally, this step should be performed before the starting of the issuance process
@@ -45,7 +47,7 @@ func (issuer *Issuer) issue() {
 
 
 	// step 1 - issuer generates new VC
-	vc := CreateEmployementProofCredential(string(issuer.vcCounter))
+	vc := vc.CreateEmployementProofCredential(string(issuer.vcCounter))
 
 	// when issuer issue new credentials, the credential is created
 	issuer.credentialStore = append(issuer.credentialStore, vc)
@@ -58,7 +60,7 @@ func (issuer *Issuer) revoke(credential verifiable.Credential) {
 }
 
 
-func testIssuer(config Config){
+func testIssuer(config config.Config){
 
 	var issuer Issuer = Issuer{
 		name:            "employer 1",
