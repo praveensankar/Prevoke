@@ -18,6 +18,10 @@
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
 	 "otherAccounts" : ["0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A", "0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A",
-		 "0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A"]
+		 "0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A"],
+	 "logger" : {
+		"env" : "dev",
+		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
+	 }
 }
 

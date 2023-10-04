@@ -3,7 +3,6 @@ package contracts
 import (
 	"context"
 	"crypto/ecdsa"
-	"fmt"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
@@ -11,7 +10,7 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/praveensankar/Revocation-Service/config"
-	"log"
+	"go.uber.org/zap"
 	"math/big"
 	"time"
 )
@@ -26,7 +25,7 @@ func ReadFromContract(config config.Config) {
 	// step 1: connect to a blockchain node using RPC endpoint
 	ethClient, err := ethclient.Dial(config.BlockchainRpcEndpoint)
 	if err != nil {
-		log.Fatalf("Failed to connect to the Ethereum client: %v", err)
+		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
 	}
 
 	// step 2: convert smart contract to the requied format
@@ -34,17 +33,17 @@ func ReadFromContract(config config.Config) {
 
 	balance, err := ethClient.BalanceAt(context.Background(), revocationServiceSmartContract, nil)
 
-	fmt.Printf("%s has %d balance", revocationServiceSmartContract.String(), balance)
+	zap.S().Infof("%s has %d balance", revocationServiceSmartContract.String(), balance)
 
 	revocationService, err := NewRevocationService(revocationServiceSmartContract, ethClient)
 	if err != nil {
-		log.Fatalf("Failed to instantiate Storage contract: %v", err)
+		zap.S().Infof("Failed to instantiate Storage contract: %v", err)
 	}
 
 	var status bool
 	var field int64 = 30
 	status, err = revocationService.BloomFilter(nil, big.NewInt(field))
-	fmt.Printf("\n status at field %d is %t", field, status)
+	zap.S().Infof("\n status at field %d is %t", field, status)
 
 
 }
@@ -53,30 +52,30 @@ func ReadFromContract(config config.Config) {
 func WriteToContract(config config.Config){
 	client, err :=  ethclient.Dial(config.BlockchainRpcEndpoint)
 	if err != nil {
-		log.Fatal(err)
+		zap.S().Fatalln(err)
 	}
 
 	privateKey, err := crypto.HexToECDSA(config.PrivateKey)
 	if err != nil {
-		log.Fatal(err)
+		zap.S().Fatalln(err)
 	}
 
 	publicKey := privateKey.Public()
 	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
 	if !ok {
-		log.Fatal("cannot assert type: publicKey is not of type *ecdsa.PublicKey")
+		zap.S().Fatalln("cannot assert type: publicKey is not of type *ecdsa.PublicKey")
 	}
 	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
 	nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
 	if err != nil {
-		log.Fatal(err)
+		zap.S().Fatalln(err)
 	}
 
 
 	gasLimit := uint64(6721975)                // in units
 	gasPrice, err := client.SuggestGasPrice(context.Background())
 	if err != nil {
-		log.Fatal(err)
+		zap.S().Fatalln(err)
 	}
 
 	auth := bind.NewKeyedTransactor(privateKey)
@@ -88,7 +87,7 @@ func WriteToContract(config config.Config){
 	revocationServiceSmartContract := common.HexToAddress(config.SmartContractAddress)
 	revocationService, err := NewRevocationService(revocationServiceSmartContract, client)
 	if err != nil {
-		log.Fatalf("Failed to instantiate Storage contract: %v", err)
+		zap.S().Infof("Failed to instantiate Storage contract: %v", err)
 	}
 
 
@@ -99,17 +98,17 @@ func WriteToContract(config config.Config){
 	indexes := [3]*big.Int{index1, index2, index3}
 
 	status, err := revocationService.CheckRevocationStatusInBloomFilter(nil, indexes)
-	fmt.Printf("\n revocation status[%d, %d, %d]: %t", index1, index2, index3, status)
+	zap.S().Infof("\n revocation status[%d, %d, %d]: %t", index1, index2, index3, status)
 
-	fmt.Println("\n Revoking in Bloom Filter")
+	zap.S().Infoln("\n Revoking in Bloom Filter")
 	tx, err :=revocationService.RevokeInBloomFilter(auth, indexes)
 	if err != nil {
-		log.Fatal("failed to revoke", err)
+		zap.S().Fatalln("failed to revoke", err)
 	}
-	fmt.Printf("tx hash: %s\n", tx.Hash().Hex())
+	zap.S().Infof("tx hash: %s\n", tx.Hash().Hex())
 
 	status, err = revocationService.CheckRevocationStatusInBloomFilter(nil, indexes)
-	fmt.Printf("\n revocation status[%d, %d, %d]: %t", index1, index2, index3, status)
+	zap.S().Infof("\n revocation status[%d, %d, %d]: %t", index1, index2, index3, status)
 
 }
 
@@ -117,7 +116,7 @@ func WriteToContract(config config.Config){
 func SubscribeToEvents(config config.Config){
 	client, err :=  ethclient.Dial(config.BlockchainWebSocketEndPoint)
 	if err != nil {
-		log.Fatal(err)
+		zap.S().Fatalln(err)
 	}
 
 	revocationServiceSmartContract := common.HexToAddress(config.SmartContractAddress)
@@ -130,19 +129,19 @@ func SubscribeToEvents(config config.Config){
 
 	sub, err := client.SubscribeFilterLogs(context.Background(), query, logs)
 	if err != nil {
-		log.Fatal(err)
+		zap.S().Fatalln(err)
 	}
 
 	stopListener := time.NewTimer(5 * time.Second)
 	for {
 		select {
 		case err := <-sub.Err():
-			log.Fatal(err)
+			zap.S().Fatalln(err)
 		case <-stopListener.C:
-			fmt.Println("\n stopping the listener")
+			zap.S().Infoln("\n stopping the listener")
 			return
 		case vLog := <-logs:
-			fmt.Println("new event ",vLog) // pointer to event log
+			zap.S().Infoln("new event ",vLog) // pointer to event log
 		}
 	}
 }
