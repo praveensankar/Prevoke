@@ -1,8 +1,11 @@
 /node_modules
 artifacts/
+wallets/
 /RevocationService.bin
 .idea/
 package-lock.json
 *.xml
 artifacts/RevocationService.json
 artifacts/RevocationService_metadata.json
+artifacts/RevocationService_metadata.json
+artifacts/RevocationService.json
