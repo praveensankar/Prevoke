@@ -9,11 +9,9 @@ import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 
+
 contract MerkleTreeAccumulator{
 
-
-
-    
 
     /* 
     merkle tree
@@ -24,7 +22,7 @@ contract MerkleTreeAccumulator{
 
     // stores the list of indexes present in the merkle tree.
     uint[] private indexes;
-    mapping (uint => bool) private isExist;
+    mapping (uint => bool) private isExistInMTAccumulator;
 
     //owner of the contract
     address public owner;
@@ -50,8 +48,8 @@ contract MerkleTreeAccumulator{
 
        
         for (uint i = 0; i < _indexes.length; i++) {
-            if (isExist[_indexes[i]] == false){
-                isExist[_indexes[i]] = true;
+            if (isExistInMTAccumulator[_indexes[i]] == false){
+                isExistInMTAccumulator[_indexes[i]] = true;
                 indexes.push(_indexes[i]);
             }
         }
@@ -68,7 +66,7 @@ contract MerkleTreeAccumulator{
     }
 
     // prints the tree in console
-    function printMerkleTree() public{
+    function printMerkleTree() public view{
          for (uint i = 0; i < indexes.length; i++) {
          console.logBytes(abi.encodePacked(merkleTree[i]));
          }
@@ -77,14 +75,11 @@ contract MerkleTreeAccumulator{
     // returns 
     // True - if leaf and proof are valid
     // False - if invalid
-    function verifyLeaf(bytes32 leaf, bytes32[] memory proof) public returns (bool){
+    function verifyLeaf(bytes32 leaf, bytes32[] memory proof) public view returns (bool){
         return MerkleProof.verify(proof, merkleTree[0], leaf);
     }
 
-
-
-
-    function testMerkleTree() public{
+function testMerkleTree() public{
         
         // mapping(uint => bytes32) memory tree;
         bytes32 leaf1 = keccak256(abi.encode("leaf 1"));
@@ -131,15 +126,16 @@ contract MerkleTreeAccumulator{
         invalidProof[0] = leaf3;
         invalidProof[1] = internal2;
 
-        bool verificationStatus = verifyLeaf(leaf, validProof);
+        bool verificationStatus =    verifyLeaf(leaf, validProof);
         console.log("verification status for vaild proof: ", verificationStatus);
 
-        verificationStatus = verifyLeaf(leaf, invalidProof);
+        verificationStatus =    verifyLeaf(leaf, invalidProof);
         console.log("verification status for invaild proof: ", verificationStatus);
 
     }
-
     }
+
+
 
 
    
