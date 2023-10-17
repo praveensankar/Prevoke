@@ -25,3 +25,9 @@ contracts/build/RevocationService.bin
 contracts/build/RevocationService.abi
 *.bin
 contracts/build/RevocationService.abi
+artifacts/RevocationService_metadata.json
+artifacts/RevocationService_metadata.json
+contracts/build/RevocationService.bin
+contracts/build/RevocationService.abi
+artifacts/RevocationService_metadata.json
+.DS_Store

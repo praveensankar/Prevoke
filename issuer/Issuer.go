@@ -69,7 +69,8 @@ func (issuer *Issuer) issue(config config.Config, vc verifiable.Credential) {
 	// when issuer issue new credentials, the credential is created
 	issuer.credentialStore = append(issuer.credentialStore, vc)
 
-	tx, err := issuer.RevocationService.IssueVC()
+
+	tx, err := issuer.RevocationService.IssueVC(vc)
 	if err != nil {
 		return
 	}
