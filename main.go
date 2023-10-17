@@ -50,6 +50,7 @@ func main()  {
 	//blockchain.TestConnectionToBlockchain(conf)
 	//contracts.TestSmartContract(conf)
 	techniques.TestMerkleTree()
+	//techniques.TestBloomFilter(100)
 	//testIssuer(config)
 }
 

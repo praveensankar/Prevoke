@@ -1,0 +1,143 @@
+package techniques
+
+import (
+	"fmt"
+	"github.com/bits-and-blooms/bloom/v3"
+	"github.com/deckarep/golang-set"
+)
+
+type BloomFilter struct{
+	bloomFilter *bloom.BloomFilter
+	numberOfIndexesPerEntry uint
+	size uint
+	assignedIndexes mapset.Set
+	collisions uint
+}
+/*
+This function creates a new bloomFilter objects.
+At first, the size of bloom filter and number of hash functions required  are estimatesd based on two input parameters.
+Then a new BloomFilter object is created. and retured.
+
+Inputs:
+	TotalNumberofVCs - number of VCs issuer expects to issue in its lifetime
+	falsePositiveRate - false positive rate of bloomfilter
+
+Output:
+	BloomFilter object
+	error
+*/
+func CreateBloomFilter(totalNumberOfVCs uint, falsePositiveRate float64) (*BloomFilter){
+	size, numberOfIndexesPerEntry := bloom.EstimateParameters(totalNumberOfVCs, falsePositiveRate)
+	bf := bloom.NewWithEstimates(totalNumberOfVCs,falsePositiveRate)
+	newBloomFilter := BloomFilter{
+		bloomFilter: bf,
+		size: size,
+		numberOfIndexesPerEntry: numberOfIndexesPerEntry,
+	}
+	newBloomFilter.assignedIndexes = mapset.NewSet()
+	return &newBloomFilter
+}
+
+/*
+Output:
+	true - the VC is not revoked.
+	false - the VC is probably revoked.
+*/
+func (bf BloomFilter) CheckStatusInBloomFilter(vc string) bool{
+	input := []byte(vc)
+	isPresentInBloomFilter := bf.bloomFilter.Test(input)
+
+	// if present in bloom filter, then the vc is revoked. so retuns false to indicate the status that vc is not valid
+	// otherwise it returns true, to indicate that vc is valid
+	if isPresentInBloomFilter==true{
+		return false
+	}else{
+		return true
+	}
+}
+
+/*
+This function revokes a VC. The bloom filter is set with the revoked VC.
+
+Input:
+	vc: unique string representing the vc that is going to be revoked
+
+Output:
+	the indexes of the revoked VC in the bloomfilter.
+ */
+func (bf *BloomFilter) RevokeInBloomFilter(vc string) []uint64 {
+	input := []byte(vc)
+	bf.bloomFilter.Add(input)
+	indexes := bloom.Locations(input, bf.numberOfIndexesPerEntry)
+	for i:=0; i< len(indexes);i++{
+		indexes[i] = indexes[i]%uint64(bf.size)
+}
+
+	// keep track of assigned indexes
+	for _, value := range indexes{
+		if bf.assignedIndexes.Contains(value)==true{
+			bf.collisions = bf.collisions+1
+		}
+		bf.assignedIndexes.Add(value)
+	}
+
+	return indexes
+}
+
+
+func (bf BloomFilter) getCollisions() uint{
+return bf.collisions
+}
+
+
+func testBloomFilter(estimatedVCs ...int){
+
+	numberOfVCs := 100000
+	for _, count := range estimatedVCs {
+		numberOfVCs=count
+	}
+
+	bloomFilter1 := CreateBloomFilter(uint(numberOfVCs), 0.5)
+	fmt.Println("bloom filter for", numberOfVCs,"VCs is created with size: ",bloomFilter1.size, "\t number of hash functions: ",bloomFilter1.numberOfIndexesPerEntry)
+	statusBool := bloomFilter1.CheckStatusInBloomFilter("vc1")
+	var status string
+	if statusBool==true{
+		status = "vc is valid"
+	} else{
+		status = "vc is revoked"
+	}
+	fmt.Println("revocation status of vc1: ", status)
+
+	fmt.Println("revoking vc1")
+	indexes:= bloomFilter1.RevokeInBloomFilter("vc1")
+	fmt.Println("vc1 indexes in bloom filter: ", indexes)
+	statusBool = bloomFilter1.CheckStatusInBloomFilter("vc1")
+	statusLocationsBool := bloomFilter1.bloomFilter.TestLocations(indexes)
+	if statusBool==true{
+		status = "vc is valid"
+	} else{
+		status = "vc is revoked"
+	}
+	fmt.Println("revocation status of vc1: ", status)
+
+	if statusLocationsBool==false{
+		status = "vc is valid"
+	} else{
+		status = "vc is revoked"
+	}
+	fmt.Println("revocation status of vc1 in by testing indexes: ", status)
+
+
+
+	fmt.Println("revoking 10 vcs")
+	for i := 1; i <= numberOfVCs; i++ {
+		revokedId := fmt.Sprintf("id_%d", i)
+		bloomFilter1.RevokeInBloomFilter(revokedId)
+	}
+
+
+	fmt.Println("number of collisions: ",bloomFilter1.getCollisions())
+
+
+}
+

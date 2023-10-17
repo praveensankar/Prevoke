@@ -2,8 +2,14 @@
 
  {
 	"contract" : {
-		"address" : "0x32e1330bf971E17B7d2A72366C127F76C9675605"
+		"address" : "0xB249700E3E3DBEc0EBAdCA2865768e047C86BB5F",
+		"gasLimit" : "6721975"
 	},
+	 "issuer" : {
+		 "name": "employer 1",
+		 "totalVCs" : "1000",
+		 "falsePositiveRate" : "0.01"
+	 },
 	 "test" : "test",
 	"blockchain" : {
 		"rpcEndpoint" : "http://127.0.0.1:7545",

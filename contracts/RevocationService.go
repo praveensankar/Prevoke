@@ -31,7 +31,7 @@ var (
 
 // RevocationServiceMetaData contains all meta data concerning the RevocationService contract.
 var RevocationServiceMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"bloomFilter\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256[3]\",\"name\":\"indexes\",\"type\":\"uint256[3]\"}],\"name\":\"checkRevocationStatusInBloomFilter\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"issuer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"numberOfHashFunctions\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"registerIssuers\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256[3]\",\"name\":\"indexes\",\"type\":\"uint256[3]\"}],\"name\":\"revokeInBloomFilter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"testRevocation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"bloomFilter\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256[3]\",\"name\":\"_indexes\",\"type\":\"uint256[3]\"}],\"name\":\"checkRevocationStatusInBloomFilter\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"leaf\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"proof\",\"type\":\"bytes32[]\"}],\"name\":\"checkRevocationStatusInMerkleTreeAccumulator\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256[]\",\"name\":\"_mtIndexes\",\"type\":\"uint256[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"_mtValues\",\"type\":\"bytes32[]\"}],\"name\":\"issueVC\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"issuer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"merkleTree\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"numberOfHashFunctions\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"printMerkleTree\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"registerIssuers\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256[3]\",\"name\":\"_bfIndexes\",\"type\":\"uint256[3]\"},{\"internalType\":\"uint256[]\",\"name\":\"_mtIndexes\",\"type\":\"uint256[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"_mtValues\",\"type\":\"bytes32[]\"}],\"name\":\"revokeVC\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"testRevocation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256[3]\",\"name\":\"_indexes\",\"type\":\"uint256[3]\"}],\"name\":\"updateBloomFilter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256[]\",\"name\":\"_indexes\",\"type\":\"uint256[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"_values\",\"type\":\"bytes32[]\"}],\"name\":\"updateMerkleTree\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"value\",\"type\":\"bytes32\"}],\"name\":\"updateNode\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256[3]\",\"name\":\"_bfIndexes\",\"type\":\"uint256[3]\"},{\"internalType\":\"bytes32\",\"name\":\"vcLeaf\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[]\",\"name\":\"proof\",\"type\":\"bytes32[]\"}],\"name\":\"verifyVC\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // RevocationServiceABI is the input ABI used to generate the binding from.
@@ -213,10 +213,10 @@ func (_RevocationService *RevocationServiceCallerSession) BloomFilter(arg0 *big.
 
 // CheckRevocationStatusInBloomFilter is a free data retrieval call binding the contract method 0xc3eed8e7.
 //
-// Solidity: function checkRevocationStatusInBloomFilter(uint256[3] indexes) view returns(bool)
-func (_RevocationService *RevocationServiceCaller) CheckRevocationStatusInBloomFilter(opts *bind.CallOpts, indexes [3]*big.Int) (bool, error) {
+// Solidity: function checkRevocationStatusInBloomFilter(uint256[3] _indexes) view returns(bool)
+func (_RevocationService *RevocationServiceCaller) CheckRevocationStatusInBloomFilter(opts *bind.CallOpts, _indexes [3]*big.Int) (bool, error) {
 	var out []interface{}
-	err := _RevocationService.contract.Call(opts, &out, "checkRevocationStatusInBloomFilter", indexes)
+	err := _RevocationService.contract.Call(opts, &out, "checkRevocationStatusInBloomFilter", _indexes)
 
 	if err != nil {
 		return *new(bool), err
@@ -230,16 +230,47 @@ func (_RevocationService *RevocationServiceCaller) CheckRevocationStatusInBloomF
 
 // CheckRevocationStatusInBloomFilter is a free data retrieval call binding the contract method 0xc3eed8e7.
 //
-// Solidity: function checkRevocationStatusInBloomFilter(uint256[3] indexes) view returns(bool)
-func (_RevocationService *RevocationServiceSession) CheckRevocationStatusInBloomFilter(indexes [3]*big.Int) (bool, error) {
-	return _RevocationService.Contract.CheckRevocationStatusInBloomFilter(&_RevocationService.CallOpts, indexes)
+// Solidity: function checkRevocationStatusInBloomFilter(uint256[3] _indexes) view returns(bool)
+func (_RevocationService *RevocationServiceSession) CheckRevocationStatusInBloomFilter(_indexes [3]*big.Int) (bool, error) {
+	return _RevocationService.Contract.CheckRevocationStatusInBloomFilter(&_RevocationService.CallOpts, _indexes)
 }
 
 // CheckRevocationStatusInBloomFilter is a free data retrieval call binding the contract method 0xc3eed8e7.
 //
-// Solidity: function checkRevocationStatusInBloomFilter(uint256[3] indexes) view returns(bool)
-func (_RevocationService *RevocationServiceCallerSession) CheckRevocationStatusInBloomFilter(indexes [3]*big.Int) (bool, error) {
-	return _RevocationService.Contract.CheckRevocationStatusInBloomFilter(&_RevocationService.CallOpts, indexes)
+// Solidity: function checkRevocationStatusInBloomFilter(uint256[3] _indexes) view returns(bool)
+func (_RevocationService *RevocationServiceCallerSession) CheckRevocationStatusInBloomFilter(_indexes [3]*big.Int) (bool, error) {
+	return _RevocationService.Contract.CheckRevocationStatusInBloomFilter(&_RevocationService.CallOpts, _indexes)
+}
+
+// CheckRevocationStatusInMerkleTreeAccumulator is a free data retrieval call binding the contract method 0x4993101b.
+//
+// Solidity: function checkRevocationStatusInMerkleTreeAccumulator(bytes32 leaf, bytes32[] proof) view returns(bool)
+func (_RevocationService *RevocationServiceCaller) CheckRevocationStatusInMerkleTreeAccumulator(opts *bind.CallOpts, leaf [32]byte, proof [][32]byte) (bool, error) {
+	var out []interface{}
+	err := _RevocationService.contract.Call(opts, &out, "checkRevocationStatusInMerkleTreeAccumulator", leaf, proof)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// CheckRevocationStatusInMerkleTreeAccumulator is a free data retrieval call binding the contract method 0x4993101b.
+//
+// Solidity: function checkRevocationStatusInMerkleTreeAccumulator(bytes32 leaf, bytes32[] proof) view returns(bool)
+func (_RevocationService *RevocationServiceSession) CheckRevocationStatusInMerkleTreeAccumulator(leaf [32]byte, proof [][32]byte) (bool, error) {
+	return _RevocationService.Contract.CheckRevocationStatusInMerkleTreeAccumulator(&_RevocationService.CallOpts, leaf, proof)
+}
+
+// CheckRevocationStatusInMerkleTreeAccumulator is a free data retrieval call binding the contract method 0x4993101b.
+//
+// Solidity: function checkRevocationStatusInMerkleTreeAccumulator(bytes32 leaf, bytes32[] proof) view returns(bool)
+func (_RevocationService *RevocationServiceCallerSession) CheckRevocationStatusInMerkleTreeAccumulator(leaf [32]byte, proof [][32]byte) (bool, error) {
+	return _RevocationService.Contract.CheckRevocationStatusInMerkleTreeAccumulator(&_RevocationService.CallOpts, leaf, proof)
 }
 
 // Issuer is a free data retrieval call binding the contract method 0x1d143848.
@@ -273,6 +304,37 @@ func (_RevocationService *RevocationServiceCallerSession) Issuer() (common.Addre
 	return _RevocationService.Contract.Issuer(&_RevocationService.CallOpts)
 }
 
+// MerkleTree is a free data retrieval call binding the contract method 0x0df0ff90.
+//
+// Solidity: function merkleTree(uint256 ) view returns(bytes32)
+func (_RevocationService *RevocationServiceCaller) MerkleTree(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+	var out []interface{}
+	err := _RevocationService.contract.Call(opts, &out, "merkleTree", arg0)
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// MerkleTree is a free data retrieval call binding the contract method 0x0df0ff90.
+//
+// Solidity: function merkleTree(uint256 ) view returns(bytes32)
+func (_RevocationService *RevocationServiceSession) MerkleTree(arg0 *big.Int) ([32]byte, error) {
+	return _RevocationService.Contract.MerkleTree(&_RevocationService.CallOpts, arg0)
+}
+
+// MerkleTree is a free data retrieval call binding the contract method 0x0df0ff90.
+//
+// Solidity: function merkleTree(uint256 ) view returns(bytes32)
+func (_RevocationService *RevocationServiceCallerSession) MerkleTree(arg0 *big.Int) ([32]byte, error) {
+	return _RevocationService.Contract.MerkleTree(&_RevocationService.CallOpts, arg0)
+}
+
 // NumberOfHashFunctions is a free data retrieval call binding the contract method 0x376a6590.
 //
 // Solidity: function numberOfHashFunctions() view returns(uint256)
@@ -304,6 +366,56 @@ func (_RevocationService *RevocationServiceCallerSession) NumberOfHashFunctions(
 	return _RevocationService.Contract.NumberOfHashFunctions(&_RevocationService.CallOpts)
 }
 
+// PrintMerkleTree is a free data retrieval call binding the contract method 0xd3e53042.
+//
+// Solidity: function printMerkleTree() view returns()
+func (_RevocationService *RevocationServiceCaller) PrintMerkleTree(opts *bind.CallOpts) error {
+	var out []interface{}
+	err := _RevocationService.contract.Call(opts, &out, "printMerkleTree")
+
+	if err != nil {
+		return err
+	}
+
+	return err
+
+}
+
+// PrintMerkleTree is a free data retrieval call binding the contract method 0xd3e53042.
+//
+// Solidity: function printMerkleTree() view returns()
+func (_RevocationService *RevocationServiceSession) PrintMerkleTree() error {
+	return _RevocationService.Contract.PrintMerkleTree(&_RevocationService.CallOpts)
+}
+
+// PrintMerkleTree is a free data retrieval call binding the contract method 0xd3e53042.
+//
+// Solidity: function printMerkleTree() view returns()
+func (_RevocationService *RevocationServiceCallerSession) PrintMerkleTree() error {
+	return _RevocationService.Contract.PrintMerkleTree(&_RevocationService.CallOpts)
+}
+
+// IssueVC is a paid mutator transaction binding the contract method 0xce4b3f34.
+//
+// Solidity: function issueVC(uint256[] _mtIndexes, bytes32[] _mtValues) returns()
+func (_RevocationService *RevocationServiceTransactor) IssueVC(opts *bind.TransactOpts, _mtIndexes []*big.Int, _mtValues [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.contract.Transact(opts, "issueVC", _mtIndexes, _mtValues)
+}
+
+// IssueVC is a paid mutator transaction binding the contract method 0xce4b3f34.
+//
+// Solidity: function issueVC(uint256[] _mtIndexes, bytes32[] _mtValues) returns()
+func (_RevocationService *RevocationServiceSession) IssueVC(_mtIndexes []*big.Int, _mtValues [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.Contract.IssueVC(&_RevocationService.TransactOpts, _mtIndexes, _mtValues)
+}
+
+// IssueVC is a paid mutator transaction binding the contract method 0xce4b3f34.
+//
+// Solidity: function issueVC(uint256[] _mtIndexes, bytes32[] _mtValues) returns()
+func (_RevocationService *RevocationServiceTransactorSession) IssueVC(_mtIndexes []*big.Int, _mtValues [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.Contract.IssueVC(&_RevocationService.TransactOpts, _mtIndexes, _mtValues)
+}
+
 // RegisterIssuers is a paid mutator transaction binding the contract method 0x0de54b85.
 //
 // Solidity: function registerIssuers() returns()
@@ -325,25 +437,25 @@ func (_RevocationService *RevocationServiceTransactorSession) RegisterIssuers() 
 	return _RevocationService.Contract.RegisterIssuers(&_RevocationService.TransactOpts)
 }
 
-// RevokeInBloomFilter is a paid mutator transaction binding the contract method 0x89cdfa6e.
+// RevokeVC is a paid mutator transaction binding the contract method 0x5c3702fb.
 //
-// Solidity: function revokeInBloomFilter(uint256[3] indexes) returns()
-func (_RevocationService *RevocationServiceTransactor) RevokeInBloomFilter(opts *bind.TransactOpts, indexes [3]*big.Int) (*types.Transaction, error) {
-	return _RevocationService.contract.Transact(opts, "revokeInBloomFilter", indexes)
+// Solidity: function revokeVC(uint256[3] _bfIndexes, uint256[] _mtIndexes, bytes32[] _mtValues) returns()
+func (_RevocationService *RevocationServiceTransactor) RevokeVC(opts *bind.TransactOpts, _bfIndexes [3]*big.Int, _mtIndexes []*big.Int, _mtValues [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.contract.Transact(opts, "revokeVC", _bfIndexes, _mtIndexes, _mtValues)
 }
 
-// RevokeInBloomFilter is a paid mutator transaction binding the contract method 0x89cdfa6e.
+// RevokeVC is a paid mutator transaction binding the contract method 0x5c3702fb.
 //
-// Solidity: function revokeInBloomFilter(uint256[3] indexes) returns()
-func (_RevocationService *RevocationServiceSession) RevokeInBloomFilter(indexes [3]*big.Int) (*types.Transaction, error) {
-	return _RevocationService.Contract.RevokeInBloomFilter(&_RevocationService.TransactOpts, indexes)
+// Solidity: function revokeVC(uint256[3] _bfIndexes, uint256[] _mtIndexes, bytes32[] _mtValues) returns()
+func (_RevocationService *RevocationServiceSession) RevokeVC(_bfIndexes [3]*big.Int, _mtIndexes []*big.Int, _mtValues [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.Contract.RevokeVC(&_RevocationService.TransactOpts, _bfIndexes, _mtIndexes, _mtValues)
 }
 
-// RevokeInBloomFilter is a paid mutator transaction binding the contract method 0x89cdfa6e.
+// RevokeVC is a paid mutator transaction binding the contract method 0x5c3702fb.
 //
-// Solidity: function revokeInBloomFilter(uint256[3] indexes) returns()
-func (_RevocationService *RevocationServiceTransactorSession) RevokeInBloomFilter(indexes [3]*big.Int) (*types.Transaction, error) {
-	return _RevocationService.Contract.RevokeInBloomFilter(&_RevocationService.TransactOpts, indexes)
+// Solidity: function revokeVC(uint256[3] _bfIndexes, uint256[] _mtIndexes, bytes32[] _mtValues) returns()
+func (_RevocationService *RevocationServiceTransactorSession) RevokeVC(_bfIndexes [3]*big.Int, _mtIndexes []*big.Int, _mtValues [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.Contract.RevokeVC(&_RevocationService.TransactOpts, _bfIndexes, _mtIndexes, _mtValues)
 }
 
 // TestRevocation is a paid mutator transaction binding the contract method 0xb0d2b15e.
@@ -365,4 +477,88 @@ func (_RevocationService *RevocationServiceSession) TestRevocation() (*types.Tra
 // Solidity: function testRevocation() returns()
 func (_RevocationService *RevocationServiceTransactorSession) TestRevocation() (*types.Transaction, error) {
 	return _RevocationService.Contract.TestRevocation(&_RevocationService.TransactOpts)
+}
+
+// UpdateBloomFilter is a paid mutator transaction binding the contract method 0x33379d9a.
+//
+// Solidity: function updateBloomFilter(uint256[3] _indexes) returns()
+func (_RevocationService *RevocationServiceTransactor) UpdateBloomFilter(opts *bind.TransactOpts, _indexes [3]*big.Int) (*types.Transaction, error) {
+	return _RevocationService.contract.Transact(opts, "updateBloomFilter", _indexes)
+}
+
+// UpdateBloomFilter is a paid mutator transaction binding the contract method 0x33379d9a.
+//
+// Solidity: function updateBloomFilter(uint256[3] _indexes) returns()
+func (_RevocationService *RevocationServiceSession) UpdateBloomFilter(_indexes [3]*big.Int) (*types.Transaction, error) {
+	return _RevocationService.Contract.UpdateBloomFilter(&_RevocationService.TransactOpts, _indexes)
+}
+
+// UpdateBloomFilter is a paid mutator transaction binding the contract method 0x33379d9a.
+//
+// Solidity: function updateBloomFilter(uint256[3] _indexes) returns()
+func (_RevocationService *RevocationServiceTransactorSession) UpdateBloomFilter(_indexes [3]*big.Int) (*types.Transaction, error) {
+	return _RevocationService.Contract.UpdateBloomFilter(&_RevocationService.TransactOpts, _indexes)
+}
+
+// UpdateMerkleTree is a paid mutator transaction binding the contract method 0x51600698.
+//
+// Solidity: function updateMerkleTree(uint256[] _indexes, bytes32[] _values) returns()
+func (_RevocationService *RevocationServiceTransactor) UpdateMerkleTree(opts *bind.TransactOpts, _indexes []*big.Int, _values [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.contract.Transact(opts, "updateMerkleTree", _indexes, _values)
+}
+
+// UpdateMerkleTree is a paid mutator transaction binding the contract method 0x51600698.
+//
+// Solidity: function updateMerkleTree(uint256[] _indexes, bytes32[] _values) returns()
+func (_RevocationService *RevocationServiceSession) UpdateMerkleTree(_indexes []*big.Int, _values [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.Contract.UpdateMerkleTree(&_RevocationService.TransactOpts, _indexes, _values)
+}
+
+// UpdateMerkleTree is a paid mutator transaction binding the contract method 0x51600698.
+//
+// Solidity: function updateMerkleTree(uint256[] _indexes, bytes32[] _values) returns()
+func (_RevocationService *RevocationServiceTransactorSession) UpdateMerkleTree(_indexes []*big.Int, _values [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.Contract.UpdateMerkleTree(&_RevocationService.TransactOpts, _indexes, _values)
+}
+
+// UpdateNode is a paid mutator transaction binding the contract method 0x19f26717.
+//
+// Solidity: function updateNode(uint256 index, bytes32 value) returns()
+func (_RevocationService *RevocationServiceTransactor) UpdateNode(opts *bind.TransactOpts, index *big.Int, value [32]byte) (*types.Transaction, error) {
+	return _RevocationService.contract.Transact(opts, "updateNode", index, value)
+}
+
+// UpdateNode is a paid mutator transaction binding the contract method 0x19f26717.
+//
+// Solidity: function updateNode(uint256 index, bytes32 value) returns()
+func (_RevocationService *RevocationServiceSession) UpdateNode(index *big.Int, value [32]byte) (*types.Transaction, error) {
+	return _RevocationService.Contract.UpdateNode(&_RevocationService.TransactOpts, index, value)
+}
+
+// UpdateNode is a paid mutator transaction binding the contract method 0x19f26717.
+//
+// Solidity: function updateNode(uint256 index, bytes32 value) returns()
+func (_RevocationService *RevocationServiceTransactorSession) UpdateNode(index *big.Int, value [32]byte) (*types.Transaction, error) {
+	return _RevocationService.Contract.UpdateNode(&_RevocationService.TransactOpts, index, value)
+}
+
+// VerifyVC is a paid mutator transaction binding the contract method 0x4b72f59a.
+//
+// Solidity: function verifyVC(uint256[3] _bfIndexes, bytes32 vcLeaf, bytes32[] proof) returns(bool)
+func (_RevocationService *RevocationServiceTransactor) VerifyVC(opts *bind.TransactOpts, _bfIndexes [3]*big.Int, vcLeaf [32]byte, proof [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.contract.Transact(opts, "verifyVC", _bfIndexes, vcLeaf, proof)
+}
+
+// VerifyVC is a paid mutator transaction binding the contract method 0x4b72f59a.
+//
+// Solidity: function verifyVC(uint256[3] _bfIndexes, bytes32 vcLeaf, bytes32[] proof) returns(bool)
+func (_RevocationService *RevocationServiceSession) VerifyVC(_bfIndexes [3]*big.Int, vcLeaf [32]byte, proof [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.Contract.VerifyVC(&_RevocationService.TransactOpts, _bfIndexes, vcLeaf, proof)
+}
+
+// VerifyVC is a paid mutator transaction binding the contract method 0x4b72f59a.
+//
+// Solidity: function verifyVC(uint256[3] _bfIndexes, bytes32 vcLeaf, bytes32[] proof) returns(bool)
+func (_RevocationService *RevocationServiceTransactorSession) VerifyVC(_bfIndexes [3]*big.Int, vcLeaf [32]byte, proof [][32]byte) (*types.Transaction, error) {
+	return _RevocationService.Contract.VerifyVC(&_RevocationService.TransactOpts, _bfIndexes, vcLeaf, proof)
 }

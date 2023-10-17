@@ -101,7 +101,7 @@ func WriteToContract(config config.Config){
 	zap.S().Infof("\n revocation status[%d, %d, %d]: %t", index1, index2, index3, status)
 
 	zap.S().Infoln("\n Revoking in Bloom Filter")
-	tx, err :=revocationService.RevokeInBloomFilter(auth, indexes)
+	tx, err :=revocationService.RevokeVC(auth, indexes)
 	if err != nil {
 		zap.S().Fatalln("failed to revoke", err)
 	}

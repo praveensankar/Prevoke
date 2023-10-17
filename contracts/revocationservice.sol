@@ -1,11 +1,12 @@
 //SPDX-License-Identifier: MIT
 
 pragma solidity >=0.4.16 <0.9.0;
-import "hardhat/console.sol";
-import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
+import "./console.sol";
+import "./MerkleProof.sol";
 
 contract RevocationService{
     
+    bool private constant DEBUG = true;
     
     // bloom filter
     uint public constant numberOfHashFunctions = 3;
@@ -115,24 +116,24 @@ contract RevocationService{
 
 
 
-    function updateBloomFilter(uint256[numberOfHashFunctions] memory indexes) public{
+    function updateBloomFilter(uint256[numberOfHashFunctions] memory _indexes) public{
 
         //only issuer can perform the revocation
         require(msg.sender==issuer);
         
         // sets the indexes to true
-        for (uint i = 0; i < indexes.length; i++) {
-            bloomFilter[indexes[i]] = true; 
+        for (uint i = 0; i < _indexes.length; i++) {
+            bloomFilter[_indexes[i]] = true; 
         }
     }
 
     // if it returns true then the VC is not revoked. 
     // if it retuns false then the VC is probably revoked.
-    function checkRevocationStatusInBloomFilter(uint256[numberOfHashFunctions] memory indexes) public view returns(bool){
+    function checkRevocationStatusInBloomFilter(uint256[numberOfHashFunctions] memory _indexes) public view returns(bool){
 
         bool isValid = true;
-        for (uint i = 0; i < indexes.length; i++) {
-            if(bloomFilter[indexes[i]]==true){
+        for (uint i = 0; i < _indexes.length; i++) {
+            if(bloomFilter[_indexes[i]]==true){
                 isValid = false;
                 break;
             }
@@ -196,9 +197,9 @@ contract RevocationService{
     function testRevocation() public{
        
         uint256[numberOfHashFunctions] memory vc1BloomFilter = [uint256(1),uint256(2),uint256(3)];
-        uint256[numberOfHashFunctions] memory vc2BloomFilter = [uint256(4),uint256(5),uint256(6)];
-        uint256[numberOfHashFunctions] memory vc3BloomFilter = [uint256(7),uint256(8),uint256(9)];
-        uint256[numberOfHashFunctions] memory vc4BloomFilter = [uint256(10),uint256(11),uint256(12)];
+        // uint256[numberOfHashFunctions] memory vc2BloomFilter = [uint256(4),uint256(5),uint256(6)];
+        // uint256[numberOfHashFunctions] memory vc3BloomFilter = [uint256(7),uint256(8),uint256(9)];
+        // uint256[numberOfHashFunctions] memory vc4BloomFilter = [uint256(10),uint256(11),uint256(12)];
 
 
 
@@ -232,10 +233,11 @@ contract RevocationService{
         values[4] = vc2MTAcc;
         values[5] = vc3MTAcc;
         values[6] = vc4MTAcc;
-    
+        if (DEBUG==true){
         console.log("issuing VCs: VC1, VC2, VC3, VC34");
-        issueVC(myindexes, values);
         console.log("merkle tree accumulator is initialized with valid vcs");
+        }
+        issueVC(myindexes, values);
         }
 
        
@@ -246,13 +248,16 @@ contract RevocationService{
         {
         bool statusOfVC1 = verifyVC(vc1BloomFilter, vc1MTAcc, proofForVC1);
         string memory vc1Status = statusOfVC1 ? "not revoked" : "revoked";
+        if (DEBUG==true){
         console.log("the revocation status of VC1: ",vc1Status);
+        }
         }
 
 
         {
+        if (DEBUG==true){
         console.log("now revoking VC1......");
-
+        }
         bytes32 revokedvc1MTAcc = keccak256(abi.encode("vc 1 revoked"));
         internal1 = keccak256(abi.encodePacked(revokedvc1MTAcc, vc2MTAcc));
         root = keccak256(abi.encodePacked(internal1, internal2));
@@ -270,8 +275,9 @@ contract RevocationService{
 
         bool statusOfVC1 = verifyVC(vc1BloomFilter, vc1MTAcc, proofForVC1);
         string memory vc1Status = statusOfVC1 ? "not revoked" : "revoked";
+        if (DEBUG==true){
         console.log("the revocation status of VC1: ",vc1Status);
-
+        }
 
 
 

@@ -16,7 +16,7 @@ type MerkleTreeAccumulator struct {
 	leafsToIndexes map[string]big.Int
 }
 
-func  createMerkleTree() *MerkleTreeAccumulator {
+func  CreateMerkleTree() *MerkleTreeAccumulator {
 	ctx := context.Background()
 	var treeStorage merkletree.Storage
 	treeStorage = memory.NewMemoryStorage()
@@ -54,7 +54,6 @@ func (accumulator *MerkleTreeAccumulator) getProof(leaf *big.Int) *merkletree.Pr
 	}
 	zap.S().Infoln(
 		"proof",proof.Bytes())
-
 	return proof
 }
 

@@ -29,8 +29,9 @@ func TestMerkleTree(){
 	}else{
 		zap.S().Infoln("used wrong proof - verification failed")
 	}
+}
 
 
-
-
+func TestBloomFilter(estimatedVCs ...int){
+	testBloomFilter(estimatedVCs...);
 }

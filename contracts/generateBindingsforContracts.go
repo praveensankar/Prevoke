@@ -4,7 +4,7 @@ package contracts
 
 solc --abi revocationservice.sol -o build
 solc --bin revocationservice.sol -o build
-abigen --abi RevocationService.abi --pkg contracts --type RevocationService --out RevocationService.go
+abigen --abi build/RevocationService.abi --pkg contracts --type RevocationService --out RevocationService.go
 
 */
 
