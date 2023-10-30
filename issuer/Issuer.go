@@ -9,6 +9,7 @@ import (
 	"github.com/praveensankar/Revocation-Service/vc"
 	"go.uber.org/zap"
 	"github.com/praveensankar/Revocation-Service/contracts"
+	"math/big"
 )
 
 type IIsser interface {
@@ -47,7 +48,6 @@ func  CreateIssuer(config config.Config) *Issuer{
 	issuer.name = config.IssuerName
 	issuer.credentialStore= []verifiable.Credential{}
 	issuer.vcCounter = 0
-
 	rs := CreateRevocationService(config)
 	issuer.setRevocationService(rs)
 
@@ -65,15 +65,12 @@ func (issuer *Issuer) generateDummyVC() verifiable.Credential {
 	return vc
 }
 
-func (issuer *Issuer) issue(config config.Config, vc verifiable.Credential) {
+func (issuer *Issuer) issue(vc verifiable.Credential) {
 	// when issuer issue new credentials, the credential is created
 	issuer.credentialStore = append(issuer.credentialStore, vc)
+	revocationData := issuer.RevocationService.IssueVC(vc)
 
-
-	tx, err := issuer.RevocationService.IssueVC(vc)
-	if err != nil {
-		return
-	}
+	//Todo: send revocationData and vc to Holder
 
 }
 

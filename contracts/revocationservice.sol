@@ -28,7 +28,7 @@ contract RevocationService{
 
     // stores the list of indexes present in the merkle tree.
     uint[] private indexes;
-    mapping (uint => bool) private isExistInMTAccumulator;
+    mapping (uint => bool) public isExistInMTAccumulator;
 
     // issuer is the owner of the contract
     address public issuer;
@@ -87,33 +87,6 @@ contract RevocationService{
         
     }
 
-    /*
-    verifies a VC by using two phase verification approach. 
-
-    Inputs: 
-        _bfIndexes: bloom filter indexes that needs to be set
-        vcLeaf: leaf value of the corresponding VC in the merkle tree
-        proof:  merkle proof
-
-    Operations:
-        Phase 1: check the revocation status in bloom filter. if bloom filter returns false, then it means that VC might be revoked.
-        phase 2:  check the merkle tree accumulator. if it returns true then it means the proof is valid otherwise invalid.
-
-    Returns:
-        True: indicates VC is valid
-        False: indicates VC is revoked
-    */
-    function verifyVC(uint256[numberOfHashFunctions] memory _bfIndexes, bytes32 vcLeaf, bytes32[] memory proof) public returns(bool){
-
-        bool statusInBloomFilter = checkRevocationStatusInBloomFilter(_bfIndexes);
-
-        if(statusInBloomFilter==true){
-            return true;
-        }else{
-            return checkRevocationStatusInMerkleTreeAccumulator(vcLeaf, proof);
-        }
-    }
-
 
 
     function updateBloomFilter(uint256[numberOfHashFunctions] memory _indexes) public{
@@ -125,20 +98,6 @@ contract RevocationService{
         for (uint i = 0; i < _indexes.length; i++) {
             bloomFilter[_indexes[i]] = true; 
         }
-    }
-
-    // if it returns true then the VC is not revoked. 
-    // if it retuns false then the VC is probably revoked.
-    function checkRevocationStatusInBloomFilter(uint256[numberOfHashFunctions] memory _indexes) public view returns(bool){
-
-        bool isValid = true;
-        for (uint i = 0; i < _indexes.length; i++) {
-            if(bloomFilter[_indexes[i]]==true){
-                isValid = false;
-                break;
-            }
-        }
-        return isValid;
     }
 
 
@@ -166,30 +125,135 @@ contract RevocationService{
         
     }
 
+
+
+
+
+    /*
+    verifies a VC by using two phase verification approach. 
+
+    Inputs: 
+        _bfIndexes: bloom filter indexes that needs to be set
+        vcLeaf: leaf value of the corresponding VC in the merkle tree
+        proof:  merkle proof
+
+    Operations:
+        Phase 1: check the revocation status in bloom filter. if bloom filter returns false, then it means that VC might be revoked.
+        phase 2:  check the merkle tree accumulator. if it returns true then it means the proof is valid otherwise invalid.
+
+    Returns:
+        True: indicates VC is valid
+        False: indicates VC is revoked
+    */
+    function verifyVC(uint256[numberOfHashFunctions] memory _bfIndexes, bytes32 vcLeaf, bytes32[] memory proof) public returns(bool){
+
+        bool statusInBloomFilter = checkRevocationStatusInBloomFilter(_bfIndexes);
+
+        if(statusInBloomFilter==true){
+            return true;
+        }else{
+            return checkRevocationStatusInMerkleTreeAccumulator(vcLeaf, proof);
+        }
+    }
+
+    /*
+    verifies a VC by using only bloom filters. 
+
+    Inputs: 
+        vcLeaf: leaf value of the corresponding VC in the merkle tree
+        proof:  merkle proof
+       
+    Operations:
+         phase 2:  check the merkle tree accumulator. if it returns true then it means the proof is valid otherwise invalid.
+
+    Returns:
+        True: indicates VC is valid
+        False: indicates VC is revoked
+    */
+    function verificationPhase1(uint256[numberOfHashFunctions] memory _bfIndexes) public returns(bool){
+        return checkRevocationStatusInBloomFilter(_bfIndexes);
+    }
+
+
+
+    // if it returns true then the VC is not revoked. 
+    // if it retuns false then the VC is probably revoked.
+    function checkRevocationStatusInBloomFilter(uint256[numberOfHashFunctions] memory _indexes) public view returns(bool){
+
+        bool isValid = true;
+        for (uint i = 0; i < _indexes.length; i++) {
+            if(bloomFilter[_indexes[i]]==true){
+                isValid = false;
+                break;
+            }
+        }
+        return isValid;
+    }
+
+
+
+    /*
+    verifies a VC by using only merkle tree accumulator. 
+
+    Inputs: 
+        _bfIndexes: bloom filter indexes that needs to be set
+       
+    Operations:
+        Phase 1: check the revocation status in bloom filter. if bloom filter returns false, then it means that VC might be revoked.
+        
+    Returns:
+        True: indicates VC is valid
+        False: indicates VC is revoked
+    */
+    function verificationPhase2(bytes32 vcLeaf, bytes32[] memory proof) public returns(bool){
+        return checkRevocationStatusInMerkleTreeAccumulator(vcLeaf, proof);
+    }
+
+
+
+    /*
+    check whether  the leaf value of the VC is present in the merkle tree. verify whether the proof is valid is or not not.
+    If proof is valid then it means that VC is present in the merkle tree. therefore, it is not revoked. 
+    If proof is invalid then it means that VC is not present in the merkle tree. therefore, it is revoked.
+   
+    returns
+    True -  if VC is not revoked. 
+    False - if VC is revoked
+    */ 
+    function checkRevocationStatusInMerkleTreeAccumulator(bytes32 leaf, bytes32[] memory proof) public view returns (bool){
+        
+        bool status = MerkleProof.verify(proof, merkleTree[0], leaf);
+
+        // if (DEBUG==true){
+        //     console.log("verification status of merkle proof: ", status);
+        // }
+
+        return status;
+    }
+
+
+
+
     // updates a non-leaf or leaf node at the specified index
     function updateNode(uint index, bytes32 value) public{
-
         //only own can replace merkle tree
         require(msg.sender==issuer);
-        
         merkleTree[index] = value;
     }
 
     // prints the tree in console
     function printMerkleTree() public view{
-         for (uint i = 0; i < indexes.length; i++) {
-         console.logBytes(abi.encodePacked(merkleTree[i]));
+        
+        if (DEBUG==true){
+            console.log("priting merkle tree");
+        }
+        for (uint i = 0; i < indexes.length; i++) {      
+            if (DEBUG==true){
+            console.log("index : %d \t value :",i);
+              console.logBytes(abi.encodePacked(merkleTree[i]));
+            }
+         
          }
-    }
-
-    /*
-    checks the leaf value of the VC and the proof and verifies whether the proof is valid or not. 
-    returns
-    True - if leaf and proof are valid
-    False - if invalid
-    */ 
-    function checkRevocationStatusInMerkleTreeAccumulator(bytes32 leaf, bytes32[] memory proof) public view returns (bool){
-        return MerkleProof.verify(proof, merkleTree[0], leaf);
     }
 
 
@@ -204,10 +268,10 @@ contract RevocationService{
 
 
        // mapping(uint => bytes32) memory tree;
-        bytes32 vc1MTAcc = keccak256(abi.encode("vc 1"));
-        bytes32 vc2MTAcc = keccak256(abi.encode("vc 2"));
-        bytes32 vc3MTAcc = keccak256(abi.encode("vc 3"));
-        bytes32 vc4MTAcc = keccak256(abi.encode("vc 4"));
+        bytes32 vc1MTAcc = keccak256(abi.encode("vc1"));
+        bytes32 vc2MTAcc = keccak256(abi.encode("vc2"));
+        bytes32 vc3MTAcc = keccak256(abi.encode("vc3"));
+        bytes32 vc4MTAcc = keccak256(abi.encode("vc4"));
 
         bytes32 internal1 = keccak256(abi.encodePacked(vc1MTAcc, vc2MTAcc));
         bytes32 internal2 = keccak256(abi.encodePacked(vc3MTAcc, vc4MTAcc));
@@ -245,11 +309,39 @@ contract RevocationService{
         proofForVC1[0] = vc2MTAcc;
         proofForVC1[1] = internal2;
 
+        
+
         {
+
+
+        if(DEBUG==true){
+            console.log("now verifiying vc1 ");
+        }
         bool statusOfVC1 = verifyVC(vc1BloomFilter, vc1MTAcc, proofForVC1);
         string memory vc1Status = statusOfVC1 ? "not revoked" : "revoked";
         if (DEBUG==true){
         console.log("the revocation status of VC1: ",vc1Status);
+
+        statusOfVC1 = verificationPhase1(vc1BloomFilter);
+        vc1Status = statusOfVC1 ? "not revoked" : "probably revoked";
+        if (DEBUG==true){
+        console.log("phase 1: revocation status of VC1: ",vc1Status);
+        }
+
+        // if(DEBUG==true){
+        //     console.log("merkle leaf :");
+        //     console.logBytes(abi.encodePacked(vc1MTAcc));
+        //     console.log("merkle proof: ");
+        //     for (uint i=0; i<2;i++)
+        //     {
+        //         console.logBytes(abi.encodePacked(proofForVC1[i]));
+        //     }
+        // }
+        statusOfVC1 = verificationPhase2(vc1MTAcc, proofForVC1);
+        vc1Status = statusOfVC1 ? "not revoked" : " revoked";
+        if (DEBUG==true){
+        console.log("phase 2: revocation status of VC1: ",vc1Status);
+        }
         }
         }
 
@@ -278,6 +370,20 @@ contract RevocationService{
         if (DEBUG==true){
         console.log("the revocation status of VC1: ",vc1Status);
         }
+
+
+        statusOfVC1 = verificationPhase1(vc1BloomFilter);
+        vc1Status = statusOfVC1 ? "not revoked" : "probably revoked";
+        if (DEBUG==true){
+        console.log("phase 1: revocation status of VC1: ",vc1Status);
+        }
+
+        statusOfVC1 = verificationPhase2(vc1MTAcc, proofForVC1);
+        vc1Status = statusOfVC1 ? "not revoked" : " revoked";
+        if (DEBUG==true){
+        console.log("phase 2: revocation status of VC1: ",vc1Status);
+        }
+
 
 
 
