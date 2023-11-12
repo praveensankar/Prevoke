@@ -6,7 +6,7 @@ import (
 )
 
 
-func CreateEmployementProofCredential(id string) (verifiable.Credential){
+func CreateEmployementProofCredential(id string) (*verifiable.Credential){
 
 	vc := verifiable.Credential{
 		Context:          nil,
@@ -33,7 +33,7 @@ func CreateEmployementProofCredential(id string) (verifiable.Credential){
 		CustomFields:     nil,
 	}
 
-	return vc
+	return &vc
 }
 
 func testAries(){

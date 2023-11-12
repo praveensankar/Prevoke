@@ -1,6 +1,9 @@
 package blockchain
 
-import "github.com/praveensankar/Revocation-Service/config"
+import (
+	"github.com/praveensankar/Revocation-Service/config"
+	"sync"
+)
 
 func TestConnectionToBlockchain(config config.Config){
 
@@ -18,4 +21,32 @@ func TestConnectionToBlockchain(config config.Config){
 	_ = createNewKeyStore()
 
 
+}
+
+
+
+func TestSmartContract(my_config config.Config){
+	ReadFromContract(my_config)
+	WriteToContract(my_config)
+
+
+	var waitGroupforBlocksListener sync.WaitGroup
+
+	waitGroupforBlocksListener.Add(1)
+	go func(my_config config.Config) {
+		defer waitGroupforBlocksListener.Done()
+		SubscribeToEvents(my_config)
+	}(my_config)
+
+
+	waitGroupforBlocksListener.Wait()
+}
+
+func TestDeployment(conf config.Config){
+	//DeployContract(conf)
+}
+
+func Test(conf config.Config){
+	//TestDeployment(conf)
+	TestSmartContract(conf)
 }

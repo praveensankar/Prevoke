@@ -4,7 +4,13 @@ import (
 	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/deckarep/golang-set"
+	"go.uber.org/zap"
+	"math/big"
 )
+
+
+// Todo: change the value of this constant based on value in smart contract
+const NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER = 7;
 
 type BloomFilter struct{
 	bloomFilter *bloom.BloomFilter
@@ -34,7 +40,14 @@ func CreateBloomFilter(totalNumberOfVCs uint, falsePositiveRate float64) (*Bloom
 		size: size,
 		numberOfIndexesPerEntry: numberOfIndexesPerEntry,
 	}
+
+	if numberOfIndexesPerEntry !=NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER{
+		zap.S().Errorln("bloom filter index mismatch.", numberOfIndexesPerEntry, "is given by go code")
+	}
+
 	newBloomFilter.assignedIndexes = mapset.NewSet()
+
+
 	return &newBloomFilter
 }
 
@@ -82,6 +95,28 @@ func (bf *BloomFilter) RevokeInBloomFilter(vc string) []uint64 {
 	}
 
 	return indexes
+}
+
+/*
+This function retuns the indexes for a vc.
+
+Input:
+	vc: unique string representing the vc
+
+Output:
+	the indexes of the VC in the bloomfilter.
+*/
+func (bf *BloomFilter) GetIndexes(vc string) []*big.Int {
+	input := []byte(vc)
+	indexes := bloom.Locations(input, bf.numberOfIndexesPerEntry)
+	for i:=0; i< len(indexes);i++{
+		indexes[i] = indexes[i]%uint64(bf.size)
+	}
+	results := []*big.Int{}
+	for i:=0; i< len(indexes);i++ {
+		results = append(results, big.NewInt(int64(indexes[i])))
+	}
+	return results
 }
 
 

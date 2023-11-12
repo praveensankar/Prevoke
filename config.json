@@ -2,12 +2,12 @@
 
  {
 	"contract" : {
-		"address" : "0xB249700E3E3DBEc0EBAdCA2865768e047C86BB5F",
+		"address" : "0x0a83392D91CF76Bc13d8E9ac91C9112a2DD67176",
 		"gasLimit" : "6721975"
 	},
 	 "issuer" : {
 		 "name": "employer 1",
-		 "totalVCs" : "1000",
+		 "totalVCs" : "10000",
 		 "falsePositiveRate" : "0.01"
 	 },
 	 "test" : "test",
@@ -18,8 +18,8 @@
 
 	},
 	 "account" : {
-		 "address" : "0x1cc52460662dA42dD42A3732d07Fa6acC542753A",
-		 "privateKey": "f098dc23714f9aeca5633c9958a9e0391c5498951b8ad1d601931f11ad597e22",
+		 "address" : "0x13E06D59883c9263D1f2B80aAb1Ed85b46532379",
+		 "privateKey": "77a319ceee61a47edda1bce7267b102239b78e13d25d39fc1993c8a6475d9e7b",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
@@ -28,6 +28,9 @@
 	 "logger" : {
 		"env" : "dev",
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
+	 },
+	 "mode" : {
+		 "debug" : "true"
 	 }
 }
 

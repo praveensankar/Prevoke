@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/techniques"
+	"github.com/praveensankar/Revocation-Service/issuer"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -46,12 +46,12 @@ func initialize() {
 func main()  {
 	//testAries()
 	initialize()
-	_, _ = config.ParseConfig()
+	conf, _ := config.ParseConfig()
 	//blockchain.TestConnectionToBlockchain(conf)
-	//contracts.TestSmartContract(conf)
-	techniques.TestMerkleTree()
+	//blockchain.Test(conf)
+	//techniques.TestMerkleTree()
 	//techniques.TestBloomFilter(100)
-	//testIssuer(config)
+	issuer.TestIssuer(conf)
 }
 
 

@@ -20,7 +20,7 @@ contracts/build/RevocationService.bin
 contracts/build/rs.abi
 contracts/build/RevocationService.bin
 contracts/build/RevocationService.abi
-contracts/build/RevocationService.abi
+bindings/build/RevocationService.abi
 contracts/build/RevocationService.bin
 contracts/build/RevocationService.abi
 *.bin

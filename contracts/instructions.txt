@@ -1,0 +1,29 @@
+
+
+
+// go to contracts folder and execute the following commands:
+
+
+solc --abi revocationservice.sol -o bindings/build --overwrite
+solc --bin revocationservice.sol -o bindings/build --overwrite
+abigen --abi bindings/build/RevocationService.abi --pkg contracts --type RevocationService --out RevocationService.go
+
+
+/*
+To deploy contract from golang
+
+abigen --bin=build/RevocationService.bin --abi=build/RevocationService.abi --pkg contracts -type=RevocationService --out=RevocationService.go
+
+*/
+
+
+/*
+
+We can automate these steps using solgo in future.
+
+
+SolGo - Solidity parser built using the Go programming language
+SolGo is equipped to parse contract definitions and generate the Application Binary Interface (ABI) for
+individual contracts or groups of contracts
+ */
+
