@@ -1,7 +1,6 @@
 package issuer
 
 import (
-	"encoding/hex"
 	"fmt"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
@@ -131,7 +130,7 @@ func (issuer *Issuer) issue(vc verifiable.Credential) {
 	issuer.AddCretentialToStore(vc)
 	zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", vc.ID)
 	revocationData := issuer.RevocationService.IssueVC(vc)
-	issuer.RevocationService.PrintMerkleTree()
+	//issuer.RevocationService.PrintMerkleTree()
 
 
 
@@ -155,6 +154,9 @@ func (issuer *Issuer) getUpdatedMerkleProof(vc verifiable.Credential) *merkletre
 
 func (issuer *Issuer) revoke(vc verifiable.Credential) {
 
+	zap.S().Infoln("\n\n********************************************************************************************************************************")
+
+
 	zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vc:", vc.ID)
 
 	issuer.RevocationService.RevokeVC(vc)
@@ -166,27 +168,63 @@ func (issuer *Issuer) revoke(vc verifiable.Credential) {
 
 func (issuer *Issuer) verifyTest(vc verifiable.Credential) {
 
+	zap.S().Infoln("\n********************************************************************************************************************************")
+	zap.S().Infoln("***********************\t  Verification test: \t VC id: ", vc.ID, "***********************")
+	var bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int
 
-	revokedStatus := true
-	for _, vcID := range issuer.revokedVcIDs {
-		if vcID == vc.ID {
-			revokedStatus = false
-		}
-	}
-	//zap.S().Infoln("ISSUER- \t vc id: ", vc.ID, "\t status: : ", revokedStatus)
-	if revokedStatus == true {
-		issuer.getUpdatedMerkleProof(vc)
-	}
+
+	// ***************************** Phase 1 **************************************************
+
 	rd := issuer.revocationProofs[vc.ID]
 
-	var bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int
 	for i,v := range rd.BloomFilterIndexes{
 		bfIndexes[i]=v;
 	}
-	_, err := issuer.RevocationService.VerifyVC(bfIndexes, rd)
+	_, err := issuer.RevocationService.VerificationPhase1(bfIndexes)
 	if err != nil {
 		return
 	}
+
+	//if revocationStatus == true{
+	//	return
+	//}
+
+
+	// ***************************** update witness only for valid vcs ***********************************
+	status := true
+	for _, vcID := range issuer.revokedVcIDs {
+		if vcID == vc.ID {
+			status = false
+		}
+	}
+	//zap.S().Infoln("ISSUER- \t vc id: ", vc.ID, "\t status: : ", revokedStatus)
+	if status == true {
+		issuer.getUpdatedMerkleProof(vc)
+	}
+
+	rd1 := issuer.revocationProofs[vc.ID]
+	//rd1.PrintRevocationData()
+
+	// ***************************** Phase 2 **************************************************
+	//mtRoot, _ := issuer.RevocationService.GetMerkleRoot()
+	//issuer.RevocationService.LocalMTVerification(mtRoot, rd1)
+	_, err = issuer.RevocationService.VerificationPhase2(rd1)
+	if err != nil {
+		return
+	}
+	// This is to check whether the VC is actuall revoked or not
+	//revokedStatus := true
+	//for _, vcID := range issuer.revokedVcIDs {
+	//	if vcID == vc.ID {
+	//		revokedStatus = false
+	//	}
+	//}
+	////zap.S().Infoln("ISSUER- \t vc id: ", vc.ID, "\t status: : ", revokedStatus)
+	//if revokedStatus == true {
+	//	issuer.getUpdatedMerkleProof(vc)
+	//}
+
+
 	//zap.S().Infoln("ISSUER- \t vc id: ",vc.ID, "\t status: : ", status)
 
 
@@ -213,12 +251,7 @@ func (issuer *Issuer) verifyLocalTest(vc verifiable.Credential) {
 			status,_ := issuer.RevocationService.VerificationPhase1(bfIndexes)
 			zap.S().Infoln("ISSUER- \t Verification of VC: \t id: ",vc.ID, "\t phase 1 (bloomfilter) result : ",status)
 
-			mtRoot, _ := issuer.RevocationService.VerificationPhase2()
-
-			byteRepr := [32]byte{}
-			copy(byteRepr[:], mtRoot[:])
-			hexString := hex.EncodeToString(mtRoot[:])
-			rootHash,_ := merkletree.NewHashFromHex(hexString)
+			rootHash, _ := issuer.RevocationService.GetMerkleRoot()
 			//zap.S().Infoln("ISSUER- Verification test- merkle tree root: ", rootHash.Hex())
 			issuer.RevocationService.LocalMTVerification(rootHash, rd)
 			zap.S().Infoln("\n\n********************************************************************************************************************************")

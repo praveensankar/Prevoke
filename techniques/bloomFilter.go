@@ -10,7 +10,7 @@ import (
 
 
 // Todo: change the value of this constant based on value in smart contract
-const NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER = 7;
+const NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER = 1;
 
 type BloomFilter struct{
 	bloomFilter *bloom.BloomFilter
@@ -41,8 +41,10 @@ func CreateBloomFilter(totalNumberOfVCs uint, falsePositiveRate float64) (*Bloom
 		numberOfIndexesPerEntry: numberOfIndexesPerEntry,
 	}
 
+	zap.S().Infoln("BlOOM FILTER: size : ", size, "\t number of indexes per entry : ", numberOfIndexesPerEntry)
+
 	if numberOfIndexesPerEntry !=NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER{
-		zap.S().Errorln("bloom filter index mismatch.", numberOfIndexesPerEntry, "is given by go code")
+		zap.S().Errorln("ERROR:    \t bloom filter index mismatch.", numberOfIndexesPerEntry, "is given by go code")
 	}
 
 	newBloomFilter.assignedIndexes = mapset.NewSet()
@@ -50,6 +52,8 @@ func CreateBloomFilter(totalNumberOfVCs uint, falsePositiveRate float64) (*Bloom
 
 	return &newBloomFilter
 }
+
+
 
 /*
 Output:

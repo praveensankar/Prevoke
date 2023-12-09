@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
 	"github.com/spf13/viper"
@@ -43,10 +44,29 @@ func initialize() {
 	setupLogger(conf)
 }
 
+/*
+This function that returns estimated size of bloom filter and number of hash functions
+
+
+Inputs:
+	TotalNumberofVCs - number of VCs issuer expects to issue in its lifetime
+	falsePositiveRate - false positive rate of bloomfilter
+
+Output:
+	size - number of entries in bloomfilter
+	numberOfIndexesPerEntry - number of indexes per entry
+*/
+func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate float64) (uint, uint) {
+	size, numberOfIndexesPerEntry := bloom.EstimateParameters(totalNumberOfVCs, falsePositiveRate)
+	return size, numberOfIndexesPerEntry
+}
+
 func main()  {
 	//testAries()
 	initialize()
 	conf, _ := config.ParseConfig()
+	size, numberofIndexesPerEntry := BloomFilterConfigurationGenerators(conf.ExpectedNumberOfTotalVCs, conf.FalsePositiveRate)
+	zap.S().Infoln("bloom filter size: ", size, "\t number of hash functions: ", numberofIndexesPerEntry)
 	//blockchain.TestConnectionToBlockchain(conf)
 	//blockchain.Test(conf)
 	//techniques.TestMerkleTree()

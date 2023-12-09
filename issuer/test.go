@@ -14,6 +14,7 @@ func TestIssuer(config config.Config){
 		issuer.verifyTest(*vc)
 	}
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
+	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
 	for i:=0; i< totalRevokedVCs; i++{
 		issuer.revoke(*vcs[i])
 	}

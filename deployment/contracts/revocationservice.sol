@@ -9,7 +9,7 @@ contract RevocationService{
     bool private constant DEBUG = true;
 
     // bloom filter
-    uint public constant numberOfHashFunctions = 7;
+    uint public constant numberOfHashFunctions = 1;
     // const private numberofVCs = 10000;
 
     // // BF size is set for 10% false positive
@@ -189,10 +189,10 @@ contract RevocationService{
     // if it retuns false then the VC is probably revoked.
     function checkRevocationStatusInBloomFilter(uint256[numberOfHashFunctions] memory _indexes) public view returns(bool){
 
-        bool isValid = true;
+        bool isValid = false;
         for (uint i = 0; i < _indexes.length; i++) {
-            if(bloomFilter[_indexes[i]]==true){
-                isValid = false;
+            if(bloomFilter[_indexes[i]]==false){
+                isValid = true;
                 break;
             }
         }
@@ -364,7 +364,7 @@ contract RevocationService{
                 // if(DEBUG==true){
                 //     console.log("merkle leaf :");
                 //     console.logBytes(abi.encodePacked(vc1MTAcc));
-                //     console.log("merkle proofa: ");
+                //     console.log("merkle proofas: ");
                 //     for (uint i=0; i<2;i++)
                 //     {
                 //         console.logBytes(abi.encodePacked(proofForVC1[i]));

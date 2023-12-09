@@ -32,7 +32,7 @@ func  CreateMerkleTree() *MerkleTreeAccumulator {
 	if err!=nil{
 		zap.S().Errorln("error creating merkle tree: ", err)
 	}
-	accumulator := MerkleTreeAccumulator{Tree: tree, currentIndex: 0, DEBUG: false}
+	accumulator := MerkleTreeAccumulator{Tree: tree, currentIndex: 0, DEBUG: true}
 	accumulator.leafsToIndexes = make(map[string]int64)
 	accumulator.levelOrder = make(map[uint]*merkletree.Hash)
 	return &accumulator

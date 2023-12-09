@@ -1,0 +1,10 @@
+
+Whenever totalVCs or falsePositiveRate in config.json is updated,
+run BloomFilterConfigurationGenerators() function from main to get 'numberOfIndexesPerEntry' value for Bloom Filter.
+
+Then, update
+NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER constant in techniques/bloomFilter.go
+numberOfHashFunctions constant in deployments/contracts/revocationservice.sol
+numberOfHashFunctions constant in /contracts/revocationservice.sol
+
+Then follow the instructions in contracts/instructions.txt to get updated contract bindings
