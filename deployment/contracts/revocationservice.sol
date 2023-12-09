@@ -364,7 +364,7 @@ contract RevocationService{
                 // if(DEBUG==true){
                 //     console.log("merkle leaf :");
                 //     console.logBytes(abi.encodePacked(vc1MTAcc));
-                //     console.log("merkle proof: ");
+                //     console.log("merkle proofa: ");
                 //     for (uint i=0; i<2;i++)
                 //     {
                 //         console.logBytes(abi.encodePacked(proofForVC1[i]));

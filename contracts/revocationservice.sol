@@ -43,6 +43,7 @@ contract RevocationService{
         issuer = msg.sender;
     }
 
+
     /*
     This function is used to register new issuers.
     Register did of issuers and public keys. (maybe in the form of DID Docs).
