@@ -13,11 +13,20 @@ func TestIssuer(config config.Config){
 	for _, vc := range vcs{
 		issuer.verifyTest(*vc)
 	}
+
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
-	for i:=0; i< totalRevokedVCs; i++{
-		issuer.revoke(*vcs[i])
+	for i, counter:=0, 0; counter< totalRevokedVCs; counter++{
+		issuer.revoke(config, *vcs[i])
+		i = i + 2
 	}
+
+	for _, vc := range vcs{
+		issuer.UpdateMerkleProof(*vc)
+	}
+
+
+
 	for _, vc := range vcs{
 		issuer.verifyTest(*vc)
 	}

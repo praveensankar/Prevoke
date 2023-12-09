@@ -7,6 +7,7 @@ import (
 	cryptoUtils "github.com/iden3/go-iden3-crypto/utils"
 	"github.com/iden3/go-merkletree-sql/v2"
 	"github.com/iden3/go-merkletree-sql/v2/db/memory"
+	"github.com/praveensankar/Revocation-Service/config"
 	"go.uber.org/zap"
 	"math/big"
 )
@@ -22,12 +23,12 @@ type MerkleTreeAccumulator struct {
 
 // the library uses sparse merkle tree. In sparse merkle tree, each leaf is indexed.
 // sparse merkle tree also allows generation of proof of non-membership
-func  CreateMerkleTree() *MerkleTreeAccumulator {
+func  CreateMerkleTree(conf config.Config) *MerkleTreeAccumulator {
 	ctx := context.Background()
 	var treeStorage merkletree.Storage
 	treeStorage = memory.NewMemoryStorage()
-	mtDepth := 40
-	tree, err := merkletree.NewMerkleTree(ctx, treeStorage, mtDepth)
+	mtDepth := conf.MtHeight
+	tree, err := merkletree.NewMerkleTree(ctx, treeStorage, int(mtDepth))
 
 	if err!=nil{
 		zap.S().Errorln("error creating merkle tree: ", err)

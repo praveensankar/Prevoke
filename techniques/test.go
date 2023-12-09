@@ -2,12 +2,13 @@ package techniques
 
 import (
 	"github.com/iden3/go-merkletree-sql/v2"
+	"github.com/praveensankar/Revocation-Service/config"
 	"go.uber.org/zap"
 	"math/big"
 )
 
-func TestMerkleTree(){
-	newTree := CreateMerkleTree()
+func TestMerkleTree(conf config.Config){
+	newTree := CreateMerkleTree(conf)
 	elements :=  make([]*big.Int, 0)
 	//elements = append(elements,big.NewInt(10), big.NewInt(20), big.NewInt(30), big.NewInt(40))
 	elements = append(elements,big.NewInt(10), big.NewInt(20))

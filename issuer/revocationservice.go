@@ -6,7 +6,7 @@ import (
 	"encoding/hex"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
+	_ "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
@@ -21,7 +21,7 @@ import (
 
 type IRevocationService interface {
 	IssueVC(vc verifiable.Credential) *RevocationData
-	RevokeVC(vc verifiable.Credential) (*types.Transaction, error)
+	RevokeVC(vc verifiable.Credential) (*big.Int, error)
 	RetreiveUpdatedProof(vc verifiable.Credential) *merkletree.Proof
 	VerificationPhase1(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error)
 	VerificationPhase2(data *RevocationData) (bool, error)
@@ -50,7 +50,7 @@ type RevocationService struct{
 func CreateRevocationService(config config.Config) *RevocationService{
 	rs := RevocationService{}
 	rs.blockchainRPCEndpoint = config.BlockchainRpcEndpoint
-	rs.merkleTreeAcc = techniques.CreateMerkleTree()
+	rs.merkleTreeAcc = techniques.CreateMerkleTree(config)
 	rs.bloomFilter = techniques.CreateBloomFilter(config.ExpectedNumberOfTotalVCs, config.FalsePositiveRate)
 	rs.smartContractAddress= common.HexToAddress(config.SmartContractAddress)
 	rs.privateKey = config.PrivateKey
@@ -199,7 +199,7 @@ func (r RevocationService) RetreiveUpdatedProof(vc verifiable.Credential)  *merk
 	return merkleProof
 }
 
-func (r RevocationService) RevokeVC(vc verifiable.Credential) (*types.Transaction, error) {
+func (r RevocationService) RevokeVC(vc verifiable.Credential) (*big.Int, error) {
 	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
 	if err != nil {
 		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
@@ -246,12 +246,12 @@ func (r RevocationService) RevokeVC(vc verifiable.Credential) (*types.Transactio
 	//	}
 	//}
 	zap.S().Infoln("REVOCATION SERVICE- \t number of non-leaf nodes of MT accumulator stored in smart contract ",levelCounter)
-	tx, err := revocationService.RevokeVC(auth, bfIndexes, mtIndexes, mtValues)
+	_, err = revocationService.RevokeVC(auth, bfIndexes, mtIndexes, mtValues)
 	if err != nil {
 		zap.S().Fatalln("failed to revoke", err)
 	}
 
-	return tx, nil
+	return oldMTIndex, nil
 }
 
 

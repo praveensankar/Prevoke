@@ -10,7 +10,8 @@
 		 "totalVCs" : "16",
 		 "revokedVCs" : "4",
 		 "falsePositiveRate" : "0.6",
-		 "mtLevelInDLT" : "1"
+		 "mtLevelInDLT" : "1",
+		 "mtHeight" : "5"
 	 },
 	 "test" : "test",
 	"blockchain" : {
