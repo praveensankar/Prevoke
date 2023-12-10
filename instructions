@@ -1,4 +1,7 @@
 
+
+1) updating falsepositiverate
+
 Whenever totalVCs or falsePositiveRate in config.json is updated,
 run BloomFilterConfigurationGenerators() function from main to get 'numberOfIndexesPerEntry' value for Bloom Filter.
 
@@ -8,3 +11,15 @@ numberOfHashFunctions constant in deployments/contracts/revocationservice.sol
 numberOfHashFunctions constant in /contracts/revocationservice.sol
 
 Then follow the instructions in contracts/instructions.txt to get updated contract bindings
+
+Compile and deploy contract. check instructions deployments/instructions.txt
+
+Then update the contract address in config.json. The contract is returned by truffle migrate command.
+
+
+
+2) running new experiments
+
+deploy contract : check instructions deployments/instructions.txt
+Then update the contract address in config.json. The contract is returned by truffle migrate command.
+

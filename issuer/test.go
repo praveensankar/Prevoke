@@ -5,19 +5,19 @@ import "github.com/praveensankar/Revocation-Service/config"
 func TestIssuer(config config.Config){
 
 	issuer := CreateIssuer(config)
-	vcs := issuer.generateDummyVCs(int(config.ExpectedNumberOfTotalVCs))
+	vcs := issuer.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs))
 
 	for _, vc := range vcs{
-		issuer.issue(*vc)
+		issuer.Issue(*vc)
 	}
 	for _, vc := range vcs{
-		issuer.verifyTest(*vc)
+		issuer.VerifyTest(*vc)
 	}
 
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
 	for i, counter:=0, 0; counter< totalRevokedVCs; counter++{
-		issuer.revoke(config, *vcs[i])
+		issuer.Revoke(config, *vcs[i])
 		i = i + 2
 	}
 
@@ -28,7 +28,7 @@ func TestIssuer(config config.Config){
 
 
 	for _, vc := range vcs{
-		issuer.verifyTest(*vc)
+		issuer.VerifyTest(*vc)
 	}
 	//vc1 := issuer.generateDummyVC()
 	//issuer.issue(*vc1)
@@ -51,5 +51,5 @@ func TestIssuer(config config.Config){
 	//
 	//issuer.verifyTest(*vcs[2])
 	//issuer.revoke(*vcs[2])
-	issuer.verifyTest(*vcs[2])
+	issuer.VerifyTest(*vcs[2])
 }

@@ -27,7 +27,7 @@ func  CreateMerkleTree(conf config.Config) *MerkleTreeAccumulator {
 	ctx := context.Background()
 	var treeStorage merkletree.Storage
 	treeStorage = memory.NewMemoryStorage()
-	mtDepth := conf.MtHeight
+	mtDepth := conf.MtDepth
 	tree, err := merkletree.NewMerkleTree(ctx, treeStorage, int(mtDepth))
 
 	if err!=nil{

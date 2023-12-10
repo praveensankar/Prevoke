@@ -2,16 +2,16 @@
 
  {
 	"contract" : {
-		"address" : "0x5dC3F3ecb061a3AB6e5E59E50DA3fFE6381ed1Be",
+		"address" : "0xcF4650894D7a3401b96A1a962d10593b0ecB2A0C",
 		"gasLimit" : "6721975"
 	},
 	 "issuer" : {
 		 "name": "employer 1",
 		 "totalVCs" : "16",
 		 "revokedVCs" : "4",
-		 "falsePositiveRate" : "0.6",
+		 "falsePositiveRate" : "0.01",
 		 "mtLevelInDLT" : "1",
-		 "mtHeight" : "5"
+		 "mtDepth" : "5"
 	 },
 	 "test" : "test",
 	"blockchain" : {

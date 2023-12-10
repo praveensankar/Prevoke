@@ -163,12 +163,12 @@ func (r *RevocationService) IssueVC(vc verifiable.Credential) (*RevocationData) 
 	//		break
 	//	}
 	//}
-	zap.S().Infoln("REVOCATION SERVICE- \t number of non-leaf nodes of MT accumulator stored in smart contract ",levelCounter)
+	//zap.S().Infoln("REVOCATION SERVICE- \t number of non-leaf nodes of MT accumulator stored in smart contract ",levelCounter)
 	_, err =revocationService.IssueVC(auth, mtIndexes, mtValues)
 	if err != nil {
 		zap.S().Fatalln("failed to issue vc", err)
 	} else{
-		zap.S().Infoln("REVOCATION SERVICE - \t issued vc: \t id: ", vc.ID)
+		//zap.S().Infoln("REVOCATION SERVICE - \t issued vc: \t id: ", vc.ID)
 	}
 	//
 	//byteRepr := [32]byte{}
@@ -245,7 +245,7 @@ func (r RevocationService) RevokeVC(vc verifiable.Credential) (*big.Int, error) 
 	//		break
 	//	}
 	//}
-	zap.S().Infoln("REVOCATION SERVICE- \t number of non-leaf nodes of MT accumulator stored in smart contract ",levelCounter)
+	//zap.S().Infoln("REVOCATION SERVICE- \t number of non-leaf nodes of MT accumulator stored in smart contract ",levelCounter)
 	_, err = revocationService.RevokeVC(auth, bfIndexes, mtIndexes, mtValues)
 	if err != nil {
 		zap.S().Fatalln("failed to revoke", err)
@@ -262,7 +262,7 @@ func (r RevocationService) VerificationPhase1(bfIndexes [techniques.NUMBER_OF_IN
 	}
 	revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
 	vcStatus, err := revocationService.VerificationPhase1(nil, bfIndexes)
-	zap.S().Errorln("REVOCATION SERVICE-  vc.IDverification phase 1: ",vcStatus)
+	//zap.S().Errorln("REVOCATION SERVICE-  vc.IDverification phase 1: ",vcStatus)
 
 	return vcStatus, err
 }
@@ -287,7 +287,7 @@ func (r RevocationService) VerificationPhase2( data *RevocationData)(bool, error
 
 
 	status := merkletree.VerifyProof(rootHash, data.MerkleProof, data.merkleTreeIndex, data.MerkleTreeLeafValue)
-	zap.S().Errorln("REVOCATION SERVICE-  verification phase 2: ",status)
+	//zap.S().Errorln("REVOCATION SERVICE-  verification phase 2: ",status)
 	return status, nil
 }
 

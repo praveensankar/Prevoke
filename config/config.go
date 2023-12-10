@@ -20,7 +20,7 @@ type Config struct{
 	ExpectedNumberOfTotalVCs uint
 	ExpectedNumberofRevokedVCs uint
 	MtLevelInDLT uint
-	MtHeight uint
+	MtDepth uint
 	FalsePositiveRate float64
 	DEBUG bool
 }
@@ -42,7 +42,7 @@ func (config Config) printConfig()  {
 	zap.L().Info("total of VCs would be revoked:"+ strconv.Itoa(int(config.ExpectedNumberofRevokedVCs)))
 	zap.S().Infoln("bloom filter false positive rate: ",config.FalsePositiveRate)
 	zap.S().Infoln("merkle tree accumulator level in DLT: ", config.MtLevelInDLT)
-	zap.S().Infoln("merkle tree height: ", config.MtHeight)
+	zap.S().Infoln("merkle tree height: ", config.MtDepth)
 	zap.L().Info("********************************************************************************************************************************\n")
 
 }
@@ -70,7 +70,7 @@ func ParseConfig() (Config, error){
 	config.ExpectedNumberofRevokedVCs = viper.GetUint("issuer.revokedVCs")
 	config.FalsePositiveRate = viper.GetFloat64("issuer.falsePositiveRate")
 	config.MtLevelInDLT = viper.GetUint("issuer.mtLevelInDLT")
-	config.MtHeight = viper.GetUint("issuer.mtHeight")
+	config.MtDepth = viper.GetUint("issuer.mtDepth")
 	config.IssuerName = viper.GetString("issuer.name")
 	config.DEBUG = viper.GetBool("mode.debug")
 	//"account1" :  "0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A",

@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/issuer"
+	"github.com/praveensankar/Revocation-Service/simulation"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -65,13 +65,14 @@ func main()  {
 	//testAries()
 	initialize()
 	conf, _ := config.ParseConfig()
-	size, numberofIndexesPerEntry := BloomFilterConfigurationGenerators(conf.ExpectedNumberOfTotalVCs, conf.FalsePositiveRate)
-	zap.S().Infoln("bloom filter size: ", size, "\t number of hash functions: ", numberofIndexesPerEntry)
+	simulation.Start(conf)
+	//size, numberofIndexesPerEntry := BloomFilterConfigurationGenerators(1024, 0.01)
+	//zap.S().Infoln("bloom filter size: ", size, "\t number of hash functions: ", numberofIndexesPerEntry)
 	//blockchain.TestConnectionToBlockchain(conf)
 	//blockchain.Test(conf)
 	//techniques.TestMerkleTree()
 	//techniques.TestBloomFilter(100)
-	issuer.TestIssuer(conf)
+	//issuer.TestIssuer(conf)
 }
 
 
