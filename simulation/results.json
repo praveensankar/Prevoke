@@ -1,1 +1,1 @@
-[{"TotalVCs":512,"TotalRevokedVCs":100,"FalsePositiveRate":0.01,"MtLevelInDLT":5,"MtDepth":10,"NumberOfResultedFalsePositives":0,"NumberOfAffectedVCs":509,"NumberOfWitnessUpdatesSaved":509},{"TotalVCs":128,"TotalRevokedVCs":50,"FalsePositiveRate":0.01,"MtLevelInDLT":3,"MtDepth":8,"NumberOfResultedFalsePositives":0,"NumberOfAffectedVCs":750,"NumberOfWitnessUpdatesSaved":750}]
+[{"TotalVCs":128,"TotalRevokedVCs":50,"FalsePositiveRate":0.4,"MtLevelInDLT":3,"MtDepth":8,"NumberOfResultedFalsePositives":1,"NumberOfAffectedVCs":750,"NumberOfWitnessUpdatesSaved":749}]

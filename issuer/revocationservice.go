@@ -51,7 +51,7 @@ func CreateRevocationService(config config.Config) *RevocationService{
 	rs := RevocationService{}
 	rs.blockchainRPCEndpoint = config.BlockchainRpcEndpoint
 	rs.merkleTreeAcc = techniques.CreateMerkleTree(config)
-	rs.bloomFilter = techniques.CreateBloomFilter(config.ExpectedNumberOfTotalVCs, config.FalsePositiveRate)
+	rs.bloomFilter = techniques.CreateBloomFilter(config.ExpectedNumberofRevokedVCs, config.FalsePositiveRate)
 	rs.smartContractAddress= common.HexToAddress(config.SmartContractAddress)
 	rs.privateKey = config.PrivateKey
 	rs.gasLimit = config.GasLimit

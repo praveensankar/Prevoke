@@ -32,9 +32,9 @@ Output:
 	BloomFilter object
 	error
 */
-func CreateBloomFilter(totalNumberOfVCs uint, falsePositiveRate float64) (*BloomFilter){
-	size, numberOfIndexesPerEntry := bloom.EstimateParameters(totalNumberOfVCs, falsePositiveRate)
-	bf := bloom.NewWithEstimates(totalNumberOfVCs,falsePositiveRate)
+func CreateBloomFilter(expectedNumberOfRevokedVCs uint, falsePositiveRate float64) (*BloomFilter){
+	size, numberOfIndexesPerEntry := bloom.EstimateParameters(expectedNumberOfRevokedVCs, falsePositiveRate)
+	bf := bloom.NewWithEstimates(expectedNumberOfRevokedVCs,falsePositiveRate)
 	newBloomFilter := BloomFilter{
 		bloomFilter: bf,
 		size: size,
