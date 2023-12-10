@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/simulation"
@@ -10,11 +11,14 @@ import (
 )
 
 func setupLogger(conf config.Config){
+
+	filename := fmt.Sprintf("logs/%v_%v_%v_%v",conf.LoggerFile, conf.ExpectedNumberOfTotalVCs, conf.ExpectedNumberofRevokedVCs, conf.MtLevelInDLT)
+	//OutputPaths: []string{"stdout"},
 	zapConfig := &zap.Config{
 		Encoding: "console",
 		Level: zap.NewAtomicLevelAt(zapcore.InfoLevel),
-		OutputPaths: []string{"stdout"},
-		ErrorOutputPaths: []string{"stdout"},
+		OutputPaths: []string{filename},
+		ErrorOutputPaths: []string{filename},
 		EncoderConfig: zapcore.EncoderConfig{
 			LevelKey: "level",
 			MessageKey: "***",
@@ -27,8 +31,6 @@ func setupLogger(conf config.Config){
 	} else{
 		zap.ReplaceGlobals(zap.Must(zapConfig.Build()))
 	}
-
-
 
 }
 

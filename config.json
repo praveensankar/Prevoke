@@ -2,7 +2,7 @@
 
  {
 	"contract" : {
-		"address" : "0x82E2C20288Ce03bd8F527268ABE8E1593A485939",
+		"address" : "0xbdC005190857f11175BD60de3BABf257Fa4a4eB2",
 		"gasLimit" : "6721975"
 	},
 	 "issuer" : {
@@ -30,6 +30,7 @@
 		 "0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A"],
 	 "logger" : {
 		"env" : "dev",
+		 "filename": "logs.json",
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
 	 },
 	 "mode" : {

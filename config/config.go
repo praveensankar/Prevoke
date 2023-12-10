@@ -16,6 +16,7 @@ type Config struct{
 	passPhrase    string
 	OtherAccounts []string
 	LoggerType string
+	LoggerFile string
 	IssuerName string
 	ExpectedNumberOfTotalVCs uint
 	ExpectedNumberofRevokedVCs uint
@@ -35,6 +36,7 @@ func (config Config) printConfig()  {
 	zap.L().Info("sender pass phrase: "+config.passPhrase)
 	zap.S().Infoln("other accounts in ganache test network : ",config.OtherAccounts)
 	zap.L().Info("logger environment: "+config.LoggerType)
+	zap.L().Info("logger output file name: "+config.LoggerFile)
 	zap.L().Info("********************************************************************************************************************************\n")
 	zap.L().Info("\n\n--------------------------------------------------------printing issuer configuration--------------------------------------------------")
 	zap.L().Info("issuer name:"+config.IssuerName)
@@ -66,6 +68,7 @@ func ParseConfig() (Config, error){
 	config.passPhrase = viper.GetString("account.passphrase")
 	config.OtherAccounts = viper.GetStringSlice("otherAccounts")
 	config.LoggerType = viper.GetString("logger.env")
+	config.LoggerFile = viper.GetString("logger.filename")
 	config.ExpectedNumberOfTotalVCs = viper.GetUint("issuer.totalVCs")
 	config.ExpectedNumberofRevokedVCs = viper.GetUint("issuer.revokedVCs")
 	config.FalsePositiveRate = viper.GetFloat64("issuer.falsePositiveRate")
