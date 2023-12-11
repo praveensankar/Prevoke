@@ -12,7 +12,7 @@ abigen --abi bindings/build/RevocationService.abi --pkg contracts --type Revocat
 /*
 To deploy contract from golang
 
-abigen --bin=build/RevocationService.bin --abi=build/RevocationService.abi --pkg contracts -type=RevocationService --out=RevocationService.go
+abigen --bin=bindings/build/RevocationService.bin --abi=bindings/build/RevocationService.abi --pkg contracts -type=RevocationService --out=RevocationService.go
 
 */
 

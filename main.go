@@ -12,8 +12,10 @@ import (
 
 func setupLogger(conf config.Config){
 
-	filename := fmt.Sprintf("logs/%v_%v_%v_%v",conf.LoggerFile, conf.ExpectedNumberOfTotalVCs, conf.ExpectedNumberofRevokedVCs, conf.MtLevelInDLT)
+	filename := fmt.Sprintf("logs/%v_%v_%v_%f_%v",conf.LoggerFile, conf.ExpectedNumberOfTotalVCs,
+		conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate, conf.MtLevelInDLT)
 	//OutputPaths: []string{"stdout"},
+//OutputPaths: []string{filename},
 	zapConfig := &zap.Config{
 		Encoding: "console",
 		Level: zap.NewAtomicLevelAt(zapcore.InfoLevel),
@@ -68,7 +70,9 @@ func main()  {
 	initialize()
 	conf, _ := config.ParseConfig()
 	simulation.Start(conf)
+	//blockchain.DeployContract(conf)
 	//size, numberofIndexesPerEntry := BloomFilterConfigurationGenerators(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
+	//fmt.Println("bloom filter size: ", size, "\t number of hash functions: ", numberofIndexesPerEntry)
 	//zap.S().Infoln("bloom filter size: ", size, "\t number of hash functions: ", numberofIndexesPerEntry)
 	//blockchain.TestConnectionToBlockchain(conf)
 	//blockchain.Test(conf)

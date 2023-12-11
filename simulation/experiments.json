@@ -1,0 +1,25 @@
+{
+  "exp1" : {
+    "totalVCs" : "128",
+    "revokedVCs" : "50",
+    "falsePositiveRate" : "0.01",
+    "mtLevelInDLT" : "3",
+    "mtDepth" : "8"
+  },
+  "exp2" : {
+    "totalVCs" : "128",
+    "revokedVCs" : "50",
+    "falsePositiveRate" : "0.1",
+    "mtLevelInDLT" : "3",
+    "mtDepth" : "8"
+  },
+  "exp3" : {
+    "totalVCs" : "1000",
+    "revokedVCs" : "100",
+    "falsePositiveRate" : "0.1",
+    "mtLevelInDLT" : "3",
+    "mtDepth" : "11"
+  }
+}
+
+

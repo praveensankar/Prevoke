@@ -2,6 +2,7 @@ package simulation
 
 import (
 	"encoding/json"
+	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
 	"go.uber.org/zap"
@@ -22,20 +23,6 @@ type Experiment struct {
 func Start(config config.Config){
 
 
-
-
-	experiment1:= Experiment{
-		totalVCs:          128,
-		revokedVCs:  50,
-		falsePositiveRate: 0.01,
-		mtLevelInDLT:      3,
-		mtDepth:          8,
-	}
-	stats := make(map[int]int)
-	config.ExpectedNumberOfTotalVCs = uint(experiment1.totalVCs)
-	config.ExpectedNumberofRevokedVCs = uint(experiment1.revokedVCs)
-	config.MtDepth = uint(experiment1.mtDepth)
-	config.MtLevelInDLT = uint(experiment1.mtLevelInDLT)
 	issuer1 := issuer.CreateIssuer(config)
 	vcs := issuer1.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs))
 
@@ -75,7 +62,7 @@ func Start(config config.Config){
 			i = rand.Intn(int(config.ExpectedNumberOfTotalVCs))
 		}
 	}
-	stats[totalRevokedVCs]=numberOfAffectedVCs
+
 
 	for _, vc := range vcs{
 		status := issuer1.VerifyTest(*vc)
@@ -84,16 +71,18 @@ func Start(config config.Config){
 			numberOfOccuredFalsePositives++
 		}
 	}
-
+	size, k := BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
 	result := &Results{
-		TotalVCs: experiment1.totalVCs,
-		RevokedVCs: experiment1.revokedVCs,
-		FalsePositiveRate: experiment1.falsePositiveRate,
-		MtDepth: experiment1.mtDepth,
-		MtLevelInDLT: experiment1.mtLevelInDLT,
-		NumberOfFalsePositives: numberOfOccuredFalsePositives,
-		NumberOfAffectedVCs:    numberOfAffectedVCs,
+		TotalVCs:                    int(config.ExpectedNumberOfTotalVCs),
+		RevokedVCs:                  int(config.ExpectedNumberofRevokedVCs),
+		FalsePositiveRate:           config.FalsePositiveRate,
+		MtDepth:                     int(config.MtDepth),
+		MtLevelInDLT:                int(config.MtLevelInDLT),
+		NumberOfFalsePositives:      numberOfOccuredFalsePositives,
+		NumberOfAffectedVCs:         numberOfAffectedVCs,
 		NumberOfWitnessUpdatesSaved: numberOfAffectedVCs-numberOfOccuredFalsePositives,
+		BloomFilterSize:             int(size),
+		BloomFilterIndexesPerEntry: int(k),
 	}
 
 	//jsonObj, err := json.Marshal(result)
@@ -102,14 +91,14 @@ func Start(config config.Config){
 	//}
 	zap.S().Infoln("SIMULATOR : \t results: ", result.String())
 
-	WriteToFile(experiment1.totalVCs,experiment1.revokedVCs,experiment1.mtLevelInDLT, *result)
+	WriteToFile(*result)
 
 
 
 }
 
 
-func  WriteToFile(numberOfVcs int, numberOfRevokedVcs int, mtLevelInDLT int, result Results) {
+func  WriteToFile( result Results) {
 
 	var results []Results
 	jsonFile, _ := os.Open("Simulation/results.json")
@@ -120,6 +109,11 @@ func  WriteToFile(numberOfVcs int, numberOfRevokedVcs int, mtLevelInDLT int, res
 	//filename := fmt.Sprintf("Simulation/results/result_%v_%v_%v.json",numberOfVcs, numberOfRevokedVcs, mtLevelInDLT)
 	ioutil.WriteFile("Simulation/results.json", jsonRes, 0644)
 
+}
+
+func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate float64) (uint, uint) {
+	size, numberOfIndexesPerEntry := bloom.EstimateParameters(totalNumberOfVCs, falsePositiveRate)
+	return size, numberOfIndexesPerEntry
 }
 
 

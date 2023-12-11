@@ -27,7 +27,7 @@ func TestConnectionToBlockchain(config config.Config){
 
 func TestSmartContract(my_config config.Config){
 	ReadFromContract(my_config)
-	WriteToContract(my_config)
+
 
 
 	var waitGroupforBlocksListener sync.WaitGroup
