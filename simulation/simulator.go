@@ -37,6 +37,7 @@ func Start(config config.Config){
 
 	numberOfAffectedVCs := 0
 	numberOfOccuredFalsePositives := 0
+	numberOfVCsRetrievedWitnessFromIssuer := 0
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	revokedVCs := make([]string, totalRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
@@ -62,12 +63,19 @@ func Start(config config.Config){
 		}
 	}
 
+	var falsePositiveStatus bool
+	falsePositiveStatus = false
+	var isAffectedInMTAcc bool
+	isAffectedInMTAcc = false
 
 	for _, vc := range vcs{
-		status := issuer1.VerifyTest(*vc)
+		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(*vc)
 		// it means false positive
-		if status==true{
+		if falsePositiveStatus==true{
 			numberOfOccuredFalsePositives++
+			if isAffectedInMTAcc==true{
+				numberOfVCsRetrievedWitnessFromIssuer++
+			}
 		}
 	}
 	size, k := BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
@@ -79,6 +87,7 @@ func Start(config config.Config){
 		MtLevelInDLT:                int(config.MtLevelInDLT),
 		NumberOfFalsePositives:      numberOfOccuredFalsePositives,
 		NumberOfAffectedVCs:         numberOfAffectedVCs,
+		NumberOfVCsRetrievedWitnessFromIssuer: numberOfVCsRetrievedWitnessFromIssuer,
 		NumberOfWitnessUpdatesSaved: numberOfAffectedVCs-numberOfOccuredFalsePositives,
 		BloomFilterSize:             int(size),
 		BloomFilterIndexesPerEntry: int(k),

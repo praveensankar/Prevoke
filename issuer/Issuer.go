@@ -28,7 +28,7 @@ type IIsser interface {
 	UpdateAffectedVCs(conf config.Config, mtIndex *big.Int) int
 
 	// returns whether it resulted in false positive in phase 1
-	VerifyTest(vc verifiable.Credential)
+	VerifyTest(vc verifiable.Credential) (bool, bool)
 }
 
 
@@ -253,14 +253,17 @@ func (issuer *Issuer) Revoke(conf config.Config, vc verifiable.Credential) int {
 	return numberOfAffectedVCs
 }
 
-// returns whether it resulted in false positive in phase 1
-func (issuer *Issuer) VerifyTest(vc verifiable.Credential) bool {
+// returns
+//1st argument - whether it resulted in false positive in phase 1
+// 2nd argument - whether the merkle tree accumulator witness is updated only from the dlt
+func (issuer *Issuer) VerifyTest(vc verifiable.Credential) (bool, bool) {
 
 	//zap.S().Infoln("\n********************************************************************************************************************************")
 	//zap.S().Infoln("***********************\t  Verification test: \t VC id: ", vc.ID, "***********************")
 	var bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int
 
 	falsePositive := false
+	isAffected := false
 	actualStatus := true
 	for _, vcID := range issuer.revokedVcIDs {
 		if vcID == vc.ID {
@@ -276,7 +279,7 @@ func (issuer *Issuer) VerifyTest(vc verifiable.Credential) bool {
 	}
 	phase1Result, err := issuer.RevocationService.VerificationPhase1(bfIndexes)
 	if err != nil {
-		return false
+		return false, false
 	}
 
 	//if revocationStatus == true{
@@ -292,16 +295,13 @@ func (issuer *Issuer) VerifyTest(vc verifiable.Credential) bool {
 		falsePositive = true
 		//zap.S().Infoln("ISSUER- \t affected vc: vc id: ", vc.ID)
 		issuer.getUpdatedMerkleProof(vc)
+		index := rd.merkleTreeIndex.Int64()
+		if issuer.AffectedVCIndexes[int(index)]==true{
+			isAffected = true
+		}
 	}
 
-	//if actualStatus == true {
-	//	index := rd.merkleTreeIndex.Int64()
-	//	if issuer.AffectedVCIndexes[int(index)]==true{
-	//		falsePositive = true
-	//		//zap.S().Infoln("ISSUER- \t affected vc: vc id: ", vc.ID)
-	//		issuer.getUpdatedMerkleProof(vc)
-	//	}
-	//}
+
 
 	// this step is performed to simulate retreiving proofs from DLT
 	// Todo: Create a function in revocation service to allow holders to fetch remaining parts of their witness
@@ -317,7 +317,7 @@ func (issuer *Issuer) VerifyTest(vc verifiable.Credential) bool {
 	//issuer.RevocationService.LocalMTVerification(mtRoot, rd1)
 	phase2Result, err := issuer.RevocationService.VerificationPhase2(rd1)
 	if err != nil {
-		return false
+		return false, false
 	}
 
 	var vcStatus string
@@ -341,7 +341,7 @@ func (issuer *Issuer) VerifyTest(vc verifiable.Credential) bool {
 
 	//zap.S().Infoln("ISSUER- \t vc id: ",vc.ID, "\t status: : ", status)
 
-	return falsePositive
+	return falsePositive, isAffected
 
 }
 func (issuer *Issuer) verifyLocalTest(vc verifiable.Credential) {

@@ -9,6 +9,7 @@ type Results struct {
 	MtLevelInDLT int `json:"mt_level_in_dlt"`
 	MtDepth int `json:"mt_depth"`
 	NumberOfFalsePositives int `json:"number_of_false_positives"`
+	NumberOfVCsRetrievedWitnessFromIssuer int `json:"number_of_vcs_retrieved_witness_from_issuer"`
 	NumberOfAffectedVCs int `json:"number_of_affected_vcs"`
 	NumberOfWitnessUpdatesSaved int `json:"number_of_witness_updates_saved"`
 	BloomFilterSize int `json:"bloom_filter_size"`
@@ -26,7 +27,8 @@ func (r Results) String() string{
 	response = response + "Merkle Tree Accumulator depth : "+fmt.Sprintf("%d",r.MtDepth)+ "\t"
 	response = response + "Merkle Tree Accumulator Level Stored in DLT : "+fmt.Sprintf("%d",r.MtLevelInDLT)+ "\n"
 	response = response + "Number of Affected VCs : "+ fmt.Sprintf("%d",r.NumberOfAffectedVCs) + "\t"
-	response = response + "Number of VCS that ended up updating witnesses : "+fmt.Sprintf("%d",r.NumberOfFalsePositives)+ "\t"
+	response = response + "Number of False Positives : "+ fmt.Sprintf("%d",r.NumberOfFalsePositives) + "\t"
+	response = response + "Number of VCS that ended up updating witnesses from issuer: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromIssuer)+ "\t"
 	response = response + "Number of witness updates that we saved : "+fmt.Sprintf("%d",r.NumberOfWitnessUpdatesSaved)+ "\t"
 	return response
 }

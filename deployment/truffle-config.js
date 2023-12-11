@@ -44,9 +44,9 @@ module.exports = {
     //
     development: {
       networkCheckTimeout: 10000,
-      host: "158.39.200.176",     // Localhost (default: none)
+      host: "127.0.0.1",     // Localhost (default: none)
      port: 8545,            // Standard Ethereum port (default: none)
-     network_id: "8945",       // Any network (default: none)
+     network_id: "*",       // Any network (default: none)
     },
     //
     // goerli: {

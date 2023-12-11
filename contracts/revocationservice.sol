@@ -9,7 +9,7 @@ contract RevocationService{
     bool private constant DEBUG = true;
 
     // bloom filter
-    uint public constant numberOfHashFunctions = 3;
+    uint public constant numberOfHashFunctions = 4;
     // const private numberofVCs = 10000;
 
     // // BF size is set for 10% false positive
