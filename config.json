@@ -2,15 +2,15 @@
 
  {
 	"contract" : {
-		"address" : "0xf65dcDdd5DeA234e331689fD3cB66066F66a99fE",
+		"address" : "0x7B9F6637ddF608fA31780c731532E0fb347B189c",
 		"gasLimit" : "80000000",
 		"gasPrice" : "20000000000"
 	},
 	 "issuer" : {
 		 "name": "employer 1",
 		 "totalVCs" : "1000",
-		 "revokedVCs" : "300",
-		 "falsePositiveRate" : "0.1",
+		 "revokedVCs" : "100",
+		 "falsePositiveRate" : "0.2",
 		 "mtLevelInDLT" : "7",
 		 "mtDepth" : "11"
 	 },
@@ -23,8 +23,8 @@
 
 	},
 	 "account" : {
-		 "address" : "0x34AF3bf57CA9cb2806BD603fAF26E97ba4311CAB",
-		 "privateKey": "0491746c93e27f2ef1c9ae9e84ee82342300723e2b341386fb4943cf1a9af390",
+		 "address" : "0x30C86d5fA081936C0037BedDa3Eb3701401d11D3",
+		 "privateKey": "565d64fe6a90f871b04d74ea83aee1003794a0949eaf53c8dd0c71d5a4167158",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },

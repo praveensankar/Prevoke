@@ -78,7 +78,7 @@ func main()  {
 	initialize()
 	conf, _ := config.ParseConfig()
 	simulation.Start(conf)
-	//blockchain.DeployContract(conf)
+
 	//size, numberofIndexesPerEntry := BloomFilterConfigurationGenerators(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
 	//fmt.Println("bloom filter size: ", size, "\t number of hash functions: ", numberofIndexesPerEntry)
 	//zap.S().Infoln("bloom filter size: ", size, "\t number of hash functions: ", numberofIndexesPerEntry)
