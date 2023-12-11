@@ -17,10 +17,11 @@ import (
 )
 
 type IIsser interface {
-	generateDummyVC() verifiable.Credential
-	generateDummyVCs(count int) []*verifiable.Credential
-	issue(config config.Config, credential verifiable.Credential)
-	revoke(config config.Config, credential verifiable.Credential)
+	GenerateDummyVC() verifiable.Credential
+	GenerateDummyVCs(count int) []*verifiable.Credential
+	Issue(config config.Config, credential verifiable.Credential)
+	IssueBulk(config config.Config, credential []*verifiable.Credential, total int)
+	Revoke(config config.Config, credential verifiable.Credential)
 	setRevocationService(rs IRevocationService)
 	UpdateMerkleProofsInStorage()
 	UpdateMerkleProof(vc verifiable.Credential)
@@ -146,6 +147,19 @@ func (issuer *Issuer) Issue(vc verifiable.Credential) {
 
 
 
+}
+
+func (issuer *Issuer) IssueBulk(config config.Config, vcs []*verifiable.Credential, total int){
+
+	revocationData := issuer.RevocationService.IssueVCsInBulk(vcs)
+	for i:=0; i<total; i++{
+		issuer.AddCretentialToStore(*vcs[i])
+	}
+
+	for _, rd := range revocationData{
+		issuer.AddRevocationProofForNewVC(rd)
+		zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", rd.vcId, "\t mt index: ", rd.merkleTreeIndex)
+	}
 }
 
 func (issuer *Issuer) UpdateMerkleProof(vc verifiable.Credential)  {

@@ -2,27 +2,29 @@
 
  {
 	"contract" : {
-		"address" : "0x69b991327e60fd5a47FA1F5f764D3DC950a9a5E2",
-		"gasLimit" : "6721975"
+		"address" : "0x4dcC35ACBCa64123E0552E86a39426E3E87617Ec",
+		"gasLimit" : "80000000",
+		"gasPrice" : "20000000000"
 	},
 	 "issuer" : {
 		 "name": "employer 1",
 		 "totalVCs" : "1000",
-		 "revokedVCs" : "100",
+		 "revokedVCs" : "200",
 		 "falsePositiveRate" : "0.1",
-		 "mtLevelInDLT" : "8",
+		 "mtLevelInDLT" : "7",
 		 "mtDepth" : "11"
 	 },
 	 "test" : "test",
 	"blockchain" : {
-		"rpcEndpoint" : "http://127.0.0.1:7545",
-		"wsEndPoint" : "ws://127.0.0.1:7545",
+		"rpcEndpoint" : "http://158.39.200.176:8545",
+		"wsEndPoint" : "ws://158.39.200.176:8545",
+		"comment2": "158.39.200.176:8545 corresponds to ganache blockchain running at nrec",
 		"_comment" : "use ganache blockchain address (deployed locally) as endpoint"
 
 	},
 	 "account" : {
-		 "address" : "0xB40a66310D09eCd1C6e663b5c2B11CA5Adf587eB",
-		 "privateKey": "36904c4fbd5e47bc37d9886e5239e08bc540223aa8a1324820067b79a322e924",
+		 "address" : "E9a5dC01EAe8c5753fdFf3056a7C042Dd861f4BC",
+		 "privateKey": "1d0a434c44693d57210c0bc7d5bb34abe7a4c7866382cd1d1b2f884e1ad9146c",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
@@ -30,7 +32,9 @@
 		 "0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A"],
 	 "logger" : {
 		"env" : "dev",
+		 "output": "file",
 		 "filename": "logs.json",
+		 "_comment1": "ouput:<console> - for printing in console, <file> - for writing to file",
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
 	 },
 	 "mode" : {

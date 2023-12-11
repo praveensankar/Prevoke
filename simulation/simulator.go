@@ -26,9 +26,8 @@ func Start(config config.Config){
 	issuer1 := issuer.CreateIssuer(config)
 	vcs := issuer1.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs))
 
-	for _, vc := range vcs{
-		issuer1.Issue(*vc)
-	}
+	issuer1.IssueBulk(config, vcs, len(vcs))
+
 	for _, vc := range vcs{
 		issuer1.UpdateMerkleProof(*vc)
 	}

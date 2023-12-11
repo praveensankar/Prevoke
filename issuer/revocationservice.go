@@ -21,7 +21,8 @@ import (
 
 type IRevocationService interface {
 	IssueVC(vc verifiable.Credential) *RevocationData
-	RevokeVC(vc verifiable.Credential) (*big.Int, error)
+IssueVCsInBulk(vcs []*verifiable.Credential) ([]*RevocationData)
+RevokeVC(vc verifiable.Credential) (*big.Int, error)
 	RetreiveUpdatedProof(vc verifiable.Credential) *merkletree.Proof
 	VerificationPhase1(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error)
 	VerificationPhase2(data *RevocationData) (bool, error)
@@ -43,6 +44,7 @@ type RevocationService struct{
 	smartContractAddress common.Address
 	privateKey string
 	gasLimit uint64
+	gasPrice *big.Int
 }
 
 
@@ -55,6 +57,7 @@ func CreateRevocationService(config config.Config) *RevocationService{
 	rs.smartContractAddress= common.HexToAddress(config.SmartContractAddress)
 	rs.privateKey = config.PrivateKey
 	rs.gasLimit = config.GasLimit
+	rs.gasPrice = config.GasPrice
 	rs.VCToBigInts = make(map[string]*big.Int)
 	rs.MtLevelInDLT = int(config.MtLevelInDLT)
 	rs.NumberOfEntriesForMTInDLT = 0
@@ -74,7 +77,7 @@ func (r RevocationService) getAuth()  *bind.TransactOpts{
 
 	privateKey, err := crypto.HexToECDSA(r.privateKey)
 	if err != nil {
-		zap.S().Fatalln(err)
+		zap.S().Fatalln("REVOCATION SERVICE: auth error: ",err)
 	}
 
 	publicKey := privateKey.Public()
@@ -90,16 +93,16 @@ func (r RevocationService) getAuth()  *bind.TransactOpts{
 
 
 	gasLimit := uint64(r.gasLimit)                // in units
-	gasPrice, err := client.SuggestGasPrice(context.Background())
-	if err != nil {
-		zap.S().Fatalln(err)
-	}
+	//gasPrice, err := client.SuggestGasPrice(context.Background())
+	//if err != nil {
+	//	zap.S().Fatalln(err)
+	//}
 
 	auth := bind.NewKeyedTransactor(privateKey)
 	auth.Nonce = big.NewInt(int64(nonce))
 	auth.Value = big.NewInt(0)
 	auth.GasLimit = gasLimit
-	auth.GasPrice = gasPrice
+	auth.GasPrice = r.gasPrice
 
 	return auth
 }
@@ -118,7 +121,7 @@ Issues VC to holder. and updates the merkle tree both locally and in smart contr
 Inputs:
 	_mtIndexes: merkle tree indexes
 	_mtValues: merkle tree values
- */
+*/
 func (r *RevocationService) IssueVC(vc verifiable.Credential) (*RevocationData) {
 	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
 	if err != nil {
@@ -191,6 +194,61 @@ func (r *RevocationService) IssueVC(vc verifiable.Credential) (*RevocationData) 
 	//revocationData.PrintRevocationData()
 
 	return revocationData
+}
+/*
+Issues VC to holder. and updates the merkle tree both locally and in smart contract.
+
+Inputs:
+	_mtIndexes: merkle tree indexes
+	_mtValues: merkle tree values
+ */
+func (r *RevocationService) IssueVCsInBulk(vcs []*verifiable.Credential) ([]*RevocationData) {
+	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
+	if err != nil {
+		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
+	}
+	revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
+	if err != nil {
+		zap.S().Infof("Failed to instantiate Storage contract: %v", err)
+	}
+	auth := r.getAuth()
+	var revocationDataALl []*RevocationData
+	for _, vc := range vcs {
+		r.vcCounter++
+		r.VCToBigInts[vc.ID] = big.NewInt(r.vcCounter)
+		mtIndex := r.merkleTreeAcc.AddLeaf(r.VCToBigInts[vc.ID])
+		bfIndexes := r.bloomFilter.GetIndexes(vc.ID)
+		merkleProof := r.merkleTreeAcc.GetProof(r.VCToBigInts[vc.ID])
+		revocationData := CreateRevocationData(vc.ID, mtIndex,bfIndexes, r.VCToBigInts[vc.ID], merkleProof)
+		revocationDataALl = append(revocationDataALl, revocationData)
+	}
+		//root := r.merkleTreeAcc.GetRoot()
+		//zap.S().Errorln("REVOCATION SERVICE- merkle root in string from local: ",root)
+
+		levelOrderRepr := r.merkleTreeAcc.GetLevelOrderRepresentation()
+		var mtIndexes []*big.Int
+		var mtValues [][32]byte
+		levelCounter := 0
+		for i := 0; i < len(levelOrderRepr); i++ {
+			mtIndexes = append(mtIndexes, big.NewInt(int64(i)))
+			h := levelOrderRepr[uint(i)]
+			byteRepr := [32]byte{}
+			copy(byteRepr[:], h[:])
+			mtValues = append(mtValues, byteRepr)
+			levelCounter += 1
+			if levelCounter == r.NumberOfEntriesForMTInDLT {
+				break
+			}
+		}
+
+	_, err =revocationService.IssueVC(auth, mtIndexes, mtValues)
+	if err != nil {
+		zap.S().Fatalln("failed to issue vc", err)
+	} else{
+		//zap.S().Infoln("REVOCATION SERVICE - \t issued vc: \t id: ", vc.ID)
+	}
+
+	return revocationDataALl
 }
 
 func (r RevocationService) RetreiveUpdatedProof(vc verifiable.Credential)  *merkletree.Proof{

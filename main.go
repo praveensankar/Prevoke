@@ -12,8 +12,16 @@ import (
 
 func setupLogger(conf config.Config){
 
-	filename := fmt.Sprintf("logs/%v_%v_%v_%f_%v",conf.LoggerFile, conf.ExpectedNumberOfTotalVCs,
-		conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate, conf.MtLevelInDLT)
+	var filename string
+
+	if conf.LoggerOutputMode=="console"{
+		filename="stdout"
+	}
+	if conf.LoggerOutputMode=="file"{
+		filename = fmt.Sprintf("logs/%v_%v_%v_%f_%v",conf.LoggerFile, conf.ExpectedNumberOfTotalVCs,
+			conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate, conf.MtLevelInDLT)
+
+	}
 	//OutputPaths: []string{"stdout"},
 //OutputPaths: []string{filename},
 	zapConfig := &zap.Config{

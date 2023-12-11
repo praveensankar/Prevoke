@@ -3,12 +3,14 @@ package config
 import (
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
+	"math/big"
 	"strconv"
 )
 
 type Config struct{
 	SmartContractAddress string
 	GasLimit uint64
+	GasPrice *big.Int
 	BlockchainRpcEndpoint string
 	BlockchainWebSocketEndPoint string
 	SenderAddress string
@@ -17,6 +19,7 @@ type Config struct{
 	OtherAccounts []string
 	LoggerType string
 	LoggerFile string
+	LoggerOutputMode string
 	IssuerName string
 	ExpectedNumberOfTotalVCs uint
 	ExpectedNumberofRevokedVCs uint
@@ -31,12 +34,14 @@ func (config Config) printConfig()  {
 	zap.L().Info("smart contract address:"+config.SmartContractAddress)
 	zap.L().Info("blockchain rpc endpoint: "+config.BlockchainRpcEndpoint)
 	zap.L().Info("gas limit: "+string(config.GasLimit))
+	zap.L().Info("gas price: "+config.GasPrice.String())
 	zap.L().Info("sender address: "+config.SenderAddress)
 	zap.L().Info("sender private key: "+config.PrivateKey)
 	zap.L().Info("sender pass phrase: "+config.passPhrase)
 	zap.S().Infoln("other accounts in ganache test network : ",config.OtherAccounts)
 	zap.L().Info("logger environment: "+config.LoggerType)
 	zap.L().Info("logger output file name: "+config.LoggerFile)
+	zap.L().Info("logger output mode: "+config.LoggerOutputMode)
 	zap.L().Info("********************************************************************************************************************************\n")
 	zap.L().Info("\n\n--------------------------------------------------------printing issuer configuration--------------------------------------------------")
 	zap.L().Info("issuer name:"+config.IssuerName)
@@ -61,6 +66,7 @@ func ParseConfig() (Config, error){
 	config := Config{}
 	config.SmartContractAddress = viper.GetString("contract.address")
 	config.GasLimit = viper.GetUint64("contract.gasLimit")
+	config.GasPrice = big.NewInt(int64(viper.GetUint64("contract.gasPrice")))
 	config.BlockchainRpcEndpoint = viper.GetString("blockchain.rpcEndpoint")
 	config.BlockchainWebSocketEndPoint = viper.GetString("blockchain.wsEndPoint")
 	config.SenderAddress = viper.GetString("account.address")
@@ -68,6 +74,7 @@ func ParseConfig() (Config, error){
 	config.passPhrase = viper.GetString("account.passphrase")
 	config.OtherAccounts = viper.GetStringSlice("otherAccounts")
 	config.LoggerType = viper.GetString("logger.env")
+	config.LoggerOutputMode = viper.GetString("logger.output")
 	config.LoggerFile = viper.GetString("logger.filename")
 	config.ExpectedNumberOfTotalVCs = viper.GetUint("issuer.totalVCs")
 	config.ExpectedNumberofRevokedVCs = viper.GetUint("issuer.revokedVCs")
