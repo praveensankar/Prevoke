@@ -25980,12 +25980,12 @@
     "1702375788498": {
       "events": {},
       "links": {},
-      "address": "0xB5aA67253e21DC8f702884afA02be384890Ffcb4",
-      "transactionHash": "0x6c0dcfd6bcb4d6651cfa4e5cbc4e992fac108d0252960bd6898925b36737f673"
+      "address": "0xB9f2F42590b8bf7E9d9c36C164Ad2577CeEdE749",
+      "transactionHash": "0xce08abec61d71bbec243dc87f93a192be95cc656e31feeb7f7b6a317027e88f1"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-12-12T12:38:02.589Z",
+  "updatedAt": "2023-12-12T12:54:28.384Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

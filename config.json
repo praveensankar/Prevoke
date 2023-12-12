@@ -2,7 +2,7 @@
 
  {
 	"contract" : {
-		"address" : "0xB5aA67253e21DC8f702884afA02be384890Ffcb4",
+		"address" : "0xB9f2F42590b8bf7E9d9c36C164Ad2577CeEdE749",
 		"gasLimit" : "80000000",
 		"gasPrice" : "20000000000"
 	},
@@ -10,7 +10,7 @@
 		 "name": "employer 1",
 		 "totalVCs" : "1000",
 		 "revokedVCs" : "100",
-		 "falsePositiveRate" : "0.3",
+		 "falsePositiveRate" : "0.4",
 		 "mtLevelInDLT" : "9",
 		 "mtDepth" : "11",
 		 "comment": "number of hash functions: 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more "
