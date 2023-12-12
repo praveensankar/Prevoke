@@ -88,7 +88,7 @@ func Start(config config.Config){
 		NumberOfFalsePositives:      numberOfOccuredFalsePositives,
 		NumberOfAffectedVCs:         numberOfAffectedVCs,
 		NumberOfVCsRetrievedWitnessFromIssuer: numberOfVCsRetrievedWitnessFromIssuer,
-		NumberOfWitnessUpdatesSaved: numberOfAffectedVCs-numberOfOccuredFalsePositives,
+		NumberOfWitnessUpdatesSaved: numberOfOccuredFalsePositives-numberOfVCsRetrievedWitnessFromIssuer,
 		BloomFilterSize:             int(size),
 		BloomFilterIndexesPerEntry: int(k),
 	}

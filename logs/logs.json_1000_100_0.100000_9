@@ -3131,4 +3131,4 @@ VERIFICAION TEST- 	 ***VERIFICATION*** vc: 74181 	 actual status:  valid 	 phase
 VERIFICAION TEST- 	 ***VERIFICATION*** vc: 74182 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
 VERIFICAION TEST- 	 ***VERIFICATION*** vc: 74183 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
 SIMULATOR : 	 results:  Total VCs : 1000	Total Revoked VCs : 100	False Positive Rate : 0.100000	Bloom Filter Size : 480	Bloom Filter indexes per entry (no of hash functions) : 4	Merkle Tree Accumulator depth : 11	Merkle Tree Accumulator Level Stored in DLT : 9
-Number of Affected VCs : 100	Number of False Positives : 82	Number of VCS that ended up updating witnesses from issuer: 7	Number of witness updates that we saved : 18	
+Number of Affected VCs : 100	Number of False Positives : 82	Number of VCS that ended up updating witnesses from issuer: 7	Number of witness updates that we saved : 18

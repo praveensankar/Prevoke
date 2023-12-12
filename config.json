@@ -2,7 +2,7 @@
 
  {
 	"contract" : {
-		"address" : "0x65bc20Cc3F53a7C15399461130D971431d3252BE",
+		"address" : "0x1d1c159baaea2118bDB790D0E155197CE3E23b75",
 		"gasLimit" : "80000000",
 		"gasPrice" : "20000000000"
 	},
@@ -10,8 +10,8 @@
 		 "name": "employer 1",
 		 "totalVCs" : "1000",
 		 "revokedVCs" : "100",
-		 "falsePositiveRate" : "0.1",
-		 "mtLevelInDLT" : "10",
+		 "falsePositiveRate" : "0.2",
+		 "mtLevelInDLT" : "9",
 		 "mtDepth" : "11"
 	 },
 	 "test" : "test",
