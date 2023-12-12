@@ -2,7 +2,7 @@
 
  {
 	"contract" : {
-		"address" : "0xa484D99D0Fef8CcA0B0ede0a061AAA123F52C802",
+		"address" : "0x65bc20Cc3F53a7C15399461130D971431d3252BE",
 		"gasLimit" : "80000000",
 		"gasPrice" : "20000000000"
 	},
@@ -11,20 +11,20 @@
 		 "totalVCs" : "1000",
 		 "revokedVCs" : "100",
 		 "falsePositiveRate" : "0.1",
-		 "mtLevelInDLT" : "6",
+		 "mtLevelInDLT" : "10",
 		 "mtDepth" : "11"
 	 },
 	 "test" : "test",
 	"blockchain" : {
-		"rpcEndpoint" : "http://127.0.0.1:8545",
-		"wsEndPoint" : "ws://127.0.0.1:8545",
-		"comment2": "158.39.200.176:8545 corresponds to ganache blockchain running at nrec",
+		"rpcEndpoint" : "http://158.39.200.98:8545",
+		"wsEndPoint" : "ws://158.39.200.98:8545",
+		"comment2": "158.39.200.98:8545 corresponds to ganache blockchain running at nrec",
 		"_comment" : "use ganache blockchain address (deployed locally) as endpoint"
 
 	},
 	 "account" : {
-		 "address" : "0x04C05a6Db89E93dA434D932aeA1a33315bA9E154",
-		 "privateKey": "6c4a5d2621552d422cec8a66f044e364e422839448e1328c6b52703b45d51079",
+		 "address" : "0x5cF65db83d68359B5bFA6e98418EdED13B975092",
+		 "privateKey": "35709f6f8cc7159c7db9f8c1b9db49f3e455057fc03321e7232726e43bba1b2f",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },

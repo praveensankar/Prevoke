@@ -23,3 +23,7 @@ Then update the contract address in config.json. The contract is returned by tru
 deploy contract : check instructions deployments/instructions.txt
 Then update the contract address in config.json. The contract is returned by truffle migrate command.
 
+
+
+3) starting ganache blockchain cli
+
