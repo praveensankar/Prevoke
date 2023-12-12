@@ -1,31 +1,38 @@
 {
-  "exp1" : {
-    "totalVCs" : "128",
-    "revokedVCs" : "50",
-    "falsePositiveRate" : "0.01",
-    "mtLevelInDLT" : "3",
-    "mtDepth" : "8"
+  "exp1": {
+    "totalVCs": "128",
+    "revokedVCs": "50",
+    "falsePositiveRate": "0.01",
+    "mtLevelInDLT": "3",
+    "mtDepth": "8"
   },
-  "exp2" : {
-    "totalVCs" : "128",
-    "revokedVCs" : "50",
-    "falsePositiveRate" : "0.1",
-    "mtLevelInDLT" : "3",
-    "mtDepth" : "8"
+  "exp2": {
+    "totalVCs": "128",
+    "revokedVCs": "50",
+    "falsePositiveRate": "0.1",
+    "mtLevelInDLT": "3",
+    "mtDepth": "8"
   },
-  "exp3" : {
-    "totalVCs" : "1000",
-    "revokedVCs" : "100",
-    "falsePositiveRate" : "0.1",
-    "mtLevelInDLT" : "3",
-    "mtDepth" : "11"
+  "exp3": {
+    "totalVCs": "1000",
+    "revokedVCs": "100",
+    "falsePositiveRate": "0.1",
+    "mtLevelInDLT": "3",
+    "mtDepth": "11"
   },
   "exp4": {
-    "totalVCs" : "5000",
-    "revokedVCs" : "500",
-    "falsePositiveRate" : "0.1",
-    "mtLevelInDLT" : "9",
-    "mtDepth" : "14"
+    "totalVCs": "5000",
+    "revokedVCs": "500",
+    "falsePositiveRate": "0.1",
+    "mtLevelInDLT": "9",
+    "mtDepth": "14"
+  },
+  "exp5": {
+    "totalVCs": "5000",
+    "revokedVCs": "500",
+    "falsePositiveRate": "0.1",
+    "mtLevelInDLT": "11",
+    "mtDepth": "14"
   }
 }
 

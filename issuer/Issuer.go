@@ -151,7 +151,10 @@ func (issuer *Issuer) Issue(vc verifiable.Credential) {
 
 func (issuer *Issuer) IssueBulk(config config.Config, vcs []*verifiable.Credential, total int){
 
+
+
 	revocationData := issuer.RevocationService.IssueVCsInBulk(vcs)
+
 	for i:=0; i<total; i++{
 		issuer.AddCretentialToStore(*vcs[i])
 	}

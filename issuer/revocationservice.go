@@ -39,6 +39,7 @@ type RevocationService struct{
 	vcCounter int64
 	bloomFilter *techniques.BloomFilter
 	MtLevelInDLT int
+	mtHeight int
 	NumberOfEntriesForMTInDLT int
 	blockchainRPCEndpoint string
 	account common.Address
@@ -61,6 +62,7 @@ func CreateRevocationService(config config.Config) *RevocationService{
 	rs.gasPrice = config.GasPrice
 	rs.VCToBigInts = make(map[string]*big.Int)
 	rs.MtLevelInDLT = int(config.MtLevelInDLT)
+	rs.mtHeight = int(config.MtDepth-1)
 	rs.account = common.HexToAddress(config.SenderAddress)
 	rs.NumberOfEntriesForMTInDLT = 0
 	for i := 0; i <= rs.MtLevelInDLT; i++ {
@@ -224,6 +226,7 @@ func (r *RevocationService) IssueVCsInBulk(vcs []*verifiable.Credential) ([]*Rev
 		revocationData := CreateRevocationData(vc.ID, mtIndex,bfIndexes, r.VCToBigInts[vc.ID], merkleProof)
 		revocationDataALl = append(revocationDataALl, revocationData)
 	}
+
 		//root := r.merkleTreeAcc.GetRoot()
 		//zap.S().Errorln("REVOCATION SERVICE- merkle root in string from local: ",root)
 

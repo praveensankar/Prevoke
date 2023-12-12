@@ -1,0 +1,1653 @@
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0xf3FC1513Fa8598A6f8a5B27805d58b5f825abF4B
+blockchain rpc endpoint: http://158.39.200.98:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x81AEDc651cA9155566B0a6581cdc38be44706ceb
+sender private key: 2dd20e86daa89a840779618961a843a52bc4c1076d262d249d3bf27b530f4bcb
+sender pass phrase: simple phrase
+other accounts in ganache test network :  [0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A]
+logger environment: dev
+logger output file name: logs.json
+logger output mode: file
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:employer 1
+total of VCs would be issued:500
+total of VCs would be revoked:50
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  9
+merkle tree height:  10
+********************************************************************************************************************************
+
+BlOOM FILTER: size :  240 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  employer 1
+
+
+********************************************************************************************************************************
+failed to issue vc VM Exception while processing transaction: Transaction's maxFeePerGas (20000000000) is less than the block's baseFeePerGas (22031619916) (vm hf=shanghai -> block -> tx)
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0x118aAF643965A985A6d1a4cd6c1b54a790DACF36
+blockchain rpc endpoint: http://158.39.200.98:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x81AEDc651cA9155566B0a6581cdc38be44706ceb
+sender private key: 2dd20e86daa89a840779618961a843a52bc4c1076d262d249d3bf27b530f4bcb
+sender pass phrase: simple phrase
+other accounts in ganache test network :  [0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A]
+logger environment: dev
+logger output file name: logs.json
+logger output mode: file
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:employer 1
+total of VCs would be issued:500
+total of VCs would be revoked:50
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  9
+merkle tree height:  10
+********************************************************************************************************************************
+
+BlOOM FILTER: size :  240 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  employer 1
+
+
+********************************************************************************************************************************
+ISSUER-  employer 1 ***ISSUED*** vc: 78525 	 mt index:  1
+ISSUER-  employer 1 ***ISSUED*** vc: 78526 	 mt index:  2
+ISSUER-  employer 1 ***ISSUED*** vc: 78527 	 mt index:  3
+ISSUER-  employer 1 ***ISSUED*** vc: 78528 	 mt index:  4
+ISSUER-  employer 1 ***ISSUED*** vc: 78529 	 mt index:  5
+ISSUER-  employer 1 ***ISSUED*** vc: 78530 	 mt index:  6
+ISSUER-  employer 1 ***ISSUED*** vc: 78531 	 mt index:  7
+ISSUER-  employer 1 ***ISSUED*** vc: 78532 	 mt index:  8
+ISSUER-  employer 1 ***ISSUED*** vc: 78533 	 mt index:  9
+ISSUER-  employer 1 ***ISSUED*** vc: 78534 	 mt index:  10
+ISSUER-  employer 1 ***ISSUED*** vc: 78535 	 mt index:  11
+ISSUER-  employer 1 ***ISSUED*** vc: 78536 	 mt index:  12
+ISSUER-  employer 1 ***ISSUED*** vc: 78537 	 mt index:  13
+ISSUER-  employer 1 ***ISSUED*** vc: 78538 	 mt index:  14
+ISSUER-  employer 1 ***ISSUED*** vc: 78539 	 mt index:  15
+ISSUER-  employer 1 ***ISSUED*** vc: 78540 	 mt index:  16
+ISSUER-  employer 1 ***ISSUED*** vc: 78541 	 mt index:  17
+ISSUER-  employer 1 ***ISSUED*** vc: 78542 	 mt index:  18
+ISSUER-  employer 1 ***ISSUED*** vc: 78543 	 mt index:  19
+ISSUER-  employer 1 ***ISSUED*** vc: 78544 	 mt index:  20
+ISSUER-  employer 1 ***ISSUED*** vc: 78545 	 mt index:  21
+ISSUER-  employer 1 ***ISSUED*** vc: 78546 	 mt index:  22
+ISSUER-  employer 1 ***ISSUED*** vc: 78547 	 mt index:  23
+ISSUER-  employer 1 ***ISSUED*** vc: 78548 	 mt index:  24
+ISSUER-  employer 1 ***ISSUED*** vc: 78549 	 mt index:  25
+ISSUER-  employer 1 ***ISSUED*** vc: 78550 	 mt index:  26
+ISSUER-  employer 1 ***ISSUED*** vc: 78551 	 mt index:  27
+ISSUER-  employer 1 ***ISSUED*** vc: 78552 	 mt index:  28
+ISSUER-  employer 1 ***ISSUED*** vc: 78553 	 mt index:  29
+ISSUER-  employer 1 ***ISSUED*** vc: 78554 	 mt index:  30
+ISSUER-  employer 1 ***ISSUED*** vc: 78555 	 mt index:  31
+ISSUER-  employer 1 ***ISSUED*** vc: 78556 	 mt index:  32
+ISSUER-  employer 1 ***ISSUED*** vc: 78557 	 mt index:  33
+ISSUER-  employer 1 ***ISSUED*** vc: 78558 	 mt index:  34
+ISSUER-  employer 1 ***ISSUED*** vc: 78559 	 mt index:  35
+ISSUER-  employer 1 ***ISSUED*** vc: 78560 	 mt index:  36
+ISSUER-  employer 1 ***ISSUED*** vc: 78561 	 mt index:  37
+ISSUER-  employer 1 ***ISSUED*** vc: 78562 	 mt index:  38
+ISSUER-  employer 1 ***ISSUED*** vc: 78563 	 mt index:  39
+ISSUER-  employer 1 ***ISSUED*** vc: 78564 	 mt index:  40
+ISSUER-  employer 1 ***ISSUED*** vc: 78565 	 mt index:  41
+ISSUER-  employer 1 ***ISSUED*** vc: 78566 	 mt index:  42
+ISSUER-  employer 1 ***ISSUED*** vc: 78567 	 mt index:  43
+ISSUER-  employer 1 ***ISSUED*** vc: 78568 	 mt index:  44
+ISSUER-  employer 1 ***ISSUED*** vc: 78569 	 mt index:  45
+ISSUER-  employer 1 ***ISSUED*** vc: 78570 	 mt index:  46
+ISSUER-  employer 1 ***ISSUED*** vc: 78571 	 mt index:  47
+ISSUER-  employer 1 ***ISSUED*** vc: 78572 	 mt index:  48
+ISSUER-  employer 1 ***ISSUED*** vc: 78573 	 mt index:  49
+ISSUER-  employer 1 ***ISSUED*** vc: 78574 	 mt index:  50
+ISSUER-  employer 1 ***ISSUED*** vc: 78575 	 mt index:  51
+ISSUER-  employer 1 ***ISSUED*** vc: 78576 	 mt index:  52
+ISSUER-  employer 1 ***ISSUED*** vc: 78577 	 mt index:  53
+ISSUER-  employer 1 ***ISSUED*** vc: 78578 	 mt index:  54
+ISSUER-  employer 1 ***ISSUED*** vc: 78579 	 mt index:  55
+ISSUER-  employer 1 ***ISSUED*** vc: 78580 	 mt index:  56
+ISSUER-  employer 1 ***ISSUED*** vc: 78581 	 mt index:  57
+ISSUER-  employer 1 ***ISSUED*** vc: 78582 	 mt index:  58
+ISSUER-  employer 1 ***ISSUED*** vc: 78583 	 mt index:  59
+ISSUER-  employer 1 ***ISSUED*** vc: 78584 	 mt index:  60
+ISSUER-  employer 1 ***ISSUED*** vc: 78585 	 mt index:  61
+ISSUER-  employer 1 ***ISSUED*** vc: 78586 	 mt index:  62
+ISSUER-  employer 1 ***ISSUED*** vc: 78587 	 mt index:  63
+ISSUER-  employer 1 ***ISSUED*** vc: 78588 	 mt index:  64
+ISSUER-  employer 1 ***ISSUED*** vc: 78589 	 mt index:  65
+ISSUER-  employer 1 ***ISSUED*** vc: 78590 	 mt index:  66
+ISSUER-  employer 1 ***ISSUED*** vc: 78591 	 mt index:  67
+ISSUER-  employer 1 ***ISSUED*** vc: 78592 	 mt index:  68
+ISSUER-  employer 1 ***ISSUED*** vc: 78593 	 mt index:  69
+ISSUER-  employer 1 ***ISSUED*** vc: 78594 	 mt index:  70
+ISSUER-  employer 1 ***ISSUED*** vc: 78595 	 mt index:  71
+ISSUER-  employer 1 ***ISSUED*** vc: 78596 	 mt index:  72
+ISSUER-  employer 1 ***ISSUED*** vc: 78597 	 mt index:  73
+ISSUER-  employer 1 ***ISSUED*** vc: 78598 	 mt index:  74
+ISSUER-  employer 1 ***ISSUED*** vc: 78599 	 mt index:  75
+ISSUER-  employer 1 ***ISSUED*** vc: 78600 	 mt index:  76
+ISSUER-  employer 1 ***ISSUED*** vc: 78601 	 mt index:  77
+ISSUER-  employer 1 ***ISSUED*** vc: 78602 	 mt index:  78
+ISSUER-  employer 1 ***ISSUED*** vc: 78603 	 mt index:  79
+ISSUER-  employer 1 ***ISSUED*** vc: 78604 	 mt index:  80
+ISSUER-  employer 1 ***ISSUED*** vc: 78605 	 mt index:  81
+ISSUER-  employer 1 ***ISSUED*** vc: 78606 	 mt index:  82
+ISSUER-  employer 1 ***ISSUED*** vc: 78607 	 mt index:  83
+ISSUER-  employer 1 ***ISSUED*** vc: 78608 	 mt index:  84
+ISSUER-  employer 1 ***ISSUED*** vc: 78609 	 mt index:  85
+ISSUER-  employer 1 ***ISSUED*** vc: 78610 	 mt index:  86
+ISSUER-  employer 1 ***ISSUED*** vc: 78611 	 mt index:  87
+ISSUER-  employer 1 ***ISSUED*** vc: 78612 	 mt index:  88
+ISSUER-  employer 1 ***ISSUED*** vc: 78613 	 mt index:  89
+ISSUER-  employer 1 ***ISSUED*** vc: 78614 	 mt index:  90
+ISSUER-  employer 1 ***ISSUED*** vc: 78615 	 mt index:  91
+ISSUER-  employer 1 ***ISSUED*** vc: 78616 	 mt index:  92
+ISSUER-  employer 1 ***ISSUED*** vc: 78617 	 mt index:  93
+ISSUER-  employer 1 ***ISSUED*** vc: 78618 	 mt index:  94
+ISSUER-  employer 1 ***ISSUED*** vc: 78619 	 mt index:  95
+ISSUER-  employer 1 ***ISSUED*** vc: 78620 	 mt index:  96
+ISSUER-  employer 1 ***ISSUED*** vc: 78621 	 mt index:  97
+ISSUER-  employer 1 ***ISSUED*** vc: 78622 	 mt index:  98
+ISSUER-  employer 1 ***ISSUED*** vc: 78623 	 mt index:  99
+ISSUER-  employer 1 ***ISSUED*** vc: 78624 	 mt index:  100
+ISSUER-  employer 1 ***ISSUED*** vc: 78625 	 mt index:  101
+ISSUER-  employer 1 ***ISSUED*** vc: 78626 	 mt index:  102
+ISSUER-  employer 1 ***ISSUED*** vc: 78627 	 mt index:  103
+ISSUER-  employer 1 ***ISSUED*** vc: 78628 	 mt index:  104
+ISSUER-  employer 1 ***ISSUED*** vc: 78629 	 mt index:  105
+ISSUER-  employer 1 ***ISSUED*** vc: 78630 	 mt index:  106
+ISSUER-  employer 1 ***ISSUED*** vc: 78631 	 mt index:  107
+ISSUER-  employer 1 ***ISSUED*** vc: 78632 	 mt index:  108
+ISSUER-  employer 1 ***ISSUED*** vc: 78633 	 mt index:  109
+ISSUER-  employer 1 ***ISSUED*** vc: 78634 	 mt index:  110
+ISSUER-  employer 1 ***ISSUED*** vc: 78635 	 mt index:  111
+ISSUER-  employer 1 ***ISSUED*** vc: 78636 	 mt index:  112
+ISSUER-  employer 1 ***ISSUED*** vc: 78637 	 mt index:  113
+ISSUER-  employer 1 ***ISSUED*** vc: 78638 	 mt index:  114
+ISSUER-  employer 1 ***ISSUED*** vc: 78639 	 mt index:  115
+ISSUER-  employer 1 ***ISSUED*** vc: 78640 	 mt index:  116
+ISSUER-  employer 1 ***ISSUED*** vc: 78641 	 mt index:  117
+ISSUER-  employer 1 ***ISSUED*** vc: 78642 	 mt index:  118
+ISSUER-  employer 1 ***ISSUED*** vc: 78643 	 mt index:  119
+ISSUER-  employer 1 ***ISSUED*** vc: 78644 	 mt index:  120
+ISSUER-  employer 1 ***ISSUED*** vc: 78645 	 mt index:  121
+ISSUER-  employer 1 ***ISSUED*** vc: 78646 	 mt index:  122
+ISSUER-  employer 1 ***ISSUED*** vc: 78647 	 mt index:  123
+ISSUER-  employer 1 ***ISSUED*** vc: 78648 	 mt index:  124
+ISSUER-  employer 1 ***ISSUED*** vc: 78649 	 mt index:  125
+ISSUER-  employer 1 ***ISSUED*** vc: 78650 	 mt index:  126
+ISSUER-  employer 1 ***ISSUED*** vc: 78651 	 mt index:  127
+ISSUER-  employer 1 ***ISSUED*** vc: 78652 	 mt index:  128
+ISSUER-  employer 1 ***ISSUED*** vc: 78653 	 mt index:  129
+ISSUER-  employer 1 ***ISSUED*** vc: 78654 	 mt index:  130
+ISSUER-  employer 1 ***ISSUED*** vc: 78655 	 mt index:  131
+ISSUER-  employer 1 ***ISSUED*** vc: 78656 	 mt index:  132
+ISSUER-  employer 1 ***ISSUED*** vc: 78657 	 mt index:  133
+ISSUER-  employer 1 ***ISSUED*** vc: 78658 	 mt index:  134
+ISSUER-  employer 1 ***ISSUED*** vc: 78659 	 mt index:  135
+ISSUER-  employer 1 ***ISSUED*** vc: 78660 	 mt index:  136
+ISSUER-  employer 1 ***ISSUED*** vc: 78661 	 mt index:  137
+ISSUER-  employer 1 ***ISSUED*** vc: 78662 	 mt index:  138
+ISSUER-  employer 1 ***ISSUED*** vc: 78663 	 mt index:  139
+ISSUER-  employer 1 ***ISSUED*** vc: 78664 	 mt index:  140
+ISSUER-  employer 1 ***ISSUED*** vc: 78665 	 mt index:  141
+ISSUER-  employer 1 ***ISSUED*** vc: 78666 	 mt index:  142
+ISSUER-  employer 1 ***ISSUED*** vc: 78667 	 mt index:  143
+ISSUER-  employer 1 ***ISSUED*** vc: 78668 	 mt index:  144
+ISSUER-  employer 1 ***ISSUED*** vc: 78669 	 mt index:  145
+ISSUER-  employer 1 ***ISSUED*** vc: 78670 	 mt index:  146
+ISSUER-  employer 1 ***ISSUED*** vc: 78671 	 mt index:  147
+ISSUER-  employer 1 ***ISSUED*** vc: 78672 	 mt index:  148
+ISSUER-  employer 1 ***ISSUED*** vc: 78673 	 mt index:  149
+ISSUER-  employer 1 ***ISSUED*** vc: 78674 	 mt index:  150
+ISSUER-  employer 1 ***ISSUED*** vc: 78675 	 mt index:  151
+ISSUER-  employer 1 ***ISSUED*** vc: 78676 	 mt index:  152
+ISSUER-  employer 1 ***ISSUED*** vc: 78677 	 mt index:  153
+ISSUER-  employer 1 ***ISSUED*** vc: 78678 	 mt index:  154
+ISSUER-  employer 1 ***ISSUED*** vc: 78679 	 mt index:  155
+ISSUER-  employer 1 ***ISSUED*** vc: 78680 	 mt index:  156
+ISSUER-  employer 1 ***ISSUED*** vc: 78681 	 mt index:  157
+ISSUER-  employer 1 ***ISSUED*** vc: 78682 	 mt index:  158
+ISSUER-  employer 1 ***ISSUED*** vc: 78683 	 mt index:  159
+ISSUER-  employer 1 ***ISSUED*** vc: 78684 	 mt index:  160
+ISSUER-  employer 1 ***ISSUED*** vc: 78685 	 mt index:  161
+ISSUER-  employer 1 ***ISSUED*** vc: 78686 	 mt index:  162
+ISSUER-  employer 1 ***ISSUED*** vc: 78687 	 mt index:  163
+ISSUER-  employer 1 ***ISSUED*** vc: 78688 	 mt index:  164
+ISSUER-  employer 1 ***ISSUED*** vc: 78689 	 mt index:  165
+ISSUER-  employer 1 ***ISSUED*** vc: 78690 	 mt index:  166
+ISSUER-  employer 1 ***ISSUED*** vc: 78691 	 mt index:  167
+ISSUER-  employer 1 ***ISSUED*** vc: 78692 	 mt index:  168
+ISSUER-  employer 1 ***ISSUED*** vc: 78693 	 mt index:  169
+ISSUER-  employer 1 ***ISSUED*** vc: 78694 	 mt index:  170
+ISSUER-  employer 1 ***ISSUED*** vc: 78695 	 mt index:  171
+ISSUER-  employer 1 ***ISSUED*** vc: 78696 	 mt index:  172
+ISSUER-  employer 1 ***ISSUED*** vc: 78697 	 mt index:  173
+ISSUER-  employer 1 ***ISSUED*** vc: 78698 	 mt index:  174
+ISSUER-  employer 1 ***ISSUED*** vc: 78699 	 mt index:  175
+ISSUER-  employer 1 ***ISSUED*** vc: 78700 	 mt index:  176
+ISSUER-  employer 1 ***ISSUED*** vc: 78701 	 mt index:  177
+ISSUER-  employer 1 ***ISSUED*** vc: 78702 	 mt index:  178
+ISSUER-  employer 1 ***ISSUED*** vc: 78703 	 mt index:  179
+ISSUER-  employer 1 ***ISSUED*** vc: 78704 	 mt index:  180
+ISSUER-  employer 1 ***ISSUED*** vc: 78705 	 mt index:  181
+ISSUER-  employer 1 ***ISSUED*** vc: 78706 	 mt index:  182
+ISSUER-  employer 1 ***ISSUED*** vc: 78707 	 mt index:  183
+ISSUER-  employer 1 ***ISSUED*** vc: 78708 	 mt index:  184
+ISSUER-  employer 1 ***ISSUED*** vc: 78709 	 mt index:  185
+ISSUER-  employer 1 ***ISSUED*** vc: 78710 	 mt index:  186
+ISSUER-  employer 1 ***ISSUED*** vc: 78711 	 mt index:  187
+ISSUER-  employer 1 ***ISSUED*** vc: 78712 	 mt index:  188
+ISSUER-  employer 1 ***ISSUED*** vc: 78713 	 mt index:  189
+ISSUER-  employer 1 ***ISSUED*** vc: 78714 	 mt index:  190
+ISSUER-  employer 1 ***ISSUED*** vc: 78715 	 mt index:  191
+ISSUER-  employer 1 ***ISSUED*** vc: 78716 	 mt index:  192
+ISSUER-  employer 1 ***ISSUED*** vc: 78717 	 mt index:  193
+ISSUER-  employer 1 ***ISSUED*** vc: 78718 	 mt index:  194
+ISSUER-  employer 1 ***ISSUED*** vc: 78719 	 mt index:  195
+ISSUER-  employer 1 ***ISSUED*** vc: 78720 	 mt index:  196
+ISSUER-  employer 1 ***ISSUED*** vc: 78721 	 mt index:  197
+ISSUER-  employer 1 ***ISSUED*** vc: 78722 	 mt index:  198
+ISSUER-  employer 1 ***ISSUED*** vc: 78723 	 mt index:  199
+ISSUER-  employer 1 ***ISSUED*** vc: 78724 	 mt index:  200
+ISSUER-  employer 1 ***ISSUED*** vc: 78725 	 mt index:  201
+ISSUER-  employer 1 ***ISSUED*** vc: 78726 	 mt index:  202
+ISSUER-  employer 1 ***ISSUED*** vc: 78727 	 mt index:  203
+ISSUER-  employer 1 ***ISSUED*** vc: 78728 	 mt index:  204
+ISSUER-  employer 1 ***ISSUED*** vc: 78729 	 mt index:  205
+ISSUER-  employer 1 ***ISSUED*** vc: 78730 	 mt index:  206
+ISSUER-  employer 1 ***ISSUED*** vc: 78731 	 mt index:  207
+ISSUER-  employer 1 ***ISSUED*** vc: 78732 	 mt index:  208
+ISSUER-  employer 1 ***ISSUED*** vc: 78733 	 mt index:  209
+ISSUER-  employer 1 ***ISSUED*** vc: 78734 	 mt index:  210
+ISSUER-  employer 1 ***ISSUED*** vc: 78735 	 mt index:  211
+ISSUER-  employer 1 ***ISSUED*** vc: 78736 	 mt index:  212
+ISSUER-  employer 1 ***ISSUED*** vc: 78737 	 mt index:  213
+ISSUER-  employer 1 ***ISSUED*** vc: 78738 	 mt index:  214
+ISSUER-  employer 1 ***ISSUED*** vc: 78739 	 mt index:  215
+ISSUER-  employer 1 ***ISSUED*** vc: 78740 	 mt index:  216
+ISSUER-  employer 1 ***ISSUED*** vc: 78741 	 mt index:  217
+ISSUER-  employer 1 ***ISSUED*** vc: 78742 	 mt index:  218
+ISSUER-  employer 1 ***ISSUED*** vc: 78743 	 mt index:  219
+ISSUER-  employer 1 ***ISSUED*** vc: 78744 	 mt index:  220
+ISSUER-  employer 1 ***ISSUED*** vc: 78745 	 mt index:  221
+ISSUER-  employer 1 ***ISSUED*** vc: 78746 	 mt index:  222
+ISSUER-  employer 1 ***ISSUED*** vc: 78747 	 mt index:  223
+ISSUER-  employer 1 ***ISSUED*** vc: 78748 	 mt index:  224
+ISSUER-  employer 1 ***ISSUED*** vc: 78749 	 mt index:  225
+ISSUER-  employer 1 ***ISSUED*** vc: 78750 	 mt index:  226
+ISSUER-  employer 1 ***ISSUED*** vc: 78751 	 mt index:  227
+ISSUER-  employer 1 ***ISSUED*** vc: 78752 	 mt index:  228
+ISSUER-  employer 1 ***ISSUED*** vc: 78753 	 mt index:  229
+ISSUER-  employer 1 ***ISSUED*** vc: 78754 	 mt index:  230
+ISSUER-  employer 1 ***ISSUED*** vc: 78755 	 mt index:  231
+ISSUER-  employer 1 ***ISSUED*** vc: 78756 	 mt index:  232
+ISSUER-  employer 1 ***ISSUED*** vc: 78757 	 mt index:  233
+ISSUER-  employer 1 ***ISSUED*** vc: 78758 	 mt index:  234
+ISSUER-  employer 1 ***ISSUED*** vc: 78759 	 mt index:  235
+ISSUER-  employer 1 ***ISSUED*** vc: 78760 	 mt index:  236
+ISSUER-  employer 1 ***ISSUED*** vc: 78761 	 mt index:  237
+ISSUER-  employer 1 ***ISSUED*** vc: 78762 	 mt index:  238
+ISSUER-  employer 1 ***ISSUED*** vc: 78763 	 mt index:  239
+ISSUER-  employer 1 ***ISSUED*** vc: 78764 	 mt index:  240
+ISSUER-  employer 1 ***ISSUED*** vc: 78765 	 mt index:  241
+ISSUER-  employer 1 ***ISSUED*** vc: 78766 	 mt index:  242
+ISSUER-  employer 1 ***ISSUED*** vc: 78767 	 mt index:  243
+ISSUER-  employer 1 ***ISSUED*** vc: 78768 	 mt index:  244
+ISSUER-  employer 1 ***ISSUED*** vc: 78769 	 mt index:  245
+ISSUER-  employer 1 ***ISSUED*** vc: 78770 	 mt index:  246
+ISSUER-  employer 1 ***ISSUED*** vc: 78771 	 mt index:  247
+ISSUER-  employer 1 ***ISSUED*** vc: 78772 	 mt index:  248
+ISSUER-  employer 1 ***ISSUED*** vc: 78773 	 mt index:  249
+ISSUER-  employer 1 ***ISSUED*** vc: 78774 	 mt index:  250
+ISSUER-  employer 1 ***ISSUED*** vc: 78775 	 mt index:  251
+ISSUER-  employer 1 ***ISSUED*** vc: 78776 	 mt index:  252
+ISSUER-  employer 1 ***ISSUED*** vc: 78777 	 mt index:  253
+ISSUER-  employer 1 ***ISSUED*** vc: 78778 	 mt index:  254
+ISSUER-  employer 1 ***ISSUED*** vc: 78779 	 mt index:  255
+ISSUER-  employer 1 ***ISSUED*** vc: 78780 	 mt index:  256
+ISSUER-  employer 1 ***ISSUED*** vc: 78781 	 mt index:  257
+ISSUER-  employer 1 ***ISSUED*** vc: 78782 	 mt index:  258
+ISSUER-  employer 1 ***ISSUED*** vc: 78783 	 mt index:  259
+ISSUER-  employer 1 ***ISSUED*** vc: 78784 	 mt index:  260
+ISSUER-  employer 1 ***ISSUED*** vc: 78785 	 mt index:  261
+ISSUER-  employer 1 ***ISSUED*** vc: 78786 	 mt index:  262
+ISSUER-  employer 1 ***ISSUED*** vc: 78787 	 mt index:  263
+ISSUER-  employer 1 ***ISSUED*** vc: 78788 	 mt index:  264
+ISSUER-  employer 1 ***ISSUED*** vc: 78789 	 mt index:  265
+ISSUER-  employer 1 ***ISSUED*** vc: 78790 	 mt index:  266
+ISSUER-  employer 1 ***ISSUED*** vc: 78791 	 mt index:  267
+ISSUER-  employer 1 ***ISSUED*** vc: 78792 	 mt index:  268
+ISSUER-  employer 1 ***ISSUED*** vc: 78793 	 mt index:  269
+ISSUER-  employer 1 ***ISSUED*** vc: 78794 	 mt index:  270
+ISSUER-  employer 1 ***ISSUED*** vc: 78795 	 mt index:  271
+ISSUER-  employer 1 ***ISSUED*** vc: 78796 	 mt index:  272
+ISSUER-  employer 1 ***ISSUED*** vc: 78797 	 mt index:  273
+ISSUER-  employer 1 ***ISSUED*** vc: 78798 	 mt index:  274
+ISSUER-  employer 1 ***ISSUED*** vc: 78799 	 mt index:  275
+ISSUER-  employer 1 ***ISSUED*** vc: 78800 	 mt index:  276
+ISSUER-  employer 1 ***ISSUED*** vc: 78801 	 mt index:  277
+ISSUER-  employer 1 ***ISSUED*** vc: 78802 	 mt index:  278
+ISSUER-  employer 1 ***ISSUED*** vc: 78803 	 mt index:  279
+ISSUER-  employer 1 ***ISSUED*** vc: 78804 	 mt index:  280
+ISSUER-  employer 1 ***ISSUED*** vc: 78805 	 mt index:  281
+ISSUER-  employer 1 ***ISSUED*** vc: 78806 	 mt index:  282
+ISSUER-  employer 1 ***ISSUED*** vc: 78807 	 mt index:  283
+ISSUER-  employer 1 ***ISSUED*** vc: 78808 	 mt index:  284
+ISSUER-  employer 1 ***ISSUED*** vc: 78809 	 mt index:  285
+ISSUER-  employer 1 ***ISSUED*** vc: 78810 	 mt index:  286
+ISSUER-  employer 1 ***ISSUED*** vc: 78811 	 mt index:  287
+ISSUER-  employer 1 ***ISSUED*** vc: 78812 	 mt index:  288
+ISSUER-  employer 1 ***ISSUED*** vc: 78813 	 mt index:  289
+ISSUER-  employer 1 ***ISSUED*** vc: 78814 	 mt index:  290
+ISSUER-  employer 1 ***ISSUED*** vc: 78815 	 mt index:  291
+ISSUER-  employer 1 ***ISSUED*** vc: 78816 	 mt index:  292
+ISSUER-  employer 1 ***ISSUED*** vc: 78817 	 mt index:  293
+ISSUER-  employer 1 ***ISSUED*** vc: 78818 	 mt index:  294
+ISSUER-  employer 1 ***ISSUED*** vc: 78819 	 mt index:  295
+ISSUER-  employer 1 ***ISSUED*** vc: 78820 	 mt index:  296
+ISSUER-  employer 1 ***ISSUED*** vc: 78821 	 mt index:  297
+ISSUER-  employer 1 ***ISSUED*** vc: 78822 	 mt index:  298
+ISSUER-  employer 1 ***ISSUED*** vc: 78823 	 mt index:  299
+ISSUER-  employer 1 ***ISSUED*** vc: 78824 	 mt index:  300
+ISSUER-  employer 1 ***ISSUED*** vc: 78825 	 mt index:  301
+ISSUER-  employer 1 ***ISSUED*** vc: 78826 	 mt index:  302
+ISSUER-  employer 1 ***ISSUED*** vc: 78827 	 mt index:  303
+ISSUER-  employer 1 ***ISSUED*** vc: 78828 	 mt index:  304
+ISSUER-  employer 1 ***ISSUED*** vc: 78829 	 mt index:  305
+ISSUER-  employer 1 ***ISSUED*** vc: 78830 	 mt index:  306
+ISSUER-  employer 1 ***ISSUED*** vc: 78831 	 mt index:  307
+ISSUER-  employer 1 ***ISSUED*** vc: 78832 	 mt index:  308
+ISSUER-  employer 1 ***ISSUED*** vc: 78833 	 mt index:  309
+ISSUER-  employer 1 ***ISSUED*** vc: 78834 	 mt index:  310
+ISSUER-  employer 1 ***ISSUED*** vc: 78835 	 mt index:  311
+ISSUER-  employer 1 ***ISSUED*** vc: 78836 	 mt index:  312
+ISSUER-  employer 1 ***ISSUED*** vc: 78837 	 mt index:  313
+ISSUER-  employer 1 ***ISSUED*** vc: 78838 	 mt index:  314
+ISSUER-  employer 1 ***ISSUED*** vc: 78839 	 mt index:  315
+ISSUER-  employer 1 ***ISSUED*** vc: 78840 	 mt index:  316
+ISSUER-  employer 1 ***ISSUED*** vc: 78841 	 mt index:  317
+ISSUER-  employer 1 ***ISSUED*** vc: 78842 	 mt index:  318
+ISSUER-  employer 1 ***ISSUED*** vc: 78843 	 mt index:  319
+ISSUER-  employer 1 ***ISSUED*** vc: 78844 	 mt index:  320
+ISSUER-  employer 1 ***ISSUED*** vc: 78845 	 mt index:  321
+ISSUER-  employer 1 ***ISSUED*** vc: 78846 	 mt index:  322
+ISSUER-  employer 1 ***ISSUED*** vc: 78847 	 mt index:  323
+ISSUER-  employer 1 ***ISSUED*** vc: 78848 	 mt index:  324
+ISSUER-  employer 1 ***ISSUED*** vc: 78849 	 mt index:  325
+ISSUER-  employer 1 ***ISSUED*** vc: 78850 	 mt index:  326
+ISSUER-  employer 1 ***ISSUED*** vc: 78851 	 mt index:  327
+ISSUER-  employer 1 ***ISSUED*** vc: 78852 	 mt index:  328
+ISSUER-  employer 1 ***ISSUED*** vc: 78853 	 mt index:  329
+ISSUER-  employer 1 ***ISSUED*** vc: 78854 	 mt index:  330
+ISSUER-  employer 1 ***ISSUED*** vc: 78855 	 mt index:  331
+ISSUER-  employer 1 ***ISSUED*** vc: 78856 	 mt index:  332
+ISSUER-  employer 1 ***ISSUED*** vc: 78857 	 mt index:  333
+ISSUER-  employer 1 ***ISSUED*** vc: 78858 	 mt index:  334
+ISSUER-  employer 1 ***ISSUED*** vc: 78859 	 mt index:  335
+ISSUER-  employer 1 ***ISSUED*** vc: 78860 	 mt index:  336
+ISSUER-  employer 1 ***ISSUED*** vc: 78861 	 mt index:  337
+ISSUER-  employer 1 ***ISSUED*** vc: 78862 	 mt index:  338
+ISSUER-  employer 1 ***ISSUED*** vc: 78863 	 mt index:  339
+ISSUER-  employer 1 ***ISSUED*** vc: 78864 	 mt index:  340
+ISSUER-  employer 1 ***ISSUED*** vc: 78865 	 mt index:  341
+ISSUER-  employer 1 ***ISSUED*** vc: 78866 	 mt index:  342
+ISSUER-  employer 1 ***ISSUED*** vc: 78867 	 mt index:  343
+ISSUER-  employer 1 ***ISSUED*** vc: 78868 	 mt index:  344
+ISSUER-  employer 1 ***ISSUED*** vc: 78869 	 mt index:  345
+ISSUER-  employer 1 ***ISSUED*** vc: 78870 	 mt index:  346
+ISSUER-  employer 1 ***ISSUED*** vc: 78871 	 mt index:  347
+ISSUER-  employer 1 ***ISSUED*** vc: 78872 	 mt index:  348
+ISSUER-  employer 1 ***ISSUED*** vc: 78873 	 mt index:  349
+ISSUER-  employer 1 ***ISSUED*** vc: 78874 	 mt index:  350
+ISSUER-  employer 1 ***ISSUED*** vc: 78875 	 mt index:  351
+ISSUER-  employer 1 ***ISSUED*** vc: 78876 	 mt index:  352
+ISSUER-  employer 1 ***ISSUED*** vc: 78877 	 mt index:  353
+ISSUER-  employer 1 ***ISSUED*** vc: 78878 	 mt index:  354
+ISSUER-  employer 1 ***ISSUED*** vc: 78879 	 mt index:  355
+ISSUER-  employer 1 ***ISSUED*** vc: 78880 	 mt index:  356
+ISSUER-  employer 1 ***ISSUED*** vc: 78881 	 mt index:  357
+ISSUER-  employer 1 ***ISSUED*** vc: 78882 	 mt index:  358
+ISSUER-  employer 1 ***ISSUED*** vc: 78883 	 mt index:  359
+ISSUER-  employer 1 ***ISSUED*** vc: 78884 	 mt index:  360
+ISSUER-  employer 1 ***ISSUED*** vc: 78885 	 mt index:  361
+ISSUER-  employer 1 ***ISSUED*** vc: 78886 	 mt index:  362
+ISSUER-  employer 1 ***ISSUED*** vc: 78887 	 mt index:  363
+ISSUER-  employer 1 ***ISSUED*** vc: 78888 	 mt index:  364
+ISSUER-  employer 1 ***ISSUED*** vc: 78889 	 mt index:  365
+ISSUER-  employer 1 ***ISSUED*** vc: 78890 	 mt index:  366
+ISSUER-  employer 1 ***ISSUED*** vc: 78891 	 mt index:  367
+ISSUER-  employer 1 ***ISSUED*** vc: 78892 	 mt index:  368
+ISSUER-  employer 1 ***ISSUED*** vc: 78893 	 mt index:  369
+ISSUER-  employer 1 ***ISSUED*** vc: 78894 	 mt index:  370
+ISSUER-  employer 1 ***ISSUED*** vc: 78895 	 mt index:  371
+ISSUER-  employer 1 ***ISSUED*** vc: 78896 	 mt index:  372
+ISSUER-  employer 1 ***ISSUED*** vc: 78897 	 mt index:  373
+ISSUER-  employer 1 ***ISSUED*** vc: 78898 	 mt index:  374
+ISSUER-  employer 1 ***ISSUED*** vc: 78899 	 mt index:  375
+ISSUER-  employer 1 ***ISSUED*** vc: 78900 	 mt index:  376
+ISSUER-  employer 1 ***ISSUED*** vc: 78901 	 mt index:  377
+ISSUER-  employer 1 ***ISSUED*** vc: 78902 	 mt index:  378
+ISSUER-  employer 1 ***ISSUED*** vc: 78903 	 mt index:  379
+ISSUER-  employer 1 ***ISSUED*** vc: 78904 	 mt index:  380
+ISSUER-  employer 1 ***ISSUED*** vc: 78905 	 mt index:  381
+ISSUER-  employer 1 ***ISSUED*** vc: 78906 	 mt index:  382
+ISSUER-  employer 1 ***ISSUED*** vc: 78907 	 mt index:  383
+ISSUER-  employer 1 ***ISSUED*** vc: 78908 	 mt index:  384
+ISSUER-  employer 1 ***ISSUED*** vc: 78909 	 mt index:  385
+ISSUER-  employer 1 ***ISSUED*** vc: 78910 	 mt index:  386
+ISSUER-  employer 1 ***ISSUED*** vc: 78911 	 mt index:  387
+ISSUER-  employer 1 ***ISSUED*** vc: 78912 	 mt index:  388
+ISSUER-  employer 1 ***ISSUED*** vc: 78913 	 mt index:  389
+ISSUER-  employer 1 ***ISSUED*** vc: 78914 	 mt index:  390
+ISSUER-  employer 1 ***ISSUED*** vc: 78915 	 mt index:  391
+ISSUER-  employer 1 ***ISSUED*** vc: 78916 	 mt index:  392
+ISSUER-  employer 1 ***ISSUED*** vc: 78917 	 mt index:  393
+ISSUER-  employer 1 ***ISSUED*** vc: 78918 	 mt index:  394
+ISSUER-  employer 1 ***ISSUED*** vc: 78919 	 mt index:  395
+ISSUER-  employer 1 ***ISSUED*** vc: 78920 	 mt index:  396
+ISSUER-  employer 1 ***ISSUED*** vc: 78921 	 mt index:  397
+ISSUER-  employer 1 ***ISSUED*** vc: 78922 	 mt index:  398
+ISSUER-  employer 1 ***ISSUED*** vc: 78923 	 mt index:  399
+ISSUER-  employer 1 ***ISSUED*** vc: 78924 	 mt index:  400
+ISSUER-  employer 1 ***ISSUED*** vc: 78925 	 mt index:  401
+ISSUER-  employer 1 ***ISSUED*** vc: 78926 	 mt index:  402
+ISSUER-  employer 1 ***ISSUED*** vc: 78927 	 mt index:  403
+ISSUER-  employer 1 ***ISSUED*** vc: 78928 	 mt index:  404
+ISSUER-  employer 1 ***ISSUED*** vc: 78929 	 mt index:  405
+ISSUER-  employer 1 ***ISSUED*** vc: 78930 	 mt index:  406
+ISSUER-  employer 1 ***ISSUED*** vc: 78931 	 mt index:  407
+ISSUER-  employer 1 ***ISSUED*** vc: 78932 	 mt index:  408
+ISSUER-  employer 1 ***ISSUED*** vc: 78933 	 mt index:  409
+ISSUER-  employer 1 ***ISSUED*** vc: 78934 	 mt index:  410
+ISSUER-  employer 1 ***ISSUED*** vc: 78935 	 mt index:  411
+ISSUER-  employer 1 ***ISSUED*** vc: 78936 	 mt index:  412
+ISSUER-  employer 1 ***ISSUED*** vc: 78937 	 mt index:  413
+ISSUER-  employer 1 ***ISSUED*** vc: 78938 	 mt index:  414
+ISSUER-  employer 1 ***ISSUED*** vc: 78939 	 mt index:  415
+ISSUER-  employer 1 ***ISSUED*** vc: 78940 	 mt index:  416
+ISSUER-  employer 1 ***ISSUED*** vc: 78941 	 mt index:  417
+ISSUER-  employer 1 ***ISSUED*** vc: 78942 	 mt index:  418
+ISSUER-  employer 1 ***ISSUED*** vc: 78943 	 mt index:  419
+ISSUER-  employer 1 ***ISSUED*** vc: 78944 	 mt index:  420
+ISSUER-  employer 1 ***ISSUED*** vc: 78945 	 mt index:  421
+ISSUER-  employer 1 ***ISSUED*** vc: 78946 	 mt index:  422
+ISSUER-  employer 1 ***ISSUED*** vc: 78947 	 mt index:  423
+ISSUER-  employer 1 ***ISSUED*** vc: 78948 	 mt index:  424
+ISSUER-  employer 1 ***ISSUED*** vc: 78949 	 mt index:  425
+ISSUER-  employer 1 ***ISSUED*** vc: 78950 	 mt index:  426
+ISSUER-  employer 1 ***ISSUED*** vc: 78951 	 mt index:  427
+ISSUER-  employer 1 ***ISSUED*** vc: 78952 	 mt index:  428
+ISSUER-  employer 1 ***ISSUED*** vc: 78953 	 mt index:  429
+ISSUER-  employer 1 ***ISSUED*** vc: 78954 	 mt index:  430
+ISSUER-  employer 1 ***ISSUED*** vc: 78955 	 mt index:  431
+ISSUER-  employer 1 ***ISSUED*** vc: 78956 	 mt index:  432
+ISSUER-  employer 1 ***ISSUED*** vc: 78957 	 mt index:  433
+ISSUER-  employer 1 ***ISSUED*** vc: 78958 	 mt index:  434
+ISSUER-  employer 1 ***ISSUED*** vc: 78959 	 mt index:  435
+ISSUER-  employer 1 ***ISSUED*** vc: 78960 	 mt index:  436
+ISSUER-  employer 1 ***ISSUED*** vc: 78961 	 mt index:  437
+ISSUER-  employer 1 ***ISSUED*** vc: 78962 	 mt index:  438
+ISSUER-  employer 1 ***ISSUED*** vc: 78963 	 mt index:  439
+ISSUER-  employer 1 ***ISSUED*** vc: 78964 	 mt index:  440
+ISSUER-  employer 1 ***ISSUED*** vc: 78965 	 mt index:  441
+ISSUER-  employer 1 ***ISSUED*** vc: 78966 	 mt index:  442
+ISSUER-  employer 1 ***ISSUED*** vc: 78967 	 mt index:  443
+ISSUER-  employer 1 ***ISSUED*** vc: 78968 	 mt index:  444
+ISSUER-  employer 1 ***ISSUED*** vc: 78969 	 mt index:  445
+ISSUER-  employer 1 ***ISSUED*** vc: 78970 	 mt index:  446
+ISSUER-  employer 1 ***ISSUED*** vc: 78971 	 mt index:  447
+ISSUER-  employer 1 ***ISSUED*** vc: 78972 	 mt index:  448
+ISSUER-  employer 1 ***ISSUED*** vc: 78973 	 mt index:  449
+ISSUER-  employer 1 ***ISSUED*** vc: 78974 	 mt index:  450
+ISSUER-  employer 1 ***ISSUED*** vc: 78975 	 mt index:  451
+ISSUER-  employer 1 ***ISSUED*** vc: 78976 	 mt index:  452
+ISSUER-  employer 1 ***ISSUED*** vc: 78977 	 mt index:  453
+ISSUER-  employer 1 ***ISSUED*** vc: 78978 	 mt index:  454
+ISSUER-  employer 1 ***ISSUED*** vc: 78979 	 mt index:  455
+ISSUER-  employer 1 ***ISSUED*** vc: 78980 	 mt index:  456
+ISSUER-  employer 1 ***ISSUED*** vc: 78981 	 mt index:  457
+ISSUER-  employer 1 ***ISSUED*** vc: 78982 	 mt index:  458
+ISSUER-  employer 1 ***ISSUED*** vc: 78983 	 mt index:  459
+ISSUER-  employer 1 ***ISSUED*** vc: 78984 	 mt index:  460
+ISSUER-  employer 1 ***ISSUED*** vc: 78985 	 mt index:  461
+ISSUER-  employer 1 ***ISSUED*** vc: 78986 	 mt index:  462
+ISSUER-  employer 1 ***ISSUED*** vc: 78987 	 mt index:  463
+ISSUER-  employer 1 ***ISSUED*** vc: 78988 	 mt index:  464
+ISSUER-  employer 1 ***ISSUED*** vc: 78989 	 mt index:  465
+ISSUER-  employer 1 ***ISSUED*** vc: 78990 	 mt index:  466
+ISSUER-  employer 1 ***ISSUED*** vc: 78991 	 mt index:  467
+ISSUER-  employer 1 ***ISSUED*** vc: 78992 	 mt index:  468
+ISSUER-  employer 1 ***ISSUED*** vc: 78993 	 mt index:  469
+ISSUER-  employer 1 ***ISSUED*** vc: 78994 	 mt index:  470
+ISSUER-  employer 1 ***ISSUED*** vc: 78995 	 mt index:  471
+ISSUER-  employer 1 ***ISSUED*** vc: 78996 	 mt index:  472
+ISSUER-  employer 1 ***ISSUED*** vc: 78997 	 mt index:  473
+ISSUER-  employer 1 ***ISSUED*** vc: 78998 	 mt index:  474
+ISSUER-  employer 1 ***ISSUED*** vc: 78999 	 mt index:  475
+ISSUER-  employer 1 ***ISSUED*** vc: 79000 	 mt index:  476
+ISSUER-  employer 1 ***ISSUED*** vc: 79001 	 mt index:  477
+ISSUER-  employer 1 ***ISSUED*** vc: 79002 	 mt index:  478
+ISSUER-  employer 1 ***ISSUED*** vc: 79003 	 mt index:  479
+ISSUER-  employer 1 ***ISSUED*** vc: 79004 	 mt index:  480
+ISSUER-  employer 1 ***ISSUED*** vc: 79005 	 mt index:  481
+ISSUER-  employer 1 ***ISSUED*** vc: 79006 	 mt index:  482
+ISSUER-  employer 1 ***ISSUED*** vc: 79007 	 mt index:  483
+ISSUER-  employer 1 ***ISSUED*** vc: 79008 	 mt index:  484
+ISSUER-  employer 1 ***ISSUED*** vc: 79009 	 mt index:  485
+ISSUER-  employer 1 ***ISSUED*** vc: 79010 	 mt index:  486
+ISSUER-  employer 1 ***ISSUED*** vc: 79011 	 mt index:  487
+ISSUER-  employer 1 ***ISSUED*** vc: 79012 	 mt index:  488
+ISSUER-  employer 1 ***ISSUED*** vc: 79013 	 mt index:  489
+ISSUER-  employer 1 ***ISSUED*** vc: 79014 	 mt index:  490
+ISSUER-  employer 1 ***ISSUED*** vc: 79015 	 mt index:  491
+ISSUER-  employer 1 ***ISSUED*** vc: 79016 	 mt index:  492
+ISSUER-  employer 1 ***ISSUED*** vc: 79017 	 mt index:  493
+ISSUER-  employer 1 ***ISSUED*** vc: 79018 	 mt index:  494
+ISSUER-  employer 1 ***ISSUED*** vc: 79019 	 mt index:  495
+ISSUER-  employer 1 ***ISSUED*** vc: 79020 	 mt index:  496
+ISSUER-  employer 1 ***ISSUED*** vc: 79021 	 mt index:  497
+ISSUER-  employer 1 ***ISSUED*** vc: 79022 	 mt index:  498
+ISSUER-  employer 1 ***ISSUED*** vc: 79023 	 mt index:  499
+ISSUER-  employer 1 ***ISSUED*** vc: 79024 	 mt index:  500
+ISSUER-  employer 1 ***ISSUED*** vc: 79025 	 mt index:  501
+ISSUER-  employer 1 ***ISSUED*** vc: 79026 	 mt index:  502
+ISSUER-  employer 1 ***ISSUED*** vc: 79027 	 mt index:  503
+ISSUER-  employer 1 ***ISSUED*** vc: 79028 	 mt index:  504
+ISSUER-  employer 1 ***ISSUED*** vc: 79029 	 mt index:  505
+ISSUER-  employer 1 ***ISSUED*** vc: 79030 	 mt index:  506
+ISSUER-  employer 1 ***ISSUED*** vc: 79031 	 mt index:  507
+ISSUER-  employer 1 ***ISSUED*** vc: 79032 	 mt index:  508
+ISSUER-  employer 1 ***ISSUED*** vc: 79033 	 mt index:  509
+ISSUER-  employer 1 ***ISSUED*** vc: 79034 	 mt index:  510
+ISSUER-  employer 1 ***ISSUED*** vc: 79035 	 mt index:  511
+ISSUER-  employer 1 ***ISSUED*** vc: 79036 	 mt index:  512
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78525 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78526 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78527 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78528 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78529 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78530 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78531 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78532 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78533 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78534 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78535 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78536 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78537 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78538 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78539 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78540 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78541 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78542 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78543 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78544 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78545 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78546 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78547 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78548 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78549 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78550 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78551 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78552 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78553 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78554 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78555 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78556 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78557 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78558 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78559 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78560 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78561 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78562 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78563 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78564 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78565 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78566 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78567 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78568 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78569 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78570 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78571 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78572 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78573 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78574 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78575 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78576 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78577 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78578 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78579 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78580 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78581 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78582 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78583 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78584 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78585 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78586 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78587 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78588 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78589 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78590 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78591 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78592 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78593 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78594 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78595 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78596 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78597 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78598 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78599 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78600 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78601 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78602 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78603 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78604 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78605 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78606 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78607 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78608 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78609 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78610 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78611 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78612 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78613 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78614 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78615 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78616 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78617 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78618 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78619 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78620 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78621 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78622 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78623 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78624 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78625 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78626 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78627 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78628 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78629 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78630 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78631 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78632 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78633 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78634 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78635 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78636 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78637 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78638 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78639 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78640 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78641 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78642 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78643 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78644 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78645 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78646 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78647 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78648 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78649 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78650 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78651 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78652 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78653 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78654 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78655 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78656 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78657 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78658 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78659 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78660 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78661 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78662 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78663 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78664 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78665 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78666 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78667 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78668 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78669 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78670 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78671 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78672 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78673 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78674 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78675 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78676 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78677 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78678 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78679 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78680 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78681 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78682 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78683 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78684 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78685 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78686 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78687 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78688 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78689 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78690 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78691 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78692 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78693 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78694 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78695 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78696 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78697 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78698 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78699 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78700 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78701 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78702 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78703 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78704 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78705 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78706 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78707 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78708 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78709 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78710 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78711 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78712 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78713 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78714 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78715 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78716 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78717 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78718 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78719 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78720 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78721 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78722 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78723 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78724 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78725 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78726 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78727 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78728 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78729 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78730 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78731 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78732 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78733 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78734 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78735 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78736 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78737 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78738 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78739 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78740 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78741 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78742 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78743 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78744 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78745 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78746 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78747 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78748 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78749 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78750 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78751 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78752 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78753 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78754 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78755 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78756 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78757 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78758 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78759 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78760 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78761 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78762 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78763 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78764 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78765 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78766 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78767 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78768 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78769 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78770 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78771 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78772 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78773 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78774 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78775 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78776 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78777 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78778 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78779 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78780 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78781 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78782 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78783 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78784 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78785 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78786 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78787 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78788 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78789 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78790 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78791 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78792 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78793 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78794 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78795 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78796 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78797 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78798 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78799 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78800 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78801 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78802 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78803 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78804 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78805 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78806 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78807 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78808 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78809 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78810 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78811 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78812 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78813 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78814 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78815 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78816 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78817 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78818 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78819 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78820 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78821 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78822 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78823 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78824 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78825 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78826 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78827 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78828 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78829 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78830 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78831 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78832 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78833 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78834 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78835 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78836 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78837 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78838 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78839 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78840 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78841 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78842 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78843 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78844 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78845 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78846 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78847 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78848 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78849 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78850 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78851 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78852 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78853 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78854 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78855 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78856 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78857 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78858 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78859 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78860 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78861 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78862 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78863 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78864 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78865 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78866 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78867 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78868 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78869 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78870 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78871 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78872 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78873 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78874 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78875 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78876 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78877 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78878 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78879 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78880 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78881 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78882 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78883 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78884 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78885 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78886 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78887 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78888 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78889 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78890 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78891 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78892 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78893 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78894 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78895 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78896 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78897 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78898 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78899 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78900 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78901 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78902 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78903 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78904 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78905 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78906 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78907 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78908 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78909 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78910 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78911 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78912 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78913 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78914 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78915 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78916 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78917 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78918 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78919 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78920 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78921 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78922 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78923 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78924 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78925 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78926 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78927 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78928 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78929 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78930 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78931 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78932 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78933 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78934 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78935 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78936 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78937 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78938 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78939 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78940 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78941 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78942 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78943 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78944 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78945 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78946 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78947 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78948 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78949 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78950 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78951 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78952 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78953 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78954 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78955 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78956 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78957 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78958 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78959 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78960 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78961 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78962 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78963 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78964 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78965 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78966 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78967 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78968 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78969 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78970 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78971 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78972 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78973 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78974 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78975 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78976 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78977 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78978 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78979 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78980 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78981 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78982 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78983 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78984 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78985 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78986 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78987 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78988 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78989 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78990 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78991 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78992 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78993 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78994 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78995 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78996 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78997 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78998 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78999 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79000 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79001 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79002 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79003 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79004 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79005 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79006 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79007 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79008 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79009 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79010 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79011 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79012 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79013 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79014 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79015 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79016 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79017 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79018 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79019 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79020 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79021 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79022 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79023 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79024 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79025 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79026 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79027 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79028 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79029 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79030 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79031 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79032 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79033 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79034 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79035 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79036 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+ISSUER- employer 1 ***REVOKED*** vc: 78527 	 mt index:  3 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78972 	 mt index:  448 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78849 	 mt index:  325 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78792 	 mt index:  268 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78538 	 mt index:  14 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78689 	 mt index:  165 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78573 	 mt index:  49 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78652 	 mt index:  128 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78678 	 mt index:  154 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78709 	 mt index:  185 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78552 	 mt index:  28 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78592 	 mt index:  68 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78922 	 mt index:  398 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78801 	 mt index:  277 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78926 	 mt index:  402 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78593 	 mt index:  69 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 79017 	 mt index:  493 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78681 	 mt index:  157 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78589 	 mt index:  65 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78598 	 mt index:  74 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78608 	 mt index:  84 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78770 	 mt index:  246 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78588 	 mt index:  64 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78826 	 mt index:  302 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78880 	 mt index:  356 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78847 	 mt index:  323 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78618 	 mt index:  94 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78822 	 mt index:  298 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78685 	 mt index:  161 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78986 	 mt index:  462 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78867 	 mt index:  343 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78729 	 mt index:  205 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78778 	 mt index:  254 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78650 	 mt index:  126 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78957 	 mt index:  433 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78637 	 mt index:  113 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78548 	 mt index:  24 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78742 	 mt index:  218 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78561 	 mt index:  37 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78803 	 mt index:  279 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78653 	 mt index:  129 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78615 	 mt index:  91 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78614 	 mt index:  90 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78576 	 mt index:  52 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78976 	 mt index:  452 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78665 	 mt index:  141 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78891 	 mt index:  367 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78565 	 mt index:  41 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78647 	 mt index:  123 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+ISSUER- employer 1 ***REVOKED*** vc: 78840 	 mt index:  316 	 affected VCs Indexes:  [] 	 number of affected VCs:  0
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78525 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78526 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78527 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78528 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78529 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78530 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78531 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78532 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78533 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78534 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78535 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78536 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78537 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78538 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78539 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78540 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78541 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78542 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78543 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78544 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78545 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78546 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78547 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78548 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78549 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78550 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78551 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78552 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78553 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78554 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78555 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78556 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78557 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78558 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78559 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78560 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78561 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78562 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78563 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78564 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78565 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78566 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78567 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78568 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78569 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78570 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78571 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78572 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78573 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78574 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78575 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78576 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78577 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78578 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78579 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78580 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78581 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78582 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78583 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78584 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78585 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78586 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78587 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78588 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78589 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78590 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78591 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78592 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78593 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78594 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78595 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78596 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78597 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78598 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78599 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78600 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78601 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78602 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78603 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78604 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78605 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78606 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78607 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78608 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78609 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78610 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78611 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78612 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78613 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78614 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78615 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78616 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78617 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78618 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78619 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78620 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78621 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78622 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78623 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78624 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78625 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78626 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78627 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78628 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78629 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78630 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78631 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78632 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78633 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78634 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78635 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78636 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78637 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78638 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78639 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78640 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78641 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78642 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78643 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78644 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78645 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78646 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78647 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78648 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78649 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78650 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78651 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78652 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78653 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78654 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78655 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78656 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78657 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78658 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78659 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78660 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78661 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78662 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78663 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78664 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78665 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78666 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78667 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78668 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78669 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78670 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78671 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78672 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78673 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78674 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78675 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78676 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78677 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78678 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78679 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78680 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78681 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78682 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78683 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78684 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78685 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78686 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78687 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78688 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78689 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78690 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78691 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78692 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78693 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78694 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78695 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78696 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78697 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78698 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78699 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78700 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78701 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78702 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78703 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78704 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78705 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78706 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78707 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78708 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78709 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78710 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78711 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78712 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78713 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78714 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78715 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78716 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78717 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78718 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78719 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78720 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78721 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78722 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78723 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78724 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78725 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78726 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78727 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78728 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78729 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78730 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78731 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78732 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78733 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78734 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78735 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78736 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78737 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78738 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78739 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78740 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78741 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78742 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78743 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78744 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78745 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78746 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78747 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78748 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78749 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78750 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78751 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78752 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78753 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78754 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78755 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78756 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78757 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78758 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78759 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78760 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78761 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78762 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78763 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78764 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78765 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78766 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78767 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78768 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78769 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78770 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78771 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78772 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78773 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78774 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78775 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78776 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78777 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78778 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78779 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78780 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78781 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78782 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78783 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78784 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78785 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78786 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78787 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78788 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78789 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78790 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78791 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78792 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78793 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78794 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78795 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78796 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78797 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78798 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78799 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78800 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78801 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78802 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78803 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78804 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78805 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78806 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78807 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78808 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78809 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78810 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78811 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78812 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78813 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78814 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78815 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78816 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78817 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78818 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78819 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78820 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78821 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78822 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78823 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78824 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78825 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78826 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78827 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78828 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78829 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78830 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78831 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78832 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78833 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78834 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78835 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78836 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78837 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78838 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78839 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78840 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78841 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78842 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78843 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78844 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78845 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78846 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78847 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78848 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78849 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78850 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78851 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78852 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78853 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78854 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78855 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78856 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78857 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78858 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78859 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78860 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78861 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78862 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78863 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78864 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78865 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78866 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78867 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78868 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78869 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78870 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78871 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78872 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78873 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78874 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78875 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78876 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78877 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78878 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78879 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78880 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78881 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78882 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78883 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78884 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78885 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78886 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78887 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78888 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78889 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78890 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78891 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78892 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78893 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78894 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78895 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78896 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78897 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78898 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78899 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78900 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78901 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78902 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78903 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78904 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78905 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78906 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78907 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78908 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78909 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78910 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78911 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78912 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78913 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78914 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78915 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78916 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78917 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78918 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78919 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78920 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78921 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78922 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78923 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78924 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78925 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78926 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78927 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78928 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78929 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78930 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78931 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78932 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78933 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78934 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78935 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78936 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78937 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78938 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78939 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78940 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78941 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78942 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78943 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78944 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78945 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78946 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78947 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78948 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78949 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78950 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78951 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78952 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78953 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78954 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78955 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78956 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78957 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78958 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78959 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78960 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78961 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78962 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78963 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78964 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78965 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78966 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78967 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78968 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78969 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78970 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78971 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78972 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78973 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78974 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78975 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78976 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78977 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78978 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78979 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78980 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78981 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78982 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78983 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78984 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78985 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78986 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78987 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78988 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78989 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78990 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78991 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78992 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78993 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78994 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78995 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78996 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78997 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78998 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 78999 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79000 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79001 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79002 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79003 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79004 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79005 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79006 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79007 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79008 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79009 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79010 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79011 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79012 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79013 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79014 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79015 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79016 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79017 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79018 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79019 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79020 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79021 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79022 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79023 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79024 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79025 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79026 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79027 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79028 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79029 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79030 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79031 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79032 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79033 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79034 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79035 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 79036 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
+SIMULATOR : 	 results:  Total VCs : 500	Total Revoked VCs : 50	False Positive Rate : 0.100000	Bloom Filter Size : 240	Bloom Filter indexes per entry (no of hash functions) : 4	Merkle Tree Accumulator depth : 10	Merkle Tree Accumulator Level Stored in DLT : 9
+Number of False Positives : 53	Number of VCS that ended up updating witnesses from issuer: 0	Amount (in gwei) paid per revocation: 186281196	Number of Affected VCs : 0	Number of witness updates that we saved : 53	

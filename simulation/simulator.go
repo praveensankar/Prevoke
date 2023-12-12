@@ -3,15 +3,13 @@ package simulation
 import (
 	"encoding/json"
 	"github.com/bits-and-blooms/bloom/v3"
-	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
 	"go.uber.org/zap"
 	"io/ioutil"
+	"math"
 	"math/rand"
 	"os"
-	"sync"
-	"sync/atomic"
 	"time"
 )
 
@@ -27,7 +25,8 @@ func Start(config config.Config){
 
 
 	issuer1 := issuer.CreateIssuer(config)
-	vcs := issuer1.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs))
+	remainingSpace := int(math.Pow(2, float64(config.MtDepth-1)))-int(config.ExpectedNumberOfTotalVCs)
+	vcs := issuer1.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
 
 	issuer1.IssueBulk(config, vcs, len(vcs))
 
@@ -35,23 +34,16 @@ func Start(config config.Config){
 		issuer1.UpdateMerkleProof(*vc)
 	}
 
-	var wg sync.WaitGroup
 
 	for _, vc := range vcs{
-		wg.Add(1)
-		go func(vc verifiable.Credential) {
-			defer wg.Done()
-			issuer1.VerifyTest(vc)
-		}(*vc)
+			issuer1.VerifyTest(*vc)
 	}
 
-	wg.Wait()
+
 
 	var amountPaid int64
 	amountPaid = 0
 	numberOfAffectedVCs := 0
-	//numberOfOccuredFalsePositives := 0
-	//numberOfVCsRetrievedWitnessFromIssuer := 0
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	revokedVCs := make([]string, totalRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
@@ -80,26 +72,22 @@ func Start(config config.Config){
 		}
 	}
 
-	//var falsePositiveStatus bool
-	//falsePositiveStatus = false
-	//var isAffectedInMTAcc bool
-	//isAffectedInMTAcc = false
-	var numberOfOccuredFalsePositives atomic.Uint64
-	var numberOfVCsRetrievedWitnessFromIssuer atomic.Uint64
-	for _, vc := range vcs{
-		wg.Add(1)
-		go func(vc verifiable.Credential) {
-			defer wg.Done()
-			falsePositiveStatus, isAffectedInMTAcc := issuer1.VerifyTest(vc)
-			if falsePositiveStatus==true{
-				numberOfOccuredFalsePositives.Add(1)
-				if isAffectedInMTAcc==true{
-					numberOfVCsRetrievedWitnessFromIssuer.Add(1)
-				}
+	var falsePositiveStatus bool
+	falsePositiveStatus = false
+	var isAffectedInMTAcc bool
+	isAffectedInMTAcc = false
+	numberOfOccuredFalsePositives := 0
+	numberOfVCsRetrievedWitnessFromIssuer := 0
+	for _, vc := range vcs {
+		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(*vc)
+		if falsePositiveStatus == true {
+			numberOfOccuredFalsePositives++
+			if isAffectedInMTAcc == true {
+				numberOfVCsRetrievedWitnessFromIssuer++
 			}
-		}(*vc)
+		}
 	}
-	wg.Wait()
+
 		//falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(*vc)
 		//// it means false positive
 		//if falsePositiveStatus==true{
@@ -116,11 +104,11 @@ func Start(config config.Config){
 		FalsePositiveRate:                     config.FalsePositiveRate,
 		MtDepth:                               int(config.MtDepth),
 		MtLevelInDLT:                          int(config.MtLevelInDLT),
-		NumberOfFalsePositives:                int(numberOfOccuredFalsePositives.Load()),
+		NumberOfFalsePositives:                numberOfOccuredFalsePositives,
 		AmountPaid:                            amountPaid,
 		NumberOfAffectedVCs:                   numberOfAffectedVCs,
-		NumberOfVCsRetrievedWitnessFromIssuer: int(numberOfVCsRetrievedWitnessFromIssuer.Load()),
-		NumberOfWitnessUpdatesSaved:          int(numberOfOccuredFalsePositives.Load())-int(numberOfVCsRetrievedWitnessFromIssuer.Load()),
+		NumberOfVCsRetrievedWitnessFromIssuer: numberOfVCsRetrievedWitnessFromIssuer,
+		NumberOfWitnessUpdatesSaved:         numberOfOccuredFalsePositives-numberOfVCsRetrievedWitnessFromIssuer,
 		BloomFilterSize:                       int(size),
 		BloomFilterIndexesPerEntry:            int(k),
 	}
