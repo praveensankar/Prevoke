@@ -10,7 +10,7 @@ import (
 
 
 // Todo: change the value of this constant based on value in smart contract
-const NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER = 3;
+const NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER = 2;
 
 type BloomFilter struct{
 	bloomFilter *bloom.BloomFilter

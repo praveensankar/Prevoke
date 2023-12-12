@@ -1,0 +1,54 @@
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0x1d1c159baaea2118bDB790D0E155197CE3E23b75
+blockchain rpc endpoint: http://158.39.200.98:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x5cF65db83d68359B5bFA6e98418EdED13B975092
+sender private key: 35709f6f8cc7159c7db9f8c1b9db49f3e455057fc03321e7232726e43bba1b2f
+sender pass phrase: simple phrase
+other accounts in ganache test network :  [0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A]
+logger environment: dev
+logger output file name: logs.json
+logger output mode: file
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:employer 1
+total of VCs would be issued:1000
+total of VCs would be revoked:100
+bloom filter false positive rate:  0.5
+merkle tree accumulator level in DLT:  3
+merkle tree height:  11
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0x1d1c159baaea2118bDB790D0E155197CE3E23b75
+blockchain rpc endpoint: http://158.39.200.98:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x5cF65db83d68359B5bFA6e98418EdED13B975092
+sender private key: 35709f6f8cc7159c7db9f8c1b9db49f3e455057fc03321e7232726e43bba1b2f
+sender pass phrase: simple phrase
+other accounts in ganache test network :  [0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A]
+logger environment: dev
+logger output file name: logs.json
+logger output mode: file
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:employer 1
+total of VCs would be issued:1000
+total of VCs would be revoked:100
+bloom filter false positive rate:  0.5
+merkle tree accumulator level in DLT:  3
+merkle tree height:  11
+********************************************************************************************************************************
+
