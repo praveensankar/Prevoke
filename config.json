@@ -2,17 +2,17 @@
 
  {
 	"contract" : {
-		"address" : "0xB9f2F42590b8bf7E9d9c36C164Ad2577CeEdE749",
+		"address" : "0x5EA00DB43d1D07Cc9e585d420DA1E7Dd490ee842",
 		"gasLimit" : "80000000",
 		"gasPrice" : "20000000000"
 	},
 	 "issuer" : {
 		 "name": "employer 1",
-		 "totalVCs" : "1000",
-		 "revokedVCs" : "100",
-		 "falsePositiveRate" : "0.4",
+		 "totalVCs" : "5000",
+		 "revokedVCs" : "500",
+		 "falsePositiveRate" : "0.1",
 		 "mtLevelInDLT" : "9",
-		 "mtDepth" : "11",
+		 "mtDepth" : "14",
 		 "comment": "number of hash functions: 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more "
 	 },
 	 "test" : "test",
@@ -24,8 +24,8 @@
 
 	},
 	 "account" : {
-		 "address" : "0x5cF65db83d68359B5bFA6e98418EdED13B975092",
-		 "privateKey": "35709f6f8cc7159c7db9f8c1b9db49f3e455057fc03321e7232726e43bba1b2f",
+		 "address" : "0xFDd68f5A69e64032Df98e44dd3d769e28f9C0d38",
+		 "privateKey": "759fef226a0a7ca058e552ca8d7dfa529eccb13b77698f9cc5bd3d5a181043e3",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },

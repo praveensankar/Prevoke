@@ -22,7 +22,7 @@ import (
 type IRevocationService interface {
 	IssueVC(vc verifiable.Credential) *RevocationData
 IssueVCsInBulk(vcs []*verifiable.Credential) ([]*RevocationData)
-RevokeVC(vc verifiable.Credential) (*big.Int, error)
+RevokeVC(vc verifiable.Credential) (*big.Int, int64, error)
 	RetreiveUpdatedProof(vc verifiable.Credential) *merkletree.Proof
 	VerificationPhase1(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error)
 	VerificationPhase2(data *RevocationData) (bool, error)
@@ -41,6 +41,7 @@ type RevocationService struct{
 	MtLevelInDLT int
 	NumberOfEntriesForMTInDLT int
 	blockchainRPCEndpoint string
+	account common.Address
 	smartContractAddress common.Address
 	privateKey string
 	gasLimit uint64
@@ -60,6 +61,7 @@ func CreateRevocationService(config config.Config) *RevocationService{
 	rs.gasPrice = config.GasPrice
 	rs.VCToBigInts = make(map[string]*big.Int)
 	rs.MtLevelInDLT = int(config.MtLevelInDLT)
+	rs.account = common.HexToAddress(config.SenderAddress)
 	rs.NumberOfEntriesForMTInDLT = 0
 	for i := 0; i <= rs.MtLevelInDLT; i++ {
 		rs.NumberOfEntriesForMTInDLT += int(math.Pow(2, float64(i)))
@@ -257,7 +259,8 @@ func (r RevocationService) RetreiveUpdatedProof(vc verifiable.Credential)  *merk
 	return merkleProof
 }
 
-func (r RevocationService) RevokeVC(vc verifiable.Credential) (*big.Int, error) {
+// returns old mt index and amount of gwei paid
+func (r RevocationService) RevokeVC(vc verifiable.Credential) (*big.Int, int64, error) {
 	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
 	if err != nil {
 		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
@@ -304,12 +307,19 @@ func (r RevocationService) RevokeVC(vc verifiable.Credential) (*big.Int, error) 
 	//	}
 	//}
 	//zap.S().Infoln("REVOCATION SERVICE- \t number of non-leaf nodes of MT accumulator stored in smart contract ",levelCounter)
+	startBalance, err := client.BalanceAt(context.Background(), r.account, nil)
 	_, err = revocationService.RevokeVC(auth, bfIndexes, mtIndexes, mtValues)
+	endBalance, err := client.BalanceAt(context.Background(), r.account, nil)
+	gasUsed := (startBalance.Int64()-endBalance.Int64())/int64(math.Pow(10,9))
+	//zap.S().Infoln("REVOCATION SERVICE- \t MT Accumulator levels in DLT: ",r.NumberOfEntriesForMTInDLT, "GAS USAGE in gwei: ", gasUsed)
+
+
+
 	if err != nil {
 		zap.S().Fatalln("failed to revoke", err)
 	}
 
-	return oldMTIndex, nil
+	return oldMTIndex, gasUsed, nil
 }
 
 

@@ -19,6 +19,13 @@
     "falsePositiveRate" : "0.1",
     "mtLevelInDLT" : "3",
     "mtDepth" : "11"
+  },
+  "exp4": {
+    "totalVCs" : "5000",
+    "revokedVCs" : "500",
+    "falsePositiveRate" : "0.1",
+    "mtLevelInDLT" : "9",
+    "mtDepth" : "14"
   }
 }
 

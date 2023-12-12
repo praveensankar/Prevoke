@@ -3,12 +3,15 @@ package simulation
 import (
 	"encoding/json"
 	"github.com/bits-and-blooms/bloom/v3"
+	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"math/rand"
 	"os"
+	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -31,13 +34,24 @@ func Start(config config.Config){
 	for _, vc := range vcs{
 		issuer1.UpdateMerkleProof(*vc)
 	}
+
+	var wg sync.WaitGroup
+
 	for _, vc := range vcs{
-		issuer1.VerifyTest(*vc)
+		wg.Add(1)
+		go func(vc verifiable.Credential) {
+			defer wg.Done()
+			issuer1.VerifyTest(vc)
+		}(*vc)
 	}
 
+	wg.Wait()
+
+	var amountPaid int64
+	amountPaid = 0
 	numberOfAffectedVCs := 0
-	numberOfOccuredFalsePositives := 0
-	numberOfVCsRetrievedWitnessFromIssuer := 0
+	//numberOfOccuredFalsePositives := 0
+	//numberOfVCsRetrievedWitnessFromIssuer := 0
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	revokedVCs := make([]string, totalRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
@@ -54,7 +68,10 @@ func Start(config config.Config){
 				}
 			}
 			if isalreadyRevoked==false{
-				numberOfAffectedVCs += issuer1.Revoke(config, *vcs[i])
+				n, amount := issuer1.Revoke(config, *vcs[i])
+				numberOfAffectedVCs += n
+				amountPaid = amountPaid + amount;
+				amountPaid = amountPaid/2;
 				revokedVCs = append(revokedVCs, vcID)
 				break
 			}
@@ -63,34 +80,49 @@ func Start(config config.Config){
 		}
 	}
 
-	var falsePositiveStatus bool
-	falsePositiveStatus = false
-	var isAffectedInMTAcc bool
-	isAffectedInMTAcc = false
-
+	//var falsePositiveStatus bool
+	//falsePositiveStatus = false
+	//var isAffectedInMTAcc bool
+	//isAffectedInMTAcc = false
+	var numberOfOccuredFalsePositives atomic.Uint64
+	var numberOfVCsRetrievedWitnessFromIssuer atomic.Uint64
 	for _, vc := range vcs{
-		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(*vc)
-		// it means false positive
-		if falsePositiveStatus==true{
-			numberOfOccuredFalsePositives++
-			if isAffectedInMTAcc==true{
-				numberOfVCsRetrievedWitnessFromIssuer++
+		wg.Add(1)
+		go func(vc verifiable.Credential) {
+			defer wg.Done()
+			falsePositiveStatus, isAffectedInMTAcc := issuer1.VerifyTest(vc)
+			if falsePositiveStatus==true{
+				numberOfOccuredFalsePositives.Add(1)
+				if isAffectedInMTAcc==true{
+					numberOfVCsRetrievedWitnessFromIssuer.Add(1)
+				}
 			}
-		}
+		}(*vc)
 	}
+	wg.Wait()
+		//falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(*vc)
+		//// it means false positive
+		//if falsePositiveStatus==true{
+		//	numberOfOccuredFalsePositives++
+		//	if isAffectedInMTAcc==true{
+		//		numberOfVCsRetrievedWitnessFromIssuer++
+		//	}
+		//}
+
 	size, k := BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
 	result := &Results{
-		TotalVCs:                    int(config.ExpectedNumberOfTotalVCs),
-		RevokedVCs:                  int(config.ExpectedNumberofRevokedVCs),
-		FalsePositiveRate:           config.FalsePositiveRate,
-		MtDepth:                     int(config.MtDepth),
-		MtLevelInDLT:                int(config.MtLevelInDLT),
-		NumberOfFalsePositives:      numberOfOccuredFalsePositives,
-		NumberOfAffectedVCs:         numberOfAffectedVCs,
-		NumberOfVCsRetrievedWitnessFromIssuer: numberOfVCsRetrievedWitnessFromIssuer,
-		NumberOfWitnessUpdatesSaved: numberOfOccuredFalsePositives-numberOfVCsRetrievedWitnessFromIssuer,
-		BloomFilterSize:             int(size),
-		BloomFilterIndexesPerEntry: int(k),
+		TotalVCs:                              int(config.ExpectedNumberOfTotalVCs),
+		RevokedVCs:                            int(config.ExpectedNumberofRevokedVCs),
+		FalsePositiveRate:                     config.FalsePositiveRate,
+		MtDepth:                               int(config.MtDepth),
+		MtLevelInDLT:                          int(config.MtLevelInDLT),
+		NumberOfFalsePositives:                int(numberOfOccuredFalsePositives.Load()),
+		AmountPaid:                            amountPaid,
+		NumberOfAffectedVCs:                   numberOfAffectedVCs,
+		NumberOfVCsRetrievedWitnessFromIssuer: int(numberOfVCsRetrievedWitnessFromIssuer.Load()),
+		NumberOfWitnessUpdatesSaved:          int(numberOfOccuredFalsePositives.Load())-int(numberOfVCsRetrievedWitnessFromIssuer.Load()),
+		BloomFilterSize:                       int(size),
+		BloomFilterIndexesPerEntry:            int(k),
 	}
 
 	//jsonObj, err := json.Marshal(result)

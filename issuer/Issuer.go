@@ -21,7 +21,7 @@ type IIsser interface {
 	GenerateDummyVCs(count int) []*verifiable.Credential
 	Issue(config config.Config, credential verifiable.Credential)
 	IssueBulk(config config.Config, credential []*verifiable.Credential, total int)
-	Revoke(config config.Config, credential verifiable.Credential)
+	Revoke(config config.Config, credential verifiable.Credential) (int, int64)
 	setRevocationService(rs IRevocationService)
 	UpdateMerkleProofsInStorage()
 	UpdateMerkleProof(vc verifiable.Credential)
@@ -235,22 +235,22 @@ func (issuer *Issuer) UpdateAffectedVCs(conf config.Config, mtIndex *big.Int) ([
 	return affectedIndexes, actualAffectedVCs
 }
 
-// returns number of affected vcs
-func (issuer *Issuer) Revoke(conf config.Config, vc verifiable.Credential) int {
+// returns number of affected vcs, amount of gwei paid
+func (issuer *Issuer) Revoke(conf config.Config, vc verifiable.Credential) (int, int64) {
 
 	//zap.S().Infoln("\n\n********************************************************************************************************************************")
 
 
 
 
-	mtIndex, _ := issuer.RevocationService.RevokeVC(vc)
+	mtIndex, amountPaid, _ := issuer.RevocationService.RevokeVC(vc)
 	issuer.revokedVcIDs = append(issuer.revokedVcIDs, vc.ID)
 	affectedIndexes, numberOfAffectedVCs := issuer.UpdateAffectedVCs(conf, mtIndex)
 	zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vc:", vc.ID,"\t mt index: ",mtIndex,
 		"\t affected VCs Indexes: ",affectedIndexes, "\t number of affected VCs: ", numberOfAffectedVCs)
 
 	//zap.S().Infoln("\n\n********************************************************************************************************************************")
-	return numberOfAffectedVCs
+	return numberOfAffectedVCs, amountPaid
 }
 
 // returns

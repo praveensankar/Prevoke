@@ -9,7 +9,7 @@ contract RevocationService{
     bool private constant DEBUG = true;
 
     // bloom filter
-    uint public constant numberOfHashFunctions = 2;
+    uint public constant numberOfHashFunctions = 4;
     // const private numberofVCs = 10000;
 
     // // BF size is set for 10% false positive
@@ -26,7 +26,7 @@ contract RevocationService{
     */
     mapping(uint => bytes32) public merkleTree;
 
-    bytes32 public merkleRoot; 
+    bytes32 public merkleRoot;
 
     // stores the list of indexes present in the merkle tree.
     uint[] private indexes;
@@ -42,7 +42,6 @@ contract RevocationService{
     constructor(){
         issuer = msg.sender;
     }
-
 
     /*
     This function is used to register new issuers.
@@ -120,7 +119,7 @@ contract RevocationService{
         // update the merkle tree
         for (uint i = 0; i < _indexes.length; i++) {
             merkleTree[_indexes[i]] = _values[i];
-            
+
         }
 
 
@@ -185,6 +184,7 @@ contract RevocationService{
     }
 
 
+
     // if it returns true then the VC is not revoked.
     // if it retuns false then the VC is probably revoked.
     function checkRevocationStatusInBloomFilter(uint256[numberOfHashFunctions] memory _indexes) public view returns(bool){
@@ -203,10 +203,13 @@ contract RevocationService{
     /*
     Returns the merkle root.
     */
-   function verificationPhase2() public view returns(bytes32){
+    function verificationPhase2() public view returns(bytes32){
         return merkleTree[0];
     }
 
+    function verificationPhase2Test() public returns(bytes32){
+        return merkleTree[0];
+    }
 
 
     /*
@@ -241,7 +244,7 @@ contract RevocationService{
     False - if VC is revoked
     */
     function checkRevocationStatusInMerkleTreeAccumulator(bytes32 leaf, bytes32[] memory proof) public view returns (bool){
-        
+
         bool status = MerkleProof.verify(proof, merkleTree[0], leaf);
         // if (DEBUG==true){
         //     console.log("verification status of merkle proof: ", status);
@@ -361,7 +364,7 @@ contract RevocationService{
                 // if(DEBUG==true){
                 //     console.log("merkle leaf :");
                 //     console.logBytes(abi.encodePacked(vc1MTAcc));
-                //     console.log("merkle proof: ");
+                //     console.log("merkle proofas: ");
                 //     for (uint i=0; i<2;i++)
                 //     {
                 //         console.logBytes(abi.encodePacked(proofForVC1[i]));
@@ -414,10 +417,9 @@ contract RevocationService{
             console.log("phase 2: revocation status of VC1: ",vc1Status);
         }
 
-        
-        bytes32 mtRoot = verificationPhase2();
+        string memory mtRoot = string(abi.encodePacked(verificationPhase2()));
         if (DEBUG==true){
-            console.log("merkle root: ", bytes32tostring(mtRoot));
+            console.log("merkle root: ", mtRoot);
         }
 
 
