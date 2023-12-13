@@ -12,13 +12,14 @@ from setting import Setting
 def main():
 
     entries = parse_entry()
-    plot_merkle_tree_accumulator_cost(entries)
+    # plot_merkle_tree_accumulator_cost(entries)
+    # plot_witness_update_saves(entries)
+    plot_witness_update_saved_for_different_false_positives(entries)
 
 
 def plot_merkle_tree_accumulator_cost(entries):
     mtlevels = []
     costs = []
-
     for entry in entries:
         mtlevels.append(entry.setting.mtLevelInDLT)
         costs.append(entry.result.mtAccumulatorPerUpdateCost/1000000)
@@ -28,15 +29,137 @@ def plot_merkle_tree_accumulator_cost(entries):
     print(xpoints)
     print(ypoints)
 
+    costrange=np.linspace(start=min(costs), stop= max(costs), num=len(costs))
 
-    costrange = np.arange(0, 1000, 100)
 
     print(costrange)
-
-    plt.plot(xpoints, ypoints)
+    # font = {'fontname':'Times New Roman', 'color': 'darkred', 'size': 10}
+    font={}
+    plt.plot(xpoints, ypoints, marker = 'o')
     plt.yticks(costrange)
-    plt.ylabel('per revocation cost of MT Accumuluator in milliether')
+    plt.xlabel('merkle tree accumulator levels stored in DLT', font)
+    plt.ylabel('per revocation cost of MT Accumuluator in milliether', font)
     plt.savefig("graphs/cost_mt_accumulator.png")
+
+
+
+def plot_witness_update_saves(entries):
+    mtlevelsfor1000 = []
+    mtlevelsfor5000 = []
+    witnessUpdateSavesfor1000 = []
+    witnessUpdateSavesfor5000 = []
+
+    for entry in entries:
+        if entry.setting.totalVCs==5000:
+            mtlevelsfor5000.append(entry.setting.mtLevelInDLT)
+            savedWitnessUpdates = entry.result.numberOfActualFalsePositives - entry.result.numberOfVCsRetrievedWitnessFromIssuer
+            witnessUpdateSavesfor5000.append(savedWitnessUpdates)
+
+        if entry.setting.totalVCs==1000:
+            mtlevelsfor1000.append(entry.setting.mtLevelInDLT)
+            savedWitnessUpdates = entry.result.numberOfActualFalsePositives - entry.result.numberOfVCsRetrievedWitnessFromIssuer
+            witnessUpdateSavesfor1000.append(savedWitnessUpdates)
+
+
+    x1points = np.array(mtlevelsfor1000)
+    y1points = np.array(witnessUpdateSavesfor1000)
+    x2points = np.array(mtlevelsfor5000)
+    y2points = np.array(witnessUpdateSavesfor5000)
+    print(x1points)
+    print(y1points)
+    print(x2points)
+    print(y2points)
+
+    wusRange=np.linspace(start=0, stop= max(max(witnessUpdateSavesfor1000), max(witnessUpdateSavesfor5000)), num=max(len(x1points), len(x2points)))
+
+
+    print(wusRange)
+    # font = {'fontname':'Times New Roman', 'color': 'darkred', 'size': 10}
+    font={}
+    plt.plot(x1points, y1points, marker = 'o', label="1000 vcs")
+    plt.plot(x2points, y2points, marker='d', label="5000 vcs")
+    plt.yticks(wusRange)
+    plt.title('number of vcs benefitted from two phase approach')
+    plt.xlabel('merkle tree accumulator levels stored in DLT', font)
+    plt.ylabel('no. of witness updates saved', font)
+    plt.legend()
+    plt.savefig("graphs/witness_updates_saved.png")
+
+
+
+
+def plot_witness_update_saved_for_different_false_positives(entries):
+    mtlevelsfor1 = []
+    mtlevelsfor2 = []
+    mtlevelsfor3 = []
+    mtlevelsfor4 = []
+
+    witnessUpdateSavesfor1 = []
+    witnessUpdateSavesfor2 = []
+    witnessUpdateSavesfor3 = []
+    witnessUpdateSavesfor4 = []
+
+    for entry in entries:
+        if entry.setting.totalVCs==1000:
+            if entry.setting.falsePositiveRate==0.1:
+                mtlevelsfor1.append(entry.setting.mtLevelInDLT)
+                savedWitnessUpdates = entry.result.numberOfActualFalsePositives - entry.result.numberOfVCsRetrievedWitnessFromIssuer
+                witnessUpdateSavesfor1.append(savedWitnessUpdates)
+
+            if entry.setting.falsePositiveRate==0.2:
+                mtlevelsfor2.append(entry.setting.mtLevelInDLT)
+                savedWitnessUpdates = entry.result.numberOfActualFalsePositives - entry.result.numberOfVCsRetrievedWitnessFromIssuer
+                witnessUpdateSavesfor2.append(savedWitnessUpdates)
+
+
+            if entry.setting.falsePositiveRate==0.3:
+                mtlevelsfor3.append(entry.setting.mtLevelInDLT)
+                savedWitnessUpdates = entry.result.numberOfActualFalsePositives - entry.result.numberOfVCsRetrievedWitnessFromIssuer
+                witnessUpdateSavesfor3.append(savedWitnessUpdates)
+
+
+            if entry.setting.falsePositiveRate==0.4:
+                mtlevelsfor4.append(entry.setting.mtLevelInDLT)
+                savedWitnessUpdates = entry.result.numberOfActualFalsePositives - entry.result.numberOfVCsRetrievedWitnessFromIssuer
+                witnessUpdateSavesfor4.append(savedWitnessUpdates)
+
+
+    x1points = np.array(mtlevelsfor1)
+    y1points = np.array(witnessUpdateSavesfor1)
+    x2points = np.array(mtlevelsfor2)
+    y2points = np.array(witnessUpdateSavesfor2)
+
+    x3points = np.array(mtlevelsfor3)
+    y3points = np.array(witnessUpdateSavesfor3)
+    x4points = np.array(mtlevelsfor4)
+    y4points = np.array(witnessUpdateSavesfor4)
+    print(x1points)
+    print(y1points)
+    print(x2points)
+    print(y2points)
+
+    maxwitnessUpdatesaves = max(max(witnessUpdateSavesfor1), max(witnessUpdateSavesfor2), max(witnessUpdateSavesfor3), max(witnessUpdateSavesfor4))
+
+    numberOfEntries = max(len(x1points), len(x2points), len(x3points), len(x4points))
+
+    wusRange=np.linspace(start=0, stop= maxwitnessUpdatesaves, num=numberOfEntries)
+
+
+    print(wusRange)
+    # font = {'fontname':'Times New Roman', 'color': 'darkred', 'size': 10}
+    font={}
+    plt.plot(x1points, y1points, marker = 'o', label="0.1 false positive rate")
+    plt.plot(x2points, y2points, marker='d', label="0.2 false positive rate")
+    plt.plot(x3points, y3points, marker = '*', label="0.3 false positive rate")
+    plt.plot(x4points, y4points, marker='s', label="0.4 false positive rate")
+    plt.yticks(wusRange)
+    plt.title('The impact of false positive rate on witness updates for 1000 total vcs')
+    plt.xlabel('merkle tree accumulator levels stored in DLT', font)
+    plt.ylabel('no. of witness updates saved', font)
+    plt.legend()
+    plt.savefig("graphs/witness_updates_saved_1000_for_different_fpr.png")
+
+
 
 
 

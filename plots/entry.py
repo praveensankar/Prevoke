@@ -41,7 +41,12 @@ def parse_entry():
         mtLevelInDLT = entry['mt_level_in_dlt']
         bloomFilterSize = entry['bloom_filter_size']
         bloomFilterIndexesPerEntry = entry['bloom_filter_indexes_per_entry']
-        mtAccumulatorPerUpdateCost = entry['mt_accumulator_per_update_cost_in_gwei']
+
+        if "mt_accumulator_per_update_cost_in_gwei" in entry:
+            mtAccumulatorPerUpdateCost = entry['mt_accumulator_per_update_cost_in_gwei']
+        else:
+            mtAccumulatorPerUpdateCost = 0
+
         numberOfActualFalsePositives = entry['number_of_false_positives']
         numberOfVCsRetrievedWitnessFromIssuer = entry['number_of_vcs_retrieved_witness_from_issuer']
         numberOfVCsAffectedByMTAccumulator = entry['number_of_affected_vcs_by_MT_accumulator']
@@ -54,7 +59,7 @@ def parse_entry():
         entry = Entry(setting=setting, result=result)
         entries.append(entry)
 
-        entries_without_duplicates = handle_duplicates(entries)
+        # entries_without_duplicates = handle_duplicates(entries)
 
-    return entries_without_duplicates
+    return entries
 
