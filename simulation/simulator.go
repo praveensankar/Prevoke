@@ -3,6 +3,7 @@ package simulation
 import (
 	"encoding/json"
 	"github.com/bits-and-blooms/bloom/v3"
+	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
 	"go.uber.org/zap"
@@ -26,14 +27,19 @@ func Start(config config.Config){
 
 	issuer1 := issuer.CreateIssuer(config)
 	remainingSpace := int(math.Pow(2, float64(config.MtDepth-1)))-int(config.ExpectedNumberOfTotalVCs)
-	vcs := issuer1.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
+	vcDummies := issuer1.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
 
-	issuer1.IssueBulk(config, vcs, len(vcs))
+	issuer1.IssueBulk(config, vcDummies, len(vcDummies))
 
-	for _, vc := range vcs{
+	for _, vc := range vcDummies{
 		issuer1.UpdateMerkleProof(*vc)
 	}
 
+	vcs:= []*verifiable.Credential{}
+
+	for i:=0; i<int(config.ExpectedNumberOfTotalVCs);i++{
+		vcs = append(vcs, vcDummies[i])
+	}
 
 	for _, vc := range vcs{
 			issuer1.VerifyTest(*vc)

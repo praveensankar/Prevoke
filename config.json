@@ -2,17 +2,17 @@
 
  {
 	"contract" : {
-		"address" : "0x25Be06931eA47F4393103e61ad6efd69747028F6",
+		"address" : "0x3d7F395A3121EbbDAeb33Bb26F1de0b56F59F392",
 		"gasLimit" : "80000000",
 		"gasPrice" : "20000000000"
 	},
 	 "issuer" : {
 		 "name": "employer 1",
-		 "totalVCs": "5000",
-		 "revokedVCs": "500",
+		 "totalVCs": "16",
+		 "revokedVCs": "4",
 		 "falsePositiveRate": "0.1",
-		 "mtLevelInDLT": "11",
-		 "mtDepth": "14",
+		 "mtLevelInDLT": "2",
+		 "mtDepth": "5",
 		 "comment": "number of hash functions: 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more "
 	 },
 	 "test" : "test",
@@ -24,8 +24,8 @@
 
 	},
 	 "account" : {
-		 "address" : "0x335Fa04168C9EEb8224E853Af2656Cfa67620474",
-		 "privateKey": "5ad4d71a84e0953e969e93409f64145981588da5309ba7b21a39605a6cdb662c",
+		 "address" : "0x4493E834911c16957225553953665810138B7F1f",
+		 "privateKey": "4eb4a51fb45a2dd62297250ba808dd87762fcead80d6791fee68ad461772083d",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
@@ -33,7 +33,7 @@
 		 "0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A"],
 	 "logger" : {
 		"env" : "dev",
-		 "output": "file",
+		 "output": "console",
 		 "filename": "logs.json",
 		 "_comment1": "ouput:<console> - for printing in console, <file> - for writing to file",
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
