@@ -112,7 +112,7 @@ func Start(config config.Config){
 		MtLevelInDLT:                          int(config.MtLevelInDLT),
 		NumberOfFalsePositives:                numberOfOccuredFalsePositives,
 		AmountPaid:                            amountPaid,
-		NumberOfAffectedVCs:                   numberOfAffectedVCs,
+		NumberOfWitnessUpdatesForMT:                   numberOfAffectedVCs,
 		NumberOfVCsRetrievedWitnessFromIssuer: numberOfVCsRetrievedWitnessFromIssuer,
 		NumberOfWitnessUpdatesSaved:         numberOfOccuredFalsePositives-numberOfVCsRetrievedWitnessFromIssuer,
 		BloomFilterSize:                       int(size),
