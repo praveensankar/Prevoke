@@ -12,37 +12,54 @@ from setting import Setting
 def main():
 
     entries = parse_entry()
+    # plot_false_positives(entries)
     # plot_merkle_tree_accumulator_cost(entries)
+    # plot_witness_updates_vc_indy(entries)
+    # plot_witness_updates(entries)
     # plot_witness_update_saves(entries)
     # plot_witness_update_saved_for_different_false_positives(entries)
-    plot_witness_update_saved_due_to_levels_in_dlt(entries)
+    # plot_witness_update_saved_due_to_levels_in_dlt(entries)
+    plot_witness_updates_vc_indy(entries)
+
+def plot_witness_updates_vc_indy(entries):
+    mtlevelsfor1000 = []
+    indy = 0
+    witnessUpdatefor1000 = []
+    WitnessUpdatesOfIndy1000 = []
 
 
-def plot_merkle_tree_accumulator_cost(entries):
-    mtlevels = []
-    costs = []
+
+
     for entry in entries:
-        if entry.setting.totalVCs==5000:
-            mtlevels.append(entry.setting.mtLevelInDLT)
-            costs.append(entry.result.mtAccumulatorPerUpdateCost/1000000)
 
-    xpoints = np.array(mtlevels)
-    ypoints = np.array(costs)
-    print(xpoints)
-    print(ypoints)
+        if entry.setting.totalVCs == 1000 and entry.setting.falsePositiveRate == 0.1:
+            mtlevelsfor1000.append(entry.setting.mtLevelInDLT)
+            WitnessUpdates = entry.result.numberOfVCsRetrievedWitnessFromIssuer
+            witnessUpdatefor1000.append(WitnessUpdates)
+            WitnessUpdatesOfIndy1000.append(10000)
+    font = {'fontname': 'Times New Roman', 'size': 17, 'weight': 'bold'}
 
-    costrange=np.linspace(start=min(costs), stop= max(costs), num=len(costs))
+    x1points = np.array(mtlevelsfor1000)
+    print(x1points)
+    x = np.arange(len(x1points))  # the label locations
+    fig, ax = plt.subplots(layout='constrained')
+    # ax = fig.add_axes(x1points)
 
 
-    print(costrange)
-    # font = {'fontname':'Times New Roman', 'color': 'darkred', 'size': 10}
-    font = {'fontname': 'Times New Roman', 'size': 18, 'weight': 'bold'}
-    plt.plot(xpoints, ypoints, marker = 'o')
-    plt.yticks(costrange)
-    plt.xlabel('merkle tree accumulator levels stored in DLT', font)
-    plt.ylabel('MTAcc- per revocation cost in milliether', font)
 
-    plt.savefig("graphs/cost_mt_accumulator.png")
+    wuRange = np.linspace(start=50, stop=max(WitnessUpdatesOfIndy1000),
+                           num=len(x1points))
+
+    ax.bar(x+0.00, witnessUpdatefor1000, color = 'g', width = 0.25, label="two phase technique")
+    ax.bar(x + 0.25,WitnessUpdatesOfIndy1000, color = 'r', width = 0.25, label="indy")
+    ax.set_title('indy V two phase technique: 1000 vcs, 100 revocations',font)
+    ax.set_ylabel('no of vcs requried to witness updates', font)
+    ax.set_xlabel('merkle tree accumulator levels in DLT', font)
+    ax.set_xticks(range(len(x1points)), x1points)
+    ax.set_yticks(wuRange)
+    ax.legend()
+    plt.savefig("graphs/witness_updates_indy_vs_ours.png")
+
 
 
 
@@ -79,14 +96,124 @@ def plot_witness_update_saves(entries):
     print(wusRange)
     # font = {'fontname':'Times New Roman', 'color': 'darkred', 'size': 10}
     font = {'fontname': 'Times New Roman', 'size': 18, 'weight': 'bold'}
-    plt.plot(x1points, y1points, marker = 'o', label="1000 vcs")
-    plt.plot(x2points, y2points, marker='d', label="5000 vcs")
+    plt.plot(x1points, y1points, marker = 'o', label="1000 vcs, 0.1 false positive rate")
+    plt.plot(x2points, y2points, marker='d', label="5000 vcs, 0.1 false positive rate")
     plt.yticks(wusRange)
     plt.title('number of vcs benefitted from two phase approach', font)
     plt.xlabel('merkle tree accumulator levels stored in DLT', font)
     plt.ylabel('no. of witness updates saved', font)
     plt.legend()
     plt.savefig("graphs/witness_updates_saved.png")
+
+def plot_false_positives(entries):
+    mtlevelsfor1000 = []
+    mtlevelsfor5000 = []
+    falsePositiviesfor1000 = []
+    falsePositiviesfor5000 = []
+
+    for entry in entries:
+        if entry.setting.totalVCs == 5000 and entry.setting.falsePositiveRate==0.1:
+            mtlevelsfor5000.append(entry.setting.mtLevelInDLT)
+            falsePositiviesfor5000.append(entry.result.numberOfActualFalsePositives)
+
+        if entry.setting.totalVCs == 1000 and entry.setting.falsePositiveRate == 0.1:
+            mtlevelsfor1000.append(entry.setting.mtLevelInDLT)
+            falsePositiviesfor1000.append(entry.result.numberOfActualFalsePositives)
+
+    x1points = np.array(mtlevelsfor1000)
+    y1points = np.array(falsePositiviesfor1000)
+    x2points = np.array(mtlevelsfor5000)
+    y2points = np.array(falsePositiviesfor5000)
+    print(x1points)
+    print(y1points)
+    print(x2points)
+    print(y2points)
+
+    wusRange = np.linspace(start=0, stop=max(max(falsePositiviesfor1000), max(falsePositiviesfor5000)),
+                           num=max(len(x1points), len(x2points)))
+
+    print(wusRange)
+    # font = {'fontname':'Times New Roman', 'color': 'darkred', 'size': 10}
+    font = {'fontname': 'Times New Roman', 'size': 18, 'weight': 'bold'}
+    plt.plot(x1points, y1points, marker='o', label="1000 vcs, 0.1 false positive rate")
+    plt.plot(x2points, y2points, marker='d', label="5000 vcs, 0.1 false positive rate")
+    plt.yticks(wusRange)
+    plt.title('number of occured false positives', font)
+    plt.xlabel('merkle tree accumulator levels stored in DLT', font)
+    plt.ylabel('false positivies', font)
+    plt.legend()
+    plt.savefig("graphs/false_positivies.png")
+
+
+def plot_merkle_tree_accumulator_cost(entries):
+    mtlevels = []
+    costs = []
+    for entry in entries:
+        if entry.setting.totalVCs==5000:
+            mtlevels.append(entry.setting.mtLevelInDLT)
+            costs.append(entry.result.mtAccumulatorPerUpdateCost/1000000)
+
+    xpoints = np.array(mtlevels)
+    ypoints = np.array(costs)
+    print(xpoints)
+    print(ypoints)
+
+    costrange=np.linspace(start=min(costs), stop= max(costs), num=len(costs))
+
+
+    print(costrange)
+    # font = {'fontname':'Times New Roman', 'color': 'darkred', 'size': 10}
+    font = {'fontname': 'Times New Roman', 'size': 18, 'weight': 'bold'}
+    plt.plot(xpoints, ypoints, marker = 'o')
+    plt.yticks(costrange)
+    plt.xlabel('merkle tree accumulator levels stored in DLT', font)
+    plt.ylabel('mili ether', font)
+
+    plt.savefig("graphs/cost_mt_accumulator.png")
+
+
+
+def plot_witness_updates(entries):
+    mtlevelsfor1000 = []
+    mtlevelsfor5000 = []
+    witnessUpdateSavesfor1000 = []
+    witnessUpdateSavesfor5000 = []
+
+    for entry in entries:
+        if entry.setting.totalVCs==5000:
+            mtlevelsfor5000.append(entry.setting.mtLevelInDLT)
+            savedWitnessUpdates = entry.result.numberOfVCsRetrievedWitnessFromIssuer
+            witnessUpdateSavesfor5000.append(savedWitnessUpdates)
+
+        if entry.setting.totalVCs==1000 and entry.setting.falsePositiveRate==0.1:
+            mtlevelsfor1000.append(entry.setting.mtLevelInDLT)
+            savedWitnessUpdates = entry.result.numberOfVCsRetrievedWitnessFromIssuer
+            witnessUpdateSavesfor1000.append(savedWitnessUpdates)
+
+
+    x1points = np.array(mtlevelsfor1000)
+    y1points = np.array(witnessUpdateSavesfor1000)
+    x2points = np.array(mtlevelsfor5000)
+    y2points = np.array(witnessUpdateSavesfor5000)
+    print(x1points)
+    print(y1points)
+    print(x2points)
+    print(y2points)
+
+    wusRange=np.linspace(start=0, stop= max(max(witnessUpdateSavesfor1000), max(witnessUpdateSavesfor5000)), num=max(len(x1points), len(x2points)))
+
+
+    print(wusRange)
+    # font = {'fontname':'Times New Roman', 'color': 'darkred', 'size': 10}
+    font = {'fontname': 'Times New Roman', 'size': 18, 'weight': 'bold'}
+    plt.plot(x1points, y1points, marker = 'o', label="1000 vcs")
+    plt.plot(x2points, y2points, marker='d', label="5000 vcs")
+    plt.yticks(wusRange)
+    plt.title('number of vcs benefitted from two phase approach', font)
+    plt.xlabel('merkle tree accumulator levels stored in DLT', font)
+    plt.ylabel('no. of vcs retrieved witnesses from issuer', font)
+    plt.legend()
+    plt.savefig("graphs/witness_updates.png")
 
 
 

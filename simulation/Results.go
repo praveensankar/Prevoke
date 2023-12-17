@@ -10,7 +10,7 @@ type Results struct {
 	MtDepth int `json:"mt_depth"`
 	NumberOfFalsePositives int `json:"number_of_false_positives"`
 	NumberOfVCsRetrievedWitnessFromIssuer int `json:"number_of_vcs_retrieved_witness_from_issuer"`
-	NumberOfAffectedVCs int `json:"number_of_affected_vcs_by_MT_accumulator"`
+	NumberOfWitnessUpdatesForMT int `json:"number_of_witness_updates_MT_accumulator"`
 	AmountPaid int64 `json:"mt_accumulator_per_update_cost_in_gwei"`
 	NumberOfWitnessUpdatesSaved int `json:"number_of_witness_updates_saved"`
 	BloomFilterSize int `json:"bloom_filter_size"`
@@ -30,7 +30,7 @@ func (r Results) String() string{
 	response = response + "Number of False Positives : "+ fmt.Sprintf("%d",r.NumberOfFalsePositives) + "\t"
 	response = response + "Number of VCS that ended up updating witnesses from issuer: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromIssuer)+ "\t"
 	response = response + "Amount (in gwei) paid per revocation: "+fmt.Sprintf("%d",r.AmountPaid)+ "\t"
-	response = response + "Number of Affected VCs : "+ fmt.Sprintf("%d",r.NumberOfAffectedVCs) + "\t"
+	response = response + "Number of witness updates due to Merkle Tree Accumulator: "+ fmt.Sprintf("%d",r.NumberOfWitnessUpdatesForMT) + "\t"
 	response = response + "Number of witness updates that we saved : "+fmt.Sprintf("%d",r.NumberOfWitnessUpdatesSaved)+ "\t"
 	return response
 }

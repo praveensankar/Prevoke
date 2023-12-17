@@ -26,7 +26,7 @@ type IIsser interface {
 	UpdateMerkleProofsInStorage()
 	UpdateMerkleProof(vc verifiable.Credential)
 	UpdateAffectedVCs(conf config.Config, mtIndex *big.Int) int
-
+GetAffectedVCsCount() int
 	// returns whether it resulted in false positive in phase 1
 	VerifyTest(vc verifiable.Credential) (bool, bool)
 }
@@ -236,6 +236,10 @@ func (issuer *Issuer) UpdateAffectedVCs(conf config.Config, mtIndex *big.Int) ([
 		}
 	}
 	return affectedIndexes, actualAffectedVCs
+}
+
+func (issuer *Issuer) GetAffectedVCsCount() (int) {
+	return len(issuer.AffectedVCIndexes)
 }
 
 // returns number of affected vcs, amount of gwei paid
