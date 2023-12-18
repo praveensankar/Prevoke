@@ -3,7 +3,8 @@ import pandas as pd
 import json
 
 from matplotlib import pyplot as plt
-
+from fpr_vs_bf_size_and_witness_updates import plot_fpr_vs_bfsize_and_witUpdates
+from indy_vs_ours import plot_witness_updates_vc_indy
 from entry import Entry, parse_entry
 from result import Result
 from setting import Setting
@@ -11,7 +12,8 @@ from setting import Setting
 
 def main():
 
-    entries = parse_entry()
+    entries = parse_entry("results2.json")
+    plot_fpr_vs_bfsize_and_witUpdates(entries)
     # plot_false_positives(entries)
     # plot_merkle_tree_accumulator_cost(entries)
     # plot_witness_updates_vc_indy(entries)
@@ -19,47 +21,8 @@ def main():
     # plot_witness_update_saves(entries)
     # plot_witness_update_saved_for_different_false_positives(entries)
     # plot_witness_update_saved_due_to_levels_in_dlt(entries)
-    plot_witness_updates_vc_indy(entries)
-
-def plot_witness_updates_vc_indy(entries):
-    mtlevelsfor1000 = []
-    indy = 0
-    witnessUpdatefor1000 = []
-    WitnessUpdatesOfIndy1000 = []
-
-
-
-
-    for entry in entries:
-
-        if entry.setting.totalVCs == 1000 and entry.setting.falsePositiveRate == 0.1:
-            mtlevelsfor1000.append(entry.setting.mtLevelInDLT)
-            WitnessUpdates = entry.result.numberOfVCsRetrievedWitnessFromIssuer
-            witnessUpdatefor1000.append(WitnessUpdates)
-            WitnessUpdatesOfIndy1000.append(10000)
-    font = {'fontname': 'Times New Roman', 'size': 17, 'weight': 'bold'}
-
-    x1points = np.array(mtlevelsfor1000)
-    print(x1points)
-    x = np.arange(len(x1points))  # the label locations
-    fig, ax = plt.subplots(layout='constrained')
-    # ax = fig.add_axes(x1points)
-
-
-
-    wuRange = np.linspace(start=50, stop=max(WitnessUpdatesOfIndy1000),
-                           num=len(x1points))
-
-    ax.bar(x+0.00, witnessUpdatefor1000, color = 'g', width = 0.25, label="two phase technique")
-    ax.bar(x + 0.25,WitnessUpdatesOfIndy1000, color = 'r', width = 0.25, label="indy")
-    ax.set_title('indy V two phase technique: 1000 vcs, 100 revocations',font)
-    ax.set_ylabel('no of vcs requried to witness updates', font)
-    ax.set_xlabel('merkle tree accumulator levels in DLT', font)
-    ax.set_xticks(range(len(x1points)), x1points)
-    ax.set_yticks(wuRange)
-    ax.legend()
-    plt.savefig("graphs/witness_updates_indy_vs_ours.png")
-
+    # plot_witness_updates_vc_indy(entries, totalVCs=1000, totalRevocations=100)
+    # plot_witness_updates_vc_indy(entries, totalVCs=5000, totalRevocations=500)
 
 
 

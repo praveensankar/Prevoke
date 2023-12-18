@@ -29,8 +29,8 @@ def handle_duplicates(entries):
     return values
 
 
-def parse_entry():
-    with open("results.json") as f:
+def parse_entry(file):
+    with open(file) as f:
         json_data = json.load(f)
 
     entries = []
@@ -49,7 +49,12 @@ def parse_entry():
 
         numberOfActualFalsePositives = entry['number_of_false_positives']
         numberOfVCsRetrievedWitnessFromIssuer = entry['number_of_vcs_retrieved_witness_from_issuer']
-        numberOfVCsAffectedByMTAccumulator = entry['number_of_affected_vcs_by_MT_accumulator']
+
+        if "number_of_affected_vcs_by_MT_accumulator" in entry:
+            numberOfVCsAffectedByMTAccumulator = entry['number_of_affected_vcs_by_MT_accumulator']
+
+        if "number_of_witness_updates_MT_accumulator" in entry:
+            numberOfVCsAffectedByMTAccumulator = entry['number_of_witness_updates_MT_accumulator']
 
         setting = Setting(totalVCs=totalVCs, revokedVCs=revokedVCs, falsePositiveRate=falsePositiveRate,
                           mtLevelInDLT= mtLevelInDLT, bloomFilterSize=bloomFilterSize,
