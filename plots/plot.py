@@ -13,7 +13,7 @@ from setting import Setting
 def main():
 
     entries = parse_entry("results2.json")
-    plot_fpr_vs_bfsize_and_witUpdates(entries)
+    # plot_fpr_vs_bfsize_and_witUpdates(entries)
     # plot_false_positives(entries)
     # plot_merkle_tree_accumulator_cost(entries)
     # plot_witness_updates_vc_indy(entries)
@@ -21,8 +21,8 @@ def main():
     # plot_witness_update_saves(entries)
     # plot_witness_update_saved_for_different_false_positives(entries)
     # plot_witness_update_saved_due_to_levels_in_dlt(entries)
-    # plot_witness_updates_vc_indy(entries, totalVCs=1000, totalRevocations=100)
-    # plot_witness_updates_vc_indy(entries, totalVCs=5000, totalRevocations=500)
+    plot_witness_updates_vc_indy(entries, totalVCs=1000, totalRevocations=100)
+    plot_witness_updates_vc_indy(entries, totalVCs=5000, totalRevocations=500)
 
 
 
