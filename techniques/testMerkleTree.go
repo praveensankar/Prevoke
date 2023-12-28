@@ -21,7 +21,7 @@ func TestMerkleTree(conf config.Config){
 
 	TestInsertion(elements, newTree)
 	//TestLevelOrder(newTree)
-	TestUpdate(elements, newTree)
+	//TestUpdate(elements, newTree)
 	TestProofs(elements, newTree)
 
 
@@ -38,6 +38,7 @@ func TestInsertion(elements []*big.Int, newTree *MerkleTreeAccumulator) {
 
 	}
 	newTree.PrintTree()
+
 }
 
 func TestUpdate(elements []*big.Int, newTree *MerkleTreeAccumulator){
@@ -50,9 +51,10 @@ func TestUpdate(elements []*big.Int, newTree *MerkleTreeAccumulator){
 	zap.S().Infoln("TEST MERKLE TREE- \t updated leaf: \t old leaf value: ", elements[0], "\t hash value: ", oldHash,
 		"\t new leaf value: ", replaceWith, "\t new hash: ",newTree.GetHashValueOfLeaf(replaceWith).String())
 
+	newTree.PrintTree()
 	zap.S().Infoln("\"TEST MERKLE TREE- \t affected indexes: ", affectedIndexes, "\t affected nodes: ",affectedNodes)
 
-	//newTree.PrintTree()
+
 	oldHash = newTree.GetHashValueOfLeaf(elements[2]).String()
 	affectedIndexes, affectedNodes = newTree.UpdateLeaf(elements[2], replaceWith2)
 	zap.S().Infoln("TEST MERKLE TREE- \t updated leaf: \t old leaf value: ", elements[2], "\t hash value: ", oldHash,
@@ -94,7 +96,7 @@ func TestProofs(elements []*big.Int, newTree *MerkleTreeAccumulator) {
 	//zap.S().Infoln("TEST MERKLE TREE- \t leaf in big int: ",leaf[1].BigInt(),"\t proof: ", proofForele1InHex)
 
 	zap.S().Infoln("TEST MERKLE TREE- \t leaf value: ", elements[1], "\t string: ",
-		newTree.GetHashValueOfLeaf(elements[1]).String(), "\t proof: ", proofForele0InString)
+		newTree.GetHashValueOfLeaf(elements[1]).String(), "\t proof: ", proofForele1InString)
 
 	status = newTree.VerifyProof(elements[1], proofForele1)
 	if status == true {

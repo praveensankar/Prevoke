@@ -1,8 +1,10 @@
 package techniques
 
 import (
+	"bytes"
 	"context"
 	"errors"
+	"fmt"
 	"github.com/iden3/go-iden3-crypto/poseidon"
 	cryptoUtils "github.com/iden3/go-iden3-crypto/utils"
 	"github.com/iden3/go-merkletree-sql/v2"
@@ -61,29 +63,28 @@ func (accumulator *MerkleTreeAccumulator) AddLeaf(leaf *big.Int) *big.Int{
 	return index
 }
 
-func (accumulator *MerkleTreeAccumulator) UpdateLeaf(oldLeaf *big.Int, newLeaf *big.Int) ([]uint, map[uint]*merkletree.Hash) {
+func (accumulator *MerkleTreeAccumulator) UpdateLeaf(oldLeaf *big.Int, newLeaf *big.Int) ([]uint, map[uint]string) {
 	ctx := context.Background()
 	index := big.NewInt(accumulator.leafsToIndexes[oldLeaf.String()])
 
 	oldLevelOrder := accumulator.GetLevelOrderRepresentation()
-	zap.S().Infoln("\"TEST MERKLE TREE- \t old level order: ",oldLevelOrder)
+	//zap.S().Infoln("\"TEST MERKLE TREE- \t old level order: ",oldLevelOrder)
 	_, err := accumulator.Tree.Update(ctx, index, newLeaf)
 	newLevelOrder := accumulator.GetLevelOrderRepresentation()
-	zap.S().Infoln("\"TEST MERKLE TREE- \t after update - new level order: ",newLevelOrder)
-	zap.S().Infoln("\"TEST MERKLE TREE- \t old level order: ",oldLevelOrder)
+
 	accumulator.leafsToIndexes[oldLeaf.String()] = -1
 	accumulator.leafsToIndexes[newLeaf.String()] = index.Int64()
 
 
-	affectedNodes := make(map[uint]merkletree.Hash)
+	affectedNodes := make(map[uint]string)
 	var affectedIndexes []uint
 	for i:=0; i< len(oldLevelOrder); i++{
-		if oldLevelOrder[uint(i)].String() !=  newLevelOrder[uint(i)].String(){
+		if oldLevelOrder[uint(i)] !=  newLevelOrder[uint(i)]{
 			affectedIndexes = append(affectedIndexes, uint(i))
 			affectedNodes[uint(i)]=newLevelOrder[uint(i)]
 		}
 	}
-	zap.S().Infoln("\"TEST MERKLE TREE- \t affected indexes: ", affectedIndexes, "\t affected nodes: ",affectedNodes)
+	//zap.S().Infoln("\"TEST MERKLE TREE- \t affected indexes: ", affectedIndexes, "\t affected nodes: ",affectedNodes)
 	if err != nil {
 		zap.S().Errorf("error updating leaf to merkle tree: ", err)
 	}
@@ -134,13 +135,13 @@ func (accumulator *MerkleTreeAccumulator) GetHashValueOfLeafInHex(leaf *big.Int)
 }
 
 
-func (accumulator *MerkleTreeAccumulator) GetLevelOrderRepresentation() map[uint]merkletree.Hash{
+func (accumulator *MerkleTreeAccumulator) GetLevelOrderRepresentation() map[uint]string{
 	ctx := context.Background()
 
 	var counter uint
 	counter = 0
-	//var levelOrder map[uint]merkletree.Hash
-	accumulator.levelOrder[counter] = accumulator.Tree.Root()
+	levelOrder := make(map[uint]string)
+	levelOrder[counter] = accumulator.Tree.Root().String()
 	counter++
 
 	rootNode, _ := accumulator.Tree.GetNode(ctx, accumulator.Tree.Root())
@@ -160,15 +161,15 @@ func (accumulator *MerkleTreeAccumulator) GetLevelOrderRepresentation() map[uint
 				rightNode, _:= accumulator.Tree.GetNode(ctx,node.ChildR)
 				queue = append(queue, rightNode)
 
-				accumulator.levelOrder[counter] = node.ChildL
+				levelOrder[counter] = node.ChildL.String()
 				counter++
-				accumulator.levelOrder[counter] = node.ChildR
+				levelOrder[counter] = node.ChildR.String()
 				counter++
 			}
 		}
 	}
 	//zap.S().Infoln("level order representation: ", accumulator.levelOrder)
-	return accumulator.levelOrder
+	return levelOrder
 }
 
 // returns true if proof is valid. otherwise returns false
@@ -284,13 +285,36 @@ func (accumulator *MerkleTreeAccumulator) PrintTree(){
 	if accumulator.DEBUG==true {
 		//zap.S().Infoln("MERKLE TREE- hex values: ", tree)
 		//zap.S().Infoln("MERKLE TREE- big int: ", treeInBigInt)
-		zap.S().Infoln("MERKLE TREE- string: ", treeLeaves)
+		//zap.S().Infoln("MERKLE TREE- string: ", treeLeaves)
 	}
 
-	//err := accumulator.Tree.PrintGraphViz(ctx,accumulator.Tree.Root())
-	//if err!=nil{
-	//	zap.S().Errorln("error while visualizing the merkle tree: ",err)
-	//}
+	w := bytes.NewBufferString("")
+
+	cnt := 0
+
+	 accumulator.Tree.Walk(ctx, accumulator.Tree.Root(), func(n *merkletree.Node) {
+		k, _ := n.Key()
+
+		switch n.Type {
+		case merkletree.NodeTypeMiddle:
+			lr := [2]string{n.ChildL.String(), n.ChildR.String()}
+			emptyNodes := ""
+			for i := range lr {
+				if lr[i] == "0" {
+					lr[i] = fmt.Sprintf("empty%v", cnt)
+					emptyNodes += fmt.Sprintf("\"%v\" [style=dashed,label=0];\n",
+						lr[i])
+					cnt++
+				}
+			}
+			fmt.Fprintf(w, "\"%v\" -> {\"%v\" \"%v\"}\n", k.String(), lr[0],
+				lr[1])
+			fmt.Fprint(w, emptyNodes)
+		default:
+		}
+	})
+
+	zap.S().Infoln(w)
 	//file, _ := os.Create("merkleTree.gv")
 	//accumulator.Tree.GraphViz(ctx, file, accumulator.Tree.Root())
 	//leaves, _ := accumulator.Tree.DumpLeafs(ctx, nil)
