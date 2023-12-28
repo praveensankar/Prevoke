@@ -61,6 +61,8 @@ func (accumulator *MerkleTreeAccumulator) UpdateLeaf(oldLeaf *big.Int, newLeaf *
 	ctx := context.Background()
 	index := big.NewInt(accumulator.leafsToIndexes[oldLeaf.String()])
 	_, err := accumulator.Tree.Update(ctx, index, newLeaf)
+	accumulator.leafsToIndexes[oldLeaf.String()] = -1
+	accumulator.leafsToIndexes[newLeaf.String()] = index.Int64()
 	if err != nil {
 		zap.S().Errorf("error updating leaf to merkle tree: ", err)
 	}
@@ -134,7 +136,7 @@ func (accumulator *MerkleTreeAccumulator) GetLevelOrderRepresentation() map[uint
 // returns true if proof is valid. otherwise returns false
 func (accumulator *MerkleTreeAccumulator) VerifyProof(leaf *big.Int, proof *merkletree.Proof) bool {
 	index := big.NewInt(accumulator.leafsToIndexes[leaf.String()])
-	zap.S().Infoln("MERKLE TREE- Verification: \tindex: ", index, "\t leaf: ",leaf)
+	//zap.S().Infoln("MERKLE TREE- Verification: \tindex: ", index, "\t leaf: ",leaf)
 	valid := merkletree.VerifyProof(accumulator.Tree.Root(), proof, index, leaf)
 	return valid
 }
@@ -202,10 +204,12 @@ func (accumulator *MerkleTreeAccumulator) PrintTree(){
 	ctx := context.Background()
 	tree := make(map[uint]string)
 	treeInBigInt := make(map[uint]*big.Int)
+	treeLeaves := make(map[uint]string)
 	var counter uint
 	counter = 0
 	tree[counter] = accumulator.Tree.Root().Hex()
 	treeInBigInt[counter] = accumulator.Tree.Root().BigInt()
+	treeLeaves[counter] = accumulator.Tree.Root().String()
 	counter++
 	//levelOrderRepr = append(levelOrderRepr, accumulator.Tree.Root())
 	_ = accumulator.Tree.Walk(ctx, nil, func(n *merkletree.Node) {
@@ -213,17 +217,20 @@ func (accumulator *MerkleTreeAccumulator) PrintTree(){
 		case merkletree.NodeTypeMiddle:
 			tree[counter] = n.ChildL.Hex()
 			treeInBigInt[counter] = n.ChildL.BigInt()
+			treeLeaves[counter] = n.ChildL.String()
 			counter++
 			tree[counter] = n.ChildR.Hex()
 			treeInBigInt[counter] = n.ChildR.BigInt()
+			treeLeaves[counter] = n.ChildR.String()
 			counter++
 			//levelOrderRepr = append(levelOrderRepr, n.ChildL, n.ChildR)
 		default:
 		}
 	})
 	if accumulator.DEBUG==true {
-		zap.S().Infoln("MERKLE TREE- hex values: ", tree)
-		zap.S().Infoln("MERKLE TREE- big int: ", treeInBigInt)
+		//zap.S().Infoln("MERKLE TREE- hex values: ", tree)
+		//zap.S().Infoln("MERKLE TREE- big int: ", treeInBigInt)
+		zap.S().Infoln("MERKLE TREE- string: ", treeLeaves)
 	}
 
 	//err := accumulator.Tree.PrintGraphViz(ctx,accumulator.Tree.Root())

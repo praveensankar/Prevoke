@@ -9572,3 +9572,77 @@ VERIFICAION TEST- 	 ***VERIFICATION*** vc: 97052 	 actual status:  valid 	 phase
 VERIFICAION TEST- 	 ***VERIFICATION*** vc: 97053 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  true
 SIMULATOR : 	 results:  Total VCs : 1000	Total Revoked VCs : 100	False Positive Rate : 0.100000	Bloom Filter Size : 480	Bloom Filter indexes per entry (no of hash functions) : 4	Merkle Tree Accumulator depth : 11	Merkle Tree Accumulator Level Stored in DLT : 3
 Number of False Positives : 93	Number of VCS that ended up updating witnesses from issuer: 80	Amount (in gwei) paid per revocation: 4740973	Number of witness updates due to Merkle Tree Accumulator: 11176	Number of witness updates that we saved : 13	
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0xD26e23fb6Fc5E5572AB46280Be2F55AC165E56CA
+blockchain rpc endpoint: http://158.39.200.98:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x0E6eAAD6Fbd36C1a34F7644043ECC448318FbaE5
+sender private key: 0318c2ab06ef704ccd1f0da5767181c0319ab09e63a3ef023d058beec599d596
+sender pass phrase: simple phrase
+other accounts in ganache test network :  [0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A]
+logger environment: dev
+logger output file name: logs.json
+logger output mode: console
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:employer 1
+total of VCs would be issued:1000
+total of VCs would be revoked:100
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  3
+merkle tree height:  11
+********************************************************************************************************************************
+
+TEST MERKLE TREE- 	 new leaf added with hash in hex:  9ca1b6b8c60955e4695bcbe587b728d7d34292252ae9becc6341bb2ddd793b27
+TEST MERKLE TREE- 	 new leaf added with hash in hex:  c6e8d3ccd0ab48503b8a4391b02b7c7ed6b3f15370e8baf108848f44c75a5b10
+MERKLE TREE- hex values:  map[0:618a65997fd9e0346b3253b885fabc527b1ee594321ac6dcbe713d8d9bb1f504 1:c6e8d3ccd0ab48503b8a4391b02b7c7ed6b3f15370e8baf108848f44c75a5b10 2:9ca1b6b8c60955e4695bcbe587b728d7d34292252ae9becc6341bb2ddd793b27]
+MERKLE TREE- big int:  map[0:2243354727973194904208150097383675929225085167146388325102388445506045315681 1:7398415189647967895035437815563588268929825865390342290245057481027523700934 2:17745286145841574461080870515538432642488178426701997089182084200349283295644]
+TEST MERKLE TREE- 	 leaf in big int:  17745286145841574461080870515538432642488178426701997089182084200349283295644 	 proof:  [c6e8d3ccd0ab48503b8a4391b02b7c7ed6b3f15370e8baf108848f44c75a5b10] 	 node aux:  <nil>
+TEST MERKLE TREE- 	 leaf in big int:  7398415189647967895035437815563588268929825865390342290245057481027523700934 	 proof:  [9ca1b6b8c60955e4695bcbe587b728d7d34292252ae9becc6341bb2ddd793b27] 	 node aux:  <nil>
+MERKLE TREE- Verification: 	index:  1 	 leaf:  10
+TEST MERKLE TREE- 	 leaf in hex:  9ca1b6b8c60955e4695bcbe587b728d7d34292252ae9becc6341bb2ddd793b27  	 used right proof - verification is successful
+MERKLE TREE- Verification: 	index:  1 	 leaf:  10
+TEST MERKLE TREE- 	 leaf in hex:  c6e8d3ccd0ab48503b8a4391b02b7c7ed6b3f15370e8baf108848f44c75a5b10  	 used right proof - verification is successful
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0xD26e23fb6Fc5E5572AB46280Be2F55AC165E56CA
+blockchain rpc endpoint: http://158.39.200.98:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x0E6eAAD6Fbd36C1a34F7644043ECC448318FbaE5
+sender private key: 0318c2ab06ef704ccd1f0da5767181c0319ab09e63a3ef023d058beec599d596
+sender pass phrase: simple phrase
+other accounts in ganache test network :  [0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A]
+logger environment: dev
+logger output file name: logs.json
+logger output mode: console
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:employer 1
+total of VCs would be issued:1000
+total of VCs would be revoked:100
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  3
+merkle tree height:  11
+********************************************************************************************************************************
+
+TEST MERKLE TREE- 	 new leaf added with hash in hex:  9ca1b6b8c60955e4695bcbe587b728d7d34292252ae9becc6341bb2ddd793b27
+TEST MERKLE TREE- 	 new leaf added with hash in hex:  c6e8d3ccd0ab48503b8a4391b02b7c7ed6b3f15370e8baf108848f44c75a5b10
+MERKLE TREE- hex values:  map[0:618a65997fd9e0346b3253b885fabc527b1ee594321ac6dcbe713d8d9bb1f504 1:c6e8d3ccd0ab48503b8a4391b02b7c7ed6b3f15370e8baf108848f44c75a5b10 2:9ca1b6b8c60955e4695bcbe587b728d7d34292252ae9becc6341bb2ddd793b27]
+MERKLE TREE- big int:  map[0:2243354727973194904208150097383675929225085167146388325102388445506045315681 1:7398415189647967895035437815563588268929825865390342290245057481027523700934 2:17745286145841574461080870515538432642488178426701997089182084200349283295644]
+TEST MERKLE TREE- 	 leaf in big int:  17745286145841574461080870515538432642488178426701997089182084200349283295644 	 proof:  [c6e8d3ccd0ab48503b8a4391b02b7c7ed6b3f15370e8baf108848f44c75a5b10] 	 node aux:  <nil>
+TEST MERKLE TREE- 	 leaf in big int:  7398415189647967895035437815563588268929825865390342290245057481027523700934 	 proof:  [9ca1b6b8c60955e4695bcbe587b728d7d34292252ae9becc6341bb2ddd793b27] 	 node aux:  <nil>
+MERKLE TREE- Verification: 	index:  1 	 leaf:  10
+TEST MERKLE TREE- 	 leaf in hex:  9ca1b6b8c60955e4695bcbe587b728d7d34292252ae9becc6341bb2ddd793b27  	 used right proof - verification is successful
+MERKLE TREE- Verification: 	index:  1 	 leaf:  10
+TEST MERKLE TREE- 	 leaf in hex:  c6e8d3ccd0ab48503b8a4391b02b7c7ed6b3f15370e8baf108848f44c75a5b10  	 used right proof - verification is successful

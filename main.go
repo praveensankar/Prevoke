@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/simulation"
+	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -14,11 +14,14 @@ import (
 func setupLogger(conf config.Config){
 
 	var filename string
-	if os.Args[1]=="size"{
-		conf.LoggerOutputMode="console"
-	}
-	if os.Args[1]=="simulation"{
-		conf.LoggerOutputMode="file"
+
+	if len(os.Args) > 1 {
+		if os.Args[1] == "size" {
+			conf.LoggerOutputMode = "console"
+		}
+		if os.Args[1] == "simulation" {
+			conf.LoggerOutputMode = "file"
+		}
 	}
 	if conf.LoggerOutputMode=="console"{
 		filename="stdout"
@@ -79,24 +82,30 @@ func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate
 	return size, numberOfIndexesPerEntry
 }
 
+func TestIndividualComponents(conf config.Config){
+	//blockchain.TestConnectionToBlockchain(conf)
+	//blockchain.Test(conf)
+	techniques.TestMerkleTree(conf)
+	//techniques.TestBloomFilter(100)
+	//issuer.TestIssuer(conf)
+}
+
 func main()  {
 	//testAries()
 	initialize()
 	conf, _ := config.ParseConfig()
 
-	if os.Args[1]=="simulation"{
-		simulation.Start(conf)
-	}
+	//if os.Args[1]=="simulation"{
+	//	simulation.Start(conf)
+	//}
+	//
+	//if os.Args[1]=="size" {
+	//	size, numberofIndexesPerEntry := BloomFilterConfigurationGenerators(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
+	//	fmt.Println("bloom filter size: ", size, "\t number of hash functions: ", numberofIndexesPerEntry)
+	//}
 
-	if os.Args[1]=="size" {
-		size, numberofIndexesPerEntry := BloomFilterConfigurationGenerators(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
-		fmt.Println("bloom filter size: ", size, "\t number of hash functions: ", numberofIndexesPerEntry)
-	}
-	//blockchain.TestConnectionToBlockchain(conf)
-	//blockchain.Test(conf)
-	//techniques.TestMerkleTree()
-	//techniques.TestBloomFilter(100)
-	//issuer.TestIssuer(conf)
+	TestIndividualComponents(conf)
+
 }
 
 
