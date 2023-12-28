@@ -9,12 +9,14 @@ import (
 	"github.com/iden3/go-merkletree-sql/v2/db/memory"
 	"github.com/praveensankar/Revocation-Service/config"
 	"go.uber.org/zap"
+	"math"
 	"math/big"
 )
 
 type MerkleTreeAccumulator struct {
 	RootHash []byte
 	currentIndex int
+	maxDepth int
 	Tree *merkletree.MerkleTree
 	leafsToIndexes map[string]int64
 	levelOrder map[uint]*merkletree.Hash
@@ -28,12 +30,14 @@ func  CreateMerkleTree(conf config.Config) *MerkleTreeAccumulator {
 	var treeStorage merkletree.Storage
 	treeStorage = memory.NewMemoryStorage()
 	mtDepth := conf.MtDepth
+
 	tree, err := merkletree.NewMerkleTree(ctx, treeStorage, int(mtDepth))
 
 	if err!=nil{
 		zap.S().Errorln("error creating merkle tree: ", err)
 	}
 	accumulator := MerkleTreeAccumulator{Tree: tree, currentIndex: 0, DEBUG: true}
+	accumulator.maxDepth = int(mtDepth)
 	accumulator.leafsToIndexes = make(map[string]int64)
 	accumulator.levelOrder = make(map[uint]*merkletree.Hash)
 	return &accumulator
@@ -57,15 +61,33 @@ func (accumulator *MerkleTreeAccumulator) AddLeaf(leaf *big.Int) *big.Int{
 	return index
 }
 
-func (accumulator *MerkleTreeAccumulator) UpdateLeaf(oldLeaf *big.Int, newLeaf *big.Int){
+func (accumulator *MerkleTreeAccumulator) UpdateLeaf(oldLeaf *big.Int, newLeaf *big.Int) ([]uint, map[uint]*merkletree.Hash) {
 	ctx := context.Background()
 	index := big.NewInt(accumulator.leafsToIndexes[oldLeaf.String()])
+
+	oldLevelOrder := accumulator.GetLevelOrderRepresentation()
+	zap.S().Infoln("\"TEST MERKLE TREE- \t old level order: ",oldLevelOrder)
 	_, err := accumulator.Tree.Update(ctx, index, newLeaf)
+	newLevelOrder := accumulator.GetLevelOrderRepresentation()
+	zap.S().Infoln("\"TEST MERKLE TREE- \t after update - new level order: ",newLevelOrder)
+	zap.S().Infoln("\"TEST MERKLE TREE- \t old level order: ",oldLevelOrder)
 	accumulator.leafsToIndexes[oldLeaf.String()] = -1
 	accumulator.leafsToIndexes[newLeaf.String()] = index.Int64()
+
+
+	affectedNodes := make(map[uint]merkletree.Hash)
+	var affectedIndexes []uint
+	for i:=0; i< len(oldLevelOrder); i++{
+		if oldLevelOrder[uint(i)].String() !=  newLevelOrder[uint(i)].String(){
+			affectedIndexes = append(affectedIndexes, uint(i))
+			affectedNodes[uint(i)]=newLevelOrder[uint(i)]
+		}
+	}
+	zap.S().Infoln("\"TEST MERKLE TREE- \t affected indexes: ", affectedIndexes, "\t affected nodes: ",affectedNodes)
 	if err != nil {
 		zap.S().Errorf("error updating leaf to merkle tree: ", err)
 	}
+	return affectedIndexes, affectedNodes
 }
 
 func (accumulator *MerkleTreeAccumulator) GetProof(leaf *big.Int) *merkletree.Proof{
@@ -111,24 +133,40 @@ func (accumulator *MerkleTreeAccumulator) GetHashValueOfLeafInHex(leaf *big.Int)
 
 }
 
-func (accumulator *MerkleTreeAccumulator) GetLevelOrderRepresentation() map[uint]*merkletree.Hash{
+
+func (accumulator *MerkleTreeAccumulator) GetLevelOrderRepresentation() map[uint]merkletree.Hash{
 	ctx := context.Background()
+
 	var counter uint
 	counter = 0
+	//var levelOrder map[uint]merkletree.Hash
 	accumulator.levelOrder[counter] = accumulator.Tree.Root()
 	counter++
-	//levelOrderRepr = append(levelOrderRepr, accumulator.Tree.Root())
-	_ = accumulator.Tree.Walk(ctx, nil, func(n *merkletree.Node) {
-		switch n.Type {
-		case merkletree.NodeTypeMiddle:
-			accumulator.levelOrder[counter] = n.ChildL
-			counter++
-			accumulator.levelOrder[counter] = n.ChildR
-			counter++
-			//levelOrderRepr = append(levelOrderRepr, n.ChildL, n.ChildR)
-		default:
+
+	rootNode, _ := accumulator.Tree.GetNode(ctx, accumulator.Tree.Root())
+	var queue []*merkletree.Node
+	queue = append(queue, rootNode)
+
+
+	for i:=0; i<accumulator.maxDepth-1; i++{
+		for j:=0; j<int(int64(math.Pow(2, float64(i)))); j++{
+			node := queue[0]
+			queue = queue[1:]
+
+			switch node.Type {
+			case merkletree.NodeTypeMiddle:
+				leftNode, _:= accumulator.Tree.GetNode(ctx,node.ChildL)
+				queue = append(queue, leftNode)
+				rightNode, _:= accumulator.Tree.GetNode(ctx,node.ChildR)
+				queue = append(queue, rightNode)
+
+				accumulator.levelOrder[counter] = node.ChildL
+				counter++
+				accumulator.levelOrder[counter] = node.ChildR
+				counter++
+			}
 		}
-	})
+	}
 	//zap.S().Infoln("level order representation: ", accumulator.levelOrder)
 	return accumulator.levelOrder
 }
@@ -212,21 +250,37 @@ func (accumulator *MerkleTreeAccumulator) PrintTree(){
 	treeLeaves[counter] = accumulator.Tree.Root().String()
 	counter++
 	//levelOrderRepr = append(levelOrderRepr, accumulator.Tree.Root())
-	_ = accumulator.Tree.Walk(ctx, nil, func(n *merkletree.Node) {
-		switch n.Type {
-		case merkletree.NodeTypeMiddle:
-			tree[counter] = n.ChildL.Hex()
-			treeInBigInt[counter] = n.ChildL.BigInt()
-			treeLeaves[counter] = n.ChildL.String()
-			counter++
-			tree[counter] = n.ChildR.Hex()
-			treeInBigInt[counter] = n.ChildR.BigInt()
-			treeLeaves[counter] = n.ChildR.String()
-			counter++
-			//levelOrderRepr = append(levelOrderRepr, n.ChildL, n.ChildR)
-		default:
+
+
+	rootNode, _ := accumulator.Tree.GetNode(ctx, accumulator.Tree.Root())
+	var queue []*merkletree.Node
+	queue = append(queue, rootNode)
+
+
+	for i:=0; i<accumulator.maxDepth-1; i++{
+		for j:=0; j<int(int64(math.Pow(2, float64(i)))); j++{
+			node := queue[0]
+			queue = queue[1:]
+
+			switch node.Type {
+			case merkletree.NodeTypeMiddle:
+				leftNode, _:= accumulator.Tree.GetNode(ctx,node.ChildL)
+				queue = append(queue, leftNode)
+				rightNode, _:= accumulator.Tree.GetNode(ctx,node.ChildR)
+				queue = append(queue, rightNode)
+
+				tree[counter] = node.ChildL.Hex()
+				treeInBigInt[counter] = node.ChildL.BigInt()
+				treeLeaves[counter] = node.ChildL.String()
+				counter++
+				tree[counter] = node.ChildR.Hex()
+				treeInBigInt[counter] = node.ChildR.BigInt()
+				treeLeaves[counter] = node.ChildR.String()
+				counter++
+			}
 		}
-	})
+	}
+
 	if accumulator.DEBUG==true {
 		//zap.S().Infoln("MERKLE TREE- hex values: ", tree)
 		//zap.S().Infoln("MERKLE TREE- big int: ", treeInBigInt)
