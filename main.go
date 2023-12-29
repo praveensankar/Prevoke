@@ -85,7 +85,8 @@ func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate
 func TestIndividualComponents(conf config.Config){
 	//blockchain.TestConnectionToBlockchain(conf)
 	//blockchain.Test(conf)
-	techniques.TestMerkleTree(conf)
+	//techniques.TestMerkleTree(conf)
+	techniques.TestMerkleTreeAccumulator(conf)
 	//techniques.TestBloomFilter(100)
 	//issuer.TestIssuer(conf)
 }
