@@ -18,6 +18,13 @@ import (
 
 
 func Start(config config.Config){
+		DeployContract(&config)
+		//zap.S().Infoln("smart contract: ",config.SmartContractAddress)
+		PerformExperiment(config)
+
+}
+
+func StartExperiments(config config.Config){
 
 	experiments := config.ExpParamters
 
@@ -77,7 +84,7 @@ func PerformExperiment(config config.Config){
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	revokedVCs := make([]string, totalRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
-	for i, counter:=0, 0; counter< totalRevokedVCs; counter++{
+	for i, counter:=0, 0; counter< totalRevokedVCs; {
 
 		i = 2
 		for {
@@ -95,6 +102,7 @@ func PerformExperiment(config config.Config){
 				amountPaid = amountPaid + amount;
 				amountPaid = amountPaid/2;
 				revokedVCs = append(revokedVCs, vcID)
+				counter++
 				break
 			}
 			rand.Seed(time.Now().UnixNano())

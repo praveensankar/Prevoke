@@ -52,7 +52,7 @@ func TestMerkleTreeAccumulator(conf config.Config){
 func TestInsertion2(elements []string, accumulator *MerkleTreeAccumulator2) {
 
 	for i:=0; i< len(elements); i++{
-		hash := accumulator.AddLeaf(elements[i])
+		_, hash := accumulator.AddLeaf(elements[i])
 
 		//zap.S().Infoln("TEST MERKLE TREE- \t new leaf added with hash in hex: ",newTree.GetHashValueOfLeafInHex(elements[i]))
 		zap.S().Infoln("TEST MERKLE TREE- \t new leaf added: \t int value: ", elements[i], "\t hash string: ",accumulator.PrintShortString(hash))
@@ -77,7 +77,7 @@ func TestUpdate2(oldLeaf string, newLeaf string, accumulator *MerkleTreeAccumula
 	//update tree with new elements
 
 	oldHash := accumulator.GetHashValueOfLeaf(oldLeaf)
-	newHash := accumulator.UpdateLeaf(oldLeaf, newLeaf)
+	_, newHash := accumulator.UpdateLeaf(oldLeaf, newLeaf)
 	zap.S().Infoln("TEST MERKLE TREE- \t updated leaf: \t old leaf value: ",oldLeaf, "\t hash value: ", accumulator.PrintShortString(oldHash),
 		"\t new leaf value: ", newLeaf, "\t new hash: ",accumulator.PrintShortString(newHash))
 

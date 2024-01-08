@@ -7,8 +7,8 @@
     "mtDepth": "8"
   },
   "exp3": {
-    "totalVCs": "128",
-    "revokedVCs": "50",
+    "totalVCs": "1000",
+    "revokedVCs": "100",
     "falsePositiveRate": "0.1",
     "mtLevelInDLT": "3",
     "mtDepth": "11"

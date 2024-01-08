@@ -7,11 +7,12 @@
 		"gasPrice" : "20000000000"
 	},
 	 "issuer" : {
-		 "totalVCs": "128",
-		 "revokedVCs": "50",
+		 "totalVCs": "16",
+		 "revokedVCs": "10",
 		 "falsePositiveRate": "0.1",
 		 "mtLevelInDLT": "3",
-		 "mtDepth": "8",
+		 "mtDepth": "5",
+		 "mtHeight": "4",
 		 "comment": "number of hash functions: 7 if fpr==0.01, 6 if fpr==0.02,0.03, 5 if fpr==0.04,0.05, 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more "
 	 },
 	 "test" : "test",
@@ -23,15 +24,15 @@
 
 	},
 	 "account" : {
-		 "address" : "0x5819C80701782c889dAf40F0D1175F486c0f137c",
-		 "privateKey": "de3971ccfbfec36dcf03338b8e434499ee515fe13c057ad2cca0eb4559bce49f",
+		 "address" : "0xAe13e4FA92A150be426c2074BBB783F516345Dc0",
+		 "privateKey": "c1a1061ccca2996264608022c16958851280a22aede59bb4db5a9193ffba9783",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
 	 "otherAccounts" : [],
 	 "logger" : {
 		"env" : "dev",
-		 "output": "file",
+		 "output": "console",
 		 "filename": "logs.json",
 		 "_comment1": "ouput:<console> - for printing in console, <file> - for writing to file",
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "

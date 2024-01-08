@@ -1,0 +1,98 @@
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0xD26e23fb6Fc5E5572AB46280Be2F55AC165E56CA
+blockchain rpc endpoint: http://158.39.200.98:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x42C75513876Cd72006292580F0794f3532e71a71
+sender private key: 777ab8b6d0d7f18e89a7fc2afc23bba1fcdde561e86117527404db26c95f9ad8
+sender pass phrase: simple phrase
+other accounts in ganache test network :  []
+logger environment: dev
+logger output file name: logs.json
+logger output mode: file
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:
+total of VCs would be issued:4
+total of VCs would be revoked:2
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  2
+merkle tree height:  0
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing Experiment parameters--------------------------------------------------
+exp2 {128 50 0.1 4 8}
+exp3 {128 50 0.1 5 8}
+exp4 {128 50 0.1 6 8}
+exp1 {128 50 0.1 3 8}
+********************************************************************************************************************************
+
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0x51610bd6f3671E0e0a7ecE7Ef481dbf90c9536D2
+BLOCKCHAIN- 	 tx hash:  0xaa208f8ada5b625be5887b5598d02e89e688265fef9a5ace223f6a3e03f2175c
+********************************************************************************************************************************
+
+"MERKLE TREE Accumulator- 	 total nodes:  1
+BlOOM FILTER: size :  240 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0xD26e23fb6Fc5E5572AB46280Be2F55AC165E56CA
+blockchain rpc endpoint: http://158.39.200.98:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x42C75513876Cd72006292580F0794f3532e71a71
+sender private key: 777ab8b6d0d7f18e89a7fc2afc23bba1fcdde561e86117527404db26c95f9ad8
+sender pass phrase: simple phrase
+other accounts in ganache test network :  []
+logger environment: dev
+logger output file name: logs.json
+logger output mode: file
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:
+total of VCs would be issued:4
+total of VCs would be revoked:2
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  2
+merkle tree height:  0
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing Experiment parameters--------------------------------------------------
+exp3 {128 50 0.1 5 8}
+exp4 {128 50 0.1 6 8}
+exp1 {128 50 0.1 3 8}
+exp2 {128 50 0.1 4 8}
+********************************************************************************************************************************
+
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0x81a2A7e694463183d85AE443CB7960305045669D
+BLOCKCHAIN- 	 tx hash:  0x8859a4bcd6b6c365e4e36094526222bd97c9bf338ce68ebeb46164b45a682ff5
+********************************************************************************************************************************
+
+"MERKLE TREE Accumulator- 	 total nodes:  1
+BlOOM FILTER: size :  240 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************

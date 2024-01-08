@@ -127,11 +127,20 @@ func (accumulator *MerkleTreeAccumulator2) GetHash(input string) string {
 
 }
 
-func (accumulator *MerkleTreeAccumulator2)  AddLeaf(value string) string {
+/*
+Adds a new leaf to the merkle tree accumulator
+
+Input:
+	leaf value in string
+
+Output:
+	hash value stored in the leaf in string
+*/
+func (accumulator *MerkleTreeAccumulator2)  AddLeaf(value string) (int, string) {
 
 	if accumulator.CurrentIndex > accumulator.TotalNodes{
 		zap.S().Errorln("merkle tree accumulator is full")
-		return ""
+		return -1,""
 	}
 
 	index := accumulator.CurrentIndex
@@ -144,17 +153,20 @@ func (accumulator *MerkleTreeAccumulator2)  AddLeaf(value string) string {
 
 	accumulator.CurrentIndex++
 	accumulator.RootHash=accumulator.Tree[0].Value
-	return hashValue
+	return index, hashValue
 
 }
 
 func (accumulator *MerkleTreeAccumulator2)  UpdateMiddleandRootNodes(index int) {
-
+	var parentIndex int
+	//zap.S().Infoln("MERKLE TREE ACCUMULATOR: \t index: ", index)
 	for i := accumulator.Height -1 ; i > 0 ; i--{
-		parentIndex := int(math.Floor(float64((index - 1) / 2)))
-		leftChildIndex := int(math.Pow(2, float64(parentIndex)))+1
-		rightChildIndex := int(math.Pow(2, float64(parentIndex)))+2
-
+		//zap.S().Infoln("MERKLE TREE ACCUMULATOR: \t i: ", i)
+		parentIndex = int(math.Floor(float64((index - 1) / 2)))
+		//leftChildIndex := int(math.Pow(2, float64(parentIndex)))+1
+		//rightChildIndex := int(math.Pow(2, float64(parentIndex)))+2
+		leftChildIndex := (2*parentIndex)+1
+		rightChildIndex := (2*parentIndex)+2
 		lefChildValue := accumulator.Tree[leftChildIndex].Value
 		rightChildValue := accumulator.Tree[rightChildIndex].Value
 
@@ -168,7 +180,7 @@ func (accumulator *MerkleTreeAccumulator2)  UpdateMiddleandRootNodes(index int) 
 }
 
 
-func (accumulator *MerkleTreeAccumulator2)  UpdateLeaf(oldLeaf string, newLeaf string) string {
+func (accumulator *MerkleTreeAccumulator2)  UpdateLeaf(oldLeaf string, newLeaf string) (int,string) {
 	index := accumulator.leafsToIndexes[oldLeaf]
 	accumulator.leafsToIndexes[oldLeaf] = -1
 	hashValue := accumulator.GetHash(newLeaf)
@@ -179,7 +191,7 @@ func (accumulator *MerkleTreeAccumulator2)  UpdateLeaf(oldLeaf string, newLeaf s
 	accumulator.UpdateMiddleandRootNodes(index)
 
 	accumulator.RootHash=accumulator.Tree[0].Value
-	return hashValue
+	return index, hashValue
 }
 
 func (accumulator *MerkleTreeAccumulator2)  GetProof(leaf string) *MerkleProof{
@@ -201,7 +213,8 @@ func (accumulator *MerkleTreeAccumulator2)  GetProof(leaf string) *MerkleProof{
 	for i := accumulator.Height; i > 0 ; i-- {
 
 		parentIndex := int(math.Floor(float64((index - 1) / 2)))
-		temp := int(math.Pow(2, float64(parentIndex)))
+		//temp := int(math.Pow(2, float64(parentIndex)))
+		temp := 2 * parentIndex
 		if parentIndex==0{
 			temp = 0
 		}

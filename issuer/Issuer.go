@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
-	"github.com/iden3/go-merkletree-sql/v2"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/praveensankar/Revocation-Service/vc"
@@ -119,7 +118,7 @@ func (issuer *Issuer) AddRevocationProofForNewVC(data *RevocationData){
 	issuer.revocationProofs[data.vcId] = data;
 }
 
-func (issuer *Issuer) UpdateMerkleProofInRevocationData(vcId string, proof *merkletree.Proof){
+func (issuer *Issuer) UpdateMerkleProofInRevocationData(vcId string, proof *techniques.MerkleProof){
 	issuer.revocationProofs[vcId].MerkleProof = proof;
 }
 
@@ -136,7 +135,7 @@ func (issuer *Issuer) Issue(vc verifiable.Credential) {
 	// when issuer issue new credentials, the credential is created
 	issuer.AddCretentialToStore(vc)
 	revocationData := issuer.RevocationService.IssueVC(vc)
-	zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", vc.ID, "\t mt index: ", revocationData.merkleTreeIndex)
+	zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", vc.ID, "\t mt leaf: ", revocationData.MerkleProof.LeafHash)
 	//issuer.RevocationService.PrintMerkleTree()
 
 
@@ -161,7 +160,7 @@ func (issuer *Issuer) IssueBulk(config config.Config, vcs []*verifiable.Credenti
 
 	for _, rd := range revocationData{
 		issuer.AddRevocationProofForNewVC(rd)
-		zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", rd.vcId, "\t mt index: ", rd.merkleTreeIndex)
+		zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", rd.vcId, "\t leaf: ", rd.MerkleProof.LeafHash)
 	}
 }
 
@@ -184,7 +183,7 @@ func (issuer *Issuer) UpdateMerkleProof(vc verifiable.Credential)  {
 
 }
 
-func (issuer *Issuer) getUpdatedMerkleProof(vc verifiable.Credential) *merkletree.Proof {
+func (issuer *Issuer) getUpdatedMerkleProof(vc verifiable.Credential) *techniques.MerkleProof {
 
 	merkleProof := issuer.RevocationService.RetreiveUpdatedProof(vc)
 	//zap.S().Infoln("ISSUER- ", issuer.name, "\t vc:", vc.ID, "\t merkle tree accumulator witness updated..... ")
@@ -302,7 +301,7 @@ func (issuer *Issuer) VerifyTest(vc verifiable.Credential) (bool, bool) {
 		falsePositive = true
 		//zap.S().Infoln("ISSUER- \t affected vc: vc id: ", vc.ID)
 		issuer.getUpdatedMerkleProof(vc)
-		index := rd.merkleTreeIndex.Int64()
+		index := rd.MtIndex
 		if issuer.AffectedVCIndexes[int(index)]==true{
 			isAffected = true
 		}
