@@ -23,6 +23,7 @@ type Config struct{
 	IssuerName string
 	ExpectedNumberOfTotalVCs uint
 	ExpectedNumberofRevokedVCs uint
+	ExpParamters  map[string]*Experiment
 	MtLevelInDLT uint
 	MtDepth uint
 	MTHeight uint
@@ -52,6 +53,12 @@ func (config Config) printConfig()  {
 	zap.S().Infoln("merkle tree accumulator level in DLT: ", config.MtLevelInDLT)
 	zap.S().Infoln("merkle tree height: ", config.MTHeight)
 	zap.L().Info("********************************************************************************************************************************\n")
+	zap.L().Info("\n\n--------------------------------------------------------printing Experiment parameters--------------------------------------------------")
+
+	for key, exp := range config.ExpParamters{
+		zap.S().Infoln(key, *exp)
+	}
+	zap.L().Info("********************************************************************************************************************************\n")
 
 }
 
@@ -77,6 +84,20 @@ func ParseConfig() (Config, error){
 	config.LoggerType = viper.GetString("logger.env")
 	config.LoggerOutputMode = viper.GetString("logger.output")
 	config.LoggerFile = viper.GetString("logger.filename")
+	expParams:=viper.GetStringMap("exp")
+
+	config.ExpParamters = make(map[string]*Experiment)
+	for k, v := range expParams {
+		exp:=&Experiment{}
+		m:= v.(map[string]interface{})
+		exp.TotalVCs, _=strconv.Atoi(m["totalvcs"].(string))
+		exp.RevokedVCs, _ = strconv.Atoi(m["revokedvcs"].(string))
+		exp.MtLevelInDLT, _ = strconv.Atoi(m["mtlevelindlt"].(string))
+		exp.MtDepth, _ = strconv.Atoi(m["mtdepth"].(string))
+		exp.FalsePositiveRate, _ = strconv.ParseFloat(m["falsepositiverate"].(string), 64)
+		config.ExpParamters[k]=exp
+	}
+
 	config.ExpectedNumberOfTotalVCs = viper.GetUint("issuer.totalVCs")
 	config.ExpectedNumberofRevokedVCs = viper.GetUint("issuer.revokedVCs")
 	config.FalsePositiveRate = viper.GetFloat64("issuer.falsePositiveRate")

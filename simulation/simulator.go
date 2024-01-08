@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
+	"github.com/praveensankar/Revocation-Service/blockchain"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
 	"go.uber.org/zap"
@@ -14,16 +15,39 @@ import (
 	"time"
 )
 
-type Experiment struct {
-	totalVCs int `json:"TotalVCs"`
-	revokedVCs int `json:"TotalRevokedVCs"`
-	falsePositiveRate float64 `json:"FalsePositiveRate"`
-	mtLevelInDLT int `json:"MtLevelInDLT"`
-	mtDepth int `json:"MtDepth"`
-}
+
 
 func Start(config config.Config){
 
+	experiments := config.ExpParamters
+
+	for _, exp := range experiments{
+		DeployContract(&config)
+		//zap.S().Infoln("smart contract: ",config.SmartContractAddress)
+		SetUpExpParamters(&config, *exp)
+		PerformExperiment(config)
+	}
+}
+
+func DeployContract(conf *config.Config){
+	address, err := blockchain.DeployContract(*conf)
+
+	if err != nil {
+		zap.S().Errorln("error deploying contract")
+	}
+
+	conf.SmartContractAddress = address
+}
+
+func SetUpExpParamters(conf *config.Config, exp config.Experiment){
+	conf.ExpectedNumberOfTotalVCs= uint(exp.TotalVCs)
+	conf.ExpectedNumberofRevokedVCs= uint(exp.RevokedVCs)
+	conf.FalsePositiveRate=exp.FalsePositiveRate
+	conf.MtLevelInDLT= uint(exp.MtLevelInDLT)
+	conf.MtDepth= uint(exp.MtDepth)
+}
+
+func PerformExperiment(config config.Config){
 
 	issuer1 := issuer.CreateIssuer(config)
 	remainingSpace := int(math.Pow(2, float64(config.MtDepth-1)))-int(config.ExpectedNumberOfTotalVCs)
@@ -139,7 +163,7 @@ func  WriteToFile( result Results) {
 	byte, _ := ioutil.ReadAll(jsonFile)
 	json.Unmarshal(byte, &results)
 	results = append(results, result)
-	jsonRes, _ := json.Marshal(results)
+	jsonRes, _ := json.MarshalIndent(results,"","")
 	//filename := fmt.Sprintf("Simulation/results/result_%v_%v_%v.json",numberOfVcs, numberOfRevokedVcs, mtLevelInDLT)
 	ioutil.WriteFile("Simulation/results.json", jsonRes, 0644)
 

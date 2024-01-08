@@ -65,7 +65,19 @@ type MerkleTreeAccumulator2 struct {
 	DEBUG bool
 }
 
+/*
+This function creates a new merkle tree accumulator.
 
+If total number of vcs are not in power of 2, then the leaf counts will be adjusted to the nearest power of 2.
+
+Inputs:
+	TotalNumberofVCs - number of VCs issuer expects to issue in its lifetime
+	height - Height of Merkle Tree
+
+Output:
+	MerkleTreeAccumulator object
+
+*/
 func  CreateMerkleTreeAccumulator(conf config.Config) *MerkleTreeAccumulator2 {
 
 	totalLeafs := conf.ExpectedNumberOfTotalVCs

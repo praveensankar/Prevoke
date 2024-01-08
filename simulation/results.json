@@ -1,0 +1,58 @@
+[
+{
+"total_issued_vcs": 128,
+"total_revoked_vcs": 50,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 6,
+"mt_depth": 8,
+"number_of_false_positives": 8,
+"number_of_vcs_retrieved_witness_from_issuer": 4,
+"number_of_witness_updates_MT_accumulator": 50,
+"mt_accumulator_per_update_cost_in_gwei": 24487651,
+"number_of_witness_updates_saved": 4,
+"bloom_filter_size": 240,
+"bloom_filter_indexes_per_entry": 4
+},
+{
+"total_issued_vcs": 128,
+"total_revoked_vcs": 50,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 3,
+"mt_depth": 8,
+"number_of_false_positives": 8,
+"number_of_vcs_retrieved_witness_from_issuer": 8,
+"number_of_witness_updates_MT_accumulator": 750,
+"mt_accumulator_per_update_cost_in_gwei": 4700892,
+"number_of_witness_updates_saved": 0,
+"bloom_filter_size": 240,
+"bloom_filter_indexes_per_entry": 4
+},
+{
+"total_issued_vcs": 128,
+"total_revoked_vcs": 50,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 4,
+"mt_depth": 8,
+"number_of_false_positives": 6,
+"number_of_vcs_retrieved_witness_from_issuer": 6,
+"number_of_witness_updates_MT_accumulator": 350,
+"mt_accumulator_per_update_cost_in_gwei": 7876691,
+"number_of_witness_updates_saved": 0,
+"bloom_filter_size": 240,
+"bloom_filter_indexes_per_entry": 4
+},
+{
+"total_issued_vcs": 128,
+"total_revoked_vcs": 50,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 5,
+"mt_depth": 8,
+"number_of_false_positives": 12,
+"number_of_vcs_retrieved_witness_from_issuer": 11,
+"number_of_witness_updates_MT_accumulator": 150,
+"mt_accumulator_per_update_cost_in_gwei": 12845302,
+"number_of_witness_updates_saved": 1,
+"bloom_filter_size": 240,
+"bloom_filter_indexes_per_entry": 4
+}
+]

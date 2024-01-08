@@ -15,7 +15,7 @@ import (
 	_ "time"
 )
 //
-func DeployContract(config config.Config){
+func DeployContract(config config.Config) (string, error){
 	client, err :=  ethclient.Dial(config.BlockchainRpcEndpoint)
 	if err != nil {
 		zap.S().Fatalln(err)
@@ -56,10 +56,13 @@ func DeployContract(config config.Config){
 	if err != nil {
 		zap.S().Infof("Failed to deploy contract: %v", err)
 	}
+	zap.L().Info("\n\n------------------------------------------------------- deploying smart contract --------------------------------------------------")
 
-	zap.S().Infoln("deployed smart contract address: ", addresss.String())
-	zap.S().Infoln("tx hash: ", tx)
-	n, _ := revocationservice.NumberOfHashFunctions(nil)
-	zap.S().Infoln("number of hash functions: ", n)
+	zap.S().Infoln("BLOCKCHAIN- \t  smart contract address: ", addresss.String())
+	zap.S().Infoln("BLOCKCHAIN- \t tx hash: ", tx.Hash())
+	_, _ = revocationservice.NumberOfHashFunctions(nil)
+	//zap.S().Infoln("number of hash functions: ", n)
+	zap.L().Info("********************************************************************************************************************************\n")
 
+	return addresss.String(), err
 }

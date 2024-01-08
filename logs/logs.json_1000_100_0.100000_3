@@ -9646,3 +9646,1423 @@ MERKLE TREE- Verification: 	index:  1 	 leaf:  10
 TEST MERKLE TREE- 	 leaf in hex:  9ca1b6b8c60955e4695bcbe587b728d7d34292252ae9becc6341bb2ddd793b27  	 used right proof - verification is successful
 MERKLE TREE- Verification: 	index:  1 	 leaf:  10
 TEST MERKLE TREE- 	 leaf in hex:  c6e8d3ccd0ab48503b8a4391b02b7c7ed6b3f15370e8baf108848f44c75a5b10  	 used right proof - verification is successful
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0xD26e23fb6Fc5E5572AB46280Be2F55AC165E56CA
+blockchain rpc endpoint: http://158.39.200.98:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0xbB9f4648A8CB4D1E8213752e6f3e956B2811175B
+sender private key: 4779f4f4a3e4f8ac78ab1597ec2e0247129edec31e751530ed01b83e5e399313
+sender pass phrase: simple phrase
+other accounts in ganache test network :  [0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A]
+logger environment: dev
+logger output file name: logs.json
+logger output mode: console
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:employer 1
+total of VCs would be issued:1000
+total of VCs would be revoked:100
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  3
+merkle tree height:  10
+********************************************************************************************************************************
+
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0xb4a431AB089A9a28051139430AC5117937F3b429
+BLOCKCHAIN- 	 tx hash:  0xbcff429053589b54217bf4671e08d0e3dc12dac7a27c4ae7ea619f6b9366f3ee
+********************************************************************************************************************************
+
+BlOOM FILTER: size :  480 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  employer 1
+
+
+********************************************************************************************************************************
+ISSUER-  employer 1 ***ISSUED*** vc: 43035 	 mt index:  1
+ISSUER-  employer 1 ***ISSUED*** vc: 43036 	 mt index:  2
+ISSUER-  employer 1 ***ISSUED*** vc: 43037 	 mt index:  3
+ISSUER-  employer 1 ***ISSUED*** vc: 43038 	 mt index:  4
+ISSUER-  employer 1 ***ISSUED*** vc: 43039 	 mt index:  5
+ISSUER-  employer 1 ***ISSUED*** vc: 43040 	 mt index:  6
+ISSUER-  employer 1 ***ISSUED*** vc: 43041 	 mt index:  7
+ISSUER-  employer 1 ***ISSUED*** vc: 43042 	 mt index:  8
+ISSUER-  employer 1 ***ISSUED*** vc: 43043 	 mt index:  9
+ISSUER-  employer 1 ***ISSUED*** vc: 43044 	 mt index:  10
+ISSUER-  employer 1 ***ISSUED*** vc: 43045 	 mt index:  11
+ISSUER-  employer 1 ***ISSUED*** vc: 43046 	 mt index:  12
+ISSUER-  employer 1 ***ISSUED*** vc: 43047 	 mt index:  13
+ISSUER-  employer 1 ***ISSUED*** vc: 43048 	 mt index:  14
+ISSUER-  employer 1 ***ISSUED*** vc: 43049 	 mt index:  15
+ISSUER-  employer 1 ***ISSUED*** vc: 43050 	 mt index:  16
+ISSUER-  employer 1 ***ISSUED*** vc: 43051 	 mt index:  17
+ISSUER-  employer 1 ***ISSUED*** vc: 43052 	 mt index:  18
+ISSUER-  employer 1 ***ISSUED*** vc: 43053 	 mt index:  19
+ISSUER-  employer 1 ***ISSUED*** vc: 43054 	 mt index:  20
+ISSUER-  employer 1 ***ISSUED*** vc: 43055 	 mt index:  21
+ISSUER-  employer 1 ***ISSUED*** vc: 43056 	 mt index:  22
+ISSUER-  employer 1 ***ISSUED*** vc: 43057 	 mt index:  23
+ISSUER-  employer 1 ***ISSUED*** vc: 43058 	 mt index:  24
+ISSUER-  employer 1 ***ISSUED*** vc: 43059 	 mt index:  25
+ISSUER-  employer 1 ***ISSUED*** vc: 43060 	 mt index:  26
+ISSUER-  employer 1 ***ISSUED*** vc: 43061 	 mt index:  27
+ISSUER-  employer 1 ***ISSUED*** vc: 43062 	 mt index:  28
+ISSUER-  employer 1 ***ISSUED*** vc: 43063 	 mt index:  29
+ISSUER-  employer 1 ***ISSUED*** vc: 43064 	 mt index:  30
+ISSUER-  employer 1 ***ISSUED*** vc: 43065 	 mt index:  31
+ISSUER-  employer 1 ***ISSUED*** vc: 43066 	 mt index:  32
+ISSUER-  employer 1 ***ISSUED*** vc: 43067 	 mt index:  33
+ISSUER-  employer 1 ***ISSUED*** vc: 43068 	 mt index:  34
+ISSUER-  employer 1 ***ISSUED*** vc: 43069 	 mt index:  35
+ISSUER-  employer 1 ***ISSUED*** vc: 43070 	 mt index:  36
+ISSUER-  employer 1 ***ISSUED*** vc: 43071 	 mt index:  37
+ISSUER-  employer 1 ***ISSUED*** vc: 43072 	 mt index:  38
+ISSUER-  employer 1 ***ISSUED*** vc: 43073 	 mt index:  39
+ISSUER-  employer 1 ***ISSUED*** vc: 43074 	 mt index:  40
+ISSUER-  employer 1 ***ISSUED*** vc: 43075 	 mt index:  41
+ISSUER-  employer 1 ***ISSUED*** vc: 43076 	 mt index:  42
+ISSUER-  employer 1 ***ISSUED*** vc: 43077 	 mt index:  43
+ISSUER-  employer 1 ***ISSUED*** vc: 43078 	 mt index:  44
+ISSUER-  employer 1 ***ISSUED*** vc: 43079 	 mt index:  45
+ISSUER-  employer 1 ***ISSUED*** vc: 43080 	 mt index:  46
+ISSUER-  employer 1 ***ISSUED*** vc: 43081 	 mt index:  47
+ISSUER-  employer 1 ***ISSUED*** vc: 43082 	 mt index:  48
+ISSUER-  employer 1 ***ISSUED*** vc: 43083 	 mt index:  49
+ISSUER-  employer 1 ***ISSUED*** vc: 43084 	 mt index:  50
+ISSUER-  employer 1 ***ISSUED*** vc: 43085 	 mt index:  51
+ISSUER-  employer 1 ***ISSUED*** vc: 43086 	 mt index:  52
+ISSUER-  employer 1 ***ISSUED*** vc: 43087 	 mt index:  53
+ISSUER-  employer 1 ***ISSUED*** vc: 43088 	 mt index:  54
+ISSUER-  employer 1 ***ISSUED*** vc: 43089 	 mt index:  55
+ISSUER-  employer 1 ***ISSUED*** vc: 43090 	 mt index:  56
+ISSUER-  employer 1 ***ISSUED*** vc: 43091 	 mt index:  57
+ISSUER-  employer 1 ***ISSUED*** vc: 43092 	 mt index:  58
+ISSUER-  employer 1 ***ISSUED*** vc: 43093 	 mt index:  59
+ISSUER-  employer 1 ***ISSUED*** vc: 43094 	 mt index:  60
+ISSUER-  employer 1 ***ISSUED*** vc: 43095 	 mt index:  61
+ISSUER-  employer 1 ***ISSUED*** vc: 43096 	 mt index:  62
+ISSUER-  employer 1 ***ISSUED*** vc: 43097 	 mt index:  63
+ISSUER-  employer 1 ***ISSUED*** vc: 43098 	 mt index:  64
+ISSUER-  employer 1 ***ISSUED*** vc: 43099 	 mt index:  65
+ISSUER-  employer 1 ***ISSUED*** vc: 43100 	 mt index:  66
+ISSUER-  employer 1 ***ISSUED*** vc: 43101 	 mt index:  67
+ISSUER-  employer 1 ***ISSUED*** vc: 43102 	 mt index:  68
+ISSUER-  employer 1 ***ISSUED*** vc: 43103 	 mt index:  69
+ISSUER-  employer 1 ***ISSUED*** vc: 43104 	 mt index:  70
+ISSUER-  employer 1 ***ISSUED*** vc: 43105 	 mt index:  71
+ISSUER-  employer 1 ***ISSUED*** vc: 43106 	 mt index:  72
+ISSUER-  employer 1 ***ISSUED*** vc: 43107 	 mt index:  73
+ISSUER-  employer 1 ***ISSUED*** vc: 43108 	 mt index:  74
+ISSUER-  employer 1 ***ISSUED*** vc: 43109 	 mt index:  75
+ISSUER-  employer 1 ***ISSUED*** vc: 43110 	 mt index:  76
+ISSUER-  employer 1 ***ISSUED*** vc: 43111 	 mt index:  77
+ISSUER-  employer 1 ***ISSUED*** vc: 43112 	 mt index:  78
+ISSUER-  employer 1 ***ISSUED*** vc: 43113 	 mt index:  79
+ISSUER-  employer 1 ***ISSUED*** vc: 43114 	 mt index:  80
+ISSUER-  employer 1 ***ISSUED*** vc: 43115 	 mt index:  81
+ISSUER-  employer 1 ***ISSUED*** vc: 43116 	 mt index:  82
+ISSUER-  employer 1 ***ISSUED*** vc: 43117 	 mt index:  83
+ISSUER-  employer 1 ***ISSUED*** vc: 43118 	 mt index:  84
+ISSUER-  employer 1 ***ISSUED*** vc: 43119 	 mt index:  85
+ISSUER-  employer 1 ***ISSUED*** vc: 43120 	 mt index:  86
+ISSUER-  employer 1 ***ISSUED*** vc: 43121 	 mt index:  87
+ISSUER-  employer 1 ***ISSUED*** vc: 43122 	 mt index:  88
+ISSUER-  employer 1 ***ISSUED*** vc: 43123 	 mt index:  89
+ISSUER-  employer 1 ***ISSUED*** vc: 43124 	 mt index:  90
+ISSUER-  employer 1 ***ISSUED*** vc: 43125 	 mt index:  91
+ISSUER-  employer 1 ***ISSUED*** vc: 43126 	 mt index:  92
+ISSUER-  employer 1 ***ISSUED*** vc: 43127 	 mt index:  93
+ISSUER-  employer 1 ***ISSUED*** vc: 43128 	 mt index:  94
+ISSUER-  employer 1 ***ISSUED*** vc: 43129 	 mt index:  95
+ISSUER-  employer 1 ***ISSUED*** vc: 43130 	 mt index:  96
+ISSUER-  employer 1 ***ISSUED*** vc: 43131 	 mt index:  97
+ISSUER-  employer 1 ***ISSUED*** vc: 43132 	 mt index:  98
+ISSUER-  employer 1 ***ISSUED*** vc: 43133 	 mt index:  99
+ISSUER-  employer 1 ***ISSUED*** vc: 43134 	 mt index:  100
+ISSUER-  employer 1 ***ISSUED*** vc: 43135 	 mt index:  101
+ISSUER-  employer 1 ***ISSUED*** vc: 43136 	 mt index:  102
+ISSUER-  employer 1 ***ISSUED*** vc: 43137 	 mt index:  103
+ISSUER-  employer 1 ***ISSUED*** vc: 43138 	 mt index:  104
+ISSUER-  employer 1 ***ISSUED*** vc: 43139 	 mt index:  105
+ISSUER-  employer 1 ***ISSUED*** vc: 43140 	 mt index:  106
+ISSUER-  employer 1 ***ISSUED*** vc: 43141 	 mt index:  107
+ISSUER-  employer 1 ***ISSUED*** vc: 43142 	 mt index:  108
+ISSUER-  employer 1 ***ISSUED*** vc: 43143 	 mt index:  109
+ISSUER-  employer 1 ***ISSUED*** vc: 43144 	 mt index:  110
+ISSUER-  employer 1 ***ISSUED*** vc: 43145 	 mt index:  111
+ISSUER-  employer 1 ***ISSUED*** vc: 43146 	 mt index:  112
+ISSUER-  employer 1 ***ISSUED*** vc: 43147 	 mt index:  113
+ISSUER-  employer 1 ***ISSUED*** vc: 43148 	 mt index:  114
+ISSUER-  employer 1 ***ISSUED*** vc: 43149 	 mt index:  115
+ISSUER-  employer 1 ***ISSUED*** vc: 43150 	 mt index:  116
+ISSUER-  employer 1 ***ISSUED*** vc: 43151 	 mt index:  117
+ISSUER-  employer 1 ***ISSUED*** vc: 43152 	 mt index:  118
+ISSUER-  employer 1 ***ISSUED*** vc: 43153 	 mt index:  119
+ISSUER-  employer 1 ***ISSUED*** vc: 43154 	 mt index:  120
+ISSUER-  employer 1 ***ISSUED*** vc: 43155 	 mt index:  121
+ISSUER-  employer 1 ***ISSUED*** vc: 43156 	 mt index:  122
+ISSUER-  employer 1 ***ISSUED*** vc: 43157 	 mt index:  123
+ISSUER-  employer 1 ***ISSUED*** vc: 43158 	 mt index:  124
+ISSUER-  employer 1 ***ISSUED*** vc: 43159 	 mt index:  125
+ISSUER-  employer 1 ***ISSUED*** vc: 43160 	 mt index:  126
+ISSUER-  employer 1 ***ISSUED*** vc: 43161 	 mt index:  127
+ISSUER-  employer 1 ***ISSUED*** vc: 43162 	 mt index:  128
+ISSUER-  employer 1 ***ISSUED*** vc: 43163 	 mt index:  129
+ISSUER-  employer 1 ***ISSUED*** vc: 43164 	 mt index:  130
+ISSUER-  employer 1 ***ISSUED*** vc: 43165 	 mt index:  131
+ISSUER-  employer 1 ***ISSUED*** vc: 43166 	 mt index:  132
+ISSUER-  employer 1 ***ISSUED*** vc: 43167 	 mt index:  133
+ISSUER-  employer 1 ***ISSUED*** vc: 43168 	 mt index:  134
+ISSUER-  employer 1 ***ISSUED*** vc: 43169 	 mt index:  135
+ISSUER-  employer 1 ***ISSUED*** vc: 43170 	 mt index:  136
+ISSUER-  employer 1 ***ISSUED*** vc: 43171 	 mt index:  137
+ISSUER-  employer 1 ***ISSUED*** vc: 43172 	 mt index:  138
+ISSUER-  employer 1 ***ISSUED*** vc: 43173 	 mt index:  139
+ISSUER-  employer 1 ***ISSUED*** vc: 43174 	 mt index:  140
+ISSUER-  employer 1 ***ISSUED*** vc: 43175 	 mt index:  141
+ISSUER-  employer 1 ***ISSUED*** vc: 43176 	 mt index:  142
+ISSUER-  employer 1 ***ISSUED*** vc: 43177 	 mt index:  143
+ISSUER-  employer 1 ***ISSUED*** vc: 43178 	 mt index:  144
+ISSUER-  employer 1 ***ISSUED*** vc: 43179 	 mt index:  145
+ISSUER-  employer 1 ***ISSUED*** vc: 43180 	 mt index:  146
+ISSUER-  employer 1 ***ISSUED*** vc: 43181 	 mt index:  147
+ISSUER-  employer 1 ***ISSUED*** vc: 43182 	 mt index:  148
+ISSUER-  employer 1 ***ISSUED*** vc: 43183 	 mt index:  149
+ISSUER-  employer 1 ***ISSUED*** vc: 43184 	 mt index:  150
+ISSUER-  employer 1 ***ISSUED*** vc: 43185 	 mt index:  151
+ISSUER-  employer 1 ***ISSUED*** vc: 43186 	 mt index:  152
+ISSUER-  employer 1 ***ISSUED*** vc: 43187 	 mt index:  153
+ISSUER-  employer 1 ***ISSUED*** vc: 43188 	 mt index:  154
+ISSUER-  employer 1 ***ISSUED*** vc: 43189 	 mt index:  155
+ISSUER-  employer 1 ***ISSUED*** vc: 43190 	 mt index:  156
+ISSUER-  employer 1 ***ISSUED*** vc: 43191 	 mt index:  157
+ISSUER-  employer 1 ***ISSUED*** vc: 43192 	 mt index:  158
+ISSUER-  employer 1 ***ISSUED*** vc: 43193 	 mt index:  159
+ISSUER-  employer 1 ***ISSUED*** vc: 43194 	 mt index:  160
+ISSUER-  employer 1 ***ISSUED*** vc: 43195 	 mt index:  161
+ISSUER-  employer 1 ***ISSUED*** vc: 43196 	 mt index:  162
+ISSUER-  employer 1 ***ISSUED*** vc: 43197 	 mt index:  163
+ISSUER-  employer 1 ***ISSUED*** vc: 43198 	 mt index:  164
+ISSUER-  employer 1 ***ISSUED*** vc: 43199 	 mt index:  165
+ISSUER-  employer 1 ***ISSUED*** vc: 43200 	 mt index:  166
+ISSUER-  employer 1 ***ISSUED*** vc: 43201 	 mt index:  167
+ISSUER-  employer 1 ***ISSUED*** vc: 43202 	 mt index:  168
+ISSUER-  employer 1 ***ISSUED*** vc: 43203 	 mt index:  169
+ISSUER-  employer 1 ***ISSUED*** vc: 43204 	 mt index:  170
+ISSUER-  employer 1 ***ISSUED*** vc: 43205 	 mt index:  171
+ISSUER-  employer 1 ***ISSUED*** vc: 43206 	 mt index:  172
+ISSUER-  employer 1 ***ISSUED*** vc: 43207 	 mt index:  173
+ISSUER-  employer 1 ***ISSUED*** vc: 43208 	 mt index:  174
+ISSUER-  employer 1 ***ISSUED*** vc: 43209 	 mt index:  175
+ISSUER-  employer 1 ***ISSUED*** vc: 43210 	 mt index:  176
+ISSUER-  employer 1 ***ISSUED*** vc: 43211 	 mt index:  177
+ISSUER-  employer 1 ***ISSUED*** vc: 43212 	 mt index:  178
+ISSUER-  employer 1 ***ISSUED*** vc: 43213 	 mt index:  179
+ISSUER-  employer 1 ***ISSUED*** vc: 43214 	 mt index:  180
+ISSUER-  employer 1 ***ISSUED*** vc: 43215 	 mt index:  181
+ISSUER-  employer 1 ***ISSUED*** vc: 43216 	 mt index:  182
+ISSUER-  employer 1 ***ISSUED*** vc: 43217 	 mt index:  183
+ISSUER-  employer 1 ***ISSUED*** vc: 43218 	 mt index:  184
+ISSUER-  employer 1 ***ISSUED*** vc: 43219 	 mt index:  185
+ISSUER-  employer 1 ***ISSUED*** vc: 43220 	 mt index:  186
+ISSUER-  employer 1 ***ISSUED*** vc: 43221 	 mt index:  187
+ISSUER-  employer 1 ***ISSUED*** vc: 43222 	 mt index:  188
+ISSUER-  employer 1 ***ISSUED*** vc: 43223 	 mt index:  189
+ISSUER-  employer 1 ***ISSUED*** vc: 43224 	 mt index:  190
+ISSUER-  employer 1 ***ISSUED*** vc: 43225 	 mt index:  191
+ISSUER-  employer 1 ***ISSUED*** vc: 43226 	 mt index:  192
+ISSUER-  employer 1 ***ISSUED*** vc: 43227 	 mt index:  193
+ISSUER-  employer 1 ***ISSUED*** vc: 43228 	 mt index:  194
+ISSUER-  employer 1 ***ISSUED*** vc: 43229 	 mt index:  195
+ISSUER-  employer 1 ***ISSUED*** vc: 43230 	 mt index:  196
+ISSUER-  employer 1 ***ISSUED*** vc: 43231 	 mt index:  197
+ISSUER-  employer 1 ***ISSUED*** vc: 43232 	 mt index:  198
+ISSUER-  employer 1 ***ISSUED*** vc: 43233 	 mt index:  199
+ISSUER-  employer 1 ***ISSUED*** vc: 43234 	 mt index:  200
+ISSUER-  employer 1 ***ISSUED*** vc: 43235 	 mt index:  201
+ISSUER-  employer 1 ***ISSUED*** vc: 43236 	 mt index:  202
+ISSUER-  employer 1 ***ISSUED*** vc: 43237 	 mt index:  203
+ISSUER-  employer 1 ***ISSUED*** vc: 43238 	 mt index:  204
+ISSUER-  employer 1 ***ISSUED*** vc: 43239 	 mt index:  205
+ISSUER-  employer 1 ***ISSUED*** vc: 43240 	 mt index:  206
+ISSUER-  employer 1 ***ISSUED*** vc: 43241 	 mt index:  207
+ISSUER-  employer 1 ***ISSUED*** vc: 43242 	 mt index:  208
+ISSUER-  employer 1 ***ISSUED*** vc: 43243 	 mt index:  209
+ISSUER-  employer 1 ***ISSUED*** vc: 43244 	 mt index:  210
+ISSUER-  employer 1 ***ISSUED*** vc: 43245 	 mt index:  211
+ISSUER-  employer 1 ***ISSUED*** vc: 43246 	 mt index:  212
+ISSUER-  employer 1 ***ISSUED*** vc: 43247 	 mt index:  213
+ISSUER-  employer 1 ***ISSUED*** vc: 43248 	 mt index:  214
+ISSUER-  employer 1 ***ISSUED*** vc: 43249 	 mt index:  215
+ISSUER-  employer 1 ***ISSUED*** vc: 43250 	 mt index:  216
+ISSUER-  employer 1 ***ISSUED*** vc: 43251 	 mt index:  217
+ISSUER-  employer 1 ***ISSUED*** vc: 43252 	 mt index:  218
+ISSUER-  employer 1 ***ISSUED*** vc: 43253 	 mt index:  219
+ISSUER-  employer 1 ***ISSUED*** vc: 43254 	 mt index:  220
+ISSUER-  employer 1 ***ISSUED*** vc: 43255 	 mt index:  221
+ISSUER-  employer 1 ***ISSUED*** vc: 43256 	 mt index:  222
+ISSUER-  employer 1 ***ISSUED*** vc: 43257 	 mt index:  223
+ISSUER-  employer 1 ***ISSUED*** vc: 43258 	 mt index:  224
+ISSUER-  employer 1 ***ISSUED*** vc: 43259 	 mt index:  225
+ISSUER-  employer 1 ***ISSUED*** vc: 43260 	 mt index:  226
+ISSUER-  employer 1 ***ISSUED*** vc: 43261 	 mt index:  227
+ISSUER-  employer 1 ***ISSUED*** vc: 43262 	 mt index:  228
+ISSUER-  employer 1 ***ISSUED*** vc: 43263 	 mt index:  229
+ISSUER-  employer 1 ***ISSUED*** vc: 43264 	 mt index:  230
+ISSUER-  employer 1 ***ISSUED*** vc: 43265 	 mt index:  231
+ISSUER-  employer 1 ***ISSUED*** vc: 43266 	 mt index:  232
+ISSUER-  employer 1 ***ISSUED*** vc: 43267 	 mt index:  233
+ISSUER-  employer 1 ***ISSUED*** vc: 43268 	 mt index:  234
+ISSUER-  employer 1 ***ISSUED*** vc: 43269 	 mt index:  235
+ISSUER-  employer 1 ***ISSUED*** vc: 43270 	 mt index:  236
+ISSUER-  employer 1 ***ISSUED*** vc: 43271 	 mt index:  237
+ISSUER-  employer 1 ***ISSUED*** vc: 43272 	 mt index:  238
+ISSUER-  employer 1 ***ISSUED*** vc: 43273 	 mt index:  239
+ISSUER-  employer 1 ***ISSUED*** vc: 43274 	 mt index:  240
+ISSUER-  employer 1 ***ISSUED*** vc: 43275 	 mt index:  241
+ISSUER-  employer 1 ***ISSUED*** vc: 43276 	 mt index:  242
+ISSUER-  employer 1 ***ISSUED*** vc: 43277 	 mt index:  243
+ISSUER-  employer 1 ***ISSUED*** vc: 43278 	 mt index:  244
+ISSUER-  employer 1 ***ISSUED*** vc: 43279 	 mt index:  245
+ISSUER-  employer 1 ***ISSUED*** vc: 43280 	 mt index:  246
+ISSUER-  employer 1 ***ISSUED*** vc: 43281 	 mt index:  247
+ISSUER-  employer 1 ***ISSUED*** vc: 43282 	 mt index:  248
+ISSUER-  employer 1 ***ISSUED*** vc: 43283 	 mt index:  249
+ISSUER-  employer 1 ***ISSUED*** vc: 43284 	 mt index:  250
+ISSUER-  employer 1 ***ISSUED*** vc: 43285 	 mt index:  251
+ISSUER-  employer 1 ***ISSUED*** vc: 43286 	 mt index:  252
+ISSUER-  employer 1 ***ISSUED*** vc: 43287 	 mt index:  253
+ISSUER-  employer 1 ***ISSUED*** vc: 43288 	 mt index:  254
+ISSUER-  employer 1 ***ISSUED*** vc: 43289 	 mt index:  255
+ISSUER-  employer 1 ***ISSUED*** vc: 43290 	 mt index:  256
+ISSUER-  employer 1 ***ISSUED*** vc: 43291 	 mt index:  257
+ISSUER-  employer 1 ***ISSUED*** vc: 43292 	 mt index:  258
+ISSUER-  employer 1 ***ISSUED*** vc: 43293 	 mt index:  259
+ISSUER-  employer 1 ***ISSUED*** vc: 43294 	 mt index:  260
+ISSUER-  employer 1 ***ISSUED*** vc: 43295 	 mt index:  261
+ISSUER-  employer 1 ***ISSUED*** vc: 43296 	 mt index:  262
+ISSUER-  employer 1 ***ISSUED*** vc: 43297 	 mt index:  263
+ISSUER-  employer 1 ***ISSUED*** vc: 43298 	 mt index:  264
+ISSUER-  employer 1 ***ISSUED*** vc: 43299 	 mt index:  265
+ISSUER-  employer 1 ***ISSUED*** vc: 43300 	 mt index:  266
+ISSUER-  employer 1 ***ISSUED*** vc: 43301 	 mt index:  267
+ISSUER-  employer 1 ***ISSUED*** vc: 43302 	 mt index:  268
+ISSUER-  employer 1 ***ISSUED*** vc: 43303 	 mt index:  269
+ISSUER-  employer 1 ***ISSUED*** vc: 43304 	 mt index:  270
+ISSUER-  employer 1 ***ISSUED*** vc: 43305 	 mt index:  271
+ISSUER-  employer 1 ***ISSUED*** vc: 43306 	 mt index:  272
+ISSUER-  employer 1 ***ISSUED*** vc: 43307 	 mt index:  273
+ISSUER-  employer 1 ***ISSUED*** vc: 43308 	 mt index:  274
+ISSUER-  employer 1 ***ISSUED*** vc: 43309 	 mt index:  275
+ISSUER-  employer 1 ***ISSUED*** vc: 43310 	 mt index:  276
+ISSUER-  employer 1 ***ISSUED*** vc: 43311 	 mt index:  277
+ISSUER-  employer 1 ***ISSUED*** vc: 43312 	 mt index:  278
+ISSUER-  employer 1 ***ISSUED*** vc: 43313 	 mt index:  279
+ISSUER-  employer 1 ***ISSUED*** vc: 43314 	 mt index:  280
+ISSUER-  employer 1 ***ISSUED*** vc: 43315 	 mt index:  281
+ISSUER-  employer 1 ***ISSUED*** vc: 43316 	 mt index:  282
+ISSUER-  employer 1 ***ISSUED*** vc: 43317 	 mt index:  283
+ISSUER-  employer 1 ***ISSUED*** vc: 43318 	 mt index:  284
+ISSUER-  employer 1 ***ISSUED*** vc: 43319 	 mt index:  285
+ISSUER-  employer 1 ***ISSUED*** vc: 43320 	 mt index:  286
+ISSUER-  employer 1 ***ISSUED*** vc: 43321 	 mt index:  287
+ISSUER-  employer 1 ***ISSUED*** vc: 43322 	 mt index:  288
+ISSUER-  employer 1 ***ISSUED*** vc: 43323 	 mt index:  289
+ISSUER-  employer 1 ***ISSUED*** vc: 43324 	 mt index:  290
+ISSUER-  employer 1 ***ISSUED*** vc: 43325 	 mt index:  291
+ISSUER-  employer 1 ***ISSUED*** vc: 43326 	 mt index:  292
+ISSUER-  employer 1 ***ISSUED*** vc: 43327 	 mt index:  293
+ISSUER-  employer 1 ***ISSUED*** vc: 43328 	 mt index:  294
+ISSUER-  employer 1 ***ISSUED*** vc: 43329 	 mt index:  295
+ISSUER-  employer 1 ***ISSUED*** vc: 43330 	 mt index:  296
+ISSUER-  employer 1 ***ISSUED*** vc: 43331 	 mt index:  297
+ISSUER-  employer 1 ***ISSUED*** vc: 43332 	 mt index:  298
+ISSUER-  employer 1 ***ISSUED*** vc: 43333 	 mt index:  299
+ISSUER-  employer 1 ***ISSUED*** vc: 43334 	 mt index:  300
+ISSUER-  employer 1 ***ISSUED*** vc: 43335 	 mt index:  301
+ISSUER-  employer 1 ***ISSUED*** vc: 43336 	 mt index:  302
+ISSUER-  employer 1 ***ISSUED*** vc: 43337 	 mt index:  303
+ISSUER-  employer 1 ***ISSUED*** vc: 43338 	 mt index:  304
+ISSUER-  employer 1 ***ISSUED*** vc: 43339 	 mt index:  305
+ISSUER-  employer 1 ***ISSUED*** vc: 43340 	 mt index:  306
+ISSUER-  employer 1 ***ISSUED*** vc: 43341 	 mt index:  307
+ISSUER-  employer 1 ***ISSUED*** vc: 43342 	 mt index:  308
+ISSUER-  employer 1 ***ISSUED*** vc: 43343 	 mt index:  309
+ISSUER-  employer 1 ***ISSUED*** vc: 43344 	 mt index:  310
+ISSUER-  employer 1 ***ISSUED*** vc: 43345 	 mt index:  311
+ISSUER-  employer 1 ***ISSUED*** vc: 43346 	 mt index:  312
+ISSUER-  employer 1 ***ISSUED*** vc: 43347 	 mt index:  313
+ISSUER-  employer 1 ***ISSUED*** vc: 43348 	 mt index:  314
+ISSUER-  employer 1 ***ISSUED*** vc: 43349 	 mt index:  315
+ISSUER-  employer 1 ***ISSUED*** vc: 43350 	 mt index:  316
+ISSUER-  employer 1 ***ISSUED*** vc: 43351 	 mt index:  317
+ISSUER-  employer 1 ***ISSUED*** vc: 43352 	 mt index:  318
+ISSUER-  employer 1 ***ISSUED*** vc: 43353 	 mt index:  319
+ISSUER-  employer 1 ***ISSUED*** vc: 43354 	 mt index:  320
+ISSUER-  employer 1 ***ISSUED*** vc: 43355 	 mt index:  321
+ISSUER-  employer 1 ***ISSUED*** vc: 43356 	 mt index:  322
+ISSUER-  employer 1 ***ISSUED*** vc: 43357 	 mt index:  323
+ISSUER-  employer 1 ***ISSUED*** vc: 43358 	 mt index:  324
+ISSUER-  employer 1 ***ISSUED*** vc: 43359 	 mt index:  325
+ISSUER-  employer 1 ***ISSUED*** vc: 43360 	 mt index:  326
+ISSUER-  employer 1 ***ISSUED*** vc: 43361 	 mt index:  327
+ISSUER-  employer 1 ***ISSUED*** vc: 43362 	 mt index:  328
+ISSUER-  employer 1 ***ISSUED*** vc: 43363 	 mt index:  329
+ISSUER-  employer 1 ***ISSUED*** vc: 43364 	 mt index:  330
+ISSUER-  employer 1 ***ISSUED*** vc: 43365 	 mt index:  331
+ISSUER-  employer 1 ***ISSUED*** vc: 43366 	 mt index:  332
+ISSUER-  employer 1 ***ISSUED*** vc: 43367 	 mt index:  333
+ISSUER-  employer 1 ***ISSUED*** vc: 43368 	 mt index:  334
+ISSUER-  employer 1 ***ISSUED*** vc: 43369 	 mt index:  335
+ISSUER-  employer 1 ***ISSUED*** vc: 43370 	 mt index:  336
+ISSUER-  employer 1 ***ISSUED*** vc: 43371 	 mt index:  337
+ISSUER-  employer 1 ***ISSUED*** vc: 43372 	 mt index:  338
+ISSUER-  employer 1 ***ISSUED*** vc: 43373 	 mt index:  339
+ISSUER-  employer 1 ***ISSUED*** vc: 43374 	 mt index:  340
+ISSUER-  employer 1 ***ISSUED*** vc: 43375 	 mt index:  341
+ISSUER-  employer 1 ***ISSUED*** vc: 43376 	 mt index:  342
+ISSUER-  employer 1 ***ISSUED*** vc: 43377 	 mt index:  343
+ISSUER-  employer 1 ***ISSUED*** vc: 43378 	 mt index:  344
+ISSUER-  employer 1 ***ISSUED*** vc: 43379 	 mt index:  345
+ISSUER-  employer 1 ***ISSUED*** vc: 43380 	 mt index:  346
+ISSUER-  employer 1 ***ISSUED*** vc: 43381 	 mt index:  347
+ISSUER-  employer 1 ***ISSUED*** vc: 43382 	 mt index:  348
+ISSUER-  employer 1 ***ISSUED*** vc: 43383 	 mt index:  349
+ISSUER-  employer 1 ***ISSUED*** vc: 43384 	 mt index:  350
+ISSUER-  employer 1 ***ISSUED*** vc: 43385 	 mt index:  351
+ISSUER-  employer 1 ***ISSUED*** vc: 43386 	 mt index:  352
+ISSUER-  employer 1 ***ISSUED*** vc: 43387 	 mt index:  353
+ISSUER-  employer 1 ***ISSUED*** vc: 43388 	 mt index:  354
+ISSUER-  employer 1 ***ISSUED*** vc: 43389 	 mt index:  355
+ISSUER-  employer 1 ***ISSUED*** vc: 43390 	 mt index:  356
+ISSUER-  employer 1 ***ISSUED*** vc: 43391 	 mt index:  357
+ISSUER-  employer 1 ***ISSUED*** vc: 43392 	 mt index:  358
+ISSUER-  employer 1 ***ISSUED*** vc: 43393 	 mt index:  359
+ISSUER-  employer 1 ***ISSUED*** vc: 43394 	 mt index:  360
+ISSUER-  employer 1 ***ISSUED*** vc: 43395 	 mt index:  361
+ISSUER-  employer 1 ***ISSUED*** vc: 43396 	 mt index:  362
+ISSUER-  employer 1 ***ISSUED*** vc: 43397 	 mt index:  363
+ISSUER-  employer 1 ***ISSUED*** vc: 43398 	 mt index:  364
+ISSUER-  employer 1 ***ISSUED*** vc: 43399 	 mt index:  365
+ISSUER-  employer 1 ***ISSUED*** vc: 43400 	 mt index:  366
+ISSUER-  employer 1 ***ISSUED*** vc: 43401 	 mt index:  367
+ISSUER-  employer 1 ***ISSUED*** vc: 43402 	 mt index:  368
+ISSUER-  employer 1 ***ISSUED*** vc: 43403 	 mt index:  369
+ISSUER-  employer 1 ***ISSUED*** vc: 43404 	 mt index:  370
+ISSUER-  employer 1 ***ISSUED*** vc: 43405 	 mt index:  371
+ISSUER-  employer 1 ***ISSUED*** vc: 43406 	 mt index:  372
+ISSUER-  employer 1 ***ISSUED*** vc: 43407 	 mt index:  373
+ISSUER-  employer 1 ***ISSUED*** vc: 43408 	 mt index:  374
+ISSUER-  employer 1 ***ISSUED*** vc: 43409 	 mt index:  375
+ISSUER-  employer 1 ***ISSUED*** vc: 43410 	 mt index:  376
+ISSUER-  employer 1 ***ISSUED*** vc: 43411 	 mt index:  377
+ISSUER-  employer 1 ***ISSUED*** vc: 43412 	 mt index:  378
+ISSUER-  employer 1 ***ISSUED*** vc: 43413 	 mt index:  379
+ISSUER-  employer 1 ***ISSUED*** vc: 43414 	 mt index:  380
+ISSUER-  employer 1 ***ISSUED*** vc: 43415 	 mt index:  381
+ISSUER-  employer 1 ***ISSUED*** vc: 43416 	 mt index:  382
+ISSUER-  employer 1 ***ISSUED*** vc: 43417 	 mt index:  383
+ISSUER-  employer 1 ***ISSUED*** vc: 43418 	 mt index:  384
+ISSUER-  employer 1 ***ISSUED*** vc: 43419 	 mt index:  385
+ISSUER-  employer 1 ***ISSUED*** vc: 43420 	 mt index:  386
+ISSUER-  employer 1 ***ISSUED*** vc: 43421 	 mt index:  387
+ISSUER-  employer 1 ***ISSUED*** vc: 43422 	 mt index:  388
+ISSUER-  employer 1 ***ISSUED*** vc: 43423 	 mt index:  389
+ISSUER-  employer 1 ***ISSUED*** vc: 43424 	 mt index:  390
+ISSUER-  employer 1 ***ISSUED*** vc: 43425 	 mt index:  391
+ISSUER-  employer 1 ***ISSUED*** vc: 43426 	 mt index:  392
+ISSUER-  employer 1 ***ISSUED*** vc: 43427 	 mt index:  393
+ISSUER-  employer 1 ***ISSUED*** vc: 43428 	 mt index:  394
+ISSUER-  employer 1 ***ISSUED*** vc: 43429 	 mt index:  395
+ISSUER-  employer 1 ***ISSUED*** vc: 43430 	 mt index:  396
+ISSUER-  employer 1 ***ISSUED*** vc: 43431 	 mt index:  397
+ISSUER-  employer 1 ***ISSUED*** vc: 43432 	 mt index:  398
+ISSUER-  employer 1 ***ISSUED*** vc: 43433 	 mt index:  399
+ISSUER-  employer 1 ***ISSUED*** vc: 43434 	 mt index:  400
+ISSUER-  employer 1 ***ISSUED*** vc: 43435 	 mt index:  401
+ISSUER-  employer 1 ***ISSUED*** vc: 43436 	 mt index:  402
+ISSUER-  employer 1 ***ISSUED*** vc: 43437 	 mt index:  403
+ISSUER-  employer 1 ***ISSUED*** vc: 43438 	 mt index:  404
+ISSUER-  employer 1 ***ISSUED*** vc: 43439 	 mt index:  405
+ISSUER-  employer 1 ***ISSUED*** vc: 43440 	 mt index:  406
+ISSUER-  employer 1 ***ISSUED*** vc: 43441 	 mt index:  407
+ISSUER-  employer 1 ***ISSUED*** vc: 43442 	 mt index:  408
+ISSUER-  employer 1 ***ISSUED*** vc: 43443 	 mt index:  409
+ISSUER-  employer 1 ***ISSUED*** vc: 43444 	 mt index:  410
+ISSUER-  employer 1 ***ISSUED*** vc: 43445 	 mt index:  411
+ISSUER-  employer 1 ***ISSUED*** vc: 43446 	 mt index:  412
+ISSUER-  employer 1 ***ISSUED*** vc: 43447 	 mt index:  413
+ISSUER-  employer 1 ***ISSUED*** vc: 43448 	 mt index:  414
+ISSUER-  employer 1 ***ISSUED*** vc: 43449 	 mt index:  415
+ISSUER-  employer 1 ***ISSUED*** vc: 43450 	 mt index:  416
+ISSUER-  employer 1 ***ISSUED*** vc: 43451 	 mt index:  417
+ISSUER-  employer 1 ***ISSUED*** vc: 43452 	 mt index:  418
+ISSUER-  employer 1 ***ISSUED*** vc: 43453 	 mt index:  419
+ISSUER-  employer 1 ***ISSUED*** vc: 43454 	 mt index:  420
+ISSUER-  employer 1 ***ISSUED*** vc: 43455 	 mt index:  421
+ISSUER-  employer 1 ***ISSUED*** vc: 43456 	 mt index:  422
+ISSUER-  employer 1 ***ISSUED*** vc: 43457 	 mt index:  423
+ISSUER-  employer 1 ***ISSUED*** vc: 43458 	 mt index:  424
+ISSUER-  employer 1 ***ISSUED*** vc: 43459 	 mt index:  425
+ISSUER-  employer 1 ***ISSUED*** vc: 43460 	 mt index:  426
+ISSUER-  employer 1 ***ISSUED*** vc: 43461 	 mt index:  427
+ISSUER-  employer 1 ***ISSUED*** vc: 43462 	 mt index:  428
+ISSUER-  employer 1 ***ISSUED*** vc: 43463 	 mt index:  429
+ISSUER-  employer 1 ***ISSUED*** vc: 43464 	 mt index:  430
+ISSUER-  employer 1 ***ISSUED*** vc: 43465 	 mt index:  431
+ISSUER-  employer 1 ***ISSUED*** vc: 43466 	 mt index:  432
+ISSUER-  employer 1 ***ISSUED*** vc: 43467 	 mt index:  433
+ISSUER-  employer 1 ***ISSUED*** vc: 43468 	 mt index:  434
+ISSUER-  employer 1 ***ISSUED*** vc: 43469 	 mt index:  435
+ISSUER-  employer 1 ***ISSUED*** vc: 43470 	 mt index:  436
+ISSUER-  employer 1 ***ISSUED*** vc: 43471 	 mt index:  437
+ISSUER-  employer 1 ***ISSUED*** vc: 43472 	 mt index:  438
+ISSUER-  employer 1 ***ISSUED*** vc: 43473 	 mt index:  439
+ISSUER-  employer 1 ***ISSUED*** vc: 43474 	 mt index:  440
+ISSUER-  employer 1 ***ISSUED*** vc: 43475 	 mt index:  441
+ISSUER-  employer 1 ***ISSUED*** vc: 43476 	 mt index:  442
+ISSUER-  employer 1 ***ISSUED*** vc: 43477 	 mt index:  443
+ISSUER-  employer 1 ***ISSUED*** vc: 43478 	 mt index:  444
+ISSUER-  employer 1 ***ISSUED*** vc: 43479 	 mt index:  445
+ISSUER-  employer 1 ***ISSUED*** vc: 43480 	 mt index:  446
+ISSUER-  employer 1 ***ISSUED*** vc: 43481 	 mt index:  447
+ISSUER-  employer 1 ***ISSUED*** vc: 43482 	 mt index:  448
+ISSUER-  employer 1 ***ISSUED*** vc: 43483 	 mt index:  449
+ISSUER-  employer 1 ***ISSUED*** vc: 43484 	 mt index:  450
+ISSUER-  employer 1 ***ISSUED*** vc: 43485 	 mt index:  451
+ISSUER-  employer 1 ***ISSUED*** vc: 43486 	 mt index:  452
+ISSUER-  employer 1 ***ISSUED*** vc: 43487 	 mt index:  453
+ISSUER-  employer 1 ***ISSUED*** vc: 43488 	 mt index:  454
+ISSUER-  employer 1 ***ISSUED*** vc: 43489 	 mt index:  455
+ISSUER-  employer 1 ***ISSUED*** vc: 43490 	 mt index:  456
+ISSUER-  employer 1 ***ISSUED*** vc: 43491 	 mt index:  457
+ISSUER-  employer 1 ***ISSUED*** vc: 43492 	 mt index:  458
+ISSUER-  employer 1 ***ISSUED*** vc: 43493 	 mt index:  459
+ISSUER-  employer 1 ***ISSUED*** vc: 43494 	 mt index:  460
+ISSUER-  employer 1 ***ISSUED*** vc: 43495 	 mt index:  461
+ISSUER-  employer 1 ***ISSUED*** vc: 43496 	 mt index:  462
+ISSUER-  employer 1 ***ISSUED*** vc: 43497 	 mt index:  463
+ISSUER-  employer 1 ***ISSUED*** vc: 43498 	 mt index:  464
+ISSUER-  employer 1 ***ISSUED*** vc: 43499 	 mt index:  465
+ISSUER-  employer 1 ***ISSUED*** vc: 43500 	 mt index:  466
+ISSUER-  employer 1 ***ISSUED*** vc: 43501 	 mt index:  467
+ISSUER-  employer 1 ***ISSUED*** vc: 43502 	 mt index:  468
+ISSUER-  employer 1 ***ISSUED*** vc: 43503 	 mt index:  469
+ISSUER-  employer 1 ***ISSUED*** vc: 43504 	 mt index:  470
+ISSUER-  employer 1 ***ISSUED*** vc: 43505 	 mt index:  471
+ISSUER-  employer 1 ***ISSUED*** vc: 43506 	 mt index:  472
+ISSUER-  employer 1 ***ISSUED*** vc: 43507 	 mt index:  473
+ISSUER-  employer 1 ***ISSUED*** vc: 43508 	 mt index:  474
+ISSUER-  employer 1 ***ISSUED*** vc: 43509 	 mt index:  475
+ISSUER-  employer 1 ***ISSUED*** vc: 43510 	 mt index:  476
+ISSUER-  employer 1 ***ISSUED*** vc: 43511 	 mt index:  477
+ISSUER-  employer 1 ***ISSUED*** vc: 43512 	 mt index:  478
+ISSUER-  employer 1 ***ISSUED*** vc: 43513 	 mt index:  479
+ISSUER-  employer 1 ***ISSUED*** vc: 43514 	 mt index:  480
+ISSUER-  employer 1 ***ISSUED*** vc: 43515 	 mt index:  481
+ISSUER-  employer 1 ***ISSUED*** vc: 43516 	 mt index:  482
+ISSUER-  employer 1 ***ISSUED*** vc: 43517 	 mt index:  483
+ISSUER-  employer 1 ***ISSUED*** vc: 43518 	 mt index:  484
+ISSUER-  employer 1 ***ISSUED*** vc: 43519 	 mt index:  485
+ISSUER-  employer 1 ***ISSUED*** vc: 43520 	 mt index:  486
+ISSUER-  employer 1 ***ISSUED*** vc: 43521 	 mt index:  487
+ISSUER-  employer 1 ***ISSUED*** vc: 43522 	 mt index:  488
+ISSUER-  employer 1 ***ISSUED*** vc: 43523 	 mt index:  489
+ISSUER-  employer 1 ***ISSUED*** vc: 43524 	 mt index:  490
+ISSUER-  employer 1 ***ISSUED*** vc: 43525 	 mt index:  491
+ISSUER-  employer 1 ***ISSUED*** vc: 43526 	 mt index:  492
+ISSUER-  employer 1 ***ISSUED*** vc: 43527 	 mt index:  493
+ISSUER-  employer 1 ***ISSUED*** vc: 43528 	 mt index:  494
+ISSUER-  employer 1 ***ISSUED*** vc: 43529 	 mt index:  495
+ISSUER-  employer 1 ***ISSUED*** vc: 43530 	 mt index:  496
+ISSUER-  employer 1 ***ISSUED*** vc: 43531 	 mt index:  497
+ISSUER-  employer 1 ***ISSUED*** vc: 43532 	 mt index:  498
+ISSUER-  employer 1 ***ISSUED*** vc: 43533 	 mt index:  499
+ISSUER-  employer 1 ***ISSUED*** vc: 43534 	 mt index:  500
+ISSUER-  employer 1 ***ISSUED*** vc: 43535 	 mt index:  501
+ISSUER-  employer 1 ***ISSUED*** vc: 43536 	 mt index:  502
+ISSUER-  employer 1 ***ISSUED*** vc: 43537 	 mt index:  503
+ISSUER-  employer 1 ***ISSUED*** vc: 43538 	 mt index:  504
+ISSUER-  employer 1 ***ISSUED*** vc: 43539 	 mt index:  505
+ISSUER-  employer 1 ***ISSUED*** vc: 43540 	 mt index:  506
+ISSUER-  employer 1 ***ISSUED*** vc: 43541 	 mt index:  507
+ISSUER-  employer 1 ***ISSUED*** vc: 43542 	 mt index:  508
+ISSUER-  employer 1 ***ISSUED*** vc: 43543 	 mt index:  509
+ISSUER-  employer 1 ***ISSUED*** vc: 43544 	 mt index:  510
+ISSUER-  employer 1 ***ISSUED*** vc: 43545 	 mt index:  511
+ISSUER-  employer 1 ***ISSUED*** vc: 43546 	 mt index:  512
+ISSUER-  employer 1 ***ISSUED*** vc: 43547 	 mt index:  513
+ISSUER-  employer 1 ***ISSUED*** vc: 43548 	 mt index:  514
+ISSUER-  employer 1 ***ISSUED*** vc: 43549 	 mt index:  515
+ISSUER-  employer 1 ***ISSUED*** vc: 43550 	 mt index:  516
+ISSUER-  employer 1 ***ISSUED*** vc: 43551 	 mt index:  517
+ISSUER-  employer 1 ***ISSUED*** vc: 43552 	 mt index:  518
+ISSUER-  employer 1 ***ISSUED*** vc: 43553 	 mt index:  519
+ISSUER-  employer 1 ***ISSUED*** vc: 43554 	 mt index:  520
+ISSUER-  employer 1 ***ISSUED*** vc: 43555 	 mt index:  521
+ISSUER-  employer 1 ***ISSUED*** vc: 43556 	 mt index:  522
+ISSUER-  employer 1 ***ISSUED*** vc: 43557 	 mt index:  523
+ISSUER-  employer 1 ***ISSUED*** vc: 43558 	 mt index:  524
+ISSUER-  employer 1 ***ISSUED*** vc: 43559 	 mt index:  525
+ISSUER-  employer 1 ***ISSUED*** vc: 43560 	 mt index:  526
+ISSUER-  employer 1 ***ISSUED*** vc: 43561 	 mt index:  527
+ISSUER-  employer 1 ***ISSUED*** vc: 43562 	 mt index:  528
+ISSUER-  employer 1 ***ISSUED*** vc: 43563 	 mt index:  529
+ISSUER-  employer 1 ***ISSUED*** vc: 43564 	 mt index:  530
+ISSUER-  employer 1 ***ISSUED*** vc: 43565 	 mt index:  531
+ISSUER-  employer 1 ***ISSUED*** vc: 43566 	 mt index:  532
+ISSUER-  employer 1 ***ISSUED*** vc: 43567 	 mt index:  533
+ISSUER-  employer 1 ***ISSUED*** vc: 43568 	 mt index:  534
+ISSUER-  employer 1 ***ISSUED*** vc: 43569 	 mt index:  535
+ISSUER-  employer 1 ***ISSUED*** vc: 43570 	 mt index:  536
+ISSUER-  employer 1 ***ISSUED*** vc: 43571 	 mt index:  537
+ISSUER-  employer 1 ***ISSUED*** vc: 43572 	 mt index:  538
+ISSUER-  employer 1 ***ISSUED*** vc: 43573 	 mt index:  539
+ISSUER-  employer 1 ***ISSUED*** vc: 43574 	 mt index:  540
+ISSUER-  employer 1 ***ISSUED*** vc: 43575 	 mt index:  541
+ISSUER-  employer 1 ***ISSUED*** vc: 43576 	 mt index:  542
+ISSUER-  employer 1 ***ISSUED*** vc: 43577 	 mt index:  543
+ISSUER-  employer 1 ***ISSUED*** vc: 43578 	 mt index:  544
+ISSUER-  employer 1 ***ISSUED*** vc: 43579 	 mt index:  545
+ISSUER-  employer 1 ***ISSUED*** vc: 43580 	 mt index:  546
+ISSUER-  employer 1 ***ISSUED*** vc: 43581 	 mt index:  547
+ISSUER-  employer 1 ***ISSUED*** vc: 43582 	 mt index:  548
+ISSUER-  employer 1 ***ISSUED*** vc: 43583 	 mt index:  549
+ISSUER-  employer 1 ***ISSUED*** vc: 43584 	 mt index:  550
+ISSUER-  employer 1 ***ISSUED*** vc: 43585 	 mt index:  551
+ISSUER-  employer 1 ***ISSUED*** vc: 43586 	 mt index:  552
+ISSUER-  employer 1 ***ISSUED*** vc: 43587 	 mt index:  553
+ISSUER-  employer 1 ***ISSUED*** vc: 43588 	 mt index:  554
+ISSUER-  employer 1 ***ISSUED*** vc: 43589 	 mt index:  555
+ISSUER-  employer 1 ***ISSUED*** vc: 43590 	 mt index:  556
+ISSUER-  employer 1 ***ISSUED*** vc: 43591 	 mt index:  557
+ISSUER-  employer 1 ***ISSUED*** vc: 43592 	 mt index:  558
+ISSUER-  employer 1 ***ISSUED*** vc: 43593 	 mt index:  559
+ISSUER-  employer 1 ***ISSUED*** vc: 43594 	 mt index:  560
+ISSUER-  employer 1 ***ISSUED*** vc: 43595 	 mt index:  561
+ISSUER-  employer 1 ***ISSUED*** vc: 43596 	 mt index:  562
+ISSUER-  employer 1 ***ISSUED*** vc: 43597 	 mt index:  563
+ISSUER-  employer 1 ***ISSUED*** vc: 43598 	 mt index:  564
+ISSUER-  employer 1 ***ISSUED*** vc: 43599 	 mt index:  565
+ISSUER-  employer 1 ***ISSUED*** vc: 43600 	 mt index:  566
+ISSUER-  employer 1 ***ISSUED*** vc: 43601 	 mt index:  567
+ISSUER-  employer 1 ***ISSUED*** vc: 43602 	 mt index:  568
+ISSUER-  employer 1 ***ISSUED*** vc: 43603 	 mt index:  569
+ISSUER-  employer 1 ***ISSUED*** vc: 43604 	 mt index:  570
+ISSUER-  employer 1 ***ISSUED*** vc: 43605 	 mt index:  571
+ISSUER-  employer 1 ***ISSUED*** vc: 43606 	 mt index:  572
+ISSUER-  employer 1 ***ISSUED*** vc: 43607 	 mt index:  573
+ISSUER-  employer 1 ***ISSUED*** vc: 43608 	 mt index:  574
+ISSUER-  employer 1 ***ISSUED*** vc: 43609 	 mt index:  575
+ISSUER-  employer 1 ***ISSUED*** vc: 43610 	 mt index:  576
+ISSUER-  employer 1 ***ISSUED*** vc: 43611 	 mt index:  577
+ISSUER-  employer 1 ***ISSUED*** vc: 43612 	 mt index:  578
+ISSUER-  employer 1 ***ISSUED*** vc: 43613 	 mt index:  579
+ISSUER-  employer 1 ***ISSUED*** vc: 43614 	 mt index:  580
+ISSUER-  employer 1 ***ISSUED*** vc: 43615 	 mt index:  581
+ISSUER-  employer 1 ***ISSUED*** vc: 43616 	 mt index:  582
+ISSUER-  employer 1 ***ISSUED*** vc: 43617 	 mt index:  583
+ISSUER-  employer 1 ***ISSUED*** vc: 43618 	 mt index:  584
+ISSUER-  employer 1 ***ISSUED*** vc: 43619 	 mt index:  585
+ISSUER-  employer 1 ***ISSUED*** vc: 43620 	 mt index:  586
+ISSUER-  employer 1 ***ISSUED*** vc: 43621 	 mt index:  587
+ISSUER-  employer 1 ***ISSUED*** vc: 43622 	 mt index:  588
+ISSUER-  employer 1 ***ISSUED*** vc: 43623 	 mt index:  589
+ISSUER-  employer 1 ***ISSUED*** vc: 43624 	 mt index:  590
+ISSUER-  employer 1 ***ISSUED*** vc: 43625 	 mt index:  591
+ISSUER-  employer 1 ***ISSUED*** vc: 43626 	 mt index:  592
+ISSUER-  employer 1 ***ISSUED*** vc: 43627 	 mt index:  593
+ISSUER-  employer 1 ***ISSUED*** vc: 43628 	 mt index:  594
+ISSUER-  employer 1 ***ISSUED*** vc: 43629 	 mt index:  595
+ISSUER-  employer 1 ***ISSUED*** vc: 43630 	 mt index:  596
+ISSUER-  employer 1 ***ISSUED*** vc: 43631 	 mt index:  597
+ISSUER-  employer 1 ***ISSUED*** vc: 43632 	 mt index:  598
+ISSUER-  employer 1 ***ISSUED*** vc: 43633 	 mt index:  599
+ISSUER-  employer 1 ***ISSUED*** vc: 43634 	 mt index:  600
+ISSUER-  employer 1 ***ISSUED*** vc: 43635 	 mt index:  601
+ISSUER-  employer 1 ***ISSUED*** vc: 43636 	 mt index:  602
+ISSUER-  employer 1 ***ISSUED*** vc: 43637 	 mt index:  603
+ISSUER-  employer 1 ***ISSUED*** vc: 43638 	 mt index:  604
+ISSUER-  employer 1 ***ISSUED*** vc: 43639 	 mt index:  605
+ISSUER-  employer 1 ***ISSUED*** vc: 43640 	 mt index:  606
+ISSUER-  employer 1 ***ISSUED*** vc: 43641 	 mt index:  607
+ISSUER-  employer 1 ***ISSUED*** vc: 43642 	 mt index:  608
+ISSUER-  employer 1 ***ISSUED*** vc: 43643 	 mt index:  609
+ISSUER-  employer 1 ***ISSUED*** vc: 43644 	 mt index:  610
+ISSUER-  employer 1 ***ISSUED*** vc: 43645 	 mt index:  611
+ISSUER-  employer 1 ***ISSUED*** vc: 43646 	 mt index:  612
+ISSUER-  employer 1 ***ISSUED*** vc: 43647 	 mt index:  613
+ISSUER-  employer 1 ***ISSUED*** vc: 43648 	 mt index:  614
+ISSUER-  employer 1 ***ISSUED*** vc: 43649 	 mt index:  615
+ISSUER-  employer 1 ***ISSUED*** vc: 43650 	 mt index:  616
+ISSUER-  employer 1 ***ISSUED*** vc: 43651 	 mt index:  617
+ISSUER-  employer 1 ***ISSUED*** vc: 43652 	 mt index:  618
+ISSUER-  employer 1 ***ISSUED*** vc: 43653 	 mt index:  619
+ISSUER-  employer 1 ***ISSUED*** vc: 43654 	 mt index:  620
+ISSUER-  employer 1 ***ISSUED*** vc: 43655 	 mt index:  621
+ISSUER-  employer 1 ***ISSUED*** vc: 43656 	 mt index:  622
+ISSUER-  employer 1 ***ISSUED*** vc: 43657 	 mt index:  623
+ISSUER-  employer 1 ***ISSUED*** vc: 43658 	 mt index:  624
+ISSUER-  employer 1 ***ISSUED*** vc: 43659 	 mt index:  625
+ISSUER-  employer 1 ***ISSUED*** vc: 43660 	 mt index:  626
+ISSUER-  employer 1 ***ISSUED*** vc: 43661 	 mt index:  627
+ISSUER-  employer 1 ***ISSUED*** vc: 43662 	 mt index:  628
+ISSUER-  employer 1 ***ISSUED*** vc: 43663 	 mt index:  629
+ISSUER-  employer 1 ***ISSUED*** vc: 43664 	 mt index:  630
+ISSUER-  employer 1 ***ISSUED*** vc: 43665 	 mt index:  631
+ISSUER-  employer 1 ***ISSUED*** vc: 43666 	 mt index:  632
+ISSUER-  employer 1 ***ISSUED*** vc: 43667 	 mt index:  633
+ISSUER-  employer 1 ***ISSUED*** vc: 43668 	 mt index:  634
+ISSUER-  employer 1 ***ISSUED*** vc: 43669 	 mt index:  635
+ISSUER-  employer 1 ***ISSUED*** vc: 43670 	 mt index:  636
+ISSUER-  employer 1 ***ISSUED*** vc: 43671 	 mt index:  637
+ISSUER-  employer 1 ***ISSUED*** vc: 43672 	 mt index:  638
+ISSUER-  employer 1 ***ISSUED*** vc: 43673 	 mt index:  639
+ISSUER-  employer 1 ***ISSUED*** vc: 43674 	 mt index:  640
+ISSUER-  employer 1 ***ISSUED*** vc: 43675 	 mt index:  641
+ISSUER-  employer 1 ***ISSUED*** vc: 43676 	 mt index:  642
+ISSUER-  employer 1 ***ISSUED*** vc: 43677 	 mt index:  643
+ISSUER-  employer 1 ***ISSUED*** vc: 43678 	 mt index:  644
+ISSUER-  employer 1 ***ISSUED*** vc: 43679 	 mt index:  645
+ISSUER-  employer 1 ***ISSUED*** vc: 43680 	 mt index:  646
+ISSUER-  employer 1 ***ISSUED*** vc: 43681 	 mt index:  647
+ISSUER-  employer 1 ***ISSUED*** vc: 43682 	 mt index:  648
+ISSUER-  employer 1 ***ISSUED*** vc: 43683 	 mt index:  649
+ISSUER-  employer 1 ***ISSUED*** vc: 43684 	 mt index:  650
+ISSUER-  employer 1 ***ISSUED*** vc: 43685 	 mt index:  651
+ISSUER-  employer 1 ***ISSUED*** vc: 43686 	 mt index:  652
+ISSUER-  employer 1 ***ISSUED*** vc: 43687 	 mt index:  653
+ISSUER-  employer 1 ***ISSUED*** vc: 43688 	 mt index:  654
+ISSUER-  employer 1 ***ISSUED*** vc: 43689 	 mt index:  655
+ISSUER-  employer 1 ***ISSUED*** vc: 43690 	 mt index:  656
+ISSUER-  employer 1 ***ISSUED*** vc: 43691 	 mt index:  657
+ISSUER-  employer 1 ***ISSUED*** vc: 43692 	 mt index:  658
+ISSUER-  employer 1 ***ISSUED*** vc: 43693 	 mt index:  659
+ISSUER-  employer 1 ***ISSUED*** vc: 43694 	 mt index:  660
+ISSUER-  employer 1 ***ISSUED*** vc: 43695 	 mt index:  661
+ISSUER-  employer 1 ***ISSUED*** vc: 43696 	 mt index:  662
+ISSUER-  employer 1 ***ISSUED*** vc: 43697 	 mt index:  663
+ISSUER-  employer 1 ***ISSUED*** vc: 43698 	 mt index:  664
+ISSUER-  employer 1 ***ISSUED*** vc: 43699 	 mt index:  665
+ISSUER-  employer 1 ***ISSUED*** vc: 43700 	 mt index:  666
+ISSUER-  employer 1 ***ISSUED*** vc: 43701 	 mt index:  667
+ISSUER-  employer 1 ***ISSUED*** vc: 43702 	 mt index:  668
+ISSUER-  employer 1 ***ISSUED*** vc: 43703 	 mt index:  669
+ISSUER-  employer 1 ***ISSUED*** vc: 43704 	 mt index:  670
+ISSUER-  employer 1 ***ISSUED*** vc: 43705 	 mt index:  671
+ISSUER-  employer 1 ***ISSUED*** vc: 43706 	 mt index:  672
+ISSUER-  employer 1 ***ISSUED*** vc: 43707 	 mt index:  673
+ISSUER-  employer 1 ***ISSUED*** vc: 43708 	 mt index:  674
+ISSUER-  employer 1 ***ISSUED*** vc: 43709 	 mt index:  675
+ISSUER-  employer 1 ***ISSUED*** vc: 43710 	 mt index:  676
+ISSUER-  employer 1 ***ISSUED*** vc: 43711 	 mt index:  677
+ISSUER-  employer 1 ***ISSUED*** vc: 43712 	 mt index:  678
+ISSUER-  employer 1 ***ISSUED*** vc: 43713 	 mt index:  679
+ISSUER-  employer 1 ***ISSUED*** vc: 43714 	 mt index:  680
+ISSUER-  employer 1 ***ISSUED*** vc: 43715 	 mt index:  681
+ISSUER-  employer 1 ***ISSUED*** vc: 43716 	 mt index:  682
+ISSUER-  employer 1 ***ISSUED*** vc: 43717 	 mt index:  683
+ISSUER-  employer 1 ***ISSUED*** vc: 43718 	 mt index:  684
+ISSUER-  employer 1 ***ISSUED*** vc: 43719 	 mt index:  685
+ISSUER-  employer 1 ***ISSUED*** vc: 43720 	 mt index:  686
+ISSUER-  employer 1 ***ISSUED*** vc: 43721 	 mt index:  687
+ISSUER-  employer 1 ***ISSUED*** vc: 43722 	 mt index:  688
+ISSUER-  employer 1 ***ISSUED*** vc: 43723 	 mt index:  689
+ISSUER-  employer 1 ***ISSUED*** vc: 43724 	 mt index:  690
+ISSUER-  employer 1 ***ISSUED*** vc: 43725 	 mt index:  691
+ISSUER-  employer 1 ***ISSUED*** vc: 43726 	 mt index:  692
+ISSUER-  employer 1 ***ISSUED*** vc: 43727 	 mt index:  693
+ISSUER-  employer 1 ***ISSUED*** vc: 43728 	 mt index:  694
+ISSUER-  employer 1 ***ISSUED*** vc: 43729 	 mt index:  695
+ISSUER-  employer 1 ***ISSUED*** vc: 43730 	 mt index:  696
+ISSUER-  employer 1 ***ISSUED*** vc: 43731 	 mt index:  697
+ISSUER-  employer 1 ***ISSUED*** vc: 43732 	 mt index:  698
+ISSUER-  employer 1 ***ISSUED*** vc: 43733 	 mt index:  699
+ISSUER-  employer 1 ***ISSUED*** vc: 43734 	 mt index:  700
+ISSUER-  employer 1 ***ISSUED*** vc: 43735 	 mt index:  701
+ISSUER-  employer 1 ***ISSUED*** vc: 43736 	 mt index:  702
+ISSUER-  employer 1 ***ISSUED*** vc: 43737 	 mt index:  703
+ISSUER-  employer 1 ***ISSUED*** vc: 43738 	 mt index:  704
+ISSUER-  employer 1 ***ISSUED*** vc: 43739 	 mt index:  705
+ISSUER-  employer 1 ***ISSUED*** vc: 43740 	 mt index:  706
+ISSUER-  employer 1 ***ISSUED*** vc: 43741 	 mt index:  707
+ISSUER-  employer 1 ***ISSUED*** vc: 43742 	 mt index:  708
+ISSUER-  employer 1 ***ISSUED*** vc: 43743 	 mt index:  709
+ISSUER-  employer 1 ***ISSUED*** vc: 43744 	 mt index:  710
+ISSUER-  employer 1 ***ISSUED*** vc: 43745 	 mt index:  711
+ISSUER-  employer 1 ***ISSUED*** vc: 43746 	 mt index:  712
+ISSUER-  employer 1 ***ISSUED*** vc: 43747 	 mt index:  713
+ISSUER-  employer 1 ***ISSUED*** vc: 43748 	 mt index:  714
+ISSUER-  employer 1 ***ISSUED*** vc: 43749 	 mt index:  715
+ISSUER-  employer 1 ***ISSUED*** vc: 43750 	 mt index:  716
+ISSUER-  employer 1 ***ISSUED*** vc: 43751 	 mt index:  717
+ISSUER-  employer 1 ***ISSUED*** vc: 43752 	 mt index:  718
+ISSUER-  employer 1 ***ISSUED*** vc: 43753 	 mt index:  719
+ISSUER-  employer 1 ***ISSUED*** vc: 43754 	 mt index:  720
+ISSUER-  employer 1 ***ISSUED*** vc: 43755 	 mt index:  721
+ISSUER-  employer 1 ***ISSUED*** vc: 43756 	 mt index:  722
+ISSUER-  employer 1 ***ISSUED*** vc: 43757 	 mt index:  723
+ISSUER-  employer 1 ***ISSUED*** vc: 43758 	 mt index:  724
+ISSUER-  employer 1 ***ISSUED*** vc: 43759 	 mt index:  725
+ISSUER-  employer 1 ***ISSUED*** vc: 43760 	 mt index:  726
+ISSUER-  employer 1 ***ISSUED*** vc: 43761 	 mt index:  727
+ISSUER-  employer 1 ***ISSUED*** vc: 43762 	 mt index:  728
+ISSUER-  employer 1 ***ISSUED*** vc: 43763 	 mt index:  729
+ISSUER-  employer 1 ***ISSUED*** vc: 43764 	 mt index:  730
+ISSUER-  employer 1 ***ISSUED*** vc: 43765 	 mt index:  731
+ISSUER-  employer 1 ***ISSUED*** vc: 43766 	 mt index:  732
+ISSUER-  employer 1 ***ISSUED*** vc: 43767 	 mt index:  733
+ISSUER-  employer 1 ***ISSUED*** vc: 43768 	 mt index:  734
+ISSUER-  employer 1 ***ISSUED*** vc: 43769 	 mt index:  735
+ISSUER-  employer 1 ***ISSUED*** vc: 43770 	 mt index:  736
+ISSUER-  employer 1 ***ISSUED*** vc: 43771 	 mt index:  737
+ISSUER-  employer 1 ***ISSUED*** vc: 43772 	 mt index:  738
+ISSUER-  employer 1 ***ISSUED*** vc: 43773 	 mt index:  739
+ISSUER-  employer 1 ***ISSUED*** vc: 43774 	 mt index:  740
+ISSUER-  employer 1 ***ISSUED*** vc: 43775 	 mt index:  741
+ISSUER-  employer 1 ***ISSUED*** vc: 43776 	 mt index:  742
+ISSUER-  employer 1 ***ISSUED*** vc: 43777 	 mt index:  743
+ISSUER-  employer 1 ***ISSUED*** vc: 43778 	 mt index:  744
+ISSUER-  employer 1 ***ISSUED*** vc: 43779 	 mt index:  745
+ISSUER-  employer 1 ***ISSUED*** vc: 43780 	 mt index:  746
+ISSUER-  employer 1 ***ISSUED*** vc: 43781 	 mt index:  747
+ISSUER-  employer 1 ***ISSUED*** vc: 43782 	 mt index:  748
+ISSUER-  employer 1 ***ISSUED*** vc: 43783 	 mt index:  749
+ISSUER-  employer 1 ***ISSUED*** vc: 43784 	 mt index:  750
+ISSUER-  employer 1 ***ISSUED*** vc: 43785 	 mt index:  751
+ISSUER-  employer 1 ***ISSUED*** vc: 43786 	 mt index:  752
+ISSUER-  employer 1 ***ISSUED*** vc: 43787 	 mt index:  753
+ISSUER-  employer 1 ***ISSUED*** vc: 43788 	 mt index:  754
+ISSUER-  employer 1 ***ISSUED*** vc: 43789 	 mt index:  755
+ISSUER-  employer 1 ***ISSUED*** vc: 43790 	 mt index:  756
+ISSUER-  employer 1 ***ISSUED*** vc: 43791 	 mt index:  757
+ISSUER-  employer 1 ***ISSUED*** vc: 43792 	 mt index:  758
+ISSUER-  employer 1 ***ISSUED*** vc: 43793 	 mt index:  759
+ISSUER-  employer 1 ***ISSUED*** vc: 43794 	 mt index:  760
+ISSUER-  employer 1 ***ISSUED*** vc: 43795 	 mt index:  761
+ISSUER-  employer 1 ***ISSUED*** vc: 43796 	 mt index:  762
+ISSUER-  employer 1 ***ISSUED*** vc: 43797 	 mt index:  763
+ISSUER-  employer 1 ***ISSUED*** vc: 43798 	 mt index:  764
+ISSUER-  employer 1 ***ISSUED*** vc: 43799 	 mt index:  765
+ISSUER-  employer 1 ***ISSUED*** vc: 43800 	 mt index:  766
+ISSUER-  employer 1 ***ISSUED*** vc: 43801 	 mt index:  767
+ISSUER-  employer 1 ***ISSUED*** vc: 43802 	 mt index:  768
+ISSUER-  employer 1 ***ISSUED*** vc: 43803 	 mt index:  769
+ISSUER-  employer 1 ***ISSUED*** vc: 43804 	 mt index:  770
+ISSUER-  employer 1 ***ISSUED*** vc: 43805 	 mt index:  771
+ISSUER-  employer 1 ***ISSUED*** vc: 43806 	 mt index:  772
+ISSUER-  employer 1 ***ISSUED*** vc: 43807 	 mt index:  773
+ISSUER-  employer 1 ***ISSUED*** vc: 43808 	 mt index:  774
+ISSUER-  employer 1 ***ISSUED*** vc: 43809 	 mt index:  775
+ISSUER-  employer 1 ***ISSUED*** vc: 43810 	 mt index:  776
+ISSUER-  employer 1 ***ISSUED*** vc: 43811 	 mt index:  777
+ISSUER-  employer 1 ***ISSUED*** vc: 43812 	 mt index:  778
+ISSUER-  employer 1 ***ISSUED*** vc: 43813 	 mt index:  779
+ISSUER-  employer 1 ***ISSUED*** vc: 43814 	 mt index:  780
+ISSUER-  employer 1 ***ISSUED*** vc: 43815 	 mt index:  781
+ISSUER-  employer 1 ***ISSUED*** vc: 43816 	 mt index:  782
+ISSUER-  employer 1 ***ISSUED*** vc: 43817 	 mt index:  783
+ISSUER-  employer 1 ***ISSUED*** vc: 43818 	 mt index:  784
+ISSUER-  employer 1 ***ISSUED*** vc: 43819 	 mt index:  785
+ISSUER-  employer 1 ***ISSUED*** vc: 43820 	 mt index:  786
+ISSUER-  employer 1 ***ISSUED*** vc: 43821 	 mt index:  787
+ISSUER-  employer 1 ***ISSUED*** vc: 43822 	 mt index:  788
+ISSUER-  employer 1 ***ISSUED*** vc: 43823 	 mt index:  789
+ISSUER-  employer 1 ***ISSUED*** vc: 43824 	 mt index:  790
+ISSUER-  employer 1 ***ISSUED*** vc: 43825 	 mt index:  791
+ISSUER-  employer 1 ***ISSUED*** vc: 43826 	 mt index:  792
+ISSUER-  employer 1 ***ISSUED*** vc: 43827 	 mt index:  793
+ISSUER-  employer 1 ***ISSUED*** vc: 43828 	 mt index:  794
+ISSUER-  employer 1 ***ISSUED*** vc: 43829 	 mt index:  795
+ISSUER-  employer 1 ***ISSUED*** vc: 43830 	 mt index:  796
+ISSUER-  employer 1 ***ISSUED*** vc: 43831 	 mt index:  797
+ISSUER-  employer 1 ***ISSUED*** vc: 43832 	 mt index:  798
+ISSUER-  employer 1 ***ISSUED*** vc: 43833 	 mt index:  799
+ISSUER-  employer 1 ***ISSUED*** vc: 43834 	 mt index:  800
+ISSUER-  employer 1 ***ISSUED*** vc: 43835 	 mt index:  801
+ISSUER-  employer 1 ***ISSUED*** vc: 43836 	 mt index:  802
+ISSUER-  employer 1 ***ISSUED*** vc: 43837 	 mt index:  803
+ISSUER-  employer 1 ***ISSUED*** vc: 43838 	 mt index:  804
+ISSUER-  employer 1 ***ISSUED*** vc: 43839 	 mt index:  805
+ISSUER-  employer 1 ***ISSUED*** vc: 43840 	 mt index:  806
+ISSUER-  employer 1 ***ISSUED*** vc: 43841 	 mt index:  807
+ISSUER-  employer 1 ***ISSUED*** vc: 43842 	 mt index:  808
+ISSUER-  employer 1 ***ISSUED*** vc: 43843 	 mt index:  809
+ISSUER-  employer 1 ***ISSUED*** vc: 43844 	 mt index:  810
+ISSUER-  employer 1 ***ISSUED*** vc: 43845 	 mt index:  811
+ISSUER-  employer 1 ***ISSUED*** vc: 43846 	 mt index:  812
+ISSUER-  employer 1 ***ISSUED*** vc: 43847 	 mt index:  813
+ISSUER-  employer 1 ***ISSUED*** vc: 43848 	 mt index:  814
+ISSUER-  employer 1 ***ISSUED*** vc: 43849 	 mt index:  815
+ISSUER-  employer 1 ***ISSUED*** vc: 43850 	 mt index:  816
+ISSUER-  employer 1 ***ISSUED*** vc: 43851 	 mt index:  817
+ISSUER-  employer 1 ***ISSUED*** vc: 43852 	 mt index:  818
+ISSUER-  employer 1 ***ISSUED*** vc: 43853 	 mt index:  819
+ISSUER-  employer 1 ***ISSUED*** vc: 43854 	 mt index:  820
+ISSUER-  employer 1 ***ISSUED*** vc: 43855 	 mt index:  821
+ISSUER-  employer 1 ***ISSUED*** vc: 43856 	 mt index:  822
+ISSUER-  employer 1 ***ISSUED*** vc: 43857 	 mt index:  823
+ISSUER-  employer 1 ***ISSUED*** vc: 43858 	 mt index:  824
+ISSUER-  employer 1 ***ISSUED*** vc: 43859 	 mt index:  825
+ISSUER-  employer 1 ***ISSUED*** vc: 43860 	 mt index:  826
+ISSUER-  employer 1 ***ISSUED*** vc: 43861 	 mt index:  827
+ISSUER-  employer 1 ***ISSUED*** vc: 43862 	 mt index:  828
+ISSUER-  employer 1 ***ISSUED*** vc: 43863 	 mt index:  829
+ISSUER-  employer 1 ***ISSUED*** vc: 43864 	 mt index:  830
+ISSUER-  employer 1 ***ISSUED*** vc: 43865 	 mt index:  831
+ISSUER-  employer 1 ***ISSUED*** vc: 43866 	 mt index:  832
+ISSUER-  employer 1 ***ISSUED*** vc: 43867 	 mt index:  833
+ISSUER-  employer 1 ***ISSUED*** vc: 43868 	 mt index:  834
+ISSUER-  employer 1 ***ISSUED*** vc: 43869 	 mt index:  835
+ISSUER-  employer 1 ***ISSUED*** vc: 43870 	 mt index:  836
+ISSUER-  employer 1 ***ISSUED*** vc: 43871 	 mt index:  837
+ISSUER-  employer 1 ***ISSUED*** vc: 43872 	 mt index:  838
+ISSUER-  employer 1 ***ISSUED*** vc: 43873 	 mt index:  839
+ISSUER-  employer 1 ***ISSUED*** vc: 43874 	 mt index:  840
+ISSUER-  employer 1 ***ISSUED*** vc: 43875 	 mt index:  841
+ISSUER-  employer 1 ***ISSUED*** vc: 43876 	 mt index:  842
+ISSUER-  employer 1 ***ISSUED*** vc: 43877 	 mt index:  843
+ISSUER-  employer 1 ***ISSUED*** vc: 43878 	 mt index:  844
+ISSUER-  employer 1 ***ISSUED*** vc: 43879 	 mt index:  845
+ISSUER-  employer 1 ***ISSUED*** vc: 43880 	 mt index:  846
+ISSUER-  employer 1 ***ISSUED*** vc: 43881 	 mt index:  847
+ISSUER-  employer 1 ***ISSUED*** vc: 43882 	 mt index:  848
+ISSUER-  employer 1 ***ISSUED*** vc: 43883 	 mt index:  849
+ISSUER-  employer 1 ***ISSUED*** vc: 43884 	 mt index:  850
+ISSUER-  employer 1 ***ISSUED*** vc: 43885 	 mt index:  851
+ISSUER-  employer 1 ***ISSUED*** vc: 43886 	 mt index:  852
+ISSUER-  employer 1 ***ISSUED*** vc: 43887 	 mt index:  853
+ISSUER-  employer 1 ***ISSUED*** vc: 43888 	 mt index:  854
+ISSUER-  employer 1 ***ISSUED*** vc: 43889 	 mt index:  855
+ISSUER-  employer 1 ***ISSUED*** vc: 43890 	 mt index:  856
+ISSUER-  employer 1 ***ISSUED*** vc: 43891 	 mt index:  857
+ISSUER-  employer 1 ***ISSUED*** vc: 43892 	 mt index:  858
+ISSUER-  employer 1 ***ISSUED*** vc: 43893 	 mt index:  859
+ISSUER-  employer 1 ***ISSUED*** vc: 43894 	 mt index:  860
+ISSUER-  employer 1 ***ISSUED*** vc: 43895 	 mt index:  861
+ISSUER-  employer 1 ***ISSUED*** vc: 43896 	 mt index:  862
+ISSUER-  employer 1 ***ISSUED*** vc: 43897 	 mt index:  863
+ISSUER-  employer 1 ***ISSUED*** vc: 43898 	 mt index:  864
+ISSUER-  employer 1 ***ISSUED*** vc: 43899 	 mt index:  865
+ISSUER-  employer 1 ***ISSUED*** vc: 43900 	 mt index:  866
+ISSUER-  employer 1 ***ISSUED*** vc: 43901 	 mt index:  867
+ISSUER-  employer 1 ***ISSUED*** vc: 43902 	 mt index:  868
+ISSUER-  employer 1 ***ISSUED*** vc: 43903 	 mt index:  869
+ISSUER-  employer 1 ***ISSUED*** vc: 43904 	 mt index:  870
+ISSUER-  employer 1 ***ISSUED*** vc: 43905 	 mt index:  871
+ISSUER-  employer 1 ***ISSUED*** vc: 43906 	 mt index:  872
+ISSUER-  employer 1 ***ISSUED*** vc: 43907 	 mt index:  873
+ISSUER-  employer 1 ***ISSUED*** vc: 43908 	 mt index:  874
+ISSUER-  employer 1 ***ISSUED*** vc: 43909 	 mt index:  875
+ISSUER-  employer 1 ***ISSUED*** vc: 43910 	 mt index:  876
+ISSUER-  employer 1 ***ISSUED*** vc: 43911 	 mt index:  877
+ISSUER-  employer 1 ***ISSUED*** vc: 43912 	 mt index:  878
+ISSUER-  employer 1 ***ISSUED*** vc: 43913 	 mt index:  879
+ISSUER-  employer 1 ***ISSUED*** vc: 43914 	 mt index:  880
+ISSUER-  employer 1 ***ISSUED*** vc: 43915 	 mt index:  881
+ISSUER-  employer 1 ***ISSUED*** vc: 43916 	 mt index:  882
+ISSUER-  employer 1 ***ISSUED*** vc: 43917 	 mt index:  883
+ISSUER-  employer 1 ***ISSUED*** vc: 43918 	 mt index:  884
+ISSUER-  employer 1 ***ISSUED*** vc: 43919 	 mt index:  885
+ISSUER-  employer 1 ***ISSUED*** vc: 43920 	 mt index:  886
+ISSUER-  employer 1 ***ISSUED*** vc: 43921 	 mt index:  887
+ISSUER-  employer 1 ***ISSUED*** vc: 43922 	 mt index:  888
+ISSUER-  employer 1 ***ISSUED*** vc: 43923 	 mt index:  889
+ISSUER-  employer 1 ***ISSUED*** vc: 43924 	 mt index:  890
+ISSUER-  employer 1 ***ISSUED*** vc: 43925 	 mt index:  891
+ISSUER-  employer 1 ***ISSUED*** vc: 43926 	 mt index:  892
+ISSUER-  employer 1 ***ISSUED*** vc: 43927 	 mt index:  893
+ISSUER-  employer 1 ***ISSUED*** vc: 43928 	 mt index:  894
+ISSUER-  employer 1 ***ISSUED*** vc: 43929 	 mt index:  895
+ISSUER-  employer 1 ***ISSUED*** vc: 43930 	 mt index:  896
+ISSUER-  employer 1 ***ISSUED*** vc: 43931 	 mt index:  897
+ISSUER-  employer 1 ***ISSUED*** vc: 43932 	 mt index:  898
+ISSUER-  employer 1 ***ISSUED*** vc: 43933 	 mt index:  899
+ISSUER-  employer 1 ***ISSUED*** vc: 43934 	 mt index:  900
+ISSUER-  employer 1 ***ISSUED*** vc: 43935 	 mt index:  901
+ISSUER-  employer 1 ***ISSUED*** vc: 43936 	 mt index:  902
+ISSUER-  employer 1 ***ISSUED*** vc: 43937 	 mt index:  903
+ISSUER-  employer 1 ***ISSUED*** vc: 43938 	 mt index:  904
+ISSUER-  employer 1 ***ISSUED*** vc: 43939 	 mt index:  905
+ISSUER-  employer 1 ***ISSUED*** vc: 43940 	 mt index:  906
+ISSUER-  employer 1 ***ISSUED*** vc: 43941 	 mt index:  907
+ISSUER-  employer 1 ***ISSUED*** vc: 43942 	 mt index:  908
+ISSUER-  employer 1 ***ISSUED*** vc: 43943 	 mt index:  909
+ISSUER-  employer 1 ***ISSUED*** vc: 43944 	 mt index:  910
+ISSUER-  employer 1 ***ISSUED*** vc: 43945 	 mt index:  911
+ISSUER-  employer 1 ***ISSUED*** vc: 43946 	 mt index:  912
+ISSUER-  employer 1 ***ISSUED*** vc: 43947 	 mt index:  913
+ISSUER-  employer 1 ***ISSUED*** vc: 43948 	 mt index:  914
+ISSUER-  employer 1 ***ISSUED*** vc: 43949 	 mt index:  915
+ISSUER-  employer 1 ***ISSUED*** vc: 43950 	 mt index:  916
+ISSUER-  employer 1 ***ISSUED*** vc: 43951 	 mt index:  917
+ISSUER-  employer 1 ***ISSUED*** vc: 43952 	 mt index:  918
+ISSUER-  employer 1 ***ISSUED*** vc: 43953 	 mt index:  919
+ISSUER-  employer 1 ***ISSUED*** vc: 43954 	 mt index:  920
+ISSUER-  employer 1 ***ISSUED*** vc: 43955 	 mt index:  921
+ISSUER-  employer 1 ***ISSUED*** vc: 43956 	 mt index:  922
+ISSUER-  employer 1 ***ISSUED*** vc: 43957 	 mt index:  923
+ISSUER-  employer 1 ***ISSUED*** vc: 43958 	 mt index:  924
+ISSUER-  employer 1 ***ISSUED*** vc: 43959 	 mt index:  925
+ISSUER-  employer 1 ***ISSUED*** vc: 43960 	 mt index:  926
+ISSUER-  employer 1 ***ISSUED*** vc: 43961 	 mt index:  927
+ISSUER-  employer 1 ***ISSUED*** vc: 43962 	 mt index:  928
+ISSUER-  employer 1 ***ISSUED*** vc: 43963 	 mt index:  929
+ISSUER-  employer 1 ***ISSUED*** vc: 43964 	 mt index:  930
+ISSUER-  employer 1 ***ISSUED*** vc: 43965 	 mt index:  931
+ISSUER-  employer 1 ***ISSUED*** vc: 43966 	 mt index:  932
+ISSUER-  employer 1 ***ISSUED*** vc: 43967 	 mt index:  933
+ISSUER-  employer 1 ***ISSUED*** vc: 43968 	 mt index:  934
+ISSUER-  employer 1 ***ISSUED*** vc: 43969 	 mt index:  935
+ISSUER-  employer 1 ***ISSUED*** vc: 43970 	 mt index:  936
+ISSUER-  employer 1 ***ISSUED*** vc: 43971 	 mt index:  937
+ISSUER-  employer 1 ***ISSUED*** vc: 43972 	 mt index:  938
+ISSUER-  employer 1 ***ISSUED*** vc: 43973 	 mt index:  939
+ISSUER-  employer 1 ***ISSUED*** vc: 43974 	 mt index:  940
+ISSUER-  employer 1 ***ISSUED*** vc: 43975 	 mt index:  941
+ISSUER-  employer 1 ***ISSUED*** vc: 43976 	 mt index:  942
+ISSUER-  employer 1 ***ISSUED*** vc: 43977 	 mt index:  943
+ISSUER-  employer 1 ***ISSUED*** vc: 43978 	 mt index:  944
+ISSUER-  employer 1 ***ISSUED*** vc: 43979 	 mt index:  945
+ISSUER-  employer 1 ***ISSUED*** vc: 43980 	 mt index:  946
+ISSUER-  employer 1 ***ISSUED*** vc: 43981 	 mt index:  947
+ISSUER-  employer 1 ***ISSUED*** vc: 43982 	 mt index:  948
+ISSUER-  employer 1 ***ISSUED*** vc: 43983 	 mt index:  949
+ISSUER-  employer 1 ***ISSUED*** vc: 43984 	 mt index:  950
+ISSUER-  employer 1 ***ISSUED*** vc: 43985 	 mt index:  951
+ISSUER-  employer 1 ***ISSUED*** vc: 43986 	 mt index:  952
+ISSUER-  employer 1 ***ISSUED*** vc: 43987 	 mt index:  953
+ISSUER-  employer 1 ***ISSUED*** vc: 43988 	 mt index:  954
+ISSUER-  employer 1 ***ISSUED*** vc: 43989 	 mt index:  955
+ISSUER-  employer 1 ***ISSUED*** vc: 43990 	 mt index:  956
+ISSUER-  employer 1 ***ISSUED*** vc: 43991 	 mt index:  957
+ISSUER-  employer 1 ***ISSUED*** vc: 43992 	 mt index:  958
+ISSUER-  employer 1 ***ISSUED*** vc: 43993 	 mt index:  959
+ISSUER-  employer 1 ***ISSUED*** vc: 43994 	 mt index:  960
+ISSUER-  employer 1 ***ISSUED*** vc: 43995 	 mt index:  961
+ISSUER-  employer 1 ***ISSUED*** vc: 43996 	 mt index:  962
+ISSUER-  employer 1 ***ISSUED*** vc: 43997 	 mt index:  963
+ISSUER-  employer 1 ***ISSUED*** vc: 43998 	 mt index:  964
+ISSUER-  employer 1 ***ISSUED*** vc: 43999 	 mt index:  965
+ISSUER-  employer 1 ***ISSUED*** vc: 44000 	 mt index:  966
+ISSUER-  employer 1 ***ISSUED*** vc: 44001 	 mt index:  967
+ISSUER-  employer 1 ***ISSUED*** vc: 44002 	 mt index:  968
+ISSUER-  employer 1 ***ISSUED*** vc: 44003 	 mt index:  969
+ISSUER-  employer 1 ***ISSUED*** vc: 44004 	 mt index:  970
+ISSUER-  employer 1 ***ISSUED*** vc: 44005 	 mt index:  971
+ISSUER-  employer 1 ***ISSUED*** vc: 44006 	 mt index:  972
+ISSUER-  employer 1 ***ISSUED*** vc: 44007 	 mt index:  973
+ISSUER-  employer 1 ***ISSUED*** vc: 44008 	 mt index:  974
+ISSUER-  employer 1 ***ISSUED*** vc: 44009 	 mt index:  975
+ISSUER-  employer 1 ***ISSUED*** vc: 44010 	 mt index:  976
+ISSUER-  employer 1 ***ISSUED*** vc: 44011 	 mt index:  977
+ISSUER-  employer 1 ***ISSUED*** vc: 44012 	 mt index:  978
+ISSUER-  employer 1 ***ISSUED*** vc: 44013 	 mt index:  979
+ISSUER-  employer 1 ***ISSUED*** vc: 44014 	 mt index:  980
+ISSUER-  employer 1 ***ISSUED*** vc: 44015 	 mt index:  981
+ISSUER-  employer 1 ***ISSUED*** vc: 44016 	 mt index:  982
+ISSUER-  employer 1 ***ISSUED*** vc: 44017 	 mt index:  983
+ISSUER-  employer 1 ***ISSUED*** vc: 44018 	 mt index:  984
+ISSUER-  employer 1 ***ISSUED*** vc: 44019 	 mt index:  985
+ISSUER-  employer 1 ***ISSUED*** vc: 44020 	 mt index:  986
+ISSUER-  employer 1 ***ISSUED*** vc: 44021 	 mt index:  987
+ISSUER-  employer 1 ***ISSUED*** vc: 44022 	 mt index:  988
+ISSUER-  employer 1 ***ISSUED*** vc: 44023 	 mt index:  989
+ISSUER-  employer 1 ***ISSUED*** vc: 44024 	 mt index:  990
+ISSUER-  employer 1 ***ISSUED*** vc: 44025 	 mt index:  991
+ISSUER-  employer 1 ***ISSUED*** vc: 44026 	 mt index:  992
+ISSUER-  employer 1 ***ISSUED*** vc: 44027 	 mt index:  993
+ISSUER-  employer 1 ***ISSUED*** vc: 44028 	 mt index:  994
+ISSUER-  employer 1 ***ISSUED*** vc: 44029 	 mt index:  995
+ISSUER-  employer 1 ***ISSUED*** vc: 44030 	 mt index:  996
+ISSUER-  employer 1 ***ISSUED*** vc: 44031 	 mt index:  997
+ISSUER-  employer 1 ***ISSUED*** vc: 44032 	 mt index:  998
+ISSUER-  employer 1 ***ISSUED*** vc: 44033 	 mt index:  999
+ISSUER-  employer 1 ***ISSUED*** vc: 44034 	 mt index:  1000
+ISSUER-  employer 1 ***ISSUED*** vc: 44035 	 mt index:  1001
+ISSUER-  employer 1 ***ISSUED*** vc: 44036 	 mt index:  1002
+ISSUER-  employer 1 ***ISSUED*** vc: 44037 	 mt index:  1003
+ISSUER-  employer 1 ***ISSUED*** vc: 44038 	 mt index:  1004
+ISSUER-  employer 1 ***ISSUED*** vc: 44039 	 mt index:  1005
+ISSUER-  employer 1 ***ISSUED*** vc: 44040 	 mt index:  1006
+ISSUER-  employer 1 ***ISSUED*** vc: 44041 	 mt index:  1007
+ISSUER-  employer 1 ***ISSUED*** vc: 44042 	 mt index:  1008
+ISSUER-  employer 1 ***ISSUED*** vc: 44043 	 mt index:  1009
+ISSUER-  employer 1 ***ISSUED*** vc: 44044 	 mt index:  1010
+ISSUER-  employer 1 ***ISSUED*** vc: 44045 	 mt index:  1011
+ISSUER-  employer 1 ***ISSUED*** vc: 44046 	 mt index:  1012
+ISSUER-  employer 1 ***ISSUED*** vc: 44047 	 mt index:  1013
+ISSUER-  employer 1 ***ISSUED*** vc: 44048 	 mt index:  1014
+ISSUER-  employer 1 ***ISSUED*** vc: 44049 	 mt index:  1015
+ISSUER-  employer 1 ***ISSUED*** vc: 44050 	 mt index:  1016
+ISSUER-  employer 1 ***ISSUED*** vc: 44051 	 mt index:  1017
+ISSUER-  employer 1 ***ISSUED*** vc: 44052 	 mt index:  1018
+ISSUER-  employer 1 ***ISSUED*** vc: 44053 	 mt index:  1019
+ISSUER-  employer 1 ***ISSUED*** vc: 44054 	 mt index:  1020
+ISSUER-  employer 1 ***ISSUED*** vc: 44055 	 mt index:  1021
+ISSUER-  employer 1 ***ISSUED*** vc: 44056 	 mt index:  1022
+ISSUER-  employer 1 ***ISSUED*** vc: 44057 	 mt index:  1023
+ISSUER-  employer 1 ***ISSUED*** vc: 44058 	 mt index:  1024
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43035 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43036 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43037 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43038 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43039 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43040 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43041 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43042 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43043 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43044 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43045 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43046 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43047 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43048 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43049 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43050 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43051 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43052 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43053 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43054 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43055 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43056 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43057 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43058 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43059 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43060 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43061 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43062 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43063 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43064 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43065 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43066 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43067 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43068 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43069 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43070 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43071 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43072 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43073 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43074 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43075 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43076 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43077 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43078 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43079 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43080 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43081 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43082 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43083 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43084 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43085 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43086 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43087 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43088 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43089 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43090 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43091 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43092 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43093 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43094 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43095 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43096 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43097 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43098 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43099 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43100 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43101 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43102 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43103 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43104 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43105 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43106 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43107 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43108 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43109 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43110 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43111 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43112 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43113 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43114 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43115 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43116 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43117 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43118 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43119 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43120 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43121 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43122 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43123 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43124 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43125 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43126 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43127 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43128 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43129 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43130 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43131 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43132 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43133 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43134 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43135 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43136 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43137 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43138 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43139 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43140 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43141 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43142 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43143 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43144 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43145 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43146 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43147 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43148 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43149 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43150 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43151 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43152 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43153 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43154 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43155 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43156 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43157 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43158 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43159 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43160 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43161 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43162 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43163 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43164 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43165 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43166 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43167 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43168 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43169 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43170 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43171 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43172 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43173 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43174 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43175 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43176 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43177 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43178 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43179 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43180 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43181 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43182 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43183 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43184 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43185 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43186 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43187 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43188 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43189 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43190 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43191 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43192 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43193 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43194 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43195 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43196 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43197 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43198 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43199 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43200 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43201 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43202 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43203 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43204 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43205 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43206 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43207 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43208 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43209 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43210 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43211 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43212 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43213 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43214 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43215 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43216 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43217 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43218 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43219 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43220 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43221 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43222 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43223 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43224 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43225 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43226 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43227 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43228 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43229 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43230 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43231 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43232 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43233 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43234 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43235 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43236 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43237 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43238 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43239 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43240 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43241 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43242 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43243 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43244 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43245 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43246 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43247 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43248 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43249 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43250 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43251 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43252 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43253 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43254 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43255 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43256 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43257 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43258 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43259 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43260 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43261 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43262 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43263 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43264 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43265 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43266 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43267 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43268 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43269 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43270 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43271 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43272 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43273 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43274 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43275 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43276 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43277 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43278 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43279 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43280 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43281 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43282 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43283 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43284 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43285 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43286 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43287 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43288 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43289 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43290 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43291 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43292 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43293 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43294 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43295 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43296 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43297 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43298 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43299 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43300 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43301 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43302 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43303 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43304 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43305 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43306 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43307 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43308 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43309 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43310 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43311 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43312 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43313 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43314 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43315 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43316 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43317 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43318 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43319 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43320 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43321 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43322 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43323 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43324 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43325 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43326 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43327 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43328 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43329 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43330 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43331 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43332 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43333 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43334 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43335 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43336 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43337 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43338 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43339 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43340 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43341 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43342 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43343 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43344 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43345 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43346 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43347 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43348 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43349 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43350 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43351 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43352 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43353 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43354 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43355 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43356 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43357 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43358 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43359 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43360 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43361 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43362 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43363 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43364 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43365 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43366 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43367 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43368 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43369 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43370 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43371 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43372 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43373 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43374 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43375 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43376 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43377 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43378 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43379 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43380 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43381 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43382 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43383 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43384 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43385 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43386 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43387 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43388 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43389 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43390 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: 43391 	 actual status:  valid 	 phase1 result:  true 	 phase2 result:  false

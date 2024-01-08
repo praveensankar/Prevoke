@@ -1,0 +1,168 @@
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0xD26e23fb6Fc5E5572AB46280Be2F55AC165E56CA
+blockchain rpc endpoint: http://158.39.200.98:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0xbB9f4648A8CB4D1E8213752e6f3e956B2811175B
+sender private key: 4779f4f4a3e4f8ac78ab1597ec2e0247129edec31e751530ed01b83e5e399313
+sender pass phrase: simple phrase
+other accounts in ganache test network :  [0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A 0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A]
+logger environment: dev
+logger output file name: logs.json
+logger output mode: console
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:
+total of VCs would be issued:128
+total of VCs would be revoked:50
+bloom filter false positive rate:  0.01
+merkle tree accumulator level in DLT:  3
+merkle tree height:  0
+********************************************************************************************************************************
+
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0xe00bF6b437d2d6AF925294d31b41FA41623E081c
+BLOCKCHAIN- 	 tx hash:  0x0a8a891b542419433f1ffd2d7770ffbb919386a702e480d4f466ce9711d5e6bd
+********************************************************************************************************************************
+
+BlOOM FILTER: size :  480 	 number of indexes per entry :  7
+ERROR:    	 bloom filter index mismatch. 7 is given by go code
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************
+ISSUER-   ***ISSUED*** vc: 93348 	 mt index:  1
+ISSUER-   ***ISSUED*** vc: 93349 	 mt index:  2
+ISSUER-   ***ISSUED*** vc: 93350 	 mt index:  3
+ISSUER-   ***ISSUED*** vc: 93351 	 mt index:  4
+ISSUER-   ***ISSUED*** vc: 93352 	 mt index:  5
+ISSUER-   ***ISSUED*** vc: 93353 	 mt index:  6
+ISSUER-   ***ISSUED*** vc: 93354 	 mt index:  7
+ISSUER-   ***ISSUED*** vc: 93355 	 mt index:  8
+ISSUER-   ***ISSUED*** vc: 93356 	 mt index:  9
+ISSUER-   ***ISSUED*** vc: 93357 	 mt index:  10
+ISSUER-   ***ISSUED*** vc: 93358 	 mt index:  11
+ISSUER-   ***ISSUED*** vc: 93359 	 mt index:  12
+ISSUER-   ***ISSUED*** vc: 93360 	 mt index:  13
+ISSUER-   ***ISSUED*** vc: 93361 	 mt index:  14
+ISSUER-   ***ISSUED*** vc: 93362 	 mt index:  15
+ISSUER-   ***ISSUED*** vc: 93363 	 mt index:  16
+ISSUER-   ***ISSUED*** vc: 93364 	 mt index:  17
+ISSUER-   ***ISSUED*** vc: 93365 	 mt index:  18
+ISSUER-   ***ISSUED*** vc: 93366 	 mt index:  19
+ISSUER-   ***ISSUED*** vc: 93367 	 mt index:  20
+ISSUER-   ***ISSUED*** vc: 93368 	 mt index:  21
+ISSUER-   ***ISSUED*** vc: 93369 	 mt index:  22
+ISSUER-   ***ISSUED*** vc: 93370 	 mt index:  23
+ISSUER-   ***ISSUED*** vc: 93371 	 mt index:  24
+ISSUER-   ***ISSUED*** vc: 93372 	 mt index:  25
+ISSUER-   ***ISSUED*** vc: 93373 	 mt index:  26
+ISSUER-   ***ISSUED*** vc: 93374 	 mt index:  27
+ISSUER-   ***ISSUED*** vc: 93375 	 mt index:  28
+ISSUER-   ***ISSUED*** vc: 93376 	 mt index:  29
+ISSUER-   ***ISSUED*** vc: 93377 	 mt index:  30
+ISSUER-   ***ISSUED*** vc: 93378 	 mt index:  31
+ISSUER-   ***ISSUED*** vc: 93379 	 mt index:  32
+ISSUER-   ***ISSUED*** vc: 93380 	 mt index:  33
+ISSUER-   ***ISSUED*** vc: 93381 	 mt index:  34
+ISSUER-   ***ISSUED*** vc: 93382 	 mt index:  35
+ISSUER-   ***ISSUED*** vc: 93383 	 mt index:  36
+ISSUER-   ***ISSUED*** vc: 93384 	 mt index:  37
+ISSUER-   ***ISSUED*** vc: 93385 	 mt index:  38
+ISSUER-   ***ISSUED*** vc: 93386 	 mt index:  39
+ISSUER-   ***ISSUED*** vc: 93387 	 mt index:  40
+ISSUER-   ***ISSUED*** vc: 93388 	 mt index:  41
+ISSUER-   ***ISSUED*** vc: 93389 	 mt index:  42
+ISSUER-   ***ISSUED*** vc: 93390 	 mt index:  43
+ISSUER-   ***ISSUED*** vc: 93391 	 mt index:  44
+ISSUER-   ***ISSUED*** vc: 93392 	 mt index:  45
+ISSUER-   ***ISSUED*** vc: 93393 	 mt index:  46
+ISSUER-   ***ISSUED*** vc: 93394 	 mt index:  47
+ISSUER-   ***ISSUED*** vc: 93395 	 mt index:  48
+ISSUER-   ***ISSUED*** vc: 93396 	 mt index:  49
+ISSUER-   ***ISSUED*** vc: 93397 	 mt index:  50
+ISSUER-   ***ISSUED*** vc: 93398 	 mt index:  51
+ISSUER-   ***ISSUED*** vc: 93399 	 mt index:  52
+ISSUER-   ***ISSUED*** vc: 93400 	 mt index:  53
+ISSUER-   ***ISSUED*** vc: 93401 	 mt index:  54
+ISSUER-   ***ISSUED*** vc: 93402 	 mt index:  55
+ISSUER-   ***ISSUED*** vc: 93403 	 mt index:  56
+ISSUER-   ***ISSUED*** vc: 93404 	 mt index:  57
+ISSUER-   ***ISSUED*** vc: 93405 	 mt index:  58
+ISSUER-   ***ISSUED*** vc: 93406 	 mt index:  59
+ISSUER-   ***ISSUED*** vc: 93407 	 mt index:  60
+ISSUER-   ***ISSUED*** vc: 93408 	 mt index:  61
+ISSUER-   ***ISSUED*** vc: 93409 	 mt index:  62
+ISSUER-   ***ISSUED*** vc: 93410 	 mt index:  63
+ISSUER-   ***ISSUED*** vc: 93411 	 mt index:  64
+ISSUER-   ***ISSUED*** vc: 93412 	 mt index:  65
+ISSUER-   ***ISSUED*** vc: 93413 	 mt index:  66
+ISSUER-   ***ISSUED*** vc: 93414 	 mt index:  67
+ISSUER-   ***ISSUED*** vc: 93415 	 mt index:  68
+ISSUER-   ***ISSUED*** vc: 93416 	 mt index:  69
+ISSUER-   ***ISSUED*** vc: 93417 	 mt index:  70
+ISSUER-   ***ISSUED*** vc: 93418 	 mt index:  71
+ISSUER-   ***ISSUED*** vc: 93419 	 mt index:  72
+ISSUER-   ***ISSUED*** vc: 93420 	 mt index:  73
+ISSUER-   ***ISSUED*** vc: 93421 	 mt index:  74
+ISSUER-   ***ISSUED*** vc: 93422 	 mt index:  75
+ISSUER-   ***ISSUED*** vc: 93423 	 mt index:  76
+ISSUER-   ***ISSUED*** vc: 93424 	 mt index:  77
+ISSUER-   ***ISSUED*** vc: 93425 	 mt index:  78
+ISSUER-   ***ISSUED*** vc: 93426 	 mt index:  79
+ISSUER-   ***ISSUED*** vc: 93427 	 mt index:  80
+ISSUER-   ***ISSUED*** vc: 93428 	 mt index:  81
+ISSUER-   ***ISSUED*** vc: 93429 	 mt index:  82
+ISSUER-   ***ISSUED*** vc: 93430 	 mt index:  83
+ISSUER-   ***ISSUED*** vc: 93431 	 mt index:  84
+ISSUER-   ***ISSUED*** vc: 93432 	 mt index:  85
+ISSUER-   ***ISSUED*** vc: 93433 	 mt index:  86
+ISSUER-   ***ISSUED*** vc: 93434 	 mt index:  87
+ISSUER-   ***ISSUED*** vc: 93435 	 mt index:  88
+ISSUER-   ***ISSUED*** vc: 93436 	 mt index:  89
+ISSUER-   ***ISSUED*** vc: 93437 	 mt index:  90
+ISSUER-   ***ISSUED*** vc: 93438 	 mt index:  91
+ISSUER-   ***ISSUED*** vc: 93439 	 mt index:  92
+ISSUER-   ***ISSUED*** vc: 93440 	 mt index:  93
+ISSUER-   ***ISSUED*** vc: 93441 	 mt index:  94
+ISSUER-   ***ISSUED*** vc: 93442 	 mt index:  95
+ISSUER-   ***ISSUED*** vc: 93443 	 mt index:  96
+ISSUER-   ***ISSUED*** vc: 93444 	 mt index:  97
+ISSUER-   ***ISSUED*** vc: 93445 	 mt index:  98
+ISSUER-   ***ISSUED*** vc: 93446 	 mt index:  99
+ISSUER-   ***ISSUED*** vc: 93447 	 mt index:  100
+ISSUER-   ***ISSUED*** vc: 93448 	 mt index:  101
+ISSUER-   ***ISSUED*** vc: 93449 	 mt index:  102
+ISSUER-   ***ISSUED*** vc: 93450 	 mt index:  103
+ISSUER-   ***ISSUED*** vc: 93451 	 mt index:  104
+ISSUER-   ***ISSUED*** vc: 93452 	 mt index:  105
+ISSUER-   ***ISSUED*** vc: 93453 	 mt index:  106
+ISSUER-   ***ISSUED*** vc: 93454 	 mt index:  107
+ISSUER-   ***ISSUED*** vc: 93455 	 mt index:  108
+ISSUER-   ***ISSUED*** vc: 93456 	 mt index:  109
+ISSUER-   ***ISSUED*** vc: 93457 	 mt index:  110
+ISSUER-   ***ISSUED*** vc: 93458 	 mt index:  111
+ISSUER-   ***ISSUED*** vc: 93459 	 mt index:  112
+ISSUER-   ***ISSUED*** vc: 93460 	 mt index:  113
+ISSUER-   ***ISSUED*** vc: 93461 	 mt index:  114
+ISSUER-   ***ISSUED*** vc: 93462 	 mt index:  115
+ISSUER-   ***ISSUED*** vc: 93463 	 mt index:  116
+ISSUER-   ***ISSUED*** vc: 93464 	 mt index:  117
+ISSUER-   ***ISSUED*** vc: 93465 	 mt index:  118
+ISSUER-   ***ISSUED*** vc: 93466 	 mt index:  119
+ISSUER-   ***ISSUED*** vc: 93467 	 mt index:  120
+ISSUER-   ***ISSUED*** vc: 93468 	 mt index:  121
+ISSUER-   ***ISSUED*** vc: 93469 	 mt index:  122
+ISSUER-   ***ISSUED*** vc: 93470 	 mt index:  123
+ISSUER-   ***ISSUED*** vc: 93471 	 mt index:  124
+ISSUER-   ***ISSUED*** vc: 93472 	 mt index:  125
+ISSUER-   ***ISSUED*** vc: 93473 	 mt index:  126
+ISSUER-   ***ISSUED*** vc: 93474 	 mt index:  127
+ISSUER-   ***ISSUED*** vc: 93475 	 mt index:  128

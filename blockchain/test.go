@@ -43,10 +43,10 @@ func TestSmartContract(my_config config.Config){
 }
 
 func TestDeployment(conf config.Config){
-	//DeployContract(conf)
+	DeployContract(conf)
 }
 
 func Test(conf config.Config){
-	//TestDeployment(conf)
-	TestSmartContract(conf)
+	TestDeployment(conf)
+	//TestSmartContract(conf)
 }
