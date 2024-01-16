@@ -1,6 +1,23 @@
+/*
+Main package sets up logger, config and then run the simulation
+
+Zap library is used for Logging. The log is stored on file or shown
+in the console depending on the setting given in the config file.
+
+The config file contains the parameters needed throughtout the program.
+
+Usage:
+
+The flags are:
+
+    -simulation
+        Runs the simulation
+
+ */
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/config"
@@ -8,10 +25,16 @@ import (
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"os"
+
 )
 
-func setupLogger(conf config.Config){
+/*
+setupLogger sets up the logger.
+The logger output mode is retrieved from the config file.
+If the output mode is console then the log is shown on console
+If the output mode is file then the log is stored in a file
+*/
+func SetupLogger(conf config.Config){
 
 	var filename string
 
@@ -45,17 +68,61 @@ func setupLogger(conf config.Config){
 
 }
 
+/*
+setupConfig sets up the config file, config file type and config file path
+ */
 func setupConfig(){
 	viper.SetConfigFile("config.json")// name of config file (without extension)
 	viper.SetConfigType("json")
 	viper.AddConfigPath(".")
 }
 
+/*
+initialize initializes the program and does the following
+	1) sets up the config
+	2) parses the config file
+	3) sets up the logger
+ */
 func initialize() {
 	setupConfig()
 	conf, _ := config.ParseConfig()
-	setupLogger(conf)
+	SetupLogger(conf)
 }
+
+
+
+func TestIndividualComponents(conf config.Config){
+	//blockchain.TestConnectionToBlockchain(conf)
+	//blockchain.Test(conf)
+	//issuer.TestIssuer(conf)
+
+	//techniques.TestMerkleTree(conf)
+	//techniques.TestMerkleTreeAccumulator(conf)
+	//techniques.TestBloomFilter(100)
+}
+
+func main()  {
+	//testAries()
+	initialize()
+	conf, _ := config.ParseConfig()
+	TestIndividualComponents(conf)
+
+	simulationFlag := flag.Bool("simulation", false, "a bool")
+
+	flag.Parse()
+
+	if *simulationFlag==true {
+			simulation.Start(conf)
+
+	}
+
+	//if os.Args[1]=="size" {
+	//	size, numberofIndexesPerEntry := BloomFilterConfigurationGenerators(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
+	//	fmt.Println("bloom filter size: ", size, "\t number of hash functions: ", numberofIndexesPerEntry)
+	//}
+
+}
+
 
 /*
 This function that returns estimated size of bloom filter and number of hash functions
@@ -72,40 +139,6 @@ Output:
 func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate float64) (uint, uint) {
 	size, numberOfIndexesPerEntry := bloom.EstimateParameters(totalNumberOfVCs, falsePositiveRate)
 	return size, numberOfIndexesPerEntry
-}
-
-func TestIndividualComponents(conf config.Config){
-	//blockchain.TestConnectionToBlockchain(conf)
-	//blockchain.Test(conf)
-	//issuer.TestIssuer(conf)
-
-	//techniques.TestMerkleTree(conf)
-	//techniques.TestMerkleTreeAccumulator(conf)
-	//techniques.TestBloomFilter(100)
-
-}
-
-func main()  {
-	//testAries()
-	initialize()
-	conf, _ := config.ParseConfig()
-	TestIndividualComponents(conf)
-
-	if len(os.Args)>1 {
-		if os.Args[1] == "simulation" {
-			simulation.Start(conf)
-		}
-	}
-	//
-	//if os.Args[1]=="size" {
-	//	size, numberofIndexesPerEntry := BloomFilterConfigurationGenerators(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
-	//	fmt.Println("bloom filter size: ", size, "\t number of hash functions: ", numberofIndexesPerEntry)
-	//}
-
-
-
-
-
 }
 
 
