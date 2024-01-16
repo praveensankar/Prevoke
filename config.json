@@ -17,15 +17,15 @@
 	 },
 	 "test" : "test",
 	"blockchain" : {
-		"rpcEndpoint" : "http://158.39.200.98:8545",
-		"wsEndPoint" : "ws://158.39.200.98:8545",
-		"comment2": "158.39.200.98:8545 corresponds to ganache blockchain running at nrec",
+		"rpcEndpoint" : "http://158.39.200.125:8545",
+		"wsEndPoint" : "ws://158.39.200.125:8545",
+		"comment2": "158.39.200.125:8545 corresponds to ganache blockchain running at nrec",
 		"_comment" : "use ganache blockchain address (deployed locally) as endpoint"
 
 	},
 	 "account" : {
-		 "address" : "0xAe13e4FA92A150be426c2074BBB783F516345Dc0",
-		 "privateKey": "c1a1061ccca2996264608022c16958851280a22aede59bb4db5a9193ffba9783",
+		 "address" : "0x33F570c34e023C3b54A401b924400fBf25BBEf54",
+		 "privateKey": "fd6ab19763ff9960d1e843ac590d0e2c7828384b927ff1e382946fbcc8778efd",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },

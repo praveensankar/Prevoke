@@ -112,7 +112,7 @@ func main()  {
 	flag.Parse()
 
 	if *simulationFlag==true {
-			simulation.Start(conf)
+			simulation.StartExperiments(conf)
 
 	}
 
