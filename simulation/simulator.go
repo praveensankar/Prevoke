@@ -52,12 +52,13 @@ func SetUpExpParamters(conf *config.Config, exp config.Experiment){
 	conf.FalsePositiveRate=exp.FalsePositiveRate
 	conf.MtLevelInDLT= uint(exp.MtLevelInDLT)
 	conf.MtDepth= uint(exp.MtDepth)
+	conf.MTHeight=uint(exp.MtHeight)
 }
 
 func PerformExperiment(config config.Config){
 
 	issuer1 := issuer.CreateIssuer(config)
-	remainingSpace := int(math.Pow(2, float64(config.MtDepth-1)))-int(config.ExpectedNumberOfTotalVCs)
+	remainingSpace := int(math.Pow(2, float64(config.MtDepth)))-int(config.ExpectedNumberOfTotalVCs)
 	vcDummies := issuer1.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
 
 	issuer1.IssueBulk(config, vcDummies, len(vcDummies))

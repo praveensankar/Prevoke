@@ -7,11 +7,12 @@ import (
 
 func TestMerkleTreeAccumulator(conf config.Config){
 
-	conf.ExpectedNumberOfTotalVCs=4
-	conf.MTHeight=2
+	conf.ExpectedNumberOfTotalVCs=10
+	conf.MTHeight=4
 	elements :=  make([]string, 0)
 	elements = append(elements,"1","2", "3", "4")
-
+	elements = append(elements,"11","12", "13", "14")
+	elements = append(elements,"21","22", "23", "24")
 
 	accumulator := CreateMerkleTreeAccumulator(conf)
 
@@ -37,15 +38,16 @@ func TestMerkleTreeAccumulator(conf config.Config){
 
 	}
 
+	updatedProofs := make(map[string]*MerkleProof)
 	proof := accumulator.GetProof(elements[1])
-	proofs[elements[1]]=proof
+	updatedProofs[elements[1]]=proof
 	proof = accumulator.GetProof(elements[3])
-	proofs[elements[3]]=proof
-	proof = accumulator.GetProof(newElements[0])
-	proofs[newElements[0]]=proof
-	proof = accumulator.GetProof(newElements[0])
-	proofs[newElements[1]]=proof
-	TestProofs2(proofs, accumulator)
+	updatedProofs[elements[3]]=proof
+
+	updatedProofs[elements[0]]=proofs[elements[0]]
+	proof = accumulator.GetProof(newElements[1])
+	updatedProofs[newElements[1]]=proof
+	TestProofs2(updatedProofs, accumulator)
 }
 
 
@@ -65,6 +67,10 @@ func TestInsertion2(elements []string, accumulator *MerkleTreeAccumulator2) {
 
 func TestProofs2(proofs map[string]*MerkleProof, accumulator *MerkleTreeAccumulator2) {
 	for _, proof := range proofs{
+		if proof == nil{
+			zap.S().Infoln("TEST MERKLE TREE - empty proof")
+			continue
+		}
 		verificationStatus := accumulator.VerifyProof(proof.LeafHash, proof.OrderedWitnesses, accumulator.RootHash)
 		zap.S().Infoln("TEST MERKLE TREE- \t  leaf: ", proof.LeafValue, "\t  proof: ",
 			accumulator.ProofToString(proof), "  \t verification status: ", verificationStatus)

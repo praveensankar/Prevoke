@@ -94,6 +94,7 @@ func ParseConfig() (Config, error){
 		exp.RevokedVCs, _ = strconv.Atoi(m["revokedvcs"].(string))
 		exp.MtLevelInDLT, _ = strconv.Atoi(m["mtlevelindlt"].(string))
 		exp.MtDepth, _ = strconv.Atoi(m["mtdepth"].(string))
+		exp.MtHeight, _ = strconv.Atoi(m["mtheight"].(string))
 		exp.FalsePositiveRate, _ = strconv.ParseFloat(m["falsepositiverate"].(string), 64)
 		config.ExpParamters[k]=exp
 	}

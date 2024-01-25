@@ -6,5 +6,6 @@ type Experiment struct {
 	FalsePositiveRate float64 `json:"falsePositiveRate"`
 	MtLevelInDLT int `json:"mtLevelInDLT"`
 	MtDepth int `json:"mtDepth"`
+	MtHeight int `json:"mtHeight"`
 
 }

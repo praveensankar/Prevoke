@@ -1,0 +1,72 @@
+[
+{
+"total_issued_vcs": 16,
+"total_revoked_vcs": 10,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 3,
+"mt_depth": 5,
+"number_of_false_positives": 2,
+"number_of_vcs_retrieved_witness_from_issuer": 0,
+"number_of_witness_updates_MT_accumulator": 10,
+"mt_accumulator_per_update_cost_in_gwei": 2656273,
+"number_of_witness_updates_saved": 2,
+"bloom_filter_size": 48,
+"bloom_filter_indexes_per_entry": 4
+},
+{
+"total_issued_vcs": 16,
+"total_revoked_vcs": 10,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 3,
+"mt_depth": 5,
+"number_of_false_positives": 1,
+"number_of_vcs_retrieved_witness_from_issuer": 0,
+"number_of_witness_updates_MT_accumulator": 10,
+"mt_accumulator_per_update_cost_in_gwei": 2643657,
+"number_of_witness_updates_saved": 1,
+"bloom_filter_size": 48,
+"bloom_filter_indexes_per_entry": 4
+},
+{
+"total_issued_vcs": 32,
+"total_revoked_vcs": 10,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 3,
+"mt_depth": 6,
+"number_of_false_positives": 2,
+"number_of_vcs_retrieved_witness_from_issuer": 0,
+"number_of_witness_updates_MT_accumulator": 30,
+"mt_accumulator_per_update_cost_in_gwei": 2636470,
+"number_of_witness_updates_saved": 2,
+"bloom_filter_size": 48,
+"bloom_filter_indexes_per_entry": 4
+},
+{
+"total_issued_vcs": 16,
+"total_revoked_vcs": 10,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 3,
+"mt_depth": 5,
+"number_of_false_positives": 1,
+"number_of_vcs_retrieved_witness_from_issuer": 0,
+"number_of_witness_updates_MT_accumulator": 10,
+"mt_accumulator_per_update_cost_in_gwei": 3197312,
+"number_of_witness_updates_saved": 1,
+"bloom_filter_size": 48,
+"bloom_filter_indexes_per_entry": 4
+},
+{
+"total_issued_vcs": 30,
+"total_revoked_vcs": 10,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 3,
+"mt_depth": 6,
+"number_of_false_positives": 4,
+"number_of_vcs_retrieved_witness_from_issuer": 0,
+"number_of_witness_updates_MT_accumulator": 30,
+"mt_accumulator_per_update_cost_in_gwei": 2905431,
+"number_of_witness_updates_saved": 4,
+"bloom_filter_size": 48,
+"bloom_filter_indexes_per_entry": 4
+}
+]

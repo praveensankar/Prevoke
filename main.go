@@ -13,6 +13,9 @@ The flags are:
     -simulation
         Runs the simulation
 
+	mt
+		tests merkle tree accumulator
+
  */
 package main
 
@@ -22,6 +25,7 @@ import (
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/simulation"
+	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -97,7 +101,14 @@ func TestIndividualComponents(conf config.Config){
 	//issuer.TestIssuer(conf)
 
 	//techniques.TestMerkleTree(conf)
-	//techniques.TestMerkleTreeAccumulator(conf)
+
+	mtFlag := flag.Bool("mt", false, "a bool")
+	flag.Parse()
+	if *mtFlag==true{
+		
+		techniques.TestMerkleTreeAccumulator(conf)
+	}
+	//
 	//techniques.TestBloomFilter(100)
 }
 
@@ -112,7 +123,7 @@ func main()  {
 	flag.Parse()
 
 	if *simulationFlag==true {
-			simulation.StartExperiments(conf)
+			simulation.Start(conf)
 
 	}
 
