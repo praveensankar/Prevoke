@@ -5,11 +5,15 @@ import "github.com/praveensankar/Revocation-Service/config"
 func TestIssuer(config config.Config){
 
 	issuer := CreateIssuer(config)
+	rs := CreateRevocationServiceStub(config)
+	issuer.setRevocationService(rs)
 	vcs := issuer.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs))
 
 	for _, vc := range vcs{
 		issuer.Issue(*vc)
 	}
+
+	issuer.RevocationService.PrintMerkleTree()
 	for _, vc := range vcs{
 		issuer.VerifyTest(*vc)
 	}

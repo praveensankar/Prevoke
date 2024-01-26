@@ -25,7 +25,6 @@ type Config struct{
 	ExpectedNumberofRevokedVCs uint
 	ExpParamters  map[string]*Experiment
 	MtLevelInDLT uint
-	MtDepth uint
 	MTHeight uint
 	FalsePositiveRate float64
 	DEBUG bool
@@ -93,7 +92,6 @@ func ParseConfig() (Config, error){
 		exp.TotalVCs, _=strconv.Atoi(m["totalvcs"].(string))
 		exp.RevokedVCs, _ = strconv.Atoi(m["revokedvcs"].(string))
 		exp.MtLevelInDLT, _ = strconv.Atoi(m["mtlevelindlt"].(string))
-		exp.MtDepth, _ = strconv.Atoi(m["mtdepth"].(string))
 		exp.MtHeight, _ = strconv.Atoi(m["mtheight"].(string))
 		exp.FalsePositiveRate, _ = strconv.ParseFloat(m["falsepositiverate"].(string), 64)
 		config.ExpParamters[k]=exp
@@ -103,7 +101,6 @@ func ParseConfig() (Config, error){
 	config.ExpectedNumberofRevokedVCs = viper.GetUint("issuer.revokedVCs")
 	config.FalsePositiveRate = viper.GetFloat64("issuer.falsePositiveRate")
 	config.MtLevelInDLT = viper.GetUint("issuer.mtLevelInDLT")
-	config.MtDepth = viper.GetUint("issuer.mtDepth")
 	config.MTHeight = viper.GetUint("issuer.mtHeight")
 	config.IssuerName = viper.GetString("issuer.name")
 	config.DEBUG = viper.GetBool("mode.debug")

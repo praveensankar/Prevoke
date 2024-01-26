@@ -60,7 +60,7 @@ func CreateRevocationService(config config.Config) *RevocationService{
 	rs.gasPrice = config.GasPrice
 	rs.VCToBigInts = make(map[string]*big.Int)
 	rs.MtLevelInDLT = int(config.MtLevelInDLT)
-	rs.mtHeight = int(config.MtDepth-1)
+	rs.mtHeight = int(config.MTHeight)
 	rs.account = common.HexToAddress(config.SenderAddress)
 	rs.NumberOfEntriesForMTInDLT = 0
 	for i := 0; i <= rs.MtLevelInDLT; i++ {

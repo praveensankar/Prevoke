@@ -13,8 +13,14 @@ The flags are:
     -simulation
         Runs the simulation
 
-	mt
+	-mt
 		tests merkle tree accumulator
+
+	-bf
+		tests the bloom filter
+
+	-issuer
+		tests issuer
 
  */
 package main
@@ -24,6 +30,7 @@ import (
 	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/praveensankar/Revocation-Service/issuer"
 	"github.com/praveensankar/Revocation-Service/simulation"
 	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/spf13/viper"
@@ -94,22 +101,39 @@ func initialize() {
 }
 
 
-
+/*
+TestIndividualComponents tests the following components in the project.
+1) BloomFilter
+2) MerkleTreeAccumulator
+3) Issuer
+4) Connection to Blockchain
+ */
 func TestIndividualComponents(conf config.Config){
-	//blockchain.TestConnectionToBlockchain(conf)
-	//blockchain.Test(conf)
-	//issuer.TestIssuer(conf)
-
-	//techniques.TestMerkleTree(conf)
 
 	mtFlag := flag.Bool("mt", false, "a bool")
+	issuerTestFlag := flag.Bool("issuer", false, "a bool")
+	bfFlag := flag.Bool("bf", false, "a bool")
 	flag.Parse()
 	if *mtFlag==true{
-		
+		//techniques.TestMerkleTree(conf)
 		techniques.TestMerkleTreeAccumulator(conf)
 	}
-	//
-	//techniques.TestBloomFilter(100)
+
+	if *issuerTestFlag==true{
+		issuer.TestIssuer(conf)
+	}
+
+	if *bfFlag==true{
+		techniques.TestBloomFilter(100)
+	}
+
+
+	//blockchain.TestConnectionToBlockchain(conf)
+	//blockchain.Test(conf)
+
+
+
+
 }
 
 func main()  {

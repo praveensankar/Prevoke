@@ -7,8 +7,6 @@ import (
 
 func TestMerkleTreeAccumulator(conf config.Config){
 
-	conf.ExpectedNumberOfTotalVCs=10
-	conf.MTHeight=4
 	elements :=  make([]string, 0)
 	elements = append(elements,"1","2", "3", "4")
 	elements = append(elements,"11","12", "13", "14")

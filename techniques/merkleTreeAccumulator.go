@@ -170,7 +170,7 @@ func (accumulator *MerkleTreeAccumulator2)  AddLeaf(leaf string) (int, string) {
 
 	// 2) calculate the hash value of leaf
 	hashValue := accumulator.GetHash(leaf)
-	zap.S().Infoln("MERKLE TREE ACCUMULATOR: \t current index : ", index)
+	//zap.S().Infoln("MERKLE TREE ACCUMULATOR: \t current index : ", index)
 
 	// 3) store the hash at the current index in the merkle tree
 	accumulator.Tree[index].Value = hashValue

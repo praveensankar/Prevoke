@@ -7,7 +7,7 @@ type Results struct {
 	RevokedVCs int `json:"total_revoked_vcs"`
 	FalsePositiveRate float64 `json:"false_positive_rate"`
 	MtLevelInDLT int `json:"mt_level_in_dlt"`
-	MtDepth int `json:"mt_depth"`
+	MTHeight int `json:"mt_height"`
 	NumberOfFalsePositives int `json:"number_of_false_positives"`
 	NumberOfVCsRetrievedWitnessFromIssuer int `json:"number_of_vcs_retrieved_witness_from_issuer"`
 	NumberOfWitnessUpdatesForMT int `json:"number_of_witness_updates_MT_accumulator"`
@@ -25,7 +25,7 @@ func (r Results) String() string{
 	response = response + "False Positive Rate : "+fmt.Sprintf("%f",r.FalsePositiveRate)+ "\t"
 	response = response + "Bloom Filter Size : "+fmt.Sprintf("%d",r.BloomFilterSize)+ "\t"
 	response = response + "Bloom Filter indexes per entry (no of hash functions) : "+fmt.Sprintf("%d",r.BloomFilterIndexesPerEntry)+ "\t"
-	response = response + "Merkle Tree Accumulator depth : "+fmt.Sprintf("%d",r.MtDepth)+ "\t"
+	response = response + "Merkle Tree Accumulator height : "+fmt.Sprintf("%d",r.MTHeight)+ "\t"
 	response = response + "Merkle Tree Accumulator Level Stored in DLT : "+fmt.Sprintf("%d",r.MtLevelInDLT)+ "\n"
 	response = response + "Number of False Positives : "+ fmt.Sprintf("%d",r.NumberOfFalsePositives) + "\t"
 	response = response + "Number of VCS that ended up updating witnesses from issuer: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromIssuer)+ "\t"

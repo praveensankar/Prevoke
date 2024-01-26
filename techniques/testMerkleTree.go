@@ -4,7 +4,6 @@ import (
 	"github.com/iden3/go-merkletree-sql/v2"
 	"github.com/praveensankar/Revocation-Service/config"
 	"go.uber.org/zap"
-	"math"
 	"math/big"
 )
 
@@ -15,7 +14,7 @@ func TestMerkleTree(conf config.Config){
 	//elements = append(elements,big.NewInt(100), big.NewInt(200), big.NewInt(300), big.NewInt(400))
 	//elements = append(elements,big.NewInt(10), big.NewInt(20))
 
-	conf.MtDepth= uint(math.Log2(float64(len(elements))))+1
+
 	newTree := CreateMerkleTree(conf)
 
 

@@ -5,7 +5,6 @@ type Experiment struct {
 	RevokedVCs int `json:"revokedVCs"`
 	FalsePositiveRate float64 `json:"falsePositiveRate"`
 	MtLevelInDLT int `json:"mtLevelInDLT"`
-	MtDepth int `json:"mtDepth"`
 	MtHeight int `json:"mtHeight"`
 
 }

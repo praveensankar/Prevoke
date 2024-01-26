@@ -74,6 +74,21 @@ func (bf BloomFilter) CheckStatusInBloomFilter(vc string) bool{
 }
 
 /*
+CheckBitInBloomFilter checks an index in the bloomfilter.
+Returns
+	true - all indexes are set in the BloomFilter
+	false - if one or more indexes are not set
+ */
+func (bf BloomFilter) CheckIndexesInBloomFilter(indexes []uint64) bool {
+	isPresentInBloomFilter := bf.bloomFilter.TestLocations(indexes)
+	if isPresentInBloomFilter==true{
+		return false
+	}else{
+		return true
+	}
+}
+
+/*
 This function revokes a VC. The bloom filter is set with the revoked VC.
 
 Input:

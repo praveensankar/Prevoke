@@ -25,7 +25,7 @@ type IIsser interface {
 	UpdateMerkleProofsInStorage()
 	UpdateMerkleProof(vc verifiable.Credential)
 	UpdateAffectedVCs(conf config.Config, mtIndex *big.Int) int
-GetAffectedVCsCount() int
+	GetAffectedVCsCount() int
 	// returns whether it resulted in false positive in phase 1
 	VerifyTest(vc verifiable.Credential) (bool, bool)
 }
@@ -135,10 +135,10 @@ func (issuer *Issuer) Issue(vc verifiable.Credential) {
 	// when issuer issue new credentials, the credential is created
 	issuer.AddCretentialToStore(vc)
 	revocationData := issuer.RevocationService.IssueVC(vc)
-	zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", vc.ID, "\t mt leaf: ", revocationData.MerkleProof.LeafHash)
+	zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", vc.ID, "\t mt index: ", revocationData.MtIndex,
+		"\t mt leaf: ", revocationData.MerkleProof.LeafHash[:techniques.SHORT_STRING_SIZE] + "..",
+		"\t bf indexes: ",revocationData.BloomFilterIndexes)
 	//issuer.RevocationService.PrintMerkleTree()
-
-
 
 	issuer.AddRevocationProofForNewVC(revocationData)
 	//zap.S().Infoln("ISSUER- \t sending revocation data to holder: ", revocationData.PrintRevocationData)
