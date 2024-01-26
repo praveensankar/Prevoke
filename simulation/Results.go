@@ -20,18 +20,18 @@ type Results struct {
 
 func (r Results) String() string{
 	var response string
-	response = response + "Total VCs : "+fmt.Sprintf("%d",r.TotalVCs)+ "\t"
-	response = response + "Total Revoked VCs : "+fmt.Sprintf("%d",r.RevokedVCs)+ "\t"
-	response = response + "False Positive Rate : "+fmt.Sprintf("%f",r.FalsePositiveRate)+ "\t"
-	response = response + "Bloom Filter Size : "+fmt.Sprintf("%d",r.BloomFilterSize)+ "\t"
-	response = response + "Bloom Filter indexes per entry (no of hash functions) : "+fmt.Sprintf("%d",r.BloomFilterIndexesPerEntry)+ "\t"
-	response = response + "Merkle Tree Accumulator height : "+fmt.Sprintf("%d",r.MTHeight)+ "\t"
-	response = response + "Merkle Tree Accumulator Level Stored in DLT : "+fmt.Sprintf("%d",r.MtLevelInDLT)+ "\n"
-	response = response + "Number of False Positives : "+ fmt.Sprintf("%d",r.NumberOfFalsePositives) + "\t"
-	response = response + "Number of VCS that ended up updating witnesses from issuer: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromIssuer)+ "\t"
-	response = response + "Amount (in gwei) paid per revocation: "+fmt.Sprintf("%d",r.AmountPaid)+ "\t"
-	response = response + "Number of witness updates due to Merkle Tree Accumulator: "+ fmt.Sprintf("%d",r.NumberOfWitnessUpdatesForMT) + "\t"
-	response = response + "Number of witness updates that we saved : "+fmt.Sprintf("%d",r.NumberOfWitnessUpdatesSaved)+ "\t"
+	response = response + "Total VCs : "+fmt.Sprintf("%d",r.TotalVCs)+ "\n"
+	response = response + "Total Revoked VCs : "+fmt.Sprintf("%d",r.RevokedVCs)+ "\n"
+	response = response + "False Positive Rate : "+fmt.Sprintf("%f",r.FalsePositiveRate)+ "\n"
+	response = response + "Bloom Filter Size : "+fmt.Sprintf("%d",r.BloomFilterSize)+ "\n"
+	response = response + "Bloom Filter indexes per entry (no of hash functions) : "+fmt.Sprintf("%d",r.BloomFilterIndexesPerEntry)+ "\n"
+	response = response + "Merkle Tree Accumulator height : "+fmt.Sprintf("%d",r.MTHeight)+ "\n"
+	response = response + "Merkle Tree Accumulator Level Stored in DLT : "+fmt.Sprintf("%d",r.MtLevelInDLT)+ "\n \n"
+	response = response + "Number of False Positives : "+ fmt.Sprintf("%d",r.NumberOfFalsePositives) + "\n"
+	response = response + "Number of VCS that ended up updating witnesses from issuer: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromIssuer)+ "\n"
+	response = response + "Amount (in gwei) paid per revocation: "+fmt.Sprintf("%d",r.AmountPaid)+ "\n"
+	response = response + "Number of witness that are affected by revocation and require witness update in Merkle Tree Accumulator: "+ fmt.Sprintf("%d",r.NumberOfWitnessUpdatesForMT) + "\n"
+	response = response + "Number of witness updates that we saved : "+fmt.Sprintf("%d",r.NumberOfWitnessUpdatesSaved)+ "\n"
 	return response
 }
 

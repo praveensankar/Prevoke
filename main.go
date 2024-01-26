@@ -13,13 +13,16 @@ The flags are:
     -simulation
         Runs the simulation
 
-	-mt
+	-simulatorTest
+		test simulator
+
+	-mtTest
 		tests merkle tree accumulator
 
-	-bf
+	-bfTest
 		tests the bloom filter
 
-	-issuer
+	-issuerTest
 		tests issuer
 
  */
@@ -107,14 +110,16 @@ TestIndividualComponents tests the following components in the project.
 2) MerkleTreeAccumulator
 3) Issuer
 4) Connection to Blockchain
+5) simulator
  */
 func TestIndividualComponents(conf config.Config){
 
-	mtFlag := flag.Bool("mt", false, "a bool")
-	issuerTestFlag := flag.Bool("issuer", false, "a bool")
-	bfFlag := flag.Bool("bf", false, "a bool")
+	mtTestFlag := flag.Bool("mtTest", false, "a bool")
+	issuerTestFlag := flag.Bool("issuerTest", false, "a bool")
+	bfTestFlag := flag.Bool("bfTest", false, "a bool")
+	simulatorTestFlag := flag.Bool("simulatorTest", false, "a bool")
 	flag.Parse()
-	if *mtFlag==true{
+	if *mtTestFlag==true{
 		//techniques.TestMerkleTree(conf)
 		techniques.TestMerkleTreeAccumulator(conf)
 	}
@@ -123,8 +128,12 @@ func TestIndividualComponents(conf config.Config){
 		issuer.TestIssuer(conf)
 	}
 
-	if *bfFlag==true{
+	if *bfTestFlag==true{
 		techniques.TestBloomFilter(100)
+	}
+
+	if *simulatorTestFlag==true{
+		simulation.TestSimulator(conf)
 	}
 
 

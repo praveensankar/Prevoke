@@ -1,12 +1,36 @@
 package issuer
 
-import "github.com/praveensankar/Revocation-Service/config"
+import (
+	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
+	"github.com/praveensankar/Revocation-Service/config"
+	"go.uber.org/zap"
+	"math/rand"
+	"time"
+)
 
-func TestIssuer(config config.Config){
 
-	issuer := CreateIssuer(config)
+/*
+creates new issuer instance for testing purpose.
+This instance connects to local stub for revoation service instead of connecting to blockchain
+*/
+func  CreateTestIssuer(config config.Config) *Issuer {
+	issuer := Issuer{}
+	issuer.name = config.IssuerName
+	issuer.credentialStore = []verifiable.Credential{}
+	issuer.revokedVcIDs = []string{}
+	issuer.revocationProofs = make(map[string]*RevocationData)
+	issuer.AffectedVCIndexes = make(map[int]bool)
+	rand.Seed(time.Now().UnixNano())
+	issuer.vcCounter = rand.Intn(100000)
 	rs := CreateRevocationServiceStub(config)
 	issuer.setRevocationService(rs)
+	zap.S().Infoln("ISSUER-","issuer test instance created")
+	zap.S().Infoln("\n\n********************************************************************************************************************************")
+	return &issuer
+}
+func TestIssuer(config config.Config){
+
+	issuer := CreateTestIssuer(config)
 	vcs := issuer.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs))
 
 	for _, vc := range vcs{
@@ -19,10 +43,29 @@ func TestIssuer(config config.Config){
 	}
 
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
+	revokedVCs := make([]string, totalRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
-	for i, counter:=0, 0; counter< totalRevokedVCs; counter++{
-		issuer.Revoke(config, *vcs[i])
-		i = i + 2
+	for i, counter:=0, 0; counter< totalRevokedVCs; {
+
+
+		for {
+			vcID := vcs[i].ID
+			isalreadyRevoked := false
+			for _, revokedId := range revokedVCs {
+				if vcID == revokedId {
+					isalreadyRevoked = true
+					break
+				}
+			}
+			if isalreadyRevoked==false{
+				issuer.Revoke(config, *vcs[i])
+				revokedVCs = append(revokedVCs, vcID)
+				counter++
+				break
+			}
+			rand.Seed(time.Now().UnixNano())
+			i = rand.Intn(int(config.ExpectedNumberOfTotalVCs))
+		}
 	}
 
 	for _, vc := range vcs{

@@ -2,6 +2,7 @@ package issuer
 
 import (
 	"fmt"
+	"github.com/deckarep/golang-set"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 	"github.com/praveensankar/Revocation-Service/config"
@@ -20,11 +21,11 @@ type IIsser interface {
 	GenerateDummyVCs(count int) []*verifiable.Credential
 	Issue(config config.Config, credential verifiable.Credential)
 	IssueBulk(config config.Config, credential []*verifiable.Credential, total int)
-	Revoke(config config.Config, credential verifiable.Credential) (int, int64)
+	Revoke(config config.Config, credential verifiable.Credential) (mapset.Set , int64)
 	setRevocationService(rs IRevocationService)
 	UpdateMerkleProofsInStorage()
 	UpdateMerkleProof(vc verifiable.Credential)
-	UpdateAffectedVCs(conf config.Config, mtIndex *big.Int) int
+	UpdateAffectedVCs(conf config.Config, mtIndex int) (mapset.Set , int)
 	GetAffectedVCsCount() int
 	// returns whether it resulted in false positive in phase 1
 	VerifyTest(vc verifiable.Credential) (bool, bool)
@@ -192,42 +193,41 @@ func (issuer *Issuer) getUpdatedMerkleProof(vc verifiable.Credential) *technique
 }
 
 // returns number of vcs that are affected
-func (issuer *Issuer) UpdateAffectedVCs(conf config.Config, mtIndex *big.Int) ([]int, int) {
+func (issuer *Issuer) UpdateAffectedVCs(conf config.Config, mtIndex int) (mapset.Set , int) {
 
-	n := int(conf.ExpectedNumberOfTotalVCs)
-	actualAffectedVCs := 0
-	height := int(math.Ceil(math.Log2(float64(n))))
+
+	height := int(conf.MTHeight)
 	levelStoredInDLT := int(conf.MtLevelInDLT)
+
 	var numberOfEstimatedAffectedVCs int
+	affectedIndexes := mapset.NewSet()
+	actualAffectedVCs := 0
+
 	if height==levelStoredInDLT{
-		numberOfEstimatedAffectedVCs = 0
-		return nil, actualAffectedVCs
+		return affectedIndexes, actualAffectedVCs
 	} else {
 		numberOfEstimatedAffectedVCs = int(math.Pow(2, float64(height-levelStoredInDLT)))
 	}
-	affectedIndexes := make([]int,numberOfEstimatedAffectedVCs)
+
 
 	foundBlock := false
-	for i:=1; i<= (n-numberOfEstimatedAffectedVCs+1);  i = i + numberOfEstimatedAffectedVCs {
+	firstLeafsIndex := int(math.Pow(2, float64(height)))-1
+	lastLeafsIndex := int(math.Pow(2, float64(height+1)))-1
+
+	for i:=firstLeafsIndex; i<= (lastLeafsIndex-numberOfEstimatedAffectedVCs+1);  i = i + numberOfEstimatedAffectedVCs {
 		if foundBlock==true{
 			break
 		}
-		end := big.NewInt(int64(i + numberOfEstimatedAffectedVCs))
-		if mtIndex.Cmp(end) == -1{
+		end := i + numberOfEstimatedAffectedVCs
+		if mtIndex < end{
 			foundBlock=true
 			for j:=i; j < int(i + numberOfEstimatedAffectedVCs); j++{
-				J := big.NewInt(int64(j))
-				if mtIndex.Cmp(J)==0{
+				if mtIndex == j {
 					continue
 				}
-				//if issuer.AffectedVCIndexes[j]!=true{
-				//	issuer.AffectedVCIndexes[j] = true
-				//	affectedIndexes = append(affectedIndexes, j)
-				//	actualAffectedVCs++
-				//}
 				issuer.AffectedVCIndexes[j] = true
-					affectedIndexes = append(affectedIndexes, j)
-					actualAffectedVCs++
+				affectedIndexes.Add(j)
+				actualAffectedVCs++
 
 			}
 			//zap.S().Infoln("ISSUER: WITNESS UPDATE - \t mt index: ",mtIndex, "\t block starting index: ",i, "\t end index: ", int64(i + numberOfEstimatedAffectedVCs)-1,
@@ -241,14 +241,10 @@ func (issuer *Issuer) GetAffectedVCsCount() (int) {
 	return len(issuer.AffectedVCIndexes)
 }
 
-// returns number of affected vcs, amount of gwei paid
-func (issuer *Issuer) Revoke(conf config.Config, vc verifiable.Credential) (int, int64) {
+// returns indexes of affected vcs, amount of gwei paid
+func (issuer *Issuer) Revoke(conf config.Config, vc verifiable.Credential) (mapset.Set , int64) {
 
 	//zap.S().Infoln("\n\n********************************************************************************************************************************")
-
-
-
-
 	mtIndex, amountPaid, _ := issuer.RevocationService.RevokeVC(vc)
 	issuer.revokedVcIDs = append(issuer.revokedVcIDs, vc.ID)
 	affectedIndexes, numberOfAffectedVCs := issuer.UpdateAffectedVCs(conf, mtIndex)
@@ -256,7 +252,7 @@ func (issuer *Issuer) Revoke(conf config.Config, vc verifiable.Credential) (int,
 		"\t affected VCs Indexes: ",affectedIndexes, "\t number of affected VCs: ", numberOfAffectedVCs)
 
 	//zap.S().Infoln("\n\n********************************************************************************************************************************")
-	return numberOfAffectedVCs, amountPaid
+	return affectedIndexes, amountPaid
 }
 
 // returns

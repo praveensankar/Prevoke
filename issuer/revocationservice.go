@@ -20,7 +20,7 @@ import (
 type IRevocationService interface {
 	IssueVC(vc verifiable.Credential) *RevocationData
 	IssueVCsInBulk(vcs []*verifiable.Credential) ([]*RevocationData)
-	RevokeVC(vc verifiable.Credential) (*big.Int, int64, error)
+	RevokeVC(vc verifiable.Credential) (int, int64, error)
 	RetreiveUpdatedProof(vc verifiable.Credential) *techniques.MerkleProof
 	VerificationPhase1(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error)
 	VerificationPhase2(data *RevocationData) (bool, error)
@@ -235,7 +235,7 @@ func (r RevocationService) RetreiveUpdatedProof(vc verifiable.Credential)  *tech
 }
 
 // returns old mt index and amount of gwei paid
-func (r RevocationService) RevokeVC(vc verifiable.Credential) ( *big.Int, int64, error) {
+func (r RevocationService) RevokeVC(vc verifiable.Credential) (int, int64, error) {
 	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
 	if err != nil {
 		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
@@ -252,7 +252,7 @@ func (r RevocationService) RevokeVC(vc verifiable.Credential) ( *big.Int, int64,
 	for i, value := range r.bloomFilter.GetIndexes(vc.ID){
 		bfIndexes[i]=value;
 	}
-	oldMTIndex := r.VCToBigInts[vc.ID]
+	//oldMTIndex := r.VCToBigInts[vc.ID]
 	index, _ := r.merkleTreeAcc.UpdateLeaf(vc.ID, "-1")
 	var mtIndexes []*big.Int
 	var mtValues []string
@@ -286,7 +286,7 @@ func (r RevocationService) RevokeVC(vc verifiable.Credential) ( *big.Int, int64,
 		zap.S().Fatalln("failed to revoke", err)
 	}
 
-	return oldMTIndex, gasUsed, nil
+	return index, gasUsed, nil
 }
 
 

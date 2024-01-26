@@ -131,10 +131,10 @@ func (r RevocationServiceStub) RetreiveUpdatedProof(vc verifiable.Credential)  *
 }
 
 // returns old mt index and amount of gwei paid
-func (r *RevocationServiceStub) RevokeVC(vc verifiable.Credential) ( *big.Int, int64, error) {
+func (r *RevocationServiceStub) RevokeVC(vc verifiable.Credential) (int, int64, error) {
 	r.bloomFilter.RevokeInBloomFilter(vc.ID)
-	oldMTIndex := r.VCToBigInts[vc.ID]
-	r.merkleTreeAcc.UpdateLeaf(vc.ID, "-1")
+	//oldMTIndex := r.VCToBigInts[vc.ID]
+	oldMTIndex, _ := r.merkleTreeAcc.UpdateLeaf(vc.ID, "-1")
 	return oldMTIndex, -1, nil
 }
 

@@ -1,62 +1,29 @@
 package simulation
 
 import (
-	"encoding/json"
-	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/deckarep/golang-set"
 	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
-	"github.com/praveensankar/Revocation-Service/blockchain"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
 	"go.uber.org/zap"
-	"io/ioutil"
 	"math"
 	"math/rand"
-	"os"
 	"time"
 )
 
-
-
-func Start(config config.Config){
-		DeployContract(&config)
-		//zap.S().Infoln("smart contract: ",config.SmartContractAddress)
-		PerformExperiment(config)
-
-}
-
-func StartExperiments(config config.Config){
-
-	experiments := config.ExpParamters
+func TestSimulator(conf config.Config) {
+	experiments := conf.ExpParamters
 
 	for _, exp := range experiments{
-		DeployContract(&config)
+
 		//zap.S().Infoln("smart contract: ",config.SmartContractAddress)
-		SetUpExpParamters(&config, *exp)
-		PerformExperiment(config)
+		SetUpExpParamters(&conf, *exp)
+		PerformExperimentTest(conf)
 	}
 }
 
-func DeployContract(conf *config.Config){
-	address, err := blockchain.DeployContract(*conf)
-
-	if err != nil {
-		zap.S().Errorln("error deploying contract")
-	}
-
-	conf.SmartContractAddress = address
-}
-
-func SetUpExpParamters(conf *config.Config, exp config.Experiment){
-	conf.ExpectedNumberOfTotalVCs= uint(exp.TotalVCs)
-	conf.ExpectedNumberofRevokedVCs= uint(exp.RevokedVCs)
-	conf.FalsePositiveRate=exp.FalsePositiveRate
-	conf.MtLevelInDLT= uint(exp.MtLevelInDLT)
-	conf.MTHeight=uint(exp.MtHeight)
-}
-
-func PerformExperiment(config config.Config){
-	issuer1 := issuer.CreateIssuer(config)
+func PerformExperimentTest(config config.Config){
+	issuer1 := issuer.CreateTestIssuer(config)
 	remainingSpace := int(math.Pow(2, float64(config.MTHeight)))-int(config.ExpectedNumberOfTotalVCs)
 	vcDummies := issuer1.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
 
@@ -158,27 +125,5 @@ func PerformExperiment(config config.Config){
 	zap.S().Infoln("SIMULATOR : \t results: ", result.String())
 
 	WriteToFile(*result)
-}
-
-
-func  WriteToFile( result Results) {
-
-	var results []Results
-	jsonFile, _ := os.Open("Simulation/results.json")
-	byte, _ := ioutil.ReadAll(jsonFile)
-	json.Unmarshal(byte, &results)
-	results = append(results, result)
-	jsonRes, _ := json.MarshalIndent(results,"","")
-	//filename := fmt.Sprintf("Simulation/results/result_%v_%v_%v.json",numberOfVcs, numberOfRevokedVcs, mtLevelInDLT)
-	ioutil.WriteFile("Simulation/results.json", jsonRes, 0644)
 
 }
-
-func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate float64) (uint, uint) {
-	size, numberOfIndexesPerEntry := bloom.EstimateParameters(totalNumberOfVCs, falsePositiveRate)
-	return size, numberOfIndexesPerEntry
-}
-
-
-
-

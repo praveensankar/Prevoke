@@ -273,7 +273,7 @@ Input:
 	2) (string) - newLeaf value
 
 Output:
-	1) (int) - index of newLeaf in the merkle tree accumulator
+	1) (int) - index of Leaf node in the merkle tree accumulator
 	2) (string) - hash value of newLeaf that is stored in the merkle tree accumulator
 */
 
