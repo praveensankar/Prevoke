@@ -1,8 +1,7 @@
-package issuer
+package revocation_service
 
 import (
 	_ "github.com/ethereum/go-ethereum/core/types"
-	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/techniques"
 	"go.uber.org/zap"
@@ -23,7 +22,7 @@ type RevocationServiceStub struct{
 
 
 
-func CreateRevocationServiceStub(config config.Config) *RevocationServiceStub{
+func CreateRevocationServiceStub(config config.Config) *RevocationServiceStub {
 	rs := RevocationServiceStub{}
 	rs.merkleTreeAcc = techniques.CreateMerkleTreeAccumulator(config)
 	rs.bloomFilter = techniques.CreateBloomFilter(config.ExpectedNumberofRevokedVCs, config.FalsePositiveRate)
@@ -47,38 +46,25 @@ Inputs:
 	_mtIndexes: merkle tree indexes
 	_mtValues: merkle tree values
 */
-func (r *RevocationServiceStub) IssueVC(vc verifiable.Credential) (*RevocationData) {
+func (r *RevocationServiceStub) IssueVC(vcID string) (*RevocationData) {
 
 
-	r.vcCounter++
-	r.VCToBigInts[vc.ID] = big.NewInt(r.vcCounter)
-	mtIndex, leafHash := r.merkleTreeAcc.AddLeaf(vc.ID)
+	mtIndex, leafHash := r.merkleTreeAcc.AddLeaf(vcID)
 
-	levelOrderRepr := r.merkleTreeAcc.Tree
-	levelCounter := 0
-	var mtIndexes []*big.Int
-	var mtValues []string
-	for i:=0; i<len(levelOrderRepr); i++ {
-		mtIndexes = append(mtIndexes, big.NewInt(int64(i)))
-		h := levelOrderRepr[uint(i)].Value
-		mtValues = append(mtValues, h)
-		levelCounter += 1
-		if levelCounter == r.NumberOfEntriesForMTInDLT {
-			break
-		}
-	}
+	mtIndexes, mtValues := r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
+	zap.S().Infoln("REVOCATION SERVICE - merkle tree indexes and values: ", mtIndexes, mtValues)
 	//zap.S().Infoln("REVOCATION SERVICE- \t number of non-leaf nodes of MT accumulator stored in smart contract ",levelCounter)
 
 	//generate bloom filter indexes for the vc and give it to the holders
-	bfIndexes := r.bloomFilter.GetIndexes(vc.ID)
+	bfIndexes := r.bloomFilter.GetIndexes(vcID)
 	//mtLeaf := r.merkleTreeAcc.GetHashValueOfLeaf(r.VCToBigInts[vc.ID])§
-	merkleProof := r.merkleTreeAcc.GetProof(vc.ID)
+	merkleProof := r.merkleTreeAcc.GetProof(vcID)
 	//zap.S().Infoln("REVOCATION SERVICE- \t vc to big int: ",r.VCToBigInts[vc.ID])
 	//zap.S().Infoln("REVOCATION SERVICE- \t hash to hex: ",mtLeaf.Hex())
 	//zap.S().Infoln("REVOCATION SERVICE- \t mt leaf hash value: ", mtLeaf[:])
 	//zap.S().Infoln("REVOCATION SERVICE- \t checks proof: ", r.merkleTreeAcc.VerifyProof(r.VCToBigInts[vc.ID], merkleProof))
 
-	revocationData := CreateRevocationData(vc.ID, mtIndex, bfIndexes, leafHash, merkleProof)
+	revocationData := CreateRevocationData(vcID, mtIndex, bfIndexes, leafHash, merkleProof)
 	//revocationData.PrintRevocationData()
 
 	return revocationData
@@ -90,51 +76,33 @@ Inputs:
 	_mtIndexes: merkle tree indexes
 	_mtValues: merkle tree values
 */
-func (r *RevocationServiceStub) IssueVCsInBulk(vcs []*verifiable.Credential) ([]*RevocationData) {
+func (r *RevocationServiceStub) IssueVCsInBulk(vcIDs []string) ([]*RevocationData) {
 
 	var revocationDataALl []*RevocationData
-	for _, vc := range vcs {
-		r.vcCounter++
-		r.VCToBigInts[vc.ID] = big.NewInt(r.vcCounter)
-		mtIndex, leafHash := r.merkleTreeAcc.AddLeaf(vc.ID)
-		bfIndexes := r.bloomFilter.GetIndexes(vc.ID)
-		merkleProof := r.merkleTreeAcc.GetProof(vc.ID)
-		revocationData := CreateRevocationData(vc.ID, mtIndex, bfIndexes, leafHash, merkleProof)
+	for _, vcID := range vcIDs {
+		//zap.S().Infoln("REVOCATION SERVICE STUB - VC ID: ",vcID)
+		mtIndex, leafHash := r.merkleTreeAcc.AddLeaf(vcID)
+		bfIndexes := r.bloomFilter.GetIndexes(vcID)
+		merkleProof := r.merkleTreeAcc.GetProof(vcID)
+		revocationData := CreateRevocationData(vcID, mtIndex, bfIndexes, leafHash, merkleProof)
 		revocationDataALl = append(revocationDataALl, revocationData)
 	}
-
-	//root := r.merkleTreeAcc.GetRoot()
-	//zap.S().Errorln("REVOCATION SERVICE- merkle root in string from local: ",root)
-
-	levelOrderRepr := r.merkleTreeAcc.Tree
-	levelCounter := 0
-	var mtIndexes []*big.Int
-	var mtValues []string
-	for i:=0; i<len(levelOrderRepr); i++ {
-		mtIndexes = append(mtIndexes, big.NewInt(int64(i)))
-		h := levelOrderRepr[uint(i)].Value
-		mtValues = append(mtValues, h)
-		levelCounter += 1
-		if levelCounter == r.NumberOfEntriesForMTInDLT {
-			break
-		}
-	}
-
-
+	mtIndexes, mtValues := r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
+	zap.S().Infoln("REVOCATION SERVICE - merkle tree indexes and values: ", mtIndexes, mtValues)
 	return revocationDataALl
 }
 
-func (r RevocationServiceStub) RetreiveUpdatedProof(vc verifiable.Credential)  *techniques.MerkleProof{
+func (r RevocationServiceStub) RetreiveUpdatedProof(vcID string)  *techniques.MerkleProof{
 	//merkleProof := r.merkleTreeAcc.GetProofHashes(r.VCToBigInts[vc.ID])
-	merkleProof := r.merkleTreeAcc.GetProof(vc.ID)
+	merkleProof := r.merkleTreeAcc.GetProof(vcID)
 	return merkleProof
 }
 
 // returns old mt index and amount of gwei paid
-func (r *RevocationServiceStub) RevokeVC(vc verifiable.Credential) (int, int64, error) {
-	r.bloomFilter.RevokeInBloomFilter(vc.ID)
+func (r *RevocationServiceStub) RevokeVC(vcID string) (int, int64, error) {
+	r.bloomFilter.RevokeInBloomFilter(vcID)
 	//oldMTIndex := r.VCToBigInts[vc.ID]
-	oldMTIndex, _ := r.merkleTreeAcc.UpdateLeaf(vc.ID, "-1")
+	oldMTIndex, _ := r.merkleTreeAcc.UpdateLeaf(vcID, "-1")
 	return oldMTIndex, -1, nil
 }
 
@@ -165,13 +133,24 @@ func (r RevocationServiceStub) GetMerkleRoot()(string, error) {
 	return mtRoot, nil
 }
 
+func (r RevocationServiceStub) FetchMerkleTree() ([]string){
+
+
+	var mtValues []string
+
+	_, mtValues = r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
+
+	//zap.S().Errorln("REVOCATION SERVICE- merkle values: ",GetShortString(mtValues))
+	return mtValues;
+}
+
 func (r RevocationServiceStub) VerifyVC( bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int, data *RevocationData) (bool, error) {
 
 
 	//Todo: this function should be moved to the verifiers. The parameters should be shared to the holders.
 	status, err := r.VerificationPhase1(bfIndexes)
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
-	zap.S().Infoln("REVOCATION SERVICE- ", "***VERIFY*** vc:",data.vcId)
+	zap.S().Infoln("REVOCATION SERVICE- ", "***VERIFY*** vc:",data.VcId)
 	zap.S().Errorln("REVOCATION SERVICE-  verification phase 1: ",status)
 	if status==true{
 		return status, err
@@ -196,7 +175,7 @@ func (r RevocationServiceStub) PrintMerkleTree(){
 
 func (r RevocationServiceStub) LocalMTVerification(mtRoot string, data *RevocationData) {
 
-	zap.S().Infoln("REVOCATION SERVICE- ", "\t local MT verification - \t vc id: ",data.vcId, "\t root: ",mtRoot,
+	zap.S().Infoln("REVOCATION SERVICE- ", "\t local MT verification - \t vc id: ",data.VcId, "\t root: ",mtRoot,
 		"\t leaf value: ", data.MerkleTreeLeafValue, "\t proof: ",data.MerkleProof.OrderedWitnesses)
 	r.merkleTreeAcc.PrintTree()
 	status := r.merkleTreeAcc.VerifyProof(data.MerkleProof.LeafHash, data.MerkleProof.OrderedWitnesses, mtRoot)

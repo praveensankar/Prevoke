@@ -3,14 +3,18 @@ package techniques
 import (
 	"github.com/praveensankar/Revocation-Service/config"
 	"go.uber.org/zap"
+	"math"
 )
 
 func TestMerkleTreeAccumulator(conf config.Config){
 
+
+	remainingSpace := int(math.Pow(2, float64(conf.MTHeight)))-int(conf.ExpectedNumberOfTotalVCs)
+	totalElements := int(conf.ExpectedNumberOfTotalVCs)+remainingSpace
 	elements :=  make([]string, 0)
-	elements = append(elements,"1","2", "3", "4")
-	elements = append(elements,"11","12", "13", "14")
-	elements = append(elements,"21","22", "23", "24")
+	for i:=0; i<totalElements-2; i++{
+		elements = append(elements,string(i))
+	}
 
 	accumulator := CreateMerkleTreeAccumulator(conf)
 
@@ -23,6 +27,7 @@ func TestMerkleTreeAccumulator(conf config.Config){
 		proof := accumulator.GetProof(elements[i])
 		proofs[elements[i]]=proof
 	}
+	zap.S().Infoln("TEST MERKLE TREE- \t  proof witnesses: ", proofs[elements[0]].Witnesses)
 	TestProofs2(proofs, accumulator)
 
 	newElements :=  make([]string, 0)

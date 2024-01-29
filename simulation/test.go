@@ -19,6 +19,7 @@ func TestSimulator(conf config.Config) {
 		//zap.S().Infoln("smart contract: ",config.SmartContractAddress)
 		SetUpExpParamters(&conf, *exp)
 		PerformExperimentTest(conf)
+		break
 	}
 }
 

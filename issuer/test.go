@@ -3,6 +3,7 @@ package issuer
 import (
 	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/praveensankar/Revocation-Service/revocation_service"
 	"go.uber.org/zap"
 	"math/rand"
 	"time"
@@ -18,11 +19,11 @@ func  CreateTestIssuer(config config.Config) *Issuer {
 	issuer.name = config.IssuerName
 	issuer.credentialStore = []verifiable.Credential{}
 	issuer.revokedVcIDs = []string{}
-	issuer.revocationProofs = make(map[string]*RevocationData)
+	issuer.revocationProofs = make(map[string]*revocation_service.RevocationData)
 	issuer.AffectedVCIndexes = make(map[int]bool)
 	rand.Seed(time.Now().UnixNano())
 	issuer.vcCounter = rand.Intn(100000)
-	rs := CreateRevocationServiceStub(config)
+	rs := revocation_service.CreateRevocationServiceStub(config)
 	issuer.setRevocationService(rs)
 	zap.S().Infoln("ISSUER-","issuer test instance created")
 	zap.S().Infoln("\n\n********************************************************************************************************************************")

@@ -6,6 +6,7 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/praveensankar/Revocation-Service/revocation_service"
 	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/praveensankar/Revocation-Service/vc"
 	"go.uber.org/zap"
@@ -22,7 +23,7 @@ type IIsser interface {
 	Issue(config config.Config, credential verifiable.Credential)
 	IssueBulk(config config.Config, credential []*verifiable.Credential, total int)
 	Revoke(config config.Config, credential verifiable.Credential) (mapset.Set , int64)
-	setRevocationService(rs IRevocationService)
+	setRevocationService(rs revocation_service.IRevocationService)
 	UpdateMerkleProofsInStorage()
 	UpdateMerkleProof(vc verifiable.Credential)
 	UpdateAffectedVCs(conf config.Config, mtIndex int) (mapset.Set , int)
@@ -37,10 +38,10 @@ type Issuer struct{
 	credentialStore []verifiable.Credential
 	revokedVcIDs []string
 	AffectedVCIndexes map[int]bool
-	revocationProofs map[string]*RevocationData
+	revocationProofs map[string]*revocation_service.RevocationData
 	vcCounter int
 	blockchainEndPoint *ethclient.Client
-	RevocationService IRevocationService
+	RevocationService  revocation_service.IRevocationService
 }
 
 /*
@@ -63,11 +64,11 @@ func  CreateIssuer(config config.Config) *Issuer{
 	issuer.name = config.IssuerName
 	issuer.credentialStore = []verifiable.Credential{}
 	issuer.revokedVcIDs = []string{}
-	issuer.revocationProofs = make(map[string]*RevocationData)
+	issuer.revocationProofs = make(map[string]*revocation_service.RevocationData)
 	issuer.AffectedVCIndexes = make(map[int]bool)
 	rand.Seed(time.Now().UnixNano())
 	issuer.vcCounter = rand.Intn(100000)
-	rs := CreateRevocationService(config)
+	rs := revocation_service.CreateRevocationService(config)
 	issuer.setRevocationService(rs)
 	zap.S().Infoln("ISSUER-","new issuer created: issuer name - ",issuer.name)
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
@@ -76,7 +77,7 @@ func  CreateIssuer(config config.Config) *Issuer{
 }
 
 
-func (issuer *Issuer) setRevocationService(rs IRevocationService) {
+func (issuer *Issuer) setRevocationService(rs revocation_service.IRevocationService) {
 	issuer.RevocationService = rs
 }
 
@@ -115,8 +116,8 @@ func (issuer *Issuer) AddCretentialToStore(vc verifiable.Credential) {
 	issuer.credentialStore = append(issuer.credentialStore, vc)
 }
 
-func (issuer *Issuer) AddRevocationProofForNewVC(data *RevocationData){
-	issuer.revocationProofs[data.vcId] = data;
+func (issuer *Issuer) AddRevocationProofForNewVC(data *revocation_service.RevocationData){
+	issuer.revocationProofs[data.VcId] = data;
 }
 
 func (issuer *Issuer) UpdateMerkleProofInRevocationData(vcId string, proof *techniques.MerkleProof){
@@ -125,7 +126,7 @@ func (issuer *Issuer) UpdateMerkleProofInRevocationData(vcId string, proof *tech
 
 func (issuer *Issuer) UpdateMerkleProofsInStorage() {
 	for _,vc := range issuer.credentialStore{
-		merkleProof := issuer.RevocationService.RetreiveUpdatedProof(vc)
+		merkleProof := issuer.RevocationService.RetreiveUpdatedProof(vc.ID)
 		zap.S().Infoln("ISSUER-  UPDATING MERKLE PROOF", issuer.name, "\t vc:", vc.ID, "\t updated merkle proof: ",merkleProof)
 		issuer.UpdateMerkleProofInRevocationData(vc.ID, merkleProof)
 	}
@@ -135,7 +136,7 @@ func (issuer *Issuer) UpdateMerkleProofsInStorage() {
 func (issuer *Issuer) Issue(vc verifiable.Credential) {
 	// when issuer issue new credentials, the credential is created
 	issuer.AddCretentialToStore(vc)
-	revocationData := issuer.RevocationService.IssueVC(vc)
+	revocationData := issuer.RevocationService.IssueVC(vc.ID)
 	zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", vc.ID, "\t mt index: ", revocationData.MtIndex,
 		"\t mt leaf: ", revocationData.MerkleProof.LeafHash[:techniques.SHORT_STRING_SIZE] + "..",
 		"\t bf indexes: ",revocationData.BloomFilterIndexes)
@@ -152,8 +153,13 @@ func (issuer *Issuer) Issue(vc verifiable.Credential) {
 func (issuer *Issuer) IssueBulk(config config.Config, vcs []*verifiable.Credential, total int){
 
 
+	var vcIDs []string
 
-	revocationData := issuer.RevocationService.IssueVCsInBulk(vcs)
+	for _, vc := range vcs{
+		vcIDs=append(vcIDs, vc.ID)
+	}
+
+	revocationData := issuer.RevocationService.IssueVCsInBulk(vcIDs)
 
 	for i:=0; i<total; i++{
 		issuer.AddCretentialToStore(*vcs[i])
@@ -161,7 +167,7 @@ func (issuer *Issuer) IssueBulk(config config.Config, vcs []*verifiable.Credenti
 
 	for _, rd := range revocationData{
 		issuer.AddRevocationProofForNewVC(rd)
-		zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", rd.vcId, "\t leaf: ", rd.MerkleProof.LeafHash)
+		zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", rd.VcId, "\t leaf: ", rd.MerkleProof.LeafHash)
 	}
 }
 
@@ -178,7 +184,7 @@ func (issuer *Issuer) UpdateMerkleProof(vc verifiable.Credential)  {
 		return
 	}
 
-	merkleProof := issuer.RevocationService.RetreiveUpdatedProof(vc)
+	merkleProof := issuer.RevocationService.RetreiveUpdatedProof(vc.ID)
 	//zap.S().Infoln("ISSUER- ", issuer.name, "\t vc:", vc.ID, "\t merkle tree accumulator witness updated..... ")
 	 issuer.UpdateMerkleProofInRevocationData(vc.ID, merkleProof)
 
@@ -186,7 +192,7 @@ func (issuer *Issuer) UpdateMerkleProof(vc verifiable.Credential)  {
 
 func (issuer *Issuer) getUpdatedMerkleProof(vc verifiable.Credential) *techniques.MerkleProof {
 
-	merkleProof := issuer.RevocationService.RetreiveUpdatedProof(vc)
+	merkleProof := issuer.RevocationService.RetreiveUpdatedProof(vc.ID)
 	//zap.S().Infoln("ISSUER- ", issuer.name, "\t vc:", vc.ID, "\t merkle tree accumulator witness updated..... ")
 	issuer.UpdateMerkleProofInRevocationData(vc.ID, merkleProof)
 	return merkleProof
@@ -245,7 +251,7 @@ func (issuer *Issuer) GetAffectedVCsCount() (int) {
 func (issuer *Issuer) Revoke(conf config.Config, vc verifiable.Credential) (mapset.Set , int64) {
 
 	//zap.S().Infoln("\n\n********************************************************************************************************************************")
-	mtIndex, amountPaid, _ := issuer.RevocationService.RevokeVC(vc)
+	mtIndex, amountPaid, _ := issuer.RevocationService.RevokeVC(vc.ID)
 	issuer.revokedVcIDs = append(issuer.revokedVcIDs, vc.ID)
 	affectedIndexes, numberOfAffectedVCs := issuer.UpdateAffectedVCs(conf, mtIndex)
 	zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vc:", vc.ID,"\t mt index: ",mtIndex,
@@ -307,11 +313,31 @@ func (issuer *Issuer) VerifyTest(vc verifiable.Credential) (bool, bool) {
 
 	// this step is performed to simulate retreiving proofs from DLT
 	// Todo: Create a function in revocation service to allow holders to fetch remaining parts of their witness
+	var rd1 *revocation_service.RevocationData
 	if actualStatus == true {
-		issuer.getUpdatedMerkleProof(vc)
+		if issuer.AffectedVCIndexes[int(rd.MtIndex)]==true {
+			issuer.getUpdatedMerkleProof(vc)
+		}
+		rd1 = issuer.revocationProofs[vc.ID]
+		if issuer.AffectedVCIndexes[int(rd.MtIndex)]==false {
+			mtValues := issuer.RevocationService.FetchMerkleTree()
+			for i:=0; i< len(mtValues);i++{
+				wit, ok :=rd1.MerkleProof.Witnesses[i]
+				if ok{
+					if wit.HashValue!=mtValues[i]{
+						rd1.MerkleProof.Witnesses[i].HashValue=mtValues[i]
+					}
+				}
+			}
+
+			rd1.MerkleProof.OrderedWitnesses = techniques.OrderWitnesses(*rd1.MerkleProof)
+			//rd1.PrintRevocationData()
+		}
+	} else{
+		rd1 = issuer.revocationProofs[vc.ID]
 	}
 
-	rd1 := issuer.revocationProofs[vc.ID]
+
 	//rd1.PrintRevocationData()
 
 	// ***************************** Phase 2 **************************************************
@@ -328,7 +354,7 @@ func (issuer *Issuer) VerifyTest(vc verifiable.Credential) (bool, bool) {
 	} else{
 		vcStatus="revoked"
 	}
-	zap.S().Infoln("VERIFICAION TEST- \t ***VERIFICATION*** vc:", vc.ID, "\t actual status: ",vcStatus,
+	zap.S().Infoln("VERIFICAION TEST- \t ***VERIFICATION*** vc:", vc.ID, "\t mt index: ", rd1.MtIndex, "\t actual status: ",vcStatus,
 		"\t phase1 result: ", phase1Result, "\t phase2 result: ", phase2Result)
 	// This is to check whether the VC is actuall revoked or not
 	//revokedStatus := true
@@ -360,7 +386,7 @@ func (issuer *Issuer) verifyLocalTest(vc verifiable.Credential) {
 		issuer.getUpdatedMerkleProof(vc)
 	}
 	for _,rd := range issuer.revocationProofs{
-		if (rd.vcId==vc.ID){
+		if (rd.VcId ==vc.ID){
 			var bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int
 			for i,v := range rd.BloomFilterIndexes{
 				bfIndexes[i]=v;

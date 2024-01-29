@@ -247,9 +247,15 @@ contract RevocationService{
     }
 
 
-
-
-
-
-
+    function retrieveMerkleTree() public view returns (string[] memory){
+        string [] memory mt = new string[](indexes.length);
+        for (uint i = 0; i < indexes.length; i++) {
+            mt[i] = merkleTree[i];
+        }
+        return mt;
+    }
 }
+
+
+
+

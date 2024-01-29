@@ -72,9 +72,9 @@ func PerformExperiment(config config.Config){
 		vcs = append(vcs, vcDummies[i])
 	}
 
-	for _, vc := range vcs{
-		issuer1.VerifyTest(*vc)
-	}
+	//for _, vc := range vcs{
+	//	issuer1.VerifyTest(*vc)
+	//}
 
 
 
@@ -116,12 +116,16 @@ func PerformExperiment(config config.Config){
 	isAffectedInMTAcc = false
 	numberOfOccuredFalsePositives := 0
 	numberOfVCsRetrievedWitnessFromIssuer := 0
+	falsePositiveResults := mapset.NewSet()
+	fetchedWitnessesFromIssuers := mapset.NewSet()
 	for _, vc := range vcs {
 		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(*vc)
 		if falsePositiveStatus == true {
 			numberOfOccuredFalsePositives++
+			falsePositiveResults.Add(vc.ID)
 			if isAffectedInMTAcc == true {
 				numberOfVCsRetrievedWitnessFromIssuer++
+				fetchedWitnessesFromIssuers.Add(vc.ID)
 			}
 		}
 	}
@@ -135,6 +139,8 @@ func PerformExperiment(config config.Config){
 	//	}
 	//}
 	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by revocation: ", affectedIndexes)
+	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by false positives: ", falsePositiveResults)
+	zap.S().Infoln("SIMULATOR - \t indexes of VCs that retrieved witnesses from issuer: ", fetchedWitnessesFromIssuers)
 	size, k := BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
 	result := &Results{
 		TotalVCs:                              int(config.ExpectedNumberOfTotalVCs),

@@ -25,6 +25,8 @@ The flags are:
 	-issuerTest
 		tests issuer
 
+	-revocationServiceTest
+		tests revocation service
  */
 package main
 
@@ -34,6 +36,7 @@ import (
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
+	"github.com/praveensankar/Revocation-Service/revocation_service"
 	"github.com/praveensankar/Revocation-Service/simulation"
 	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/spf13/viper"
@@ -112,13 +115,22 @@ TestIndividualComponents tests the following components in the project.
 4) Connection to Blockchain
 5) simulator
  */
-func TestIndividualComponents(conf config.Config){
+func Run(conf config.Config){
 
 	mtTestFlag := flag.Bool("mtTest", false, "a bool")
 	issuerTestFlag := flag.Bool("issuerTest", false, "a bool")
 	bfTestFlag := flag.Bool("bfTest", false, "a bool")
 	simulatorTestFlag := flag.Bool("simulatorTest", false, "a bool")
+	rsTestFlag := flag.Bool("revocationServiceTest", false, "a bool")
+	simulationFlag := flag.Bool("simulation", false, "a bool")
+
 	flag.Parse()
+
+
+	if *bfTestFlag==true{
+		techniques.TestBloomFilter(100)
+	}
+
 	if *mtTestFlag==true{
 		//techniques.TestMerkleTree(conf)
 		techniques.TestMerkleTreeAccumulator(conf)
@@ -128,20 +140,24 @@ func TestIndividualComponents(conf config.Config){
 		issuer.TestIssuer(conf)
 	}
 
-	if *bfTestFlag==true{
-		techniques.TestBloomFilter(100)
+	if *rsTestFlag == true{
+		revocation_service.TestRevocationService(conf)
 	}
+
 
 	if *simulatorTestFlag==true{
 		simulation.TestSimulator(conf)
 	}
 
 
+	if *simulationFlag==true {
+		simulation.StartExperiments(conf)
+
+	}
+
+
 	//blockchain.TestConnectionToBlockchain(conf)
 	//blockchain.Test(conf)
-
-
-
 
 }
 
@@ -149,16 +165,8 @@ func main()  {
 	//testAries()
 	initialize()
 	conf, _ := config.ParseConfig()
-	TestIndividualComponents(conf)
+	Run(conf)
 
-	simulationFlag := flag.Bool("simulation", false, "a bool")
-
-	flag.Parse()
-
-	if *simulationFlag==true {
-			simulation.Start(conf)
-
-	}
 
 	//if os.Args[1]=="size" {
 	//	size, numberofIndexesPerEntry := BloomFilterConfigurationGenerators(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)

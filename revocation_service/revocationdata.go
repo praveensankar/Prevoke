@@ -1,4 +1,4 @@
-package issuer
+package revocation_service
 
 import (
 	"github.com/praveensankar/Revocation-Service/techniques"
@@ -7,16 +7,16 @@ import (
 )
 
 type RevocationData struct {
-	vcId string
+	VcId    string
 	MtIndex int
 	BloomFilterIndexes []*big.Int
 	MerkleTreeLeafValue string
 	MerkleProof  *techniques.MerkleProof
 }
 
-func CreateRevocationData(vcId string, mtIndex int, bfIndexes []*big.Int, mtLeaf string, mtProof *techniques.MerkleProof)  *RevocationData{
+func CreateRevocationData(vcId string, mtIndex int, bfIndexes []*big.Int, mtLeaf string, mtProof *techniques.MerkleProof)  *RevocationData {
 	rd := RevocationData{}
-	rd.vcId = vcId;
+	rd.VcId = vcId;
 	rd.MtIndex=mtIndex
 	rd.BloomFilterIndexes = bfIndexes;
 	rd.MerkleTreeLeafValue = mtLeaf;
@@ -25,7 +25,7 @@ func CreateRevocationData(vcId string, mtIndex int, bfIndexes []*big.Int, mtLeaf
 }
 
 func (rd *RevocationData) PrintRevocationData(){
-	zap.S().Infoln("REVOCATION DATA- ","vc ID: ", rd.vcId,
+	zap.S().Infoln("REVOCATION DATA- ","vc ID: ", rd.VcId,
 		"\tmerkle tree index: ", rd.MtIndex,
 	"\tbloom filter indexes: ", rd.BloomFilterIndexes,
 	"\t merkle tree leaf: ", rd.MerkleTreeLeafValue,

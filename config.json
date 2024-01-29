@@ -10,7 +10,7 @@
 		 "totalVCs": "8",
 		 "revokedVCs": "4",
 		 "falsePositiveRate": "0.1",
-		 "mtLevelInDLT": "1",
+		 "mtLevelInDLT": "3",
 		 "mtHeight": "3",
 		 "comment": "number of hash functions: 7 if fpr==0.01, 6 if fpr==0.02,0.03, 5 if fpr==0.04,0.05, 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more "
 	 },
@@ -23,15 +23,15 @@
 
 	},
 	 "account" : {
-		 "address" : "0xca65e028701522299AF99aa92b5e2D25C66c628E",
-		 "privateKey": "7e2db76f38427be1bb4ed53acb19a88b55d9a6e63b22100911d758a373b44ab0",
+		 "address" : "0x9725557FE546b3495D01c3AAdA50554d9390a4B8",
+		 "privateKey": "80ea9930c7ff15fea6fc40dfcbcc488fc8ab1dc97c9e6bf69a18129b4b611f1f",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
 	 "otherAccounts" : [],
 	 "logger" : {
 		"env" : "dev",
-		 "output": "console",
+		 "output": "file",
 		 "filename": "logs.json",
 		 "_comment1": "ouput:<console> - for printing in console, <file> - for writing to file",
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
@@ -41,25 +41,25 @@
 	 },
 	 "exp": {
 		 "exp1": {
-			 "totalVCs": "10",
-			 "revokedVCs": "3",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "2",
-			 "mtHeight": "4"
-		 },
-		 "exp2": {
-			 "totalVCs": "10",
-			 "revokedVCs": "3",
+			 "totalVCs": "1000",
+			 "revokedVCs": "100",
 			 "falsePositiveRate": "0.1",
 			 "mtLevelInDLT": "3",
-			 "mtHeight": "4"
+			 "mtHeight": "10"
+		 },
+		 "exp2": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "100",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "5",
+			 "mtHeight": "10"
 		 },
 		 "exp3": {
-			 "totalVCs": "10",
-			 "revokedVCs": "8",
+			 "totalVCs": "1000",
+			 "revokedVCs": "100",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "4",
-			 "mtHeight": "4"
+			 "mtLevelInDLT": "7",
+			 "mtHeight": "10"
 		 }
 	 }
  }

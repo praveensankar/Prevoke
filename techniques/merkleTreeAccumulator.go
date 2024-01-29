@@ -7,6 +7,7 @@ import (
 	"go.uber.org/zap"
 	"golang.org/x/crypto/sha3"
 	"math"
+	"math/big"
 )
 
 const DIGEST_SIZE = 32
@@ -376,13 +377,13 @@ func (accumulator *MerkleTreeAccumulator2)  GetProof(leaf string) *MerkleProof{
 		index = parentIndex
 	}
 
-	merkleProof.OrderedWitnesses = accumulator.OrderWitnesses(*merkleProof)
+	merkleProof.OrderedWitnesses = OrderWitnesses(*merkleProof)
 
 	return merkleProof
 }
 
 
-func (accumulator *MerkleTreeAccumulator2)  OrderWitnesses(merkleProof MerkleProof) []*Witness {
+func  OrderWitnesses(merkleProof MerkleProof) []*Witness {
 
 	orderedWitnesses := make([]*Witness,0)
 	for _, witnessIndex := range merkleProof.Order{
@@ -423,8 +424,8 @@ func (accumulator *MerkleTreeAccumulator2)  VerifyProof(leafHash string, witness
 		intermediateHashes = intermediateHashes + accumulator.PrintShortString(currentHash)
 	}
 
-	zap.S().Infoln("MERKLE TREE ACCUMULATOR: \t root: ",accumulator.PrintShortString(root), "\t leaf hash: ",
-		accumulator.PrintShortString(leafHash), "\t hashes: ", intermediateHashes)
+	//zap.S().Infoln("MERKLE TREE ACCUMULATOR: \t root: ",accumulator.PrintShortString(root), "\t leaf hash: ",
+	//	accumulator.PrintShortString(leafHash), "\t hashes: ", intermediateHashes)
 
 
 	if hashValue==root{
@@ -480,6 +481,34 @@ func (accumulator *MerkleTreeAccumulator2) PrintShortString(input string) string
 		input = input[:SHORT_STRING_SIZE] + ".."
 	}
 	return fmt.Sprintf("%s",input)
+}
+
+/*
+GetEntriesInLevelOrder returns the first 'n' number of entries from the merkle tree accumulator
+on the basis of level order
+
+Inputs:
+(int) - numberOfEntries - number of entries that need to be fetched from the merkle tree accumulator
+
+Outputs:
+([]*big.Int) - the indexes of entries in the merkle tree accumulator. e.g. Root is at index 0, children of root are at index 1 and 2.
+([]string) - values of entries in the merkle tree accumulator.
+ */
+func (accumulator *MerkleTreeAccumulator2) GetEntriesInLevelOrder(numberOfEntries int) ([]*big.Int, []string) {
+	levelOrderRepr := accumulator.Tree
+	counter := 0
+	var mtIndexes []*big.Int
+	var mtValues []string
+	for i:=0; i<len(levelOrderRepr); i++ {
+		mtIndexes = append(mtIndexes, big.NewInt(int64(i)))
+		h := levelOrderRepr[uint(i)].Value
+		mtValues = append(mtValues, h)
+		counter += 1
+		if counter == numberOfEntries {
+			break
+		}
+	}
+	return mtIndexes, mtValues
 }
 
 
