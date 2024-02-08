@@ -1,9 +1,11 @@
 package issuer
 
 import (
-	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
+	"fmt"
 	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
+	"github.com/praveensankar/Revocation-Service/vc"
 	"go.uber.org/zap"
 	"math/rand"
 	"time"
@@ -17,7 +19,7 @@ This instance connects to local stub for revoation service instead of connecting
 func  CreateTestIssuer(config config.Config) *Issuer {
 	issuer := Issuer{}
 	issuer.name = config.IssuerName
-	issuer.credentialStore = []verifiable.Credential{}
+	issuer.CredentialStore = []models.IVerifiableCredential{}
 	issuer.revokedVcIDs = []string{}
 	issuer.revocationProofs = make(map[string]*revocation_service.RevocationData)
 	issuer.AffectedVCIndexes = make(map[int]bool)
@@ -29,28 +31,37 @@ func  CreateTestIssuer(config config.Config) *Issuer {
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
 	return &issuer
 }
+
+
 func TestIssuer(config config.Config){
 
 	issuer := CreateTestIssuer(config)
-	vcs := issuer.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs))
+	claimsSet := issuer.GenerateMultipleDummyVCClaims(int(config.ExpectedNumberOfTotalVCs))
 
-	for _, vc := range vcs{
-		issuer.Issue(*vc)
+	for _, claims := range claimsSet{
+		issuer.Issue(claims)
 	}
 
+	credentials := issuer.CredentialStore
+	var vcs []vc.DiplomaCredential
+
+	for _, credential := range credentials{
+		diploma := credential.(*vc.DiplomaCredential)
+		vcs = append(vcs, *diploma)
+	}
 	issuer.RevocationService.PrintMerkleTree()
-	for _, vc := range vcs{
-		issuer.VerifyTest(*vc)
+	for _, credential := range vcs{
+			vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer.BbsKeyPair.PublicKey, credential)
+			vcId := fmt.Sprintf("%v",credential.GetId())
+			issuer.VerifyTest(vcId, *vp)
 	}
 
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	revokedVCs := make([]string, totalRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
 	for i, counter:=0, 0; counter< totalRevokedVCs; {
-
-
 		for {
-			vcID := vcs[i].ID
+			vcID := fmt.Sprintf("%v", vcs[i].GetId())
 			isalreadyRevoked := false
 			for _, revokedId := range revokedVCs {
 				if vcID == revokedId {
@@ -59,7 +70,7 @@ func TestIssuer(config config.Config){
 				}
 			}
 			if isalreadyRevoked==false{
-				issuer.Revoke(config, *vcs[i])
+				issuer.Revoke(config, credentials[i])
 				revokedVCs = append(revokedVCs, vcID)
 				counter++
 				break
@@ -69,14 +80,17 @@ func TestIssuer(config config.Config){
 		}
 	}
 
-	for _, vc := range vcs{
-		issuer.UpdateMerkleProof(*vc)
+	for _, credential := range credentials{
+		issuer.UpdateMerkleProof(credential)
 	}
 
 
 
-	for _, vc := range vcs{
-		issuer.VerifyTest(*vc)
+	for _, credential := range credentials{
+		diploma := credential.(*vc.DiplomaCredential)
+		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer.BbsKeyPair.PublicKey, *diploma)
+		vcId := fmt.Sprintf("%v",credential.GetId())
+		issuer.VerifyTest(vcId, *vp)
 	}
 	//vc1 := issuer.generateDummyVC()
 	//issuer.issue(*vc1)
@@ -99,5 +113,5 @@ func TestIssuer(config config.Config){
 	//
 	//issuer.verifyTest(*vcs[2])
 	//issuer.revoke(*vcs[2])
-	issuer.VerifyTest(*vcs[2])
+
 }

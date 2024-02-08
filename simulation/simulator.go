@@ -2,12 +2,14 @@ package simulation
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/deckarep/golang-set"
-	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 	"github.com/praveensankar/Revocation-Service/blockchain"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
+	"github.com/praveensankar/Revocation-Service/models"
+	"github.com/praveensankar/Revocation-Service/vc"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"math"
@@ -58,18 +60,20 @@ func SetUpExpParamters(conf *config.Config, exp config.Experiment){
 func PerformExperiment(config config.Config){
 	issuer1 := issuer.CreateIssuer(config)
 	remainingSpace := int(math.Pow(2, float64(config.MTHeight)))-int(config.ExpectedNumberOfTotalVCs)
-	vcDummies := issuer1.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
+	claimsSet := issuer1.GenerateMultipleDummyVCClaims(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
 
-	issuer1.IssueBulk(config, vcDummies, len(vcDummies))
 
-	for _, vc := range vcDummies{
-		issuer1.UpdateMerkleProof(*vc)
+	issuer1.IssueBulk(claimsSet, int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
+
+	credentials := issuer1.CredentialStore
+	for _, vc := range credentials{
+		issuer1.UpdateMerkleProof(vc)
 	}
 
-	vcs:= []*verifiable.Credential{}
+	vcs:= []models.IVerifiableCredential{}
 
 	for i:=0; i<int(config.ExpectedNumberOfTotalVCs);i++{
-		vcs = append(vcs, vcDummies[i])
+		vcs = append(vcs, credentials[i])
 	}
 
 	//for _, vc := range vcs{
@@ -88,7 +92,7 @@ func PerformExperiment(config config.Config){
 
 		i = 2
 		for {
-			vcID := vcs[i].ID
+			vcID := fmt.Sprintf("%v",vcs[i].GetId())
 			isalreadyRevoked := false
 			for _, revokedId := range revokedVCs {
 				if vcID == revokedId {
@@ -97,7 +101,7 @@ func PerformExperiment(config config.Config){
 				}
 			}
 			if isalreadyRevoked==false{
-				indexes, amount := issuer1.Revoke(config, *vcs[i])
+				indexes, amount := issuer1.Revoke(config, vcs[i])
 				affectedIndexes = affectedIndexes.Union(indexes)
 				amountPaid = amountPaid + amount;
 				amountPaid = amountPaid/2;
@@ -118,14 +122,18 @@ func PerformExperiment(config config.Config){
 	numberOfVCsRetrievedWitnessFromIssuer := 0
 	falsePositiveResults := mapset.NewSet()
 	fetchedWitnessesFromIssuers := mapset.NewSet()
-	for _, vc := range vcs {
-		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(*vc)
+	for _, credential := range vcs {
+		diploma := credential.(*vc.DiplomaCredential)
+		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer1.BbsKeyPair.PublicKey, *diploma)
+		vcId := fmt.Sprintf("%v",credential.GetId())
+
+		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(vcId, *vp)
 		if falsePositiveStatus == true {
 			numberOfOccuredFalsePositives++
-			falsePositiveResults.Add(vc.ID)
+			falsePositiveResults.Add(vcId)
 			if isAffectedInMTAcc == true {
 				numberOfVCsRetrievedWitnessFromIssuer++
-				fetchedWitnessesFromIssuers.Add(vc.ID)
+				fetchedWitnessesFromIssuers.Add(vcId)
 			}
 		}
 	}

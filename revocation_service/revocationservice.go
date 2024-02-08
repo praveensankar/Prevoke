@@ -218,13 +218,13 @@ func (r RevocationService) RevokeVC(vcID string) (int, int64, error) {
 		bfIndexes[i]=value;
 	}
 	//oldMTIndex := r.VCToBigInts[vc.ID]
-	index, _ := r.merkleTreeAcc.UpdateLeaf(vcID, "-1")
+	vcIndex, _ := r.merkleTreeAcc.UpdateLeaf(vcID, "-1")
 	var mtIndexes []*big.Int
 	var mtValues []string
 	var parentIndex int
 
 	currentLevel := r.mtHeight
-
+	index := vcIndex
 	for i:=currentLevel; i>=0; i--{
 		parentIndex = int(math.Floor(float64((index - 1) / 2)))
 
@@ -266,7 +266,7 @@ func (r RevocationService) RevokeVC(vcID string) (int, int64, error) {
 		zap.S().Fatalln("failed to revoke", err)
 	}
 
-	return index, gasUsed, nil
+	return vcIndex, gasUsed, nil
 }
 
 

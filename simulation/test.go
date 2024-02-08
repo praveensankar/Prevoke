@@ -1,10 +1,12 @@
 package simulation
 
 import (
+	"fmt"
 	"github.com/deckarep/golang-set"
-	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
+	"github.com/praveensankar/Revocation-Service/models"
+	"github.com/praveensankar/Revocation-Service/vc"
 	"go.uber.org/zap"
 	"math"
 	"math/rand"
@@ -24,26 +26,31 @@ func TestSimulator(conf config.Config) {
 }
 
 func PerformExperimentTest(config config.Config){
-	issuer1 := issuer.CreateTestIssuer(config)
+	issuer1 := issuer.CreateIssuer(config)
 	remainingSpace := int(math.Pow(2, float64(config.MTHeight)))-int(config.ExpectedNumberOfTotalVCs)
-	vcDummies := issuer1.GenerateDummyVCs(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
+	claimsSet := issuer1.GenerateMultipleDummyVCClaims(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
 
-	issuer1.IssueBulk(config, vcDummies, len(vcDummies))
 
-	for _, vc := range vcDummies{
-		issuer1.UpdateMerkleProof(*vc)
+	issuer1.IssueBulk(claimsSet, int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
+
+	credentials := issuer1.CredentialStore
+	for _, vc := range credentials{
+		issuer1.UpdateMerkleProof(vc)
 	}
 
-	vcs:= []*verifiable.Credential{}
+
+	vcs:= []models.IVerifiableCredential{}
 
 	for i:=0; i<int(config.ExpectedNumberOfTotalVCs);i++{
-		vcs = append(vcs, vcDummies[i])
+		vcs = append(vcs, credentials[i])
 	}
 
-	for _, vc := range vcs{
-		issuer1.VerifyTest(*vc)
+	for _, credential := range vcs{
+		diploma := credential.(*vc.DiplomaCredential)
+		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer1.BbsKeyPair.PublicKey, *diploma)
+		vcId := fmt.Sprintf("%v",credential.GetId())
+		issuer1.VerifyTest(vcId, *vp)
 	}
-
 
 
 	var amountPaid int64
@@ -56,7 +63,7 @@ func PerformExperimentTest(config config.Config){
 
 		i = 2
 		for {
-			vcID := vcs[i].ID
+			vcID := fmt.Sprintf("%v",vcs[i].GetId())
 			isalreadyRevoked := false
 			for _, revokedId := range revokedVCs {
 				if vcID == revokedId {
@@ -65,7 +72,7 @@ func PerformExperimentTest(config config.Config){
 				}
 			}
 			if isalreadyRevoked==false{
-				indexes, amount := issuer1.Revoke(config, *vcs[i])
+				indexes, amount := issuer1.Revoke(config, vcs[i])
 				affectedIndexes = affectedIndexes.Union(indexes)
 				amountPaid = amountPaid + amount;
 				amountPaid = amountPaid/2;
@@ -84,8 +91,11 @@ func PerformExperimentTest(config config.Config){
 	isAffectedInMTAcc = false
 	numberOfOccuredFalsePositives := 0
 	numberOfVCsRetrievedWitnessFromIssuer := 0
-	for _, vc := range vcs {
-		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(*vc)
+	for _, credential := range vcs {
+		diploma := credential.(*vc.DiplomaCredential)
+		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer1.BbsKeyPair.PublicKey, *diploma)
+		vcId := fmt.Sprintf("%v",credential.GetId())
+		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(vcId, *vp)
 		if falsePositiveStatus == true {
 			numberOfOccuredFalsePositives++
 			if isAffectedInMTAcc == true {

@@ -14,7 +14,7 @@ func CreateEmployementProofCredential(id string) (*verifiable.Credential){
 		ID:               id,
 		Types:            nil,
 		Subject:  verifiable.Subject{
-			ID:           "1",
+			ID:           id,
 			CustomFields: map[string]interface{}{"employeeID" : 123, "joiningDate": "june 1, 2023"},
 		},
 		Issuer:           verifiable.Issuer{},
@@ -33,8 +33,27 @@ func CreateEmployementProofCredential(id string) (*verifiable.Credential){
 		CustomFields:     nil,
 	}
 
+
 	return &vc
+
 }
+
+//func AddBBSSignature(privatekey *keyset.Handle, vc *verifiable.Credential){
+//	issued := time.Now()
+//	signerHandle, _ := bbs.NewSigner(privatekey)
+//
+//	signature, err := signerHandle.Sign(messages)
+//	if err != nil{
+//		zap.S().Infoln("BBS - error signing: ",err)
+//	}
+//	vc.AddLinkedDataProof(&verifiable.LinkedDataProofContext{
+//		Created:                 &issued,
+//		SignatureType:           "BbsBlsSignature2020",
+//		Suite:                  bbsblssignature2020.New(suite.WithSigner(signerHandle)),
+//		SignatureRepresentation: verifiable.SignatureJWS,
+//		VerificationMethod:      "did:example:123456#key1",
+//	}, jsonld.WithDocumentLoader(getJSONLDDocumentLoader()))
+//}
 
 func testAries(){
 

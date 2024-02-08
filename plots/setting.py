@@ -15,3 +15,11 @@ class Setting:
         output += "\t bloom filter size: "+ str(self.bloomFilterSize)
         output += "\t bloom filter indexes per entry: "+ str(self.bloomFilterIndexesPerEntry)
         return output
+
+
+    def __eq__(self, another):
+        return self.totalVCs == another.totalVCs and self.revokedVCs==another.revokedVCs and self.falsePositiveRate == another.falsePositiveRate and self.mtLevelInDLT == another.mtLevelInDLT
+
+
+    def __hash__(self):
+        return hash(str(self.totalVCs)+ str(self.revokedVCs) + str(self.falsePositiveRate) + str(self.mtLevelInDLT))

@@ -15,14 +15,14 @@ def main():
     entries = parse_entry("results2.json")
     # plot_fpr_vs_bfsize_and_witUpdates(entries)
     # plot_false_positives(entries)
-    # plot_merkle_tree_accumulator_cost(entries)
+    plot_merkle_tree_accumulator_cost(entries)
     # plot_witness_updates_vc_indy(entries)
     # plot_witness_updates(entries)
     # plot_witness_update_saves(entries)
     # plot_witness_update_saved_for_different_false_positives(entries)
     # plot_witness_update_saved_due_to_levels_in_dlt(entries)
-    plot_witness_updates_vc_indy(entries, totalVCs=1000, totalRevocations=100)
-    plot_witness_updates_vc_indy(entries, totalVCs=5000, totalRevocations=500)
+#     plot_witness_updates_vc_indy(entries, totalVCs=1000, totalRevocations=100)
+#     plot_witness_updates_vc_indy(entries, totalVCs=5000, totalRevocations=500)
 
 
 
@@ -109,30 +109,46 @@ def plot_false_positives(entries):
 
 
 def plot_merkle_tree_accumulator_cost(entries):
-    mtlevels = []
-    costs = []
+    costsfor1000 = {}
+    costsfor5000 = {}
     for entry in entries:
+        if entry.setting.totalVCs==1000:
+            costsfor1000[entry.setting.mtLevelInDLT]=entry.result.mtAccumulatorPerUpdateCost
+            # mtlevels.append(entry.setting.mtLevelInDLT)
+            # costs.append(entry.result.mtAccumulatorPerUpdateCost)
+            # entry.result.mtAccumulatorPerUpdateCost / 1000000
+
         if entry.setting.totalVCs==5000:
-            mtlevels.append(entry.setting.mtLevelInDLT)
-            costs.append(entry.result.mtAccumulatorPerUpdateCost/1000000)
-
-    xpoints = np.array(mtlevels)
-    ypoints = np.array(costs)
-    print(xpoints)
-    print(ypoints)
-
-    costrange=np.linspace(start=min(costs), stop= max(costs), num=len(costs))
+                    costsfor5000[entry.setting.mtLevelInDLT]=entry.result.mtAccumulatorPerUpdateCost
 
 
-    print(costrange)
+    costsfor1000 = dict(sorted(costsfor1000.items()))
+    x1points = np.array(list(costsfor1000.keys()))
+    y1points = np.array(list(costsfor1000.values()))
+    costsfor5000 = dict(sorted(costsfor5000.items()))
+    x2points = np.array(list(costsfor5000.keys()))
+    y2points = np.array(list(costsfor5000.values()))
+    print(x1points)
+    print(y1points)
+    print(x2points)
+    print(y2points)
+
+    wusRange = np.linspace(start=0, stop=max(costsfor1000.values()),
+                           num=max(len(x1points), len(x2points)))
+
+    print(wusRange)
     # font = {'fontname':'Times New Roman', 'color': 'darkred', 'size': 10}
     font = {'fontname': 'Times New Roman', 'size': 18, 'weight': 'bold'}
-    plt.plot(xpoints, ypoints, marker = 'o')
-    plt.yticks(costrange)
+    plt.plot(x1points, y1points, marker='o', label="1000 vcs, storage cost of mt accumulator")
+    plt.plot(x2points, y2points, marker='d', label="5000 vcs, storage cost of mt accumulator")
+    plt.yticks(wusRange)
+    plt.title('storage cost of mt accumulator', font)
     plt.xlabel('merkle tree accumulator levels stored in DLT', font)
-    plt.ylabel('mili ether', font)
-
+    plt.ylabel('gwei', font)
+    plt.legend()
     plt.savefig("graphs/cost_mt_accumulator.png")
+
+
 
 
 

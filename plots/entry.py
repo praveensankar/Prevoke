@@ -15,11 +15,44 @@ class Entry:
         return output
 
 
+
+def calculate_average(entries):
+
+
+    values = {}
+    keys = {}
+    for entry in entries:
+        if entry.setting in values:
+            setting = Setting(totalVCs=entry.setting.totalVCs, revokedVCs=entry.setting.revokedVCs, falsePositiveRate=entry.setting.falsePositiveRate,
+                              mtLevelInDLT=entry.setting.mtLevelInDLT, bloomFilterSize=entry.setting.bloomFilterSize,
+                              bloomFilterIndexesPerEntry=entry.setting.bloomFilterIndexesPerEntry)
+
+
+            value = values[entry.setting]
+            numberOfActualFalsePositives = (value.result.numberOfActualFalsePositives +entry.result.numberOfActualFalsePositives)/2
+            numberOfVCsRetrievedWitnessFromIssuer = (value.result.numberOfVCsRetrievedWitnessFromIssuer + entry.result.numberOfVCsRetrievedWitnessFromIssuer) / 2
+            numberOfVCsAffectedByMTAccumulator = (value.result.numberOfVCsAffectedByMTAccumulator + entry.result.numberOfVCsAffectedByMTAccumulator) / 2
+            mtAccumulatorPerUpdateCost = (value.result.mtAccumulatorPerUpdateCost + entry.result.mtAccumulatorPerUpdateCost) / 2
+            result = Result(mtAccumulatorPerUpdateCost=mtAccumulatorPerUpdateCost,
+                            numberOfActualFalsePositives=numberOfActualFalsePositives,
+                            numberOfVCsRetrievedWitnessFromIssuer=numberOfVCsRetrievedWitnessFromIssuer,
+                            numberOfVCsAffectedByMTAccumulator=numberOfVCsAffectedByMTAccumulator)
+
+            entry1 = Entry(setting=setting, result=result)
+            values[entry.setting]=entry1
+            continue
+
+        values[entry.setting]=entry
+        keys[entry.setting]=entry.setting
+
+    return values.values()
+
+
 def handle_duplicates(entries):
-
-
     values = []
     keys = set()
+    totalVCs = set()
+
     for entry in entries:
         if entry.setting.mtLevelInDLT in keys:
             continue
@@ -27,7 +60,6 @@ def handle_duplicates(entries):
         keys.add(entry.setting.mtLevelInDLT)
 
     return values
-
 
 def parse_entry(file):
     with open(file) as f:
@@ -53,8 +85,8 @@ def parse_entry(file):
         if "number_of_affected_vcs_by_MT_accumulator" in entry:
             numberOfVCsAffectedByMTAccumulator = entry['number_of_affected_vcs_by_MT_accumulator']
 
-        if "number_of_witness_updates_MT_accumulator" in entry:
-            numberOfVCsAffectedByMTAccumulator = entry['number_of_witness_updates_MT_accumulator']
+        if "number_of_vcs_affected_by_revocation_due_to_storing_optimized_MT_accumulator_in_DLT" in entry:
+            numberOfVCsAffectedByMTAccumulator = entry['number_of_vcs_affected_by_revocation_due_to_storing_optimized_MT_accumulator_in_DLT']
 
         setting = Setting(totalVCs=totalVCs, revokedVCs=revokedVCs, falsePositiveRate=falsePositiveRate,
                           mtLevelInDLT= mtLevelInDLT, bloomFilterSize=bloomFilterSize,
@@ -64,7 +96,8 @@ def parse_entry(file):
         entry = Entry(setting=setting, result=result)
         entries.append(entry)
 
-        # entries_without_duplicates = handle_duplicates(entries)
+    entries_without_duplicates = calculate_average(entries)
+    print(entries_without_duplicates)
 
-    return entries
+    return entries_without_duplicates
 

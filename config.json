@@ -7,11 +7,11 @@
 		"gasPrice" : "20000000000"
 	},
 	 "issuer" : {
-		 "totalVCs": "8",
-		 "revokedVCs": "4",
+		 "totalVCs": "500",
+		 "revokedVCs": "500",
 		 "falsePositiveRate": "0.1",
 		 "mtLevelInDLT": "3",
-		 "mtHeight": "3",
+		 "mtHeight": "13",
 		 "comment": "number of hash functions: 7 if fpr==0.01, 6 if fpr==0.02,0.03, 5 if fpr==0.04,0.05, 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more "
 	 },
 	 "test" : "test",
@@ -23,15 +23,15 @@
 
 	},
 	 "account" : {
-		 "address" : "0x9725557FE546b3495D01c3AAdA50554d9390a4B8",
-		 "privateKey": "80ea9930c7ff15fea6fc40dfcbcc488fc8ab1dc97c9e6bf69a18129b4b611f1f",
+		 "address" : "0x0227cB2C98DA95425f1b819b1840fe24e80Db5FB",
+		 "privateKey": "f1dc3c8ee1a80d9183605b48d06f60fa7eac6208a723c24dab838fedcc9e537f",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
 	 "otherAccounts" : [],
 	 "logger" : {
 		"env" : "dev",
-		 "output": "file",
+		 "output": "console",
 		 "filename": "logs.json",
 		 "_comment1": "ouput:<console> - for printing in console, <file> - for writing to file",
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
@@ -40,26 +40,40 @@
 		 "debug" : "true"
 	 },
 	 "exp": {
-		 "exp1": {
-			 "totalVCs": "1000",
-			 "revokedVCs": "100",
+		 "exp6": {
+			 "totalVCs": "5000",
+			 "revokedVCs": "500",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "3",
-			 "mtHeight": "10"
+			 "mtLevelInDLT": "8",
+			 "mtHeight": "13"
 		 },
-		 "exp2": {
-			 "totalVCs": "1000",
-			 "revokedVCs": "100",
+		 "exp7": {
+			 "totalVCs": "5000",
+			 "revokedVCs": "500",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "5",
-			 "mtHeight": "10"
+			 "mtLevelInDLT": "9",
+			 "mtHeight": "13"
 		 },
-		 "exp3": {
-			 "totalVCs": "1000",
-			 "revokedVCs": "100",
+		 "exp8": {
+			 "totalVCs": "5000",
+			 "revokedVCs": "500",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "7",
-			 "mtHeight": "10"
+			 "mtLevelInDLT": "10",
+			 "mtHeight": "13"
+		 },
+		 "exp9": {
+			 "totalVCs": "5000",
+			 "revokedVCs": "500",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "11",
+			 "mtHeight": "13"
+		 },
+		 "exp10": {
+			 "totalVCs": "5000",
+			 "revokedVCs": "500",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "12",
+			 "mtHeight": "13"
 		 }
 	 }
  }

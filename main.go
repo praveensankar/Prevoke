@@ -16,6 +16,8 @@ The flags are:
 	-simulatorTest
 		test simulator
 
+	-vcTest
+		tests verifiable credential
 	-mtTest
 		tests merkle tree accumulator
 
@@ -39,6 +41,7 @@ import (
 	"github.com/praveensankar/Revocation-Service/revocation_service"
 	"github.com/praveensankar/Revocation-Service/simulation"
 	"github.com/praveensankar/Revocation-Service/techniques"
+	"github.com/praveensankar/Revocation-Service/vc"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -114,12 +117,14 @@ TestIndividualComponents tests the following components in the project.
 3) Issuer
 4) Connection to Blockchain
 5) simulator
+6) vc
  */
 func Run(conf config.Config){
 
 	mtTestFlag := flag.Bool("mtTest", false, "a bool")
 	issuerTestFlag := flag.Bool("issuerTest", false, "a bool")
 	bfTestFlag := flag.Bool("bfTest", false, "a bool")
+	vcTestFlag := flag.Bool("vcTest", false, "a bool")
 	simulatorTestFlag := flag.Bool("simulatorTest", false, "a bool")
 	rsTestFlag := flag.Bool("revocationServiceTest", false, "a bool")
 	simulationFlag := flag.Bool("simulation", false, "a bool")
@@ -129,6 +134,10 @@ func Run(conf config.Config){
 
 	if *bfTestFlag==true{
 		techniques.TestBloomFilter(100)
+	}
+
+	if *vcTestFlag==true{
+		vc.TestVC(conf)
 	}
 
 	if *mtTestFlag==true{
@@ -162,7 +171,9 @@ func Run(conf config.Config){
 }
 
 func main()  {
+
 	//testAries()
+
 	initialize()
 	conf, _ := config.ParseConfig()
 	Run(conf)
