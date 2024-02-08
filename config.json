@@ -7,11 +7,11 @@
 		"gasPrice" : "20000000000"
 	},
 	 "issuer" : {
-		 "totalVCs": "500",
-		 "revokedVCs": "500",
+		 "totalVCs": "10",
+		 "revokedVCs": "3",
 		 "falsePositiveRate": "0.1",
-		 "mtLevelInDLT": "3",
-		 "mtHeight": "13",
+		 "mtLevelInDLT": "2",
+		 "mtHeight": "4",
 		 "comment": "number of hash functions: 7 if fpr==0.01, 6 if fpr==0.02,0.03, 5 if fpr==0.04,0.05, 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more "
 	 },
 	 "test" : "test",

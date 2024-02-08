@@ -51,8 +51,8 @@ func (r *RevocationServiceStub) IssueVC(vcID string) (*RevocationData) {
 
 	mtIndex, leafHash := r.merkleTreeAcc.AddLeaf(vcID)
 
-	mtIndexes, mtValues := r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
-	zap.S().Infoln("REVOCATION SERVICE - merkle tree indexes and values: ", mtIndexes, mtValues)
+	//mtIndexes, mtValues := r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
+	//zap.S().Infoln("REVOCATION SERVICE - merkle tree indexes and values: ", mtIndexes, mtValues)
 	//zap.S().Infoln("REVOCATION SERVICE- \t number of non-leaf nodes of MT accumulator stored in smart contract ",levelCounter)
 
 	//generate bloom filter indexes for the vc and give it to the holders
@@ -87,8 +87,8 @@ func (r *RevocationServiceStub) IssueVCsInBulk(vcIDs []string) ([]*RevocationDat
 		revocationData := CreateRevocationData(vcID, mtIndex, bfIndexes, leafHash, merkleProof)
 		revocationDataALl = append(revocationDataALl, revocationData)
 	}
-	mtIndexes, mtValues := r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
-	zap.S().Infoln("REVOCATION SERVICE - merkle tree indexes and values: ", mtIndexes, mtValues)
+	//mtIndexes, mtValues := r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
+	//zap.S().Infoln("REVOCATION SERVICE - merkle tree indexes and values: ", mtIndexes, mtValues)
 	return revocationDataALl
 }
 

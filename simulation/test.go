@@ -39,16 +39,16 @@ func PerformExperimentTest(config config.Config){
 	}
 
 
-	vcs:= []models.IVerifiableCredential{}
+	vcs:= []models.VerifiableCredential{}
 
 	for i:=0; i<int(config.ExpectedNumberOfTotalVCs);i++{
 		vcs = append(vcs, credentials[i])
 	}
 
 	for _, credential := range vcs{
-		diploma := credential.(*vc.DiplomaCredential)
-		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer1.BbsKeyPair.PublicKey, *diploma)
-		vcId := fmt.Sprintf("%v",credential.GetId())
+
+		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer1.BbsKeyPair.PublicKey, credential)
+		vcId := fmt.Sprintf("%v",credential.Metadata.Id)
 		issuer1.VerifyTest(vcId, *vp)
 	}
 
@@ -63,7 +63,7 @@ func PerformExperimentTest(config config.Config){
 
 		i = 2
 		for {
-			vcID := fmt.Sprintf("%v",vcs[i].GetId())
+			vcID := fmt.Sprintf("%v",vcs[i].Metadata.Id)
 			isalreadyRevoked := false
 			for _, revokedId := range revokedVCs {
 				if vcID == revokedId {
@@ -92,9 +92,8 @@ func PerformExperimentTest(config config.Config){
 	numberOfOccuredFalsePositives := 0
 	numberOfVCsRetrievedWitnessFromIssuer := 0
 	for _, credential := range vcs {
-		diploma := credential.(*vc.DiplomaCredential)
-		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer1.BbsKeyPair.PublicKey, *diploma)
-		vcId := fmt.Sprintf("%v",credential.GetId())
+		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer1.BbsKeyPair.PublicKey,credential)
+		vcId := fmt.Sprintf("%v",credential.Metadata.Id)
 		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(vcId, *vp)
 		if falsePositiveStatus == true {
 			numberOfOccuredFalsePositives++

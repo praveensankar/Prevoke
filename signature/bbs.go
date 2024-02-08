@@ -44,7 +44,7 @@ func Sign(privateKey *keyset.Handle, messages [][]byte) []byte{
 	if err != nil{
 		zap.S().Infoln("BBS - error signing: ",err)
 	}
-	zap.S().Infoln("BBS - signature: ",signature)
+	//zap.S().Infoln("BBS - signature: ",signature)
 	return signature
 }
 
@@ -58,7 +58,7 @@ func Verify(publicKey *keyset.Handle, signature []byte, messages [][]byte) bool{
 		zap.S().Infoln("BBS - verification failed: ",err)
 		return false
 	}
-	zap.S().Infoln("BBS - verification successful")
+	//zap.S().Infoln("BBS - verification successful")
 	return true
 }
 
@@ -100,6 +100,6 @@ func VerifySelectiveDisclosureProof(publicKey *keyset.Handle, proof []byte, sele
 		zap.S().Infoln("BBS - verification failed: ",err)
 		return false
 	}
-	zap.S().Infoln("BBS - verification successful")
+	//zap.S().Infoln("BBS - verification successful")
 	return true
 }

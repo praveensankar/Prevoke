@@ -70,7 +70,7 @@ func PerformExperiment(config config.Config){
 		issuer1.UpdateMerkleProof(vc)
 	}
 
-	vcs:= []models.IVerifiableCredential{}
+	vcs:= []models.VerifiableCredential{}
 
 	for i:=0; i<int(config.ExpectedNumberOfTotalVCs);i++{
 		vcs = append(vcs, credentials[i])
@@ -92,7 +92,7 @@ func PerformExperiment(config config.Config){
 
 		i = 2
 		for {
-			vcID := fmt.Sprintf("%v",vcs[i].GetId())
+			vcID := fmt.Sprintf("%v",vcs[i].Metadata.Id)
 			isalreadyRevoked := false
 			for _, revokedId := range revokedVCs {
 				if vcID == revokedId {
@@ -123,9 +123,9 @@ func PerformExperiment(config config.Config){
 	falsePositiveResults := mapset.NewSet()
 	fetchedWitnessesFromIssuers := mapset.NewSet()
 	for _, credential := range vcs {
-		diploma := credential.(*vc.DiplomaCredential)
-		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer1.BbsKeyPair.PublicKey, *diploma)
-		vcId := fmt.Sprintf("%v",credential.GetId())
+
+		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer1.BbsKeyPair.PublicKey, credential)
+		vcId := fmt.Sprintf("%v",credential.Metadata.Id)
 
 		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(vcId, *vp)
 		if falsePositiveStatus == true {

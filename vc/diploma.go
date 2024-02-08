@@ -1,11 +1,9 @@
 package vc
 
-
 import (
-"bytes"
-"encoding/gob"
-"encoding/json"
-"fmt"
+	"bytes"
+	"encoding/gob"
+	"fmt"
 	"github.com/google/tink/go/keyset"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/signature"
@@ -15,39 +13,9 @@ import (
 	"strconv"
 
 	"math/rand"
-"time"
+	"time"
 )
 
-type DiplomaCredential struct{
-	Metadata models.Metadata
-	Claims   DiplomaClaim
-	Proofs models.Proof
-}
-
-
-func (d DiplomaCredential) CreateCredential() models.IVerifiableCredential {
-	diploma := DiplomaCredential{}
-	return diploma
-}
-
-func (d DiplomaCredential) GetId() models.URI{
-	return d.Metadata.Id
-}
-
-func (vc DiplomaCredential) String() string  {
-
-	var response string
-
-	response = response + fmt.Sprintf("%v", vc.Metadata)+"\n"
-	response = response + fmt.Sprintf("%v", vc.Claims)+"\n"
-	response = response + fmt.Sprintf("%v", vc.Proofs)+"\n"
-	return response
-}
-
-func (vc *DiplomaCredential) Json() []byte {
-	jsonObj,_ := json.MarshalIndent(vc, "","    ")
-	return jsonObj
-}
 
 
 type DiplomaClaim struct{
@@ -61,6 +29,7 @@ type DiplomaClaim struct{
 }
 
 
+
 func EncodeToBytes(claims DiplomaClaim) []byte {
 
 	buf := bytes.Buffer{}
@@ -70,11 +39,6 @@ func EncodeToBytes(claims DiplomaClaim) []byte {
 		log.Fatal(err)
 	}
 	return buf.Bytes()
-}
-
-func EncodeURIToBytes(uri models.URI) []byte {
-	s := fmt.Sprintf("%v", uri)
-	return []byte(s)
 }
 
 func DecodeToClaims(s []byte) DiplomaClaim {
@@ -154,8 +118,9 @@ func generateProofForDiploma(privateKey *keyset.Handle, vcId string, claims Dipl
 	return proof
 }
 
-func NewDiploma() models.IVerifiableCredential {
-	diploma := DiplomaCredential{}
+func NewDiploma() models.VerifiableCredential {
+	diploma := models.VerifiableCredential{}
+	diploma.Claims, _ = CreateDiplomaClaims("test")
 	return diploma
 
 }
@@ -176,13 +141,15 @@ func CreateDiplomaClaims(id string) (DiplomaClaim, error){
 }
 
 func CreateDiploma(privateKey *keyset.Handle, vcId string, claims interface{},
-	bfIndexes []string, mtLeafHash string) (models.IVerifiableCredential, error){
+	bfIndexes []string, mtLeafHash string) (*models.VerifiableCredential, error){
 
 
 	diplomaClaims := claims.(DiplomaClaim)
 	proof := generateProofForDiploma(privateKey, vcId, diplomaClaims, bfIndexes, mtLeafHash)
 
-	myDiploma := DiplomaCredential{
+	var proofs []models.Proof
+	proofs = append(proofs, proof)
+	myDiploma := models.VerifiableCredential{
 		Metadata: models.Metadata{
 			Contexts:       []string{"http:test.com/diploma"},
 			Id:             vcId,
@@ -198,10 +165,10 @@ func CreateDiploma(privateKey *keyset.Handle, vcId string, claims interface{},
 			},
 		},
 		Claims: diplomaClaims,
-		Proofs: proof,
+		Proofs: proofs,
 	}
 
-
+	//zap.S().Infoln("DIPLOMA - new diploma created")
 
 	return &myDiploma, nil
 }
@@ -216,8 +183,9 @@ Output:
 	sampleDiplomaPresentation
 	error
  */
-func GenerateProofForSelectiveDisclosure(publicKey *keyset.Handle, diploma DiplomaCredential) (*models.VerifiablePresentation, error){
+func GenerateProofForSelectiveDisclosure(publicKey *keyset.Handle, diploma models.VerifiableCredential) (*models.VerifiablePresentation, error){
 	var revealedIndexes []int
+	claims := diploma.Claims.(DiplomaClaim)
 
 	// add bf indexes
 	i:=0
@@ -231,20 +199,20 @@ func GenerateProofForSelectiveDisclosure(publicKey *keyset.Handle, diploma Diplo
 	// grade index
 	i = i + 2
 	revealedIndexes = append(revealedIndexes, i)
-	grade := diploma.Claims.Grade
+	grade := claims.Grade
 
 	// degree index
 	i = i + 1
 	revealedIndexes = append(revealedIndexes, i)
-	degree := diploma.Claims.Degree
-
-	sign := diploma.Proofs.ProofValue
+	degree := claims.Degree
+	proof := diploma.Proofs[0]
+	sign := proof.ProofValue
 
 	bfIndexes := diploma.Metadata.CredentialStatus.BfIndexes
 	mtLeafHash := diploma.Metadata.CredentialStatus.MTLeafValue
 
-	messages := generateMessages(fmt.Sprintf("%v", diploma.Metadata.Id), diploma.Claims, bfIndexes , mtLeafHash)
-	proof, nonce := signature.SelectiveDisclosure(publicKey, sign, messages, revealedIndexes)
+	messages := generateMessages(fmt.Sprintf("%v", diploma.Metadata.Id), claims, bfIndexes , mtLeafHash)
+	SDproof, nonce := signature.SelectiveDisclosure(publicKey, sign, messages, revealedIndexes)
 
 	vp := models.VerifiablePresentation{
 		Messages: SampleDiplomaPresentation{
@@ -252,10 +220,10 @@ func GenerateProofForSelectiveDisclosure(publicKey *keyset.Handle, diploma Diplo
 			Grade:     grade,
 			BfIndexes:  bfIndexes,
 			MtLeafHash: mtLeafHash,
-			Proof:      proof,
+			Proof:      SDproof,
 			Nonce:      nonce,
 		},
-		Proof:    proof,
+		Proof:    SDproof,
 	}
 
 	return &vp, nil
@@ -282,26 +250,14 @@ func VerifySelectiveDisclosureDiploma(publicKey *keyset.Handle, vp SampleDiploma
 
 
 	if status == true {
-		zap.S().Infoln("DIPLOMA PRESENTATION - verification successful: ")
+		//zap.S().Infoln("DIPLOMA PRESENTATION - verification successful: ")
 		return true
 	}
 	zap.S().Infoln("DIPLOMA PRESENTATION - verification failed")
 	return false
 }
 
-func VCToDiploma(vc models.IVerifiableCredential) DiplomaCredential{
-	diploma := vc.(DiplomaCredential)
-	return diploma
-}
 
-func JsonToDiploma(jsonObj []byte) *DiplomaCredential{
-	diploma := NewDiploma().(DiplomaCredential)
-	var claims DiplomaClaim = DiplomaClaim{}
-	json.Unmarshal(jsonObj, &diploma )
-	claimsJson,_ := json.Marshal(diploma.Claims)
-	json.Unmarshal(claimsJson, & claims)
-	return &diploma
-}
 
 func TestDiploma(){
 	bbs := signature.GenerateKeyPair()
@@ -320,10 +276,10 @@ func TestDiploma(){
 	claims, _ := CreateDiplomaClaims(vcId)
 
 	myDiploma,_ := CreateDiploma(privateKey, vcId, claims, bfIndexes, mtLeafHash )
-	diploma := myDiploma.(*DiplomaCredential)
-	zap.S().Infoln("DIPLOMA - json \t: ", string(diploma.Json()))
 
-	vp, _ := GenerateProofForSelectiveDisclosure(publicKey, *diploma)
+	zap.S().Infoln("DIPLOMA - json \t: ", string(myDiploma.Json()))
+
+	vp, _ := GenerateProofForSelectiveDisclosure(publicKey, *myDiploma)
 
 	zap.S().Infoln("DIPLOMA - Presentation: ",vp)
 

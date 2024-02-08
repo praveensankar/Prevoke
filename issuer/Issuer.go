@@ -22,10 +22,10 @@ type IIsser interface {
 	GenerateMultipleDummyVCClaims(count int) []interface{}
 	Issue( claims interface{})
 	IssueBulk(claims interface{}, total int)
-	Revoke(config config.Config, credential models.IVerifiableCredential) (mapset.Set , int64)
+	Revoke(config config.Config, credential models.VerifiableCredential) (mapset.Set , int64)
 	setRevocationService(rs revocation_service.IRevocationService)
 	UpdateMerkleProofsInStorage()
-	UpdateMerkleProof(vc models.IVerifiableCredential)
+	UpdateMerkleProof(vc models.VerifiableCredential)
 	UpdateAffectedVCs(conf config.Config, mtIndex int) (mapset.Set , int)
 	GetAffectedVCsCount() int
 	// returns whether it resulted in false positive in phase 1
@@ -35,7 +35,7 @@ type IIsser interface {
 
 type Issuer struct{
 	name            string
-	CredentialStore []models.IVerifiableCredential
+	CredentialStore []models.VerifiableCredential
 	credentialType  string
 	revokedVcIDs []string
 	AffectedVCIndexes map[int]bool
@@ -64,7 +64,7 @@ func  CreateIssuer(config config.Config) *Issuer{
 	}
 
 	issuer.name = config.IssuerName
-	issuer.CredentialStore = []models.IVerifiableCredential{}
+	issuer.CredentialStore = []models.VerifiableCredential{}
 	issuer.revokedVcIDs = []string{}
 	issuer.revocationProofs = make(map[string]*revocation_service.RevocationData)
 	issuer.AffectedVCIndexes = make(map[int]bool)
@@ -120,7 +120,7 @@ func (issuer *Issuer) GenerateMultipleDummyVCClaims(count int) []interface{} {
 	return vcs
 }
 
-func (issuer *Issuer) AddCretentialToStore(vc models.IVerifiableCredential) {
+func (issuer *Issuer) AddCretentialToStore(vc models.VerifiableCredential) {
 	issuer.CredentialStore = append(issuer.CredentialStore, vc)
 }
 
@@ -134,7 +134,7 @@ func (issuer *Issuer) UpdateMerkleProofInRevocationData(vcId string, proof *tech
 
 func (issuer *Issuer) UpdateMerkleProofsInStorage() {
 	for _,vc := range issuer.CredentialStore {
-		vcID := fmt.Sprintf("%v", vc.GetId())
+		vcID := fmt.Sprintf("%v", vc.Metadata.Id)
 		merkleProof := issuer.RevocationService.RetreiveUpdatedProof(vcID)
 		zap.S().Infoln("ISSUER-  UPDATING MERKLE PROOF", issuer.name, "\t vc:", vcID, "\t updated merkle proof: ",merkleProof)
 		issuer.UpdateMerkleProofInRevocationData(vcID, merkleProof)
@@ -157,15 +157,16 @@ func (issuer *Issuer) Issue(claims interface{})  {
 	}
 
 	mtLeafHash := revocationData.MerkleProof.LeafHash
-	var credential models.IVerifiableCredential
+	var credential *models.VerifiableCredential
 	if issuer.credentialType=="diploma"{
 		credential, _ = vc.CreateDiploma(issuer.BbsKeyPair.PrivateKey, vcID, claims, bfIndexes, mtLeafHash)
 	}
 	zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", vcID, "\t mt index: ", revocationData.MtIndex,
 		"\t mt leaf: ", revocationData.MerkleProof.LeafHash[:techniques.SHORT_STRING_SIZE] + "..",
 		"\t bf indexes: ",revocationData.BloomFilterIndexes)
+
 	//issuer.RevocationService.PrintMerkleTree()
-	issuer.AddCretentialToStore(credential)
+	issuer.AddCretentialToStore(*credential)
 	issuer.AddRevocationProofForNewVC(revocationData)
 	//zap.S().Infoln("ISSUER- \t sending revocation data to holder: ", revocationData.PrintRevocationData)
 	//zap.S().Infoln("\n\n********************************************************************************************************************************")
@@ -199,7 +200,7 @@ func (issuer *Issuer) IssueBulk(claimsForMutipleVCs []interface{}, total int){
 		}
 
 		mtLeafHash := revocationData[i].MerkleProof.LeafHash
-		var credential models.IVerifiableCredential
+		var credential *models.VerifiableCredential
 		if issuer.credentialType=="diploma"{
 			diplomaClaims := claimsForMutipleVCs[i].(vc.DiplomaClaim)
 			vcID := fmt.Sprintf("%v", diplomaClaims.Id)
@@ -208,7 +209,7 @@ func (issuer *Issuer) IssueBulk(claimsForMutipleVCs []interface{}, total int){
 			}
 			credential, _ = vc.CreateDiploma(issuer.BbsKeyPair.PrivateKey, revocationData[i].VcId, diplomaClaims, bfIndexes, mtLeafHash)
 		}
-		issuer.AddCretentialToStore(credential)
+		issuer.AddCretentialToStore(*credential)
 	}
 
 	for _, rd := range revocationData{
@@ -217,12 +218,12 @@ func (issuer *Issuer) IssueBulk(claimsForMutipleVCs []interface{}, total int){
 	}
 }
 
-func (issuer *Issuer) UpdateMerkleProof(credential models.IVerifiableCredential)  {
+func (issuer *Issuer) UpdateMerkleProof(credential models.VerifiableCredential)  {
 
 
 	status := true
 	for _, vcID := range issuer.revokedVcIDs {
-		if vcID == fmt.Sprintf("%v", credential.GetId()) {
+		if vcID == fmt.Sprintf("%v", credential.Metadata.Id) {
 			status = false
 		}
 	}
@@ -231,9 +232,9 @@ func (issuer *Issuer) UpdateMerkleProof(credential models.IVerifiableCredential)
 		return
 	}
 
-	merkleProof := issuer.RevocationService.RetreiveUpdatedProof(fmt.Sprintf("%v", credential.GetId()))
+	merkleProof := issuer.RevocationService.RetreiveUpdatedProof(fmt.Sprintf("%v", credential.Metadata.Id))
 	//zap.S().Infoln("ISSUER- ", issuer.name, "\t vc:", vc.ID, "\t merkle tree accumulator witness updated..... ")
-	 issuer.UpdateMerkleProofInRevocationData(fmt.Sprintf("%v", credential.GetId()), merkleProof)
+	 issuer.UpdateMerkleProofInRevocationData(fmt.Sprintf("%v", credential.Metadata.Id), merkleProof)
 
 }
 
@@ -295,9 +296,9 @@ func (issuer *Issuer) GetAffectedVCsCount() (int) {
 }
 
 // returns indexes of affected vcs, amount of gwei paid
-func (issuer *Issuer) Revoke(conf config.Config, vc models.IVerifiableCredential) (mapset.Set , int64) {
+func (issuer *Issuer) Revoke(conf config.Config, vc models.VerifiableCredential) (mapset.Set , int64) {
 
-	vcID := fmt.Sprintf("%v", vc.GetId())
+	vcID := fmt.Sprintf("%v", vc.Metadata.Id)
 	//zap.S().Infoln("\n\n********************************************************************************************************************************")
 	mtIndex, amountPaid, _ := issuer.RevocationService.RevokeVC(vcID)
 	issuer.revokedVcIDs = append(issuer.revokedVcIDs, vcID)
