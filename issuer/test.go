@@ -8,6 +8,7 @@ import (
 	"github.com/praveensankar/Revocation-Service/signature"
 	"github.com/praveensankar/Revocation-Service/vc"
 	"go.uber.org/zap"
+	"math"
 	"math/rand"
 	"time"
 )
@@ -47,7 +48,7 @@ func TestIssuer(config config.Config){
 	issuer := CreateTestIssuer(config)
 	publicKey, _ := issuer.BbsKeyPair[0].PublicKey.Marshal()
 	claimsSet := issuer.GenerateMultipleDummyVCClaims(int(config.ExpectedNumberOfTotalVCs))
-
+	revocationBatchSize :=5
 	for _, claims := range claimsSet{
 		issuer.Issue(claims)
 	}
@@ -68,29 +69,34 @@ func TestIssuer(config config.Config){
 	}
 
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
-	revokedVCs := make([]string, totalRevokedVCs)
+
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
-	for i, counter:=0, 0; counter< totalRevokedVCs; {
-		for {
-			vcID := fmt.Sprintf("%v", vcs[i].Metadata.Id)
-			isalreadyRevoked := false
-			for _, revokedId := range revokedVCs {
-				if vcID == revokedId {
-					isalreadyRevoked = true
+	revokedVCs := make([]string, 0)
+	for batch:=0; batch<revocationBatchSize; batch++ {
+		revokedVCsInBatch := make([]string, 0)
+		for i, counter := 0, 0; counter < int(int64(math.Ceil(float64(totalRevokedVCs/revocationBatchSize)))); {
+			for {
+				vcID := fmt.Sprintf("%v", vcs[i].Metadata.Id)
+				isalreadyRevoked := false
+				for _, revokedId := range revokedVCs {
+					if vcID == revokedId {
+						isalreadyRevoked = true
+						break
+					}
+				}
+				if isalreadyRevoked == false {
+					revokedVCs = append(revokedVCs, vcID)
+					revokedVCsInBatch = append(revokedVCsInBatch, vcID)
+					counter++
 					break
 				}
+				rand.Seed(time.Now().UnixNano())
+				i = rand.Intn(int(config.ExpectedNumberOfTotalVCs))
 			}
-			if isalreadyRevoked==false{
-				issuer.Revoke(config, credentials[i])
-				revokedVCs = append(revokedVCs, vcID)
-				counter++
-				break
-			}
-			rand.Seed(time.Now().UnixNano())
-			i = rand.Intn(int(config.ExpectedNumberOfTotalVCs))
 		}
+		//zap.S().Infoln("ISSUER TEST - revoked vcIDs: ", revokedVCsInBatch)
+		issuer.RevokeVCInBatches(config, revokedVCsInBatch)
 	}
-
 	for _, credential := range credentials{
 		issuer.UpdateMerkleProof(credential)
 	}

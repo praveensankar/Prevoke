@@ -30,7 +30,7 @@ func PerformExperimentTest(config config.Config){
 	publicKey, _ := issuer1.BbsKeyPair[0].PublicKey.Marshal()
 	remainingSpace := int(math.Pow(2, float64(config.MTHeight)))-int(config.ExpectedNumberOfTotalVCs)
 	claimsSet := issuer1.GenerateMultipleDummyVCClaims(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
-
+	revocationBatchSize :=5
 
 	issuer1.IssueBulk(claimsSet, int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
 
@@ -60,30 +60,34 @@ func PerformExperimentTest(config config.Config){
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	revokedVCs := make([]string, totalRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
-	for i, counter:=0, 0; counter< totalRevokedVCs; {
+	for batch:=0; batch<revocationBatchSize; batch++ {
+		revokedVCsInBatch := make([]string, 0)
+		for i, counter := 0, 0; counter < int(int64(math.Ceil(float64(totalRevokedVCs/revocationBatchSize)))); {
 
-		i = 2
-		for {
-			vcID := fmt.Sprintf("%v",vcs[i].Metadata.Id)
-			isalreadyRevoked := false
-			for _, revokedId := range revokedVCs {
-				if vcID == revokedId {
-					isalreadyRevoked = true
+			i = 2
+			for {
+				vcID := fmt.Sprintf("%v", vcs[i].Metadata.Id)
+				isalreadyRevoked := false
+				for _, revokedId := range revokedVCs {
+					if vcID == revokedId {
+						isalreadyRevoked = true
+						break
+					}
+				}
+				if isalreadyRevoked == false {
+					revokedVCsInBatch = append(revokedVCsInBatch, vcID)
+					revokedVCs = append(revokedVCs, vcID)
+					counter++
 					break
 				}
+				rand.Seed(time.Now().UnixNano())
+				i = rand.Intn(int(config.ExpectedNumberOfTotalVCs))
 			}
-			if isalreadyRevoked==false{
-				indexes, amount := issuer1.Revoke(config, vcs[i])
-				affectedIndexes = affectedIndexes.Union(indexes)
-				amountPaid = amountPaid + amount;
-				amountPaid = amountPaid/2;
-				revokedVCs = append(revokedVCs, vcID)
-				counter++
-				break
-			}
-			rand.Seed(time.Now().UnixNano())
-			i = rand.Intn(int(config.ExpectedNumberOfTotalVCs))
 		}
+		indexes, amount := issuer1.RevokeVCInBatches(config, revokedVCsInBatch)
+		affectedIndexes = affectedIndexes.Union(indexes)
+		amountPaid = amountPaid + amount;
+		amountPaid = amountPaid / 2;
 	}
 
 	var falsePositiveStatus bool

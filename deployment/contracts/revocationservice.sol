@@ -113,7 +113,7 @@ output: public keys
 
     Note: set merkle tree to -1 if it is not required to update merkle tree.
     */
-    function revokeVC(uint256[numberOfHashFunctions] memory _bfIndexes, uint[] memory _mtIndexes, string[] memory _mtValues) public{
+    function revokeVC(uint256[] memory _bfIndexes, uint[] memory _mtIndexes, string[] memory _mtValues) public{
         //only issuer can perform the revocation
         require(msg.sender==issuer);
 
@@ -124,7 +124,7 @@ output: public keys
 
 
 
-    function updateBloomFilter(uint256[numberOfHashFunctions] memory _indexes) public{
+    function updateBloomFilter(uint256[] memory _indexes) public{
 
         //only issuer can perform the revocation
         require(msg.sender==issuer);

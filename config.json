@@ -8,7 +8,7 @@
 	},
 	 "issuer" : {
 		 "totalVCs": "10",
-		 "revokedVCs": "3",
+		 "revokedVCs": "5",
 		 "falsePositiveRate": "0.1",
 		 "mtLevelInDLT": "2",
 		 "mtHeight": "4",
@@ -41,12 +41,20 @@
 	 },
 	 "exp": {
 		 "exp2": {
-		 "totalVCs": "10",
-		 "revokedVCs": "4",
+		 "totalVCs": "20",
+		 "revokedVCs": "10",
 		 "falsePositiveRate": "0.1",
 		 "mtLevelInDLT": "3",
-		 "mtHeight": "4"
-	 }
+		 "mtHeight": "5"
+	 },
+		 "exp3": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "100",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "8",
+			 "mtHeight": "10"
+		 }
+
 	 }
  }
 

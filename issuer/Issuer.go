@@ -23,6 +23,7 @@ type IIsser interface {
 	Issue( claims interface{})
 	IssueBulk(claims interface{}, total int)
 	Revoke(config config.Config, credential models.VerifiableCredential) (mapset.Set , int64)
+	RevokeVCInBatches(conf config.Config, vcIDs []string) (mapset.Set , int64)
 	setRevocationService(rs revocation_service.IRevocationService)
 	UpdateMerkleProofsInStorage()
 	UpdateMerkleProof(vc models.VerifiableCredential)
@@ -320,6 +321,28 @@ func (issuer *Issuer) Revoke(conf config.Config, vc models.VerifiableCredential)
 	return affectedIndexes, amountPaid
 }
 
+// returns indexes of affected vcs, amount of gwei paid
+func (issuer *Issuer) RevokeVCInBatches(conf config.Config, vcIDs []string) (mapset.Set , int64) {
+
+
+	//zap.S().Infoln("\n\n********************************************************************************************************************************")
+	mtIndexes, amountPaid, _ := issuer.RevocationService.RevokeVCInBatches(vcIDs)
+	issuer.revokedVcIDs = append(issuer.revokedVcIDs, vcIDs...)
+	 affectedIndexesAll := mapset.NewSet()
+	numberOfAffectedVCsTotal:=0
+	for _, mtIndex := range mtIndexes{
+		affectedIndexes, numberOfAffectedVCs := issuer.UpdateAffectedVCs(conf, mtIndex)
+		affectedIndexesAll= affectedIndexesAll.Union(affectedIndexes)
+		numberOfAffectedVCsTotal+=numberOfAffectedVCs
+	}
+
+	zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vcs:", vcIDs,"\t mt indexes: ",mtIndexes,
+		"\t affected VCs Indexes: ",affectedIndexesAll, "\t number of affected VCs: ", numberOfAffectedVCsTotal)
+
+	//zap.S().Infoln("\n\n********************************************************************************************************************************")
+	return affectedIndexesAll, amountPaid
+}
+
 // returns
 //1st argument - whether it resulted in false positive in phase 1
 // 2nd argument - whether the merkle tree accumulator witness is updated only from the dlt
@@ -345,7 +368,7 @@ func (issuer *Issuer) VerifyTest(vcID string, vp models.VerifiablePresentation) 
 		bfIndexes[i]=v;
 	}
 
-	publicKeys := issuer.RevocationService.FetchPublicKeys()
+	publicKeys := issuer.RevocationService.FetchPublicKeysCached()
 	//zap.S().Infoln("ISSUER - public keys: ", publicKeys)
 	publicKey := publicKeys[0]
 
@@ -368,9 +391,11 @@ func (issuer *Issuer) VerifyTest(vcID string, vp models.VerifiablePresentation) 
 		return false, false
 	}
 
-	//if revocationStatus == true{
-	//	return
-	//}
+	if phase1Result == true{
+		zap.S().Infoln("VERIFICAION TEST- \t ***VERIFICATION*** vc:", vcID, "\t actual status: ","valid",
+			"\t phase1 result: ", phase1Result)
+		return false, false
+	}
 
 
 	// ***************************** update witness only for valid vcs ***********************************
@@ -421,7 +446,7 @@ func (issuer *Issuer) VerifyTest(vcID string, vp models.VerifiablePresentation) 
 	// ***************************** Phase 2 **************************************************
 	//mtRoot, _ := issuer.RevocationService.GetMerkleRoot()
 	//issuer.RevocationService.LocalMTVerification(mtRoot, rd1)
-	phase2Result, err := issuer.RevocationService.VerificationPhase2(rd1)
+	phase2Result, err := issuer.RevocationService.VerificationPhase2(rd1.MerkleProof.LeafHash, rd1.MerkleProof.OrderedWitnesses)
 	if err != nil {
 		return false, false
 	}

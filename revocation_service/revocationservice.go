@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/ecdsa"
 	"fmt"
+	mapset "github.com/deckarep/golang-set"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	_ "github.com/ethereum/go-ethereum/core/types"
@@ -21,9 +22,12 @@ type IRevocationService interface {
 	IssueVC(vcID string) *RevocationData
 	IssueVCsInBulk(vcIDs []string) ([]*RevocationData)
 	RevokeVC(vcID string) (int, int64, error)
+	RevokeVCInBatches(vcIDs []string) (map[string]int, int64, error)
 	RetreiveUpdatedProof(vcID string) *techniques.MerkleProof
 	VerificationPhase1(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error)
-	VerificationPhase2(data *RevocationData) (bool, error)
+	VerificationPhase2(leafHash string, witnesses []*techniques.Witness) (bool, error)
+	VerificationPhase1Cached(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error)
+	VerificationPhase2Cached(leafHash string, witnesses []*techniques.Witness) (bool, error)
 	VerifyVC( _bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int, data *RevocationData) (bool, error)
 	GetMerkleRoot()(string, error)
 	FetchMerkleTree() ([]string)
@@ -31,6 +35,8 @@ type IRevocationService interface {
 	LocalMTVerification(mtRoot string, data *RevocationData)
 	AddPublicKeys(publicKeys [][]byte)
 	FetchPublicKeys()([][]byte)
+	FetchPublicKeysCached()([][]byte)
+	CacheRevocationDataStructuresFromSmartContract()
 }
 
 
@@ -48,6 +54,11 @@ type RevocationService struct{
 	privateKey string
 	gasLimit uint64
 	gasPrice *big.Int
+	isCached  bool
+	isPublicKeysCached bool
+	cachedBF mapset.Set
+	cachedMTRoot string
+	cachedPublicKeys [][]byte
 }
 
 
@@ -70,6 +81,11 @@ func CreateRevocationService(config config.Config) *RevocationService {
 		rs.NumberOfEntriesForMTInDLT += int(math.Pow(2, float64(i)))
 	}
 	rs.vcCounter = 0
+	rs.isCached=false
+	rs.cachedBF = mapset.NewSet()
+	rs.cachedMTRoot=""
+	rs.isPublicKeysCached=false
+	rs.cachedPublicKeys=make([][]byte,0)
 	return &rs
 }
 
@@ -215,9 +231,9 @@ func (r RevocationService) RevokeVC(vcID string) (int, int64, error) {
 
 	//Todo: retrieve the bloom filter indexes, merkle tree indexes and merkle tree values
 
-	var bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int
-	for i, value := range r.bloomFilter.GetIndexes(vcID){
-		bfIndexes[i]=value;
+	var bfIndexes []*big.Int
+	for _, value := range r.bloomFilter.GetIndexes(vcID){
+		bfIndexes = append(bfIndexes, value)
 	}
 	//oldMTIndex := r.VCToBigInts[vc.ID]
 	vcIndex, _ := r.merkleTreeAcc.UpdateLeaf(vcID, "-1")
@@ -271,6 +287,53 @@ func (r RevocationService) RevokeVC(vcID string) (int, int64, error) {
 	return vcIndex, gasUsed, nil
 }
 
+// returns old mt index and amount of gwei paid
+func (r RevocationService) RevokeVCInBatches(vcIDs []string) (map[string]int, int64, error) {
+	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
+	if err != nil {
+		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
+	}
+	revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
+	if err != nil {
+		zap.S().Infof("Failed to instantiate Storage contract: %v", err)
+	}
+	auth := r.getAuth()
+
+	//Todo: retrieve the bloom filter indexes, merkle tree indexes and merkle tree values
+
+	var bfIndexes []*big.Int
+	oldMTIndexes := make(map[string]int)
+	var mtIndexes []*big.Int
+	var mtValues []string
+	for i:=0; i<len(vcIDs);i++{
+		for _, value := range r.bloomFilter.GetIndexes(vcIDs[i]) {
+			bfIndexes = append(bfIndexes, value)
+		}
+
+		//oldMTIndex := r.VCToBigInts[vc.ID]
+		vcIndex, _ := r.merkleTreeAcc.UpdateLeaf(vcIDs[i], "-1")
+		oldMTIndexes[vcIDs[i]]=vcIndex
+		mtIndexes, mtValues = r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
+	}
+
+
+	//zap.S().Infoln("REVOCATION SERVICE- \t mt indexes: ", mtIndexes, "\t mt values: ",mtValues)
+	//zap.S().Infoln("REVOCATION SERVICE- \t number of non-leaf nodes of MT accumulator stored in smart contract ",levelCounter)
+	startBalance, err := client.BalanceAt(context.Background(), r.account, nil)
+	_, err = revocationService.RevokeVC(auth, bfIndexes, mtIndexes, mtValues)
+	endBalance, err := client.BalanceAt(context.Background(), r.account, nil)
+	gasUsed := (startBalance.Int64()-endBalance.Int64())/int64(math.Pow(10,9))
+	//zap.S().Infoln("REVOCATION SERVICE- \t MT Accumulator levels in DLT: ",r.NumberOfEntriesForMTInDLT, "GAS USAGE in gwei: ", gasUsed)
+
+
+
+	if err != nil {
+		zap.S().Fatalln("failed to revoke", err)
+	}
+
+
+	return oldMTIndexes, gasUsed, nil
+}
 
 func (r RevocationService) VerificationPhase1(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error){
 	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
@@ -285,7 +348,7 @@ func (r RevocationService) VerificationPhase1(bfIndexes [techniques.NUMBER_OF_IN
 }
 
 
-func (r RevocationService) VerificationPhase2( data *RevocationData)(bool, error) {
+func (r RevocationService) VerificationPhase2(leafHash string, witnesses []*techniques.Witness)(bool, error) {
 	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
 	if err != nil {
 		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
@@ -300,7 +363,60 @@ func (r RevocationService) VerificationPhase2( data *RevocationData)(bool, error
 
 
 
-	status := r.merkleTreeAcc.VerifyProof(data.MerkleProof.LeafHash, data.MerkleProof.OrderedWitnesses, mtRoot)
+	status := r.merkleTreeAcc.VerifyProof(leafHash, witnesses, mtRoot)
+
+	//zap.S().Errorln("REVOCATION SERVICE-  verification phase 2: ",status)
+	return status, nil
+}
+
+func (r* RevocationService) CacheRevocationDataStructuresFromSmartContract(){
+	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
+	if err != nil {
+		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
+	}
+	revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
+	setIndexes, _ := revocationService.RetrieveBloomFilter(nil)
+	for i:=0;i< len(setIndexes);i++{
+		r.cachedBF.Add(setIndexes[1].String())
+	}
+
+	mtRoot, _ := revocationService.VerificationPhase2(nil)
+	r.cachedMTRoot = mtRoot
+}
+
+func (r* RevocationService) VerificationPhase1Cached(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error){
+
+	if r.isCached==false {
+		client, err := ethclient.Dial(r.blockchainRPCEndpoint)
+		if err != nil {
+			zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
+		}
+		revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
+		setIndexes, _ := revocationService.RetrieveBloomFilter(nil)
+		for i:=0;i< len(setIndexes);i++{
+			r.cachedBF.Add(setIndexes[1].String())
+		}
+
+		mtRoot, _ := revocationService.VerificationPhase2(nil)
+		r.cachedMTRoot = mtRoot
+		r.isCached=true
+	}
+		vcStatus := false
+		for i:=0; i< len(bfIndexes);i++ {
+			if r.cachedBF.Contains(bfIndexes[i].String()) == false {
+				vcStatus = true;
+				break;
+			}
+		}
+		//zap.S().Errorln("REVOCATION SERVICE-  vc.IDverification phase 1: ",vcStatus)
+
+		return vcStatus, nil
+
+}
+
+
+func (r RevocationService) VerificationPhase2Cached(leafHash string, witnesses []*techniques.Witness)(bool, error) {
+	status := r.merkleTreeAcc.VerifyProof(leafHash, witnesses, r.cachedMTRoot)
 
 	//zap.S().Errorln("REVOCATION SERVICE-  verification phase 2: ",status)
 	return status, nil
@@ -446,6 +562,20 @@ func (r RevocationService) FetchPublicKeys()([][]byte) {
 	return publicKeys
 }
 
+/*
+FetchPublicKeys retrieves the issuer's public keys from the smart contract
+
+Output:
+	public Keys - []string
+*/
+func (r *RevocationService) FetchPublicKeysCached()([][]byte) {
+	if r.isPublicKeysCached==false{
+		publicKeys := r.FetchPublicKeys()
+		r.cachedPublicKeys = append(r.cachedPublicKeys, publicKeys...)
+	}
+
+	return r.cachedPublicKeys
+}
 func  GetShortString(inputs []string) []string{
 
 	var res []string

@@ -21,7 +21,29 @@ type RevocationServiceStub struct{
 	PublicKeys [][]byte
 }
 
+func (r *RevocationServiceStub) CacheRevocationDataStructuresFromSmartContract() {
 
+}
+
+func (r *RevocationServiceStub) VerificationPhase2(leafHash string, witnesses []*techniques.Witness) (bool, error) {
+	mtRoot := r.merkleTreeAcc.RootHash
+	status := r.merkleTreeAcc.VerifyProof(leafHash, witnesses, mtRoot)
+
+	//zap.S().Errorln("REVOCATION SERVICE-  verification phase 2: ",status)
+	return status, nil
+}
+
+func (r *RevocationServiceStub) VerificationPhase1Cached(bfIndexes [4]*big.Int) (bool, error) {
+	return r.VerificationPhase1(bfIndexes)
+}
+
+func (r *RevocationServiceStub) VerificationPhase2Cached(leafHash string, witnesses []*techniques.Witness) (bool, error) {
+	return r.VerificationPhase2(leafHash, witnesses)
+}
+
+func (r *RevocationServiceStub) FetchPublicKeysCached() [][]byte {
+	return r.FetchPublicKeys()
+}
 
 func CreateRevocationServiceStub(config config.Config) *RevocationServiceStub {
 	rs := RevocationServiceStub{}
@@ -109,6 +131,20 @@ func (r *RevocationServiceStub) RevokeVC(vcID string) (int, int64, error) {
 }
 
 
+// returns old mt index and amount of gwei paid
+func (r RevocationServiceStub) RevokeVCInBatches(vcIDs []string) (map[string]int, int64, error) {
+
+	oldMTIndexes := make(map[string]int)
+
+	for _ , vcID := range vcIDs {
+		r.bloomFilter.RevokeInBloomFilter(vcID)
+		vcIndex, _ := r.merkleTreeAcc.UpdateLeaf(vcID, "-1")
+		oldMTIndexes[vcID]=vcIndex
+	}
+	return oldMTIndexes, -1, nil
+}
+
+
 func (r RevocationServiceStub) VerificationPhase1(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error){
 
 	//r.bloomFilter.CheckStatusInBloomFilter()
@@ -121,14 +157,6 @@ func (r RevocationServiceStub) VerificationPhase1(bfIndexes [techniques.NUMBER_O
 }
 
 
-func (r RevocationServiceStub) VerificationPhase2( data *RevocationData)(bool, error) {
-
-	mtRoot := r.merkleTreeAcc.RootHash
-	status := r.merkleTreeAcc.VerifyProof(data.MerkleProof.LeafHash, data.MerkleProof.OrderedWitnesses, mtRoot)
-
-	//zap.S().Errorln("REVOCATION SERVICE-  verification phase 2: ",status)
-	return status, nil
-}
 
 func (r RevocationServiceStub) GetMerkleRoot()(string, error) {
 	mtRoot := r.merkleTreeAcc.RootHash

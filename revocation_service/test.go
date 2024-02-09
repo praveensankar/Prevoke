@@ -1,6 +1,7 @@
 package revocation_service
 
 import (
+	"fmt"
 	"github.com/praveensankar/Revocation-Service/blockchain"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/signature"
@@ -29,11 +30,18 @@ func TestRevocationService(config config.Config) {
 	var vcIDs []string
 
 	for i:=0; i<(int(config.ExpectedNumberOfTotalVCs)+remainingSpace);i++{
-			vcIDs=append(vcIDs, string(i))
+
+		vcID := fmt.Sprintf("%v",i)
+			vcIDs=append(vcIDs, vcID)
 	}
 	rs.IssueVCsInBulk(vcIDs)
+
 	rs.RevokeVC(vcIDs[3])
 	rs.RevokeVC(vcIDs[6])
+	revokedIds := make([]string,0)
+	revokedIds = append(revokedIds, vcIDs[0], vcIDs[1],  vcIDs[5])
+	oldMTIndexes, _, _ := rs.RevokeVCInBatches(revokedIds)
+	zap.S().Infoln("REVOCATION SERVICE TEST - old mt indexes: ", oldMTIndexes)
 	rs.PrintMerkleTree()
 	keyPair1 := signature.GenerateKeyPair()
 	keyPair2 := signature.GenerateKeyPair()
