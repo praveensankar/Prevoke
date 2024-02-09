@@ -328,6 +328,10 @@ github.com/stretchr/testify v1.8.3/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXl
 github.com/subosito/gotenv v1.4.2 h1:X1TuBLAMDFbaTAChgCBLu3DU3UPyELpnF2jjJ2cz/S8=
 github.com/subosito/gotenv v1.4.2/go.mod h1:ayKnFf/c6rvx/2iiLrJUk1e6plDbT3edrFNGqEflhK0=
 github.com/supranational/blst v0.3.11 h1:LyU6FolezeWAhvQk0k6O/d49jqgO52MSDDfYgbeoEm4=
+github.com/suutaku/bls12381 v0.0.0-20220909105542-17195eab9a7d h1:lhTIMN06HFGCGWfY9MlxMjWLP8JGpn9NfHIt0LXePPk=
+github.com/suutaku/bls12381 v0.0.0-20220909105542-17195eab9a7d/go.mod h1:HSGGOkqj/l77U4Zr8M7mXXSnUetVLz6+9doiTOUHdQc=
+github.com/suutaku/go-bbs v0.0.4 h1:ZWw56BvQLV+GkjenhQUgCbMB3I52PJARDJmkfWwu5j8=
+github.com/suutaku/go-bbs v0.0.4/go.mod h1:y1DJjKzRMY5ZvKgOnUQVF0q8rFPDMAkLxTZlqS2JRU8=
 github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7 h1:epCh84lMvA70Z7CTTCmYQn2CKbY8j86K7/FAIr141uY=
 github.com/teserakt-io/golang-ed25519 v0.0.0-20210104091850-3888c087a4c8 h1:RBkacARv7qY5laaXGlF4wFB/tk5rnthhPb8oIBGoagY=
 github.com/teserakt-io/golang-ed25519 v0.0.0-20210104091850-3888c087a4c8/go.mod h1:9PdLyPiZIiW3UopXyRnPYyjUXSpiQNHRLu8fOsR3o8M=

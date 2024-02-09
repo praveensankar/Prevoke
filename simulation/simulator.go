@@ -59,6 +59,7 @@ func SetUpExpParamters(conf *config.Config, exp config.Experiment){
 
 func PerformExperiment(config config.Config){
 	issuer1 := issuer.CreateIssuer(config)
+	publicKey, _ := issuer1.BbsKeyPair[0].PublicKey.Marshal()
 	remainingSpace := int(math.Pow(2, float64(config.MTHeight)))-int(config.ExpectedNumberOfTotalVCs)
 	claimsSet := issuer1.GenerateMultipleDummyVCClaims(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
 
@@ -124,7 +125,7 @@ func PerformExperiment(config config.Config){
 	fetchedWitnessesFromIssuers := mapset.NewSet()
 	for _, credential := range vcs {
 
-		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer1.BbsKeyPair.PublicKey, credential)
+		vp, _ := vc.GenerateProofForSelectiveDisclosure(publicKey, credential)
 		vcId := fmt.Sprintf("%v",credential.Metadata.Id)
 
 		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(vcId, *vp)

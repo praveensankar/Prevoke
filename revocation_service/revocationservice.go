@@ -29,6 +29,8 @@ type IRevocationService interface {
 	FetchMerkleTree() ([]string)
 	PrintMerkleTree()
 	LocalMTVerification(mtRoot string, data *RevocationData)
+	AddPublicKeys(publicKeys [][]byte)
+	FetchPublicKeys()([][]byte)
 }
 
 
@@ -392,6 +394,56 @@ func (r RevocationService) LocalMTVerification(mtRoot string, data *RevocationDa
 	zap.S().Infoln("REVOCATION SERVICE- ", "\t local MT verification : ", status)
 	//statusLocal := r.merkleTreeAcc.VerifyProof(data.merkleTreeIndex, data.MerkleProof)
 	//zap.S().Infoln("REVOCATION SERVICE- ", "\t local MT verification local : ", statusLocal)
+}
+
+/*
+AddPublicKeys adds the issuer's public keys to the smart contract
+
+Input:
+	public Keys - []string
+ */
+func (r RevocationService) AddPublicKeys(publicKeys [][]byte) {
+	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
+	if err != nil {
+		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
+	}
+	revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
+	if err != nil {
+		zap.S().Infof("Failed to instantiate Storage contract: %v", err)
+	}
+
+	auth := r.getAuth()
+
+	//Todo: this function should be moved to the verifiers. The parameters should be shared to the holders.
+	_, err = revocationService.AddPublicKeys(auth, publicKeys)
+	if err != nil {
+		zap.S().Infof("Error adding public keys: %v", err)
+	}
+}
+
+/*
+FetchPublicKeys retrieves the issuer's public keys from the smart contract
+
+Output:
+	public Keys - []string
+*/
+func (r RevocationService) FetchPublicKeys()([][]byte) {
+	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
+	if err != nil {
+		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
+	}
+	revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
+	if err != nil {
+		zap.S().Infof("Failed to instantiate Storage contract: %v", err)
+	}
+
+
+	//Todo: this function should be moved to the verifiers. The parameters should be shared to the holders.
+	publicKeys, err := revocationService.RetrievePublicKeys(nil)
+	if err != nil {
+		zap.S().Infof("Error adding public keys: %v", err)
+	}
+	return publicKeys
 }
 
 func  GetShortString(inputs []string) []string{

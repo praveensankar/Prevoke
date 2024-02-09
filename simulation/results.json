@@ -306,5 +306,19 @@
 "number_of_witness_updates_saved": 222,
 "bloom_filter_size": 2397,
 "bloom_filter_indexes_per_entry": 4
+},
+{
+"total_issued_vcs": 10,
+"total_revoked_vcs": 4,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 3,
+"mt_height": 4,
+"number_of_false_positives": 0,
+"number_of_vcs_retrieved_witness_from_issuer": 0,
+"number_of_vcs_affected_by_revocation_due_to_storing_optimized_MT_accumulator_in_DLT": 4,
+"mt_accumulator_per_update_cost_in_gwei": 0,
+"number_of_witness_updates_saved": 0,
+"bloom_filter_size": 20,
+"bloom_filter_indexes_per_entry": 4
 }
 ]

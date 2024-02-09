@@ -18,6 +18,7 @@ type RevocationServiceStub struct{
 	MtLevelInDLT int
 	mtHeight int
 	NumberOfEntriesForMTInDLT int
+	PublicKeys [][]byte
 }
 
 
@@ -34,6 +35,7 @@ func CreateRevocationServiceStub(config config.Config) *RevocationServiceStub {
 		rs.NumberOfEntriesForMTInDLT += int(math.Pow(2, float64(i)))
 	}
 	rs.vcCounter = 0
+	rs.PublicKeys = make([][]byte, 0)
 	return &rs
 }
 
@@ -182,6 +184,21 @@ func (r RevocationServiceStub) LocalMTVerification(mtRoot string, data *Revocati
 	zap.S().Infoln("REVOCATION SERVICE- ", "\t local MT verification : ", status)
 	//statusLocal := r.merkleTreeAcc.VerifyProof(data.merkleTreeIndex, data.MerkleProof)
 	//zap.S().Infoln("REVOCATION SERVICE- ", "\t local MT verification local : ", statusLocal)
+}
+
+func (r* RevocationServiceStub) AddPublicKeys(publicKeys [][]byte) {
+	r.PublicKeys = append(r.PublicKeys, publicKeys...)
+}
+
+/*
+FetchPublicKeys retrieves the issuer's public keys from the smart contract
+
+Output:
+	public Keys - []string
+*/
+func (r RevocationServiceStub) FetchPublicKeys()([][]byte) {
+	//zap.S().Infoln("ReVOCATION SERVICE STUB - public keys: ",r.PublicKeys)
+	return r.PublicKeys
 }
 
 

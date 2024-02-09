@@ -4,10 +4,11 @@ import (
 	"bytes"
 	"encoding/gob"
 	"fmt"
-	"github.com/google/tink/go/keyset"
+	_ "github.com/google/tink/go/keyset"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/signature"
 	"github.com/praveensankar/Revocation-Service/techniques"
+	"github.com/suutaku/go-bbs/pkg/bbs"
 	"go.uber.org/zap"
 	"log"
 	"strconv"
@@ -110,11 +111,11 @@ func generateMessages( vcId string, claims DiplomaClaim,
 }
 
 
-func generateProofForDiploma(privateKey *keyset.Handle, vcId string, claims DiplomaClaim, bfIndexes []string,
+func generateProofForDiploma(privateKey *bbs.PrivateKey, vcId string, claims DiplomaClaim, bfIndexes []string,
 	mtLeafHash string) models.Proof{
 	messages:= generateMessages(vcId, claims, bfIndexes, mtLeafHash)
 	signature  := signature.Sign(privateKey, messages)
-	proof := models.Proof{Type: "BBS+", ProofValue: signature}
+	proof := models.Proof{Type: "bbs+", ProofValue: signature}
 	return proof
 }
 
@@ -140,7 +141,7 @@ func CreateDiplomaClaims(id string) (DiplomaClaim, error){
 	return myDiplomaClaims, nil
 }
 
-func CreateDiploma(privateKey *keyset.Handle, vcId string, claims interface{},
+func CreateDiploma(privateKey *bbs.PrivateKey, vcId string, claims interface{},
 	bfIndexes []string, mtLeafHash string) (*models.VerifiableCredential, error){
 
 
@@ -183,7 +184,7 @@ Output:
 	sampleDiplomaPresentation
 	error
  */
-func GenerateProofForSelectiveDisclosure(publicKey *keyset.Handle, diploma models.VerifiableCredential) (*models.VerifiablePresentation, error){
+func GenerateProofForSelectiveDisclosure(publicKey []byte, diploma models.VerifiableCredential) (*models.VerifiablePresentation, error){
 	var revealedIndexes []int
 	claims := diploma.Claims.(DiplomaClaim)
 
@@ -212,6 +213,8 @@ func GenerateProofForSelectiveDisclosure(publicKey *keyset.Handle, diploma model
 	mtLeafHash := diploma.Metadata.CredentialStatus.MTLeafValue
 
 	messages := generateMessages(fmt.Sprintf("%v", diploma.Metadata.Id), claims, bfIndexes , mtLeafHash)
+
+
 	SDproof, nonce := signature.SelectiveDisclosure(publicKey, sign, messages, revealedIndexes)
 
 	vp := models.VerifiablePresentation{
@@ -230,7 +233,7 @@ func GenerateProofForSelectiveDisclosure(publicKey *keyset.Handle, diploma model
 
 }
 
-func VerifySelectiveDisclosureDiploma(publicKey *keyset.Handle, vp SampleDiplomaPresentation) bool{
+func VerifySelectiveDisclosureDiploma(publicKey []byte, vp SampleDiplomaPresentation) bool{
 
 
 	var messages [][]byte
@@ -246,6 +249,8 @@ func VerifySelectiveDisclosureDiploma(publicKey *keyset.Handle, vp SampleDiploma
 	// 4) append the claims. All the claims are appended together. However, it is trivial to implement
 	messages = append(messages, []byte(vp.Grade))
 	messages = append(messages, []byte(vp.Degree))
+
+
 	status := signature.VerifySelectiveDisclosureProof(publicKey, vp.Proof, messages, vp.Nonce)
 
 
@@ -253,7 +258,7 @@ func VerifySelectiveDisclosureDiploma(publicKey *keyset.Handle, vp SampleDiploma
 		//zap.S().Infoln("DIPLOMA PRESENTATION - verification successful: ")
 		return true
 	}
-	zap.S().Infoln("DIPLOMA PRESENTATION - verification failed")
+	//zap.S().Infoln("DIPLOMA PRESENTATION - verification failed")
 	return false
 }
 
@@ -262,7 +267,9 @@ func VerifySelectiveDisclosureDiploma(publicKey *keyset.Handle, vp SampleDiploma
 func TestDiploma(){
 	bbs := signature.GenerateKeyPair()
 	privateKey := bbs.PrivateKey
-	publicKey := bbs.PublicKey
+
+
+	publicKey, _ := bbs.PublicKey.Marshal()
 
 	var bfIndexes []string
 	for i := 0; i < techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER; i++ {
@@ -281,7 +288,7 @@ func TestDiploma(){
 
 	vp, _ := GenerateProofForSelectiveDisclosure(publicKey, *myDiploma)
 
-	zap.S().Infoln("DIPLOMA - Presentation: ",vp)
+	//zap.S().Infoln("DIPLOMA - Presentation: ",vp.Messages)
 
 	diplomaPresentation := vp.Messages.(SampleDiplomaPresentation)
 

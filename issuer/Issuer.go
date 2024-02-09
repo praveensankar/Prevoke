@@ -43,7 +43,7 @@ type Issuer struct{
 	vcCounter int
 	blockchainEndPoint *ethclient.Client
 	RevocationService revocation_service.IRevocationService
-	BbsKeyPair        *signature.BBS
+	BbsKeyPair        []*signature.BBS
 }
 
 /*
@@ -73,7 +73,17 @@ func  CreateIssuer(config config.Config) *Issuer{
 	issuer.vcCounter = rand.Intn(100000)
 	rs := revocation_service.CreateRevocationService(config)
 	issuer.setRevocationService(rs)
-	issuer.BbsKeyPair = signature.GenerateKeyPair()
+	keyPair1 := signature.GenerateKeyPair()
+	keyPair2 := signature.GenerateKeyPair()
+	issuer.BbsKeyPair = make([]*signature.BBS, 2)
+	issuer.BbsKeyPair[0] = keyPair1
+	issuer.BbsKeyPair[1] = keyPair2
+	publicKey1, _ := keyPair1.PublicKey.Marshal()
+	publicKey2, _ := keyPair2.PublicKey.Marshal()
+	keys := make([][]byte, 2)
+	keys[0]=publicKey1
+	keys[1]=publicKey2
+	rs.AddPublicKeys(keys)
 	zap.S().Infoln("ISSUER-","new issuer created: issuer name - ",issuer.name)
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
 
@@ -159,7 +169,7 @@ func (issuer *Issuer) Issue(claims interface{})  {
 	mtLeafHash := revocationData.MerkleProof.LeafHash
 	var credential *models.VerifiableCredential
 	if issuer.credentialType=="diploma"{
-		credential, _ = vc.CreateDiploma(issuer.BbsKeyPair.PrivateKey, vcID, claims, bfIndexes, mtLeafHash)
+		credential, _ = vc.CreateDiploma(issuer.BbsKeyPair[0].PrivateKey, vcID, claims, bfIndexes, mtLeafHash)
 	}
 	zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", vcID, "\t mt index: ", revocationData.MtIndex,
 		"\t mt leaf: ", revocationData.MerkleProof.LeafHash[:techniques.SHORT_STRING_SIZE] + "..",
@@ -207,7 +217,7 @@ func (issuer *Issuer) IssueBulk(claimsForMutipleVCs []interface{}, total int){
 			if vcID!=revocationData[i].VcId{
 				zap.S().Errorln("ISSUER - vc id mismatch in issuing")
 			}
-			credential, _ = vc.CreateDiploma(issuer.BbsKeyPair.PrivateKey, revocationData[i].VcId, diplomaClaims, bfIndexes, mtLeafHash)
+			credential, _ = vc.CreateDiploma(issuer.BbsKeyPair[0].PrivateKey, revocationData[i].VcId, diplomaClaims, bfIndexes, mtLeafHash)
 		}
 		issuer.AddCretentialToStore(*credential)
 	}
@@ -335,10 +345,16 @@ func (issuer *Issuer) VerifyTest(vcID string, vp models.VerifiablePresentation) 
 		bfIndexes[i]=v;
 	}
 
+	publicKeys := issuer.RevocationService.FetchPublicKeys()
+	//zap.S().Infoln("ISSUER - public keys: ", publicKeys)
+	publicKey := publicKeys[0]
+
 	//verify selective disclosure
 	if issuer.credentialType=="diploma"{
 		diplomaPresentation := vp.Messages.(vc.SampleDiplomaPresentation)
-		vc.VerifySelectiveDisclosureDiploma(issuer.BbsKeyPair.PublicKey, diplomaPresentation)
+
+
+		vc.VerifySelectiveDisclosureDiploma(publicKey, diplomaPresentation)
 
 		for i, v:= range diplomaPresentation.BfIndexes{
 			intValue, _ := strconv.Atoi(v)

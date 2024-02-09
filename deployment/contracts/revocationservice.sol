@@ -17,7 +17,9 @@ contract RevocationService{
 
     // storing bloom filters as maps
     mapping(uint256=>bool) public bloomFilter;
-
+    // stores the list of indexes present in the merkle tree.
+    uint256[] public bfIndexes;
+    mapping (uint => bool) public isExistInBloomFilter;
 
     /*
     merkle tree
@@ -35,6 +37,9 @@ contract RevocationService{
     // issuer is the owner of the contract
     address issuer;
 
+    // stores the public keys used by the issuer
+    bytes[] public publicKeys;
+    mapping (string => bool) public isExistInPublicKeys;
 
     event Issue(uint[]  _mtIndexes, bytes1  _mtValue1, bytes1  _mtValue2, bytes1  _mtValue3, bytes1  _mtValue4);
     event VerificationPhase2(bytes32 merkleRoot, bytes32 vcLeaf, bytes32[] proof);
@@ -50,6 +55,31 @@ contract RevocationService{
     */
     function registerIssuers() public{
 
+    }
+
+
+    /*
+    This function adds public keys used by the issuer.
+
+    input: public keys
+    */
+    function addPublicKeys(bytes[] memory _publicKeys) public{
+        //only issuer can perform the revocation
+        require(msg.sender==issuer);
+
+
+        for (uint i = 0; i < _publicKeys.length; i++) {
+            publicKeys.push(_publicKeys[i]);
+        }
+    }
+
+    /*
+This function returns the public keys used by the issuer
+
+output: public keys
+*/
+    function RetrievePublicKeys() public  view returns (bytes[] memory){
+        return publicKeys;
     }
 
 
@@ -102,6 +132,14 @@ contract RevocationService{
         // sets the indexes to true
         for (uint i = 0; i < _indexes.length; i++) {
             bloomFilter[_indexes[i]] = true;
+        }
+
+
+        for (uint i = 0; i < _indexes.length; i++) {
+            if (isExistInBloomFilter[_indexes[i]] == false){
+                isExistInBloomFilter[_indexes[i]] = true;
+                bfIndexes.push(_indexes[i]);
+            }
         }
     }
 
@@ -247,12 +285,16 @@ contract RevocationService{
     }
 
 
-    function retrieveMerkleTree() public view returns (string[] memory){
+    function RetrieveMerkleTree() public view returns (string[] memory){
         string [] memory mt = new string[](indexes.length);
         for (uint i = 0; i < indexes.length; i++) {
             mt[i] = merkleTree[i];
         }
         return mt;
+    }
+
+    function RetrieveBloomFilter() public view returns (uint256[] memory){
+        return bfIndexes;
     }
 }
 

@@ -29,6 +29,9 @@ The flags are:
 
 	-revocationServiceTest
 		tests revocation service
+
+	-BBSTest
+		test BBS Signature
  */
 package main
 
@@ -39,6 +42,7 @@ import (
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
+	"github.com/praveensankar/Revocation-Service/signature"
 	"github.com/praveensankar/Revocation-Service/simulation"
 	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/praveensankar/Revocation-Service/vc"
@@ -118,6 +122,7 @@ TestIndividualComponents tests the following components in the project.
 4) Connection to Blockchain
 5) simulator
 6) vc
+7) BBS Signature
  */
 func Run(conf config.Config){
 
@@ -128,7 +133,7 @@ func Run(conf config.Config){
 	simulatorTestFlag := flag.Bool("simulatorTest", false, "a bool")
 	rsTestFlag := flag.Bool("revocationServiceTest", false, "a bool")
 	simulationFlag := flag.Bool("simulation", false, "a bool")
-
+	bbsTestFlag := flag.Bool("bbsTest", false, "a bool")
 	flag.Parse()
 
 
@@ -151,6 +156,10 @@ func Run(conf config.Config){
 
 	if *rsTestFlag == true{
 		revocation_service.TestRevocationService(conf)
+	}
+
+	if *bbsTestFlag == true{
+		signature.TestBBS(conf)
 	}
 
 

@@ -3,6 +3,7 @@ package revocation_service
 import (
 	"github.com/praveensankar/Revocation-Service/blockchain"
 	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/praveensankar/Revocation-Service/signature"
 	"go.uber.org/zap"
 	"math"
 )
@@ -34,5 +35,15 @@ func TestRevocationService(config config.Config) {
 	rs.RevokeVC(vcIDs[3])
 	rs.RevokeVC(vcIDs[6])
 	rs.PrintMerkleTree()
+	keyPair1 := signature.GenerateKeyPair()
+	keyPair2 := signature.GenerateKeyPair()
+	publicKey1, _ := keyPair1.PublicKey.Marshal()
+	publicKey2, _ := keyPair2.PublicKey.Marshal()
+	keys := make([][]byte, 2)
+	keys[0]=publicKey1
+	keys[1]=publicKey2
+	rs.AddPublicKeys(keys)
+	publicKeys := rs.FetchPublicKeys()
+	zap.S().Infoln("REVOCATION SERVICE  TEST - \t  issuers public keys: ", publicKeys)
 
 }

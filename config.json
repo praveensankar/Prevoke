@@ -23,8 +23,8 @@
 
 	},
 	 "account" : {
-		 "address" : "0x0227cB2C98DA95425f1b819b1840fe24e80Db5FB",
-		 "privateKey": "f1dc3c8ee1a80d9183605b48d06f60fa7eac6208a723c24dab838fedcc9e537f",
+		 "address" : "0x280725e0a89f48eA51b78A14dcE500555E649f4d",
+		 "privateKey": "2d08a6eb4619d73b7d564fb1ce0b96249c7d9a1b6db9602c1869f390b2207493",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
@@ -40,41 +40,13 @@
 		 "debug" : "true"
 	 },
 	 "exp": {
-		 "exp6": {
-			 "totalVCs": "5000",
-			 "revokedVCs": "500",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "8",
-			 "mtHeight": "13"
-		 },
-		 "exp7": {
-			 "totalVCs": "5000",
-			 "revokedVCs": "500",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "9",
-			 "mtHeight": "13"
-		 },
-		 "exp8": {
-			 "totalVCs": "5000",
-			 "revokedVCs": "500",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "10",
-			 "mtHeight": "13"
-		 },
-		 "exp9": {
-			 "totalVCs": "5000",
-			 "revokedVCs": "500",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "11",
-			 "mtHeight": "13"
-		 },
-		 "exp10": {
-			 "totalVCs": "5000",
-			 "revokedVCs": "500",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "12",
-			 "mtHeight": "13"
-		 }
+		 "exp2": {
+		 "totalVCs": "10",
+		 "revokedVCs": "4",
+		 "falsePositiveRate": "0.1",
+		 "mtLevelInDLT": "3",
+		 "mtHeight": "4"
+	 }
 	 }
  }
 

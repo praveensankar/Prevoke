@@ -27,9 +27,15 @@ func  CreateTestIssuer(config config.Config) *Issuer {
 	rand.Seed(time.Now().UnixNano())
 	issuer.vcCounter = rand.Intn(100000)
 	issuer.credentialType="diploma"
-	issuer.BbsKeyPair = signature.GenerateKeyPair()
 	rs := revocation_service.CreateRevocationServiceStub(config)
 	issuer.setRevocationService(rs)
+	keyPair1 := signature.GenerateKeyPair()
+	issuer.BbsKeyPair = make([]*signature.BBS, 2)
+	issuer.BbsKeyPair[0] = keyPair1
+	publicKey1, _ := keyPair1.PublicKey.Marshal()
+	keys := make([][]byte, 1)
+	keys[0]=publicKey1
+	rs.AddPublicKeys(keys)
 	zap.S().Infoln("ISSUER-","issuer test instance created")
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
 	return &issuer
@@ -39,6 +45,7 @@ func  CreateTestIssuer(config config.Config) *Issuer {
 func TestIssuer(config config.Config){
 
 	issuer := CreateTestIssuer(config)
+	publicKey, _ := issuer.BbsKeyPair[0].PublicKey.Marshal()
 	claimsSet := issuer.GenerateMultipleDummyVCClaims(int(config.ExpectedNumberOfTotalVCs))
 
 	for _, claims := range claimsSet{
@@ -55,7 +62,7 @@ func TestIssuer(config config.Config){
 	}
 	issuer.RevocationService.PrintMerkleTree()
 	for _, credential := range vcs{
-			vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer.BbsKeyPair.PublicKey, credential)
+			vp, _ := vc.GenerateProofForSelectiveDisclosure(publicKey, credential)
 			vcId := fmt.Sprintf("%v",credential.Metadata.Id)
 			issuer.VerifyTest(vcId, *vp)
 	}
@@ -91,7 +98,7 @@ func TestIssuer(config config.Config){
 
 
 	for _, credential := range credentials{
-		vp, _ := vc.GenerateProofForSelectiveDisclosure(issuer.BbsKeyPair.PublicKey, credential)
+		vp, _ := vc.GenerateProofForSelectiveDisclosure(publicKey, credential)
 		vcId := fmt.Sprintf("%v",credential.Metadata.Id)
 		issuer.VerifyTest(vcId, *vp)
 	}

@@ -1,64 +1,51 @@
 package signature
 
 import (
-	"github.com/google/tink/go/keyset"
-	"github.com/hyperledger/aries-framework-go/pkg/crypto/tinkcrypto/primitive/bbs"
+	"crypto/sha256"
+	"fmt"
+	"github.com/suutaku/go-bbs/pkg/bbs"
 	"go.uber.org/zap"
 	"math/rand"
 	"time"
 )
 
-type BBS struct {
 
-	PublicKey *keyset.Handle
-	PrivateKey *keyset.Handle
+
+type BBS struct {
+	PublicKey *bbs.PublicKey
+	PrivateKey *bbs.PrivateKey
 }
 
 func GenerateKeyPair() *BBS {
-	// create signer keyset handle
-	kh, err := keyset.NewHandle(bbs.BLS12381G2KeyTemplate())
+
+	publicKey, privateKey, err  := bbs.GenerateKeyPair(sha256.New, nil)
 	if err != nil {
 		zap.S().Infoln("BBS - error creating new key pair: ", err)
 	}
-
-	// extract signer public keyset handle and key for signature verification and proof derivation/verification
-	publicKey, err := kh.Public()
-	if err != nil {
-		zap.S().Infoln("BBS - error creating public key: ", err)
-	}
-
-
-
-	bbs := BBS{
+	bbs1 := BBS{
 		PublicKey:    publicKey,
-		PrivateKey: kh,
+		PrivateKey: privateKey,
 	}
-	zap.S().Infoln("BBS - \t private key: ", kh.String(), "\n public key: ", bbs.PublicKey.KeysetInfo().KeyInfo)
-	return &bbs
+	return &bbs1
 }
 
-func Sign(privateKey *keyset.Handle, messages [][]byte) []byte{
-	// finally get the BBS+ signing primitive from the private key handle created above
-	signerHandle, _ := bbs.NewSigner(privateKey)
-	signature, err := signerHandle.Sign(messages)
-	if err != nil{
-		zap.S().Infoln("BBS - error signing: ",err)
+func Sign(privateKey *bbs.PrivateKey, messages [][]byte) []byte{
+	bbsInstance := bbs.NewBbs()
+	signature, err := bbsInstance.SignWithKey(messages, privateKey)
+	if err != nil {
+		zap.S().Infoln("BBS - error signing: ", err)
 	}
-	//zap.S().Infoln("BBS - signature: ",signature)
 	return signature
 }
 
-func Verify(publicKey *keyset.Handle, signature []byte, messages [][]byte) bool{
-	verifier, err := bbs.NewVerifier(publicKey)
-	if err != nil{
-		zap.S().Infoln("BBS - error creating verifier: ",err)
-	}
-	err = verifier.Verify(messages, signature)
+func Verify(publicKey []byte, signature []byte, messages [][]byte) bool{
+	bbsInstance := bbs.NewBbs()
+	err := bbsInstance.Verify(messages, signature, publicKey)
 	if err != nil {
 		zap.S().Infoln("BBS - verification failed: ",err)
 		return false
 	}
-	//zap.S().Infoln("BBS - verification successful")
+	zap.S().Infoln("BBS - verification successful")
 	return true
 }
 
@@ -75,31 +62,47 @@ Output:
 	(proof) - []byte
 	(nonce) - []byte
 */
-func SelectiveDisclosure(publicKey *keyset.Handle, signature []byte, messages [][]byte, revealedIndexes []int) ([]byte, []byte ){
-	verifier, err := bbs.NewVerifier(publicKey)
-	if err != nil{
-		zap.S().Infoln("BBS - error creating verifier: ",err)
-	}
+func SelectiveDisclosure(publicKey []byte, signature []byte, messages [][]byte, revealedIndexes []int) ([]byte, []byte ){
+
 	rand.Seed(time.Now().UnixNano())
 
 	nonce := make([]byte, 10)
-	proof, err := verifier.DeriveProof(messages, signature, nonce, revealedIndexes)
+	bbsInstance := bbs.NewBbs()
+	proof, err := bbsInstance.DeriveProof(messages, signature, nonce, publicKey, revealedIndexes)
 	if err!=nil{
 		zap.S().Infoln("BBS - error creating proof for selective disclosure: ",err)
 	}
 	return proof, nonce
 }
 
-func VerifySelectiveDisclosureProof(publicKey *keyset.Handle, proof []byte, selectiveMessages [][]byte, nonce []byte) bool{
-	verifier, err := bbs.NewVerifier(publicKey)
-	if err != nil{
-		zap.S().Infoln("BBS - error creating verifier: ",err)
-	}
-	err = verifier.VerifyProof(selectiveMessages, proof, nonce)
+func VerifySelectiveDisclosureProof(publicKey []byte,  proof []byte, selectiveMessages [][]byte, nonce []byte) bool{
+
+	bbsInstance := bbs.NewBbs()
+	err := bbsInstance.VerifyProof(selectiveMessages, proof, nonce, publicKey)
 	if err != nil {
 		zap.S().Infoln("BBS - verification failed: ",err)
 		return false
 	}
-	//zap.S().Infoln("BBS - verification successful")
+	//zap.S().Infoln("BBS - selective disclosure verification successful")
 	return true
 }
+
+/*
+PublicKeyToString function converts public key to string format
+
+Input:
+	public key - *keyset.Handle
+
+Output:
+	public key - string
+*/
+func PublicKeyToString(publicKey *bbs.PublicKey) string{
+	res, _ := publicKey.Marshal()
+
+	str := fmt.Sprintf("%s", res)
+	//zap.S().Infoln("BBS - public key byte: ",res)
+	return str
+}
+
+
+
