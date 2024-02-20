@@ -31,7 +31,7 @@
 	 "otherAccounts" : [],
 	 "logger" : {
 		"env" : "dev",
-		 "output": "console",
+		 "output": "file",
 		 "filename": "logs.json",
 		 "_comment1": "ouput:<console> - for printing in console, <file> - for writing to file",
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
