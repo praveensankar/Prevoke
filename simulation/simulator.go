@@ -191,7 +191,10 @@ func  WriteToFile( result Results) {
 	results = append(results, result)
 	jsonRes, _ := json.MarshalIndent(results,"","")
 	//filename := fmt.Sprintf("Simulation/results/result_%v_%v_%v.json",numberOfVcs, numberOfRevokedVcs, mtLevelInDLT)
-	ioutil.WriteFile("Simulation/results.json", jsonRes, 0644)
+	err := ioutil.WriteFile("Simulation/results.json", jsonRes, 0644)
+	if err != nil {
+		zap.S().Errorln("unable to write results to file")
+	}
 
 }
 
