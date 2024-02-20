@@ -235,11 +235,13 @@ func (r RevocationService) RevokeVC(vcID string) (int, int64, error) {
 	for _, value := range r.bloomFilter.GetIndexes(vcID){
 		bfIndexes = append(bfIndexes, value)
 	}
-	//oldMTIndex := r.VCToBigInts[vc.ID]
-	vcIndex, _ := r.merkleTreeAcc.UpdateLeaf(vcID, "-1")
+
 	var mtIndexes []*big.Int
 	var mtValues []string
 	var parentIndex int
+
+	//oldMTIndex := r.VCToBigInts[vc.ID]
+	vcIndex, _ := r.merkleTreeAcc.UpdateLeaf(vcID, "-1")
 
 	currentLevel := r.mtHeight
 	index := vcIndex
@@ -303,6 +305,7 @@ func (r RevocationService) RevokeVCInBatches(vcIDs []string) (map[string]int, in
 
 	var bfIndexes []*big.Int
 	oldMTIndexes := make(map[string]int)
+	mtTree := make(map[int]string)
 	var mtIndexes []*big.Int
 	var mtValues []string
 	for i:=0; i<len(vcIDs);i++{
@@ -313,8 +316,28 @@ func (r RevocationService) RevokeVCInBatches(vcIDs []string) (map[string]int, in
 		//oldMTIndex := r.VCToBigInts[vc.ID]
 		vcIndex, _ := r.merkleTreeAcc.UpdateLeaf(vcIDs[i], "-1")
 		oldMTIndexes[vcIDs[i]]=vcIndex
-		mtIndexes, mtValues = r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
+
+		currentLevel := r.mtHeight
+
+		index := vcIndex
+		for i:=currentLevel; i>=0; i--{
+			parentIndex := int(math.Floor(float64((index - 1) / 2)))
+
+			if i<=r.MtLevelInDLT{
+				hashValue := r.merkleTreeAcc.Tree[index]
+				mtTree[index] = hashValue.Value
+			}
+			index = parentIndex
+		}
+
+		//mtIndexes, mtValues = r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
 	}
+
+	for index, value := range mtTree{
+		mtIndexes = append(mtIndexes, big.NewInt(int64(index)))
+		mtValues = append(mtValues, value)
+	}
+
 
 
 	//zap.S().Infoln("REVOCATION SERVICE- \t mt indexes: ", mtIndexes, "\t mt values: ",mtValues)

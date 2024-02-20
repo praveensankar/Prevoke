@@ -62,7 +62,7 @@ func PerformExperiment(config config.Config){
 	publicKey, _ := issuer1.BbsKeyPair[0].PublicKey.Marshal()
 	remainingSpace := int(math.Pow(2, float64(config.MTHeight)))-int(config.ExpectedNumberOfTotalVCs)
 	claimsSet := issuer1.GenerateMultipleDummyVCClaims(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
-	revocationBatchSize :=5
+	revocationBatchSize := int(config.RevocationBatchSize)
 
 	issuer1.IssueBulk(claimsSet, int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
 
@@ -89,9 +89,9 @@ func PerformExperiment(config config.Config){
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	revokedVCs := make([]string, totalRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
-	for batch:=0; batch<revocationBatchSize; batch++ {
+	for batch:=0; batch<int(int64(math.Ceil(float64(totalRevokedVCs/revocationBatchSize)))); batch++ {
 		revokedVCsInBatch := make([]string, 0)
-		for i, counter := 0, 0; counter < int(int64(math.Ceil(float64(totalRevokedVCs/revocationBatchSize)))); {
+		for i, counter := 0, 0; counter < revocationBatchSize; {
 
 			i = 2
 			for {

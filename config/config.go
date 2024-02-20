@@ -26,6 +26,7 @@ type Config struct{
 	ExpParamters  map[string]*Experiment
 	MtLevelInDLT uint
 	MTHeight uint
+	RevocationBatchSize uint
 	FalsePositiveRate float64
 	DEBUG bool
 }
@@ -51,6 +52,7 @@ func (config Config) printConfig()  {
 	zap.S().Infoln("bloom filter false positive rate: ",config.FalsePositiveRate)
 	zap.S().Infoln("merkle tree accumulator level in DLT: ", config.MtLevelInDLT)
 	zap.S().Infoln("merkle tree height: ", config.MTHeight)
+	zap.S().Infoln("revocation batch size: ", config.RevocationBatchSize)
 	zap.L().Info("********************************************************************************************************************************\n")
 	zap.L().Info("\n\n--------------------------------------------------------printing Experiment parameters--------------------------------------------------")
 
@@ -102,6 +104,7 @@ func ParseConfig() (Config, error){
 	config.FalsePositiveRate = viper.GetFloat64("issuer.falsePositiveRate")
 	config.MtLevelInDLT = viper.GetUint("issuer.mtLevelInDLT")
 	config.MTHeight = viper.GetUint("issuer.mtHeight")
+	config.RevocationBatchSize = viper.GetUint("issuer.revocationBatchSize")
 	config.IssuerName = viper.GetString("issuer.name")
 	config.DEBUG = viper.GetBool("mode.debug")
 	//"account1" :  "0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A",
