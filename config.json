@@ -23,8 +23,8 @@
 
 	},
 	 "account" : {
-		 "address" : "0x280725e0a89f48eA51b78A14dcE500555E649f4d",
-		 "privateKey": "2d08a6eb4619d73b7d564fb1ce0b96249c7d9a1b6db9602c1869f390b2207493",
+		 "address" : "0x904f7573d5aB4d88a4c4b21eB952482390aD4cCD",
+		 "privateKey": "0589fbfd10636f60a47ff4fee99fc7ff7e32c8e0b73672e5ea700d79ad261b70",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
