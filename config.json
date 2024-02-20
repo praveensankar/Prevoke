@@ -50,11 +50,11 @@
 		 "mtHeight": "5"
 	 },
 		 "exp3": {
-			 "totalVCs": "50",
-			 "revokedVCs": "20",
+			 "totalVCs": "1000",
+			 "revokedVCs": "100",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "4",
-			 "mtHeight": "6"
+			 "mtLevelInDLT": "5",
+			 "mtHeight": "10"
 		 }
 
 	 }
