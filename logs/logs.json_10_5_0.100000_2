@@ -3766,3 +3766,1545 @@ Number of False Positives : 2
 Number of VCS that ended up updating witnesses from issuer: 2
 Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : 0
 
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0x3d111a1BD9b4906c47108c801DAA8b70903B936E
+blockchain rpc endpoint: http://158.39.200.125:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x4a33ABa050A867968a1a585C7a249A3DaC585ADC
+sender private key: 663f30e301d6f89232d31d6764ee87bf7c7c6799cceeba2150a6687cdc32b7f6
+sender pass phrase: simple phrase
+other accounts in ganache test network :  []
+logger environment: dev
+logger output file name: logs.json
+logger output mode: file
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:
+total of VCs would be issued:10
+total of VCs would be revoked:5
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  2
+merkle tree height:  4
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing Experiment parameters--------------------------------------------------
+exp2 {20 10 0.1 3 5}
+exp3 {100 10 0.1 4 7}
+********************************************************************************************************************************
+
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0xBfb75E63Eb439CEcfD972b6fB897554a9b3f0CC2
+BLOCKCHAIN- 	 tx hash:  0xe8aa535c327a1437143754a9721ade153dc0f956c38b68731fc4e0bda133007b
+********************************************************************************************************************************
+
+"MERKLE TREE Accumulator- 	 total nodes:  63
+BlOOM FILTER: size :  48 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************
+ISSUER-   ***ISSUED*** vc: diploma#740 	 leaf:  f4ea1655b9b74604cae29299949a0680340166e45045860d1525228bb6134a19
+ISSUER-   ***ISSUED*** vc: diploma#741 	 leaf:  ec65ce337d19f9923b0b692ec534942eef7226b7242bd06b6879267584a8f62e
+ISSUER-   ***ISSUED*** vc: diploma#742 	 leaf:  d68489bad556081023a1749c1a38f72042eebdb093497d43f68d23d0960acf60
+ISSUER-   ***ISSUED*** vc: diploma#743 	 leaf:  cc837b1239732ac97a3c90b80ca464db59d1f112b8744212abb565f8897e8104
+ISSUER-   ***ISSUED*** vc: diploma#744 	 leaf:  7ffcdd37eff929537f906fd8d95188b7fe4b50a49ee09a748fc727687259c5d0
+ISSUER-   ***ISSUED*** vc: diploma#745 	 leaf:  288647ab75d15155486c0c07eb803a04ff933d2f42e5b701e3d084555ff02251
+ISSUER-   ***ISSUED*** vc: diploma#746 	 leaf:  6b69298ef380df2f315e40bf601d310a197b9758e0e0fe997f187cbcdebdb2bd
+ISSUER-   ***ISSUED*** vc: diploma#747 	 leaf:  96123249f8e37f19b29143cadc28e266eaa55150a9a70269a5b1dd23e44cbe16
+ISSUER-   ***ISSUED*** vc: diploma#748 	 leaf:  f7aa23a77977eb75b2287aeaa2e7b3cf248638226f38233d49119f8ef40f7cbf
+ISSUER-   ***ISSUED*** vc: diploma#749 	 leaf:  27f172a00879966428e5bd7fd9fd777485b6bca3eb2700def4c002180143e98c
+ISSUER-   ***ISSUED*** vc: diploma#750 	 leaf:  cd19c3e033053b584aaf3ca925ed3cf73aa38eb4e0eeebe6167cbfb31ba9e458
+ISSUER-   ***ISSUED*** vc: diploma#751 	 leaf:  399132956f770f52ef135d480152329722f4de9c754468bf07c4ddb4b4bfd0cb
+ISSUER-   ***ISSUED*** vc: diploma#752 	 leaf:  cf87f1d644e2f8bc9562f8fe0b6c069c5833d03ff248446a2d50dca9a7188efb
+ISSUER-   ***ISSUED*** vc: diploma#753 	 leaf:  1afbac9b2db7cecddb71e7cff02be9f510a17a9b3dfb1fe08df25c3e9e8ac83e
+ISSUER-   ***ISSUED*** vc: diploma#754 	 leaf:  1986a44d016a2ed5ad9b3e0f32f51f8c8e80cda998a562da2513d6ce259f36be
+ISSUER-   ***ISSUED*** vc: diploma#755 	 leaf:  37950a3b21de9f3b68d2851152583bd610b7ccf0ee9ee99eecc4b264d6fdabf8
+ISSUER-   ***ISSUED*** vc: diploma#756 	 leaf:  8cee4e969c3f58352231fa4d1d57efdbf99a35a5dc4ad8e99385093124677c50
+ISSUER-   ***ISSUED*** vc: diploma#757 	 leaf:  80676ae36ecf44aad3d498c7cd290864d8be857cc8d95eaf5a711606f024958a
+ISSUER-   ***ISSUED*** vc: diploma#758 	 leaf:  03fd7f156c8e1fd8a238fab5d852adc34d7e90bf8820ccd20dcdd8b4066cec4e
+ISSUER-   ***ISSUED*** vc: diploma#759 	 leaf:  75c17b103849060b771449e74384147cafff3ce478691d2940a8a1d71764f933
+ISSUER-   ***ISSUED*** vc: diploma#760 	 leaf:  b1e1542d6cd12d120c3437f780e8da60ced15f0cbb108b68656cef53c8971ee6
+ISSUER-   ***ISSUED*** vc: diploma#761 	 leaf:  82af087ed3ae18dcb50883826d45820f1117d69fdcd4414fa7a80f6f9725b512
+ISSUER-   ***ISSUED*** vc: diploma#762 	 leaf:  528e380553a855bede99d12c117ace99941f3d6a105aaf095e27c0392aca48d9
+ISSUER-   ***ISSUED*** vc: diploma#763 	 leaf:  fbe1e824aa7375abcaa2d6dc44cf80add4af11089b07ec45a7672a17e52b8cf8
+ISSUER-   ***ISSUED*** vc: diploma#764 	 leaf:  564a79e22ab5cc317efaf9e39315097453ecb0f1564da51e05580d935950122b
+ISSUER-   ***ISSUED*** vc: diploma#765 	 leaf:  7fc8fee17f85f9ca3d683be4957161c91b2103b4a1e06e8f62ba78ac6904362f
+ISSUER-   ***ISSUED*** vc: diploma#766 	 leaf:  2e29659913a50bffc11130a3d7485b51d6c4c37fc2e77555e3586ee6a736a039
+ISSUER-   ***ISSUED*** vc: diploma#767 	 leaf:  666ddf8ddb2c2b26e29807cc975532bbea1e829afe40dc83aa76b211cb8cec18
+ISSUER-   ***ISSUED*** vc: diploma#768 	 leaf:  cbc4f1c70d7bd2286575809b70caaf2c95a783791511fcf3da1068c8a3e21586
+ISSUER-   ***ISSUED*** vc: diploma#769 	 leaf:  054e3443088c1fe779e6fd8ca62e2474fb9e4555a2b618beb9802aa0bf87f0d1
+ISSUER-   ***ISSUED*** vc: diploma#770 	 leaf:  53009edf2c648a0debd3d376837e9fa8b6a92f904d9e92e20d1c2077b5e40439
+ISSUER-   ***ISSUED*** vc: diploma#771 	 leaf:  76515141dbfac1b6ecfa834d3c04bac956689ec88ab507025ce9aff2708c01c8
+ISSUER-  ***REVOKED*** vcs: [diploma#742 diploma#746] 	 mt indexes:  map[diploma#742:33 diploma#746:37] 	 affected VCs Indexes:  Set{35, 36, 38, 31, 32, 34} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#748 diploma#750] 	 mt indexes:  map[diploma#748:39 diploma#750:41] 	 affected VCs Indexes:  Set{42, 40, 41, 39} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#745 diploma#757] 	 mt indexes:  map[diploma#745:36 diploma#757:48] 	 affected VCs Indexes:  Set{47, 49, 50, 37, 38, 35} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#751 diploma#741] 	 mt indexes:  map[diploma#741:32 diploma#751:42] 	 affected VCs Indexes:  Set{40, 41, 31, 33, 34, 39} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#754 diploma#744] 	 mt indexes:  map[diploma#744:35 diploma#754:45] 	 affected VCs Indexes:  Set{38, 46, 43, 44, 36, 37} 	 number of affected VCs:  6
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#740 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#741 	 mt index:  32 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#742 	 mt index:  33 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#743 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#744 	 mt index:  35 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#745 	 mt index:  36 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#746 	 mt index:  37 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#747 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#748 	 mt index:  39 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#749 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#750 	 mt index:  41 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#751 	 mt index:  42 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#752 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#753 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#754 	 mt index:  45 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#755 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#756 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#757 	 mt index:  48 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#758 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#759 	 actual status:  valid 	 phase1 result:  true
+SIMULATOR - 	 indexes of VCs that are affected by revocation:  Set{37, 47, 38, 31, 32, 40, 35, 39, 49, 33, 41, 42, 36, 50, 43, 34, 46, 44}
+SIMULATOR - 	 indexes of VCs that are affected by false positives:  Set{}
+SIMULATOR - 	 indexes of VCs that retrieved witnesses from issuer:  Set{}
+SIMULATOR : 	 results:  Total VCs : 20
+Total Revoked VCs : 10
+False Positive Rate : 0.100000
+Bloom Filter Size : 48
+Bloom Filter indexes per entry (no of hash functions) : 4
+Merkle Tree Accumulator height : 5
+Merkle Tree Accumulator Level Stored in DLT : 3
+ 
+Amount (in gwei) paid per revocation: 10987926
+Number of witness that are affected by revocation and require witness update in Merkle Tree Accumulator: 18
+Number of False Positives : 0
+Number of VCS that ended up updating witnesses from issuer: 0
+Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : 0
+
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0xeC587bC151eFC62f7483742Ba6573D5E8aa12cEe
+BLOCKCHAIN- 	 tx hash:  0xc5b65c8d051022caa9103ad18e2c873ca5131fd8e758ecc69e57634c3aa955a7
+********************************************************************************************************************************
+
+"MERKLE TREE Accumulator- 	 total nodes:  255
+BlOOM FILTER: size :  48 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************
+ISSUER-   ***ISSUED*** vc: diploma#83203 	 leaf:  825f267be6a4b79af4e564baa2092c9c51c86e75dd728fc860903c7d44659903
+ISSUER-   ***ISSUED*** vc: diploma#83204 	 leaf:  6971e600c8bd543f60821e9fcc4c6bc37e1a076bc791949f173cde65ff9b05cc
+ISSUER-   ***ISSUED*** vc: diploma#83205 	 leaf:  6efbd522ea024d155988b3df8b2f080bf59db821860b7539d40fd89f2784debd
+ISSUER-   ***ISSUED*** vc: diploma#83206 	 leaf:  2bb7bff66e2b53eb8384a378d1e4d66f1c85d66f181c077e0d6ddea89d4e4605
+ISSUER-   ***ISSUED*** vc: diploma#83207 	 leaf:  b98413181ea81c8536d9a7e0c2c206cd060204af3badb7448690294aaabaea14
+ISSUER-   ***ISSUED*** vc: diploma#83208 	 leaf:  c933376822061654398e3ca15d13a9d50a606a29bdcb01d80243d6efb44bebcd
+ISSUER-   ***ISSUED*** vc: diploma#83209 	 leaf:  beae86cbb7fef9dbdf5bcbad7e866e9d3e05a84924dd8de3464ffed49c8b8385
+ISSUER-   ***ISSUED*** vc: diploma#83210 	 leaf:  bd159f99422f477ab5ce468bb63cd5366168a79568287b26cfd5549ea16e43a5
+ISSUER-   ***ISSUED*** vc: diploma#83211 	 leaf:  ad21d2be1f017fad3c2a705cae828327fc6f2ac94c204af7c79e707ce9e77503
+ISSUER-   ***ISSUED*** vc: diploma#83212 	 leaf:  c9fe844c502580b65e42be4d18eb760fef84223c6373b6c8e9dd5b4028c2d744
+ISSUER-   ***ISSUED*** vc: diploma#83213 	 leaf:  c1f6833b36fbc3bf5b60166109a26bc71924614a69827108dac0ab18553fe60a
+ISSUER-   ***ISSUED*** vc: diploma#83214 	 leaf:  b9f0844b637b3a68c132cab67337227d4cdd07d90fb23f084f294a06b1528985
+ISSUER-   ***ISSUED*** vc: diploma#83215 	 leaf:  39e32e32290c6a27addecaa742b91bfb69d060314252c35c92bffca04d363381
+ISSUER-   ***ISSUED*** vc: diploma#83216 	 leaf:  cc3e245bf75033c4c024e5ae3599b748297561b01c24b3a2f257755cf8d074d2
+ISSUER-   ***ISSUED*** vc: diploma#83217 	 leaf:  4169ae53964298957eee1ca117d7ba20031f50f542d153ecbed072d176e1d58f
+ISSUER-   ***ISSUED*** vc: diploma#83218 	 leaf:  d752d06404b2b4bc18c1791af532d5a5d4fc59991439c10dced800f699c9bf35
+ISSUER-   ***ISSUED*** vc: diploma#83219 	 leaf:  34f67802798b75c590da34533f865eb6d1f5bf880bf859086c5a89d498c67995
+ISSUER-   ***ISSUED*** vc: diploma#83220 	 leaf:  49f68026fd52c78b96844ea937d846681375df9f0bb454ffb388af99b31d65d3
+ISSUER-   ***ISSUED*** vc: diploma#83221 	 leaf:  a4b5684c313a069e9d028c88d374128eeb014343a01951e3c151716afb5faf53
+ISSUER-   ***ISSUED*** vc: diploma#83222 	 leaf:  3b21af94aec348d875c3d7d0ec5b3da6524d795a2d8da5a5a9e6807684a75030
+ISSUER-   ***ISSUED*** vc: diploma#83223 	 leaf:  1de2fe5350a6930a37e8891205d2c766a537accef49ed5f56503bac61e456038
+ISSUER-   ***ISSUED*** vc: diploma#83224 	 leaf:  8e60d205aecb351f6bc4a6bae20b9badd362e6ca03511d19d08ba0dc8a6c1496
+ISSUER-   ***ISSUED*** vc: diploma#83225 	 leaf:  9605a1f7015d37425147e09ac2d216c9f4feff45d3796cca234a624fcc7160aa
+ISSUER-   ***ISSUED*** vc: diploma#83226 	 leaf:  3eb9892a47d9b1b2690cd7a453d172400c9280c1fce54d48904c7e08b25c45bb
+ISSUER-   ***ISSUED*** vc: diploma#83227 	 leaf:  58842e0779d01407d7965f721ce778358510e6ea0c37de9a2fbe40a88393fe80
+ISSUER-   ***ISSUED*** vc: diploma#83228 	 leaf:  aacf56693b4de9d0796e7705c0fdf80000a35f9fcb5a3508293e847f13eb3849
+ISSUER-   ***ISSUED*** vc: diploma#83229 	 leaf:  5dca43a2c0024ada4695d91d72cb5accd00431c65aa9e9561ce4fff67dcc1a3c
+ISSUER-   ***ISSUED*** vc: diploma#83230 	 leaf:  3a281e909663d4d272ae17474c9b192a8e964206bc5df71a5d54ad2c1efb0a51
+ISSUER-   ***ISSUED*** vc: diploma#83231 	 leaf:  f286ee5f280cb0e46edd2b17e060c096305cb18c20c50d3bf6449c0c48618055
+ISSUER-   ***ISSUED*** vc: diploma#83232 	 leaf:  b2963b74ad2d6d05f9f4cb15ac2a7325d5c04894f03baeca77860dc7228474e6
+ISSUER-   ***ISSUED*** vc: diploma#83233 	 leaf:  b0746af3ee7f49a763a15ed0c89db7cbb19ae4ff4d900e068f20eee61c1f3756
+ISSUER-   ***ISSUED*** vc: diploma#83234 	 leaf:  fac9c63fb1cb9921219f76a2a70b393bddb03198feb80bf13aeea7270244c1b7
+ISSUER-   ***ISSUED*** vc: diploma#83235 	 leaf:  5b3e9667a0fe11f4531595ee5f34f7869ae6fd796a56b8407e2d6b166e7a5e01
+ISSUER-   ***ISSUED*** vc: diploma#83236 	 leaf:  5badbe043a46787f86826cf4f376fffe27510fd371671936f04b9387787da882
+ISSUER-   ***ISSUED*** vc: diploma#83237 	 leaf:  d3bffa2a3347d80dd06f8f5f933aacb528f33372e0125907e40e191e7f4572b5
+ISSUER-   ***ISSUED*** vc: diploma#83238 	 leaf:  f894ce776c257cd4e60cc947b321f5ce0e697e452984b915df969aff76f91ded
+ISSUER-   ***ISSUED*** vc: diploma#83239 	 leaf:  c7da9d6b138b552a1c4eebcbe0d48bce1c0ff3937b24c32a15a2bdb9cccce050
+ISSUER-   ***ISSUED*** vc: diploma#83240 	 leaf:  8664f95ac3b4448838f65e45132f80e4945c4ebed38326eaa62b2ea0ddc47268
+ISSUER-   ***ISSUED*** vc: diploma#83241 	 leaf:  8e456fd99e09e084a2f736fbb8dab0ccaee4b1f99c31eecf9644317fa7336003
+ISSUER-   ***ISSUED*** vc: diploma#83242 	 leaf:  b6696f18753841489b5e5f8c0b4ef815daba958af573dd56277d0446dacd7fb9
+ISSUER-   ***ISSUED*** vc: diploma#83243 	 leaf:  78e48cd98c93d8d32bc0f08c3e3a91b7f576dc1bd06535b3aa535e18bd1ebe83
+ISSUER-   ***ISSUED*** vc: diploma#83244 	 leaf:  9b516a06b7da83fa1e05269760adf75ce2b307b2452f1a39b1c94e6a4be0b880
+ISSUER-   ***ISSUED*** vc: diploma#83245 	 leaf:  f337cbd85d6a2af5c3099f630c7c2bc91fdade051103e34e7f17b9db8a6ddb99
+ISSUER-   ***ISSUED*** vc: diploma#83246 	 leaf:  960968a395b827244d606fc4f7ac6ac33931508c58bfa9379838d1b07e21d73c
+ISSUER-   ***ISSUED*** vc: diploma#83247 	 leaf:  316fd24e0f7caca8b6804f25e021d4ab9c30e088034736af5e4562ee9016857b
+ISSUER-   ***ISSUED*** vc: diploma#83248 	 leaf:  c14c114da59e6eb69e12c63c0f82c95448f31936aad96d6655b5971858ab9947
+ISSUER-   ***ISSUED*** vc: diploma#83249 	 leaf:  67da5139c580c2959e911374e80c29aa27625963f13d654c0e743da3acb717be
+ISSUER-   ***ISSUED*** vc: diploma#83250 	 leaf:  1b3aa4741c5f6c93ba0b1c2d94d6009d3d8e3860fcf6d781c01f8f4058af0685
+ISSUER-   ***ISSUED*** vc: diploma#83251 	 leaf:  2c406e476ab4e623f39f039b6120350b67730d87594971e103c77ec81b8b209e
+ISSUER-   ***ISSUED*** vc: diploma#83252 	 leaf:  62076725fad00dbd8bb92d59fbbb4345d725333bcfa5903468ab891e66be6b46
+ISSUER-   ***ISSUED*** vc: diploma#83253 	 leaf:  bf30771ccc9bf7bc00fd02564c7d1d0a442666c7726b4c1b05a91af8134aae0a
+ISSUER-   ***ISSUED*** vc: diploma#83254 	 leaf:  5b27629491c832d697199a1d67e375ffc148b19f1cccf5bab7b4a028976c5b5f
+ISSUER-   ***ISSUED*** vc: diploma#83255 	 leaf:  6ba1f3509b16c78cff6a5572c9310cf35182045cdf75bc8589cc6ba67b984ea9
+ISSUER-   ***ISSUED*** vc: diploma#83256 	 leaf:  59d6efc2ddf3602004c2120a53c65daca67d18df24edc2c16b2c1e3dd51455b0
+ISSUER-   ***ISSUED*** vc: diploma#83257 	 leaf:  4408a8f2fe54cf35794de1a63dbbfcb62e04931bda56cb8cb206aba3833e0c14
+ISSUER-   ***ISSUED*** vc: diploma#83258 	 leaf:  1faf4ea6335f9d3fadda5da94a4b94be67ec0dfaa2af035ba83f8a871b54d23b
+ISSUER-   ***ISSUED*** vc: diploma#83259 	 leaf:  df32bdb1b6858ea7c53e81083ad93568cb9bae73d8a05ce804fcc00a7f1bb920
+ISSUER-   ***ISSUED*** vc: diploma#83260 	 leaf:  01d683549c2f35a8b7bedf40e3d8bd90db95194a9931fa1dc45c4b01d248a7ee
+ISSUER-   ***ISSUED*** vc: diploma#83261 	 leaf:  3f6c748dd1e8e4bc98fec33d4787b48d2d44580eed8a8e9687b3851a208ad3ce
+ISSUER-   ***ISSUED*** vc: diploma#83262 	 leaf:  ac290097822397afdb5456b6fe37726219495646098e1195bab248856339e051
+ISSUER-   ***ISSUED*** vc: diploma#83263 	 leaf:  359b452a617697f655aa258d92bc547f228130951d17aa9a1195e420b3e19d57
+ISSUER-   ***ISSUED*** vc: diploma#83264 	 leaf:  1792e20f6d5ddded62c7af8dbe222607bd13e72379bb0c994848a0adae86519d
+ISSUER-   ***ISSUED*** vc: diploma#83265 	 leaf:  fb1fcb96caef000e0d206b06f1f3a99827ac5a4115a7083d297db803476f4adf
+ISSUER-   ***ISSUED*** vc: diploma#83266 	 leaf:  34cd5a6318e1c34c35f6f547892822f52ca44eb38bbc58b9c62e1deac25f27b0
+ISSUER-   ***ISSUED*** vc: diploma#83267 	 leaf:  b24890b9d6d3c2331530e34c6c200143ab192cead1b562e9391a197d91c32233
+ISSUER-   ***ISSUED*** vc: diploma#83268 	 leaf:  c668bd26abdcc1efc19f857cd129f524203f8c702ad62f678ac9d09813697814
+ISSUER-   ***ISSUED*** vc: diploma#83269 	 leaf:  32af549ba00d79e065c46bb8f23ac65cab03e86eda63d2ae0fbe5ac256cf8ca1
+ISSUER-   ***ISSUED*** vc: diploma#83270 	 leaf:  467ade45d9a237d5cf28f19f5eeb72a56a734f36fc92c683320080341cb51884
+ISSUER-   ***ISSUED*** vc: diploma#83271 	 leaf:  f918aa01f6d169ad43e2b12b327a3bcd05b1a2cc70bbd8fe8969cb0a3fddd844
+ISSUER-   ***ISSUED*** vc: diploma#83272 	 leaf:  907d422d3a63dfa56d2b43aa715802d9ee3ea553b49dad2a614cff2ddadc98df
+ISSUER-   ***ISSUED*** vc: diploma#83273 	 leaf:  b9c024a1e2aaa0e50dfb52f3f0f18ac8323fe5c8c152b702b2395998dc605fe2
+ISSUER-   ***ISSUED*** vc: diploma#83274 	 leaf:  88bc09cb9f5946e648773665ac82e490b2643e5f6dc41b225f27c2ff35406443
+ISSUER-   ***ISSUED*** vc: diploma#83275 	 leaf:  80292da1f5fb95c55a51066e07d49d95a75640d8469e513ee2b70582a2110c6c
+ISSUER-   ***ISSUED*** vc: diploma#83276 	 leaf:  ac0bf212f38e68ce39e63526374edbf13945edd4156e3e1af4c5ed41e5b6f5c2
+ISSUER-   ***ISSUED*** vc: diploma#83277 	 leaf:  fc687a658e157370ae3af4dbd4a41eaa9dcc160da7e734704df7ce1ffbd2258c
+ISSUER-   ***ISSUED*** vc: diploma#83278 	 leaf:  780dde7d3e2772ecaccf5e6aa0291a52017e01f535a552d22cc38c202ede5d0a
+ISSUER-   ***ISSUED*** vc: diploma#83279 	 leaf:  1793675be76ecf26b6a72aa543e989b99c4c0b0b0d584927a0608860963d0129
+ISSUER-   ***ISSUED*** vc: diploma#83280 	 leaf:  8c0ddec878698ae23f38805d4b28822904871e68bb44a1ace387f4dececdee44
+ISSUER-   ***ISSUED*** vc: diploma#83281 	 leaf:  fc5ec4854cd3e74d6f2a442f49de67a699a8324a8ae6d17ded01ae3bdb404142
+ISSUER-   ***ISSUED*** vc: diploma#83282 	 leaf:  806a4cd9d77f28f7a5ad7165ae357392d2fdaa2e5404ff2a5ba29b2d3d4dbbf5
+ISSUER-   ***ISSUED*** vc: diploma#83283 	 leaf:  db2d54e59b3a72bbdcbbdab8846d65e46f2b8993c9805f6665537b08a8b9bd03
+ISSUER-   ***ISSUED*** vc: diploma#83284 	 leaf:  ad39e1c7eb8d0d773b7125bb3b5b683361eb5f392a9c621c05ff0437b6af939a
+ISSUER-   ***ISSUED*** vc: diploma#83285 	 leaf:  f4f0d32f6b0cf4d5e000375a560c6ed23c9bae78bde5a9708e3ab5bfa44e392d
+ISSUER-   ***ISSUED*** vc: diploma#83286 	 leaf:  a2e3afd9c4a9cde889906d3b819cb27b522392f1a36533587fb392092d75d753
+ISSUER-   ***ISSUED*** vc: diploma#83287 	 leaf:  88c8e0ff6e5bbcc4620b0141e5b47d5c90cffb04fa689dcd9d52c7fb150fd87f
+ISSUER-   ***ISSUED*** vc: diploma#83288 	 leaf:  a28ff192f9ec7584075e89ad7abcacb0fd94ce8f649a87a19cfefe7a9054302c
+ISSUER-   ***ISSUED*** vc: diploma#83289 	 leaf:  c9f6ea0cc12a077df94efbf902d9df44317c416c1118dc02203c3671b18551ce
+ISSUER-   ***ISSUED*** vc: diploma#83290 	 leaf:  cc1b87e86a75e333b15669b6221e73ba8fc68545ded6674dd4cab11e02b7d1a2
+ISSUER-   ***ISSUED*** vc: diploma#83291 	 leaf:  d6ee75a266a1ad8871d24ad5cf46b2635f7f6337393282c349dcaef20e65cc2b
+ISSUER-   ***ISSUED*** vc: diploma#83292 	 leaf:  f369c7389f7217a05f491af1febc4a4609a083736625cdc6afc55dd076e741f7
+ISSUER-   ***ISSUED*** vc: diploma#83293 	 leaf:  5ad01d8730ced0b60ab9af32944d5338a6833f4136130bde4f89915a6535248a
+ISSUER-   ***ISSUED*** vc: diploma#83294 	 leaf:  e2cf70b3fd45222755dd4bf9832555a64940aa18326b8e352d4b5a34516c4959
+ISSUER-   ***ISSUED*** vc: diploma#83295 	 leaf:  e253530ebcff2c8b237e79951145e703b10862df846c6596a867086712cc9187
+ISSUER-   ***ISSUED*** vc: diploma#83296 	 leaf:  b07bda4215b0e9a88694054edfc2b1730a4218e798087a3932f0de7fa5ba64c6
+ISSUER-   ***ISSUED*** vc: diploma#83297 	 leaf:  decc1f0146b74bacdfe7f6f0a20dab6f166ccfa6e7df44579a932b09f9538747
+ISSUER-   ***ISSUED*** vc: diploma#83298 	 leaf:  407f87f61a0941a77726ecb1f7d4a86072a7830236bd92f112e18f0c57dd0b2f
+ISSUER-   ***ISSUED*** vc: diploma#83299 	 leaf:  0007bf6bd328f152de76f866d8c555d8e0f95b648c3b1e27033fd919e03f302a
+ISSUER-   ***ISSUED*** vc: diploma#83300 	 leaf:  f90b5902da3b11dcec6c689c720c30407bc333a6f51fefc6b791204ec2f6fcba
+ISSUER-   ***ISSUED*** vc: diploma#83301 	 leaf:  eb261b02c2661b493f80c7422a6610ef038e1afbabad991331c790c940929229
+ISSUER-   ***ISSUED*** vc: diploma#83302 	 leaf:  e949d6ae073d994e71711a8a61179ae7c9851c207ea8abb643e2fc9a752c4c6e
+ISSUER-   ***ISSUED*** vc: diploma#83303 	 leaf:  607f5c547abdc773a4cf11d4c4693ed292884a3b1d0291d6e0d932d1352aaf5a
+ISSUER-   ***ISSUED*** vc: diploma#83304 	 leaf:  dda09cb7bfa7372a3f621d5354627d4b41f9331ebe46547375105f39f63c646c
+ISSUER-   ***ISSUED*** vc: diploma#83305 	 leaf:  e83d42cb8eee6ccf08df66d7c6e15470ec8a80a1a480abbbc881aa69c5109458
+ISSUER-   ***ISSUED*** vc: diploma#83306 	 leaf:  dc38fbd86d310b47fa237cfb3cf95f698db336d07ac002d4a9fdd99b0579e746
+ISSUER-   ***ISSUED*** vc: diploma#83307 	 leaf:  7d397e3f83a7b039525a7d57112a9c9e5e20bb691c527251078dd49221495875
+ISSUER-   ***ISSUED*** vc: diploma#83308 	 leaf:  93e1d8dea6d51e4520f04d19a6e522867279e98207f9d328cafe00ebc780ecf5
+ISSUER-   ***ISSUED*** vc: diploma#83309 	 leaf:  62de2d98a0228ffe8841bcfb44f3df845a5542c3801864931f5b08c5430813ee
+ISSUER-   ***ISSUED*** vc: diploma#83310 	 leaf:  7638736e2910d7f2a50ecd724b41e133e7fa4718673ffbbcfcadde6393517906
+ISSUER-   ***ISSUED*** vc: diploma#83311 	 leaf:  604d683dbeb6a456f4a39779b68fff3876aafdaca99fe41c954fa1f199de4e79
+ISSUER-   ***ISSUED*** vc: diploma#83312 	 leaf:  a98e71ea3c422f5c4cc784ba055ffdc8a44a9fdfdb11ac8564a8b505ebb87ce0
+ISSUER-   ***ISSUED*** vc: diploma#83313 	 leaf:  556d888563bdeebfab81d6d524bf86b4001b233458af7cb0e4566fbbba27f3e3
+ISSUER-   ***ISSUED*** vc: diploma#83314 	 leaf:  a34cab02587193ecd56472865f289ea6458cc806a522e4643cd28d59aa084142
+ISSUER-   ***ISSUED*** vc: diploma#83315 	 leaf:  198ed28d330353244b1e1592f571f4fbb36f485460ced2cb5b39917737c73ed2
+ISSUER-   ***ISSUED*** vc: diploma#83316 	 leaf:  021266c0d3e325e4ff32d267193a8552935819a65b41f651fdc20c042dba5f48
+ISSUER-   ***ISSUED*** vc: diploma#83317 	 leaf:  b55b5400adf6cf349259fdb020a0f02703de3b35786241ff6e7784bde6c6bcf8
+ISSUER-   ***ISSUED*** vc: diploma#83318 	 leaf:  08c03b67e973d1d7dc7472663c896a7c4c4c0b6a5e14947c1a441ffe6bc38a84
+ISSUER-   ***ISSUED*** vc: diploma#83319 	 leaf:  5fbe0bc9f2940eb674c6da92f93af945429bf68998df91e2dbc1fcd70d7b144c
+ISSUER-   ***ISSUED*** vc: diploma#83320 	 leaf:  026d69ac2591b0152d71d0488e379d7c4c81276a1c9d0d17810e75dc3e2b939d
+ISSUER-   ***ISSUED*** vc: diploma#83321 	 leaf:  a9407d5998573430991ae6a063347e5c1e00c57dbf6c365c28c6faa81df6c1d6
+ISSUER-   ***ISSUED*** vc: diploma#83322 	 leaf:  2ffd43f523e07d03a46ecdf30d8ad258256a525034d3755bbbb9b54c40648ca5
+ISSUER-   ***ISSUED*** vc: diploma#83323 	 leaf:  90ca04522186f80f381295cfa852970029e2760953861b25b87b3fdb24d9448a
+ISSUER-   ***ISSUED*** vc: diploma#83324 	 leaf:  6b6ab12a0a04e0171825f93962c88caeeeed8f9d422f7e87c9875ce901f6ec95
+ISSUER-   ***ISSUED*** vc: diploma#83325 	 leaf:  0d324d8670ec8bfc82be98e1077f92c625f9ee02535c4fa332912fb6b0813830
+ISSUER-   ***ISSUED*** vc: diploma#83326 	 leaf:  f2b3cf584d3fb48367b4b385263a0711d7012d616a1348d29772bb5cc19436b1
+ISSUER-   ***ISSUED*** vc: diploma#83327 	 leaf:  53bff70fc833c2e531ff44af7a4aa025f9f35067ba21027278e32a8f169a8bab
+ISSUER-   ***ISSUED*** vc: diploma#83328 	 leaf:  728be42d6e324643c37cd5203ce2a093cf47ee153a944640f93af9ba6e95d932
+ISSUER-   ***ISSUED*** vc: diploma#83329 	 leaf:  b0fb389eb335160978c2f4105c40692eaff1b510128185fa0c23c1de8fb53d12
+ISSUER-   ***ISSUED*** vc: diploma#83330 	 leaf:  fe054ddccf2162333e8990ed2485be0e4ea6b2ebe4e8a8c181c53012cfa4776e
+ISSUER-  ***REVOKED*** vcs: [diploma#83205 diploma#83286] 	 mt indexes:  map[diploma#83205:129 diploma#83286:210] 	 affected VCs Indexes:  Set{134, 127, 128, 130, 212, 208, 209, 211, 214, 131, 132, 213, 133, 207} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#83263 diploma#83231] 	 mt indexes:  map[diploma#83231:155 diploma#83263:187] 	 affected VCs Indexes:  Set{183, 184, 154, 185, 186, 156, 188, 189, 152, 153, 157, 151, 190, 158} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#83228 diploma#83253] 	 mt indexes:  map[diploma#83228:152 diploma#83253:177] 	 affected VCs Indexes:  Set{158, 176, 179, 155, 156, 151, 154, 180, 153, 178, 181, 157, 182, 175} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#83276 diploma#83226] 	 mt indexes:  map[diploma#83226:150 diploma#83276:200] 	 affected VCs Indexes:  Set{145, 204, 201, 147, 148, 199, 149, 143, 144, 202, 206, 203, 146, 205} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#83272 diploma#83234] 	 mt indexes:  map[diploma#83234:158 diploma#83272:196] 	 affected VCs Indexes:  Set{191, 155, 157, 192, 154, 151, 152, 194, 195, 193, 153, 156, 197, 198} 	 number of affected VCs:  14
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83203 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83204 	 mt index:  128 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83205 	 mt index:  129 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83206 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83207 	 mt index:  131 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83208 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83209 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83210 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83211 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83212 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83213 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83214 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83215 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83216 	 mt index:  140 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83217 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83218 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83219 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83220 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83221 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83222 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83223 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83224 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83225 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83226 	 mt index:  150 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83227 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83228 	 mt index:  152 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83229 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83230 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83231 	 mt index:  155 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83232 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83233 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83234 	 mt index:  158 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83235 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83236 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83237 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83238 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83239 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83240 	 mt index:  164 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83241 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83242 	 mt index:  166 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83243 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83244 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83245 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83246 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83247 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83248 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83249 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83250 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83251 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83252 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83253 	 mt index:  177 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83254 	 mt index:  178 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83255 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83256 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83257 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83258 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83259 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83260 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83261 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83262 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83263 	 mt index:  187 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83264 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83265 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83266 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83267 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83268 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83269 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83270 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83271 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83272 	 mt index:  196 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83273 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83274 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83275 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83276 	 mt index:  200 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83277 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83278 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83279 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83280 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83281 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83282 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83283 	 mt index:  207 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83284 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83285 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83286 	 mt index:  210 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83287 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83288 	 mt index:  212 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83289 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83290 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83291 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83292 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83293 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83294 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83295 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83296 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83297 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83298 	 mt index:  222 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83299 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83300 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83301 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#83302 	 actual status:  valid 	 phase1 result:  true
+SIMULATOR - 	 indexes of VCs that are affected by revocation:  Set{209, 182, 192, 191, 201, 212, 158, 198, 178, 199, 134, 146, 155, 183, 180, 179, 211, 205, 151, 175, 154, 157, 197, 131, 133, 144, 152, 181, 143, 206, 208, 156, 128, 184, 127, 153, 204, 145, 202, 203, 189, 149, 193, 188, 213, 207, 147, 190, 130, 214, 195, 176, 185, 194, 132, 186, 148}
+SIMULATOR - 	 indexes of VCs that are affected by false positives:  Set{diploma#83216, diploma#83242, diploma#83283, diploma#83298, diploma#83204, diploma#83207, diploma#83240, diploma#83254, diploma#83288}
+SIMULATOR - 	 indexes of VCs that retrieved witnesses from issuer:  Set{diploma#83288, diploma#83204, diploma#83207, diploma#83254, diploma#83283}
+SIMULATOR : 	 results:  Total VCs : 100
+Total Revoked VCs : 10
+False Positive Rate : 0.100000
+Bloom Filter Size : 48
+Bloom Filter indexes per entry (no of hash functions) : 4
+Merkle Tree Accumulator height : 7
+Merkle Tree Accumulator Level Stored in DLT : 4
+ 
+Amount (in gwei) paid per revocation: 15495833
+Number of witness that are affected by revocation and require witness update in Merkle Tree Accumulator: 57
+Number of False Positives : 9
+Number of VCS that ended up updating witnesses from issuer: 5
+Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : 4
+
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0x3d111a1BD9b4906c47108c801DAA8b70903B936E
+blockchain rpc endpoint: http://158.39.200.125:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x4a33ABa050A867968a1a585C7a249A3DaC585ADC
+sender private key: 663f30e301d6f89232d31d6764ee87bf7c7c6799cceeba2150a6687cdc32b7f6
+sender pass phrase: simple phrase
+other accounts in ganache test network :  []
+logger environment: dev
+logger output file name: logs.json
+logger output mode: file
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:
+total of VCs would be issued:10
+total of VCs would be revoked:5
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  2
+merkle tree height:  4
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing Experiment parameters--------------------------------------------------
+exp2 {20 10 0.1 3 5}
+exp3 {100 10 0.1 4 7}
+********************************************************************************************************************************
+
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0x1f64aBf2FC08BeE605206B4e8F46FFa5aa335c56
+BLOCKCHAIN- 	 tx hash:  0x34801ac0d5823e0fa1c9d8e60b40ea2108e1f9493aa584e3a635511a72c9f0db
+********************************************************************************************************************************
+
+"MERKLE TREE Accumulator- 	 total nodes:  63
+BlOOM FILTER: size :  48 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************
+ISSUER-   ***ISSUED*** vc: diploma#21032 	 leaf:  7119eea1ab6ab09ea50df247c287989c1f02045614ca95cc9fa7061384705ab9
+ISSUER-   ***ISSUED*** vc: diploma#21033 	 leaf:  9d3294d26edfba1d95848b7ead2e73f8f3b5d019fc4030181bacf8456bba403e
+ISSUER-   ***ISSUED*** vc: diploma#21034 	 leaf:  af4de4c4c4024557d8142e86d53449e2af31581b1cd4fd56b8cb1b9a234098a2
+ISSUER-   ***ISSUED*** vc: diploma#21035 	 leaf:  e02ec12340467c884a7028940055e251633304bd4bca3a1b0672312c271e6e38
+ISSUER-   ***ISSUED*** vc: diploma#21036 	 leaf:  a073cc6db5adf9e221277588224506b01eace19dab0c95056ddcc651225e3f8f
+ISSUER-   ***ISSUED*** vc: diploma#21037 	 leaf:  77b2432a50bed944bccb36bb74900b9f3d4994af519392d64decd08c4d34c4c2
+ISSUER-   ***ISSUED*** vc: diploma#21038 	 leaf:  1e4f81698fe1392905f5be40fe75638acb8e6a7e22a030810fe660e288e6d79c
+ISSUER-   ***ISSUED*** vc: diploma#21039 	 leaf:  ff8e5bd003c22581aff5d560b07d2df232470700f9494579fe3f1bc38f98292e
+ISSUER-   ***ISSUED*** vc: diploma#21040 	 leaf:  10813bc5a50fa91316508e75a6c38551ef5c9c77df91ab4984ed560029a4367e
+ISSUER-   ***ISSUED*** vc: diploma#21041 	 leaf:  bd5387d84b8f803017191358521ec20b76eff8d55445136eaeff75d53774b2f8
+ISSUER-   ***ISSUED*** vc: diploma#21042 	 leaf:  bcfe06df1329337dceccd690a97038fe56d9237939e6d3c7245cf44eeaf6028a
+ISSUER-   ***ISSUED*** vc: diploma#21043 	 leaf:  67b2a2405bbcaec59b58782ad819828b005033d53ec427dca27d034b2e911241
+ISSUER-   ***ISSUED*** vc: diploma#21044 	 leaf:  932cadbab1e6d78d2ebe9b89fa8937d478baf2fe8684f912c0c8f3cc739a5c16
+ISSUER-   ***ISSUED*** vc: diploma#21045 	 leaf:  c8114356d838b959a096589c0729fc7e7b752533a1d0c245a793a812ffe35e2f
+ISSUER-   ***ISSUED*** vc: diploma#21046 	 leaf:  96579f2de4e9b8a063b0a7dd44e29cd688159d9532ba77b488a710a6c00e6d91
+ISSUER-   ***ISSUED*** vc: diploma#21047 	 leaf:  e081cfe05393fd044bce2e55724391b2c3cad3cb0571ac6b801d67e4bb18ec61
+ISSUER-   ***ISSUED*** vc: diploma#21048 	 leaf:  3354bf7439d36dd00a32d97cf11e58fa0f9a61fd97e2bb7e0a9a0e49b101e200
+ISSUER-   ***ISSUED*** vc: diploma#21049 	 leaf:  4998dbc9c9cdd1f28c75f7645cb5995cbc64693f29ac0d13546aa1d0884519d5
+ISSUER-   ***ISSUED*** vc: diploma#21050 	 leaf:  b3fe8ff1d924e1e1f51a7f8b1cc93924342baabcf6277a376374165e29cd0ef5
+ISSUER-   ***ISSUED*** vc: diploma#21051 	 leaf:  c0b0b586e16ad1909b1cb82895e129df462423cf5dcf9661907f37d1093f78dd
+ISSUER-   ***ISSUED*** vc: diploma#21052 	 leaf:  71dcf18e82ce00d911dccad76b2396cf4f83d577e7dc9eb69aea60547e494824
+ISSUER-   ***ISSUED*** vc: diploma#21053 	 leaf:  9e4f4378d9cca09cb92267e8a7d69eaabe0cd06074e5dbb185efa5112c69b4ee
+ISSUER-   ***ISSUED*** vc: diploma#21054 	 leaf:  7843dde6a2f373fd068baa04f57620edbdc9f1e267a6abfdc6ce31d5c6975ee7
+ISSUER-   ***ISSUED*** vc: diploma#21055 	 leaf:  11554b81e175d2174eeef0792c617fd523f07997249d66cce7850ce5c33cfb3f
+ISSUER-   ***ISSUED*** vc: diploma#21056 	 leaf:  c6f5d887c39a1c2fdb32ca768cbdcee3d5993daa8b0eafca1758b2feb47aea2d
+ISSUER-   ***ISSUED*** vc: diploma#21057 	 leaf:  8a89eaa965f20af303747993f5211a4c5c0eaaecb225c6dbbcf0ccef11bdf11c
+ISSUER-   ***ISSUED*** vc: diploma#21058 	 leaf:  70413262f3488038b292ce5ca9937978e1ae968c7099f79aa17829b67ba2683b
+ISSUER-   ***ISSUED*** vc: diploma#21059 	 leaf:  ce132e59acec1cef962c7a9b220ce8f55abb371033cf318832878eec463a761e
+ISSUER-   ***ISSUED*** vc: diploma#21060 	 leaf:  7f103f9d75778f764131c2fa01f836ad0f07bae6e6674d57c2dc8596cff2ee8f
+ISSUER-   ***ISSUED*** vc: diploma#21061 	 leaf:  2dc7b1de4da65c058df9f0907d0feb652c1f19cbda1f68a9600cb404414f8fa3
+ISSUER-   ***ISSUED*** vc: diploma#21062 	 leaf:  eb8c9d7f81e870e0d86b3ebe8c7878ce4268259029e0c79f49eb8efe266bdd01
+ISSUER-   ***ISSUED*** vc: diploma#21063 	 leaf:  80041d68972fed2b4e9afc9cdecb609f86d38fa876901f0febb4194bdf35f89c
+ISSUER-  ***REVOKED*** vcs: [diploma#21034 diploma#21033] 	 mt indexes:  map[diploma#21033:32 diploma#21034:33] 	 affected VCs Indexes:  Set{31, 32, 34, 33} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#21049 diploma#21032] 	 mt indexes:  map[diploma#21032:31 diploma#21049:48] 	 affected VCs Indexes:  Set{32, 33, 34, 47, 49, 50} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#21038 diploma#21045] 	 mt indexes:  map[diploma#21038:37 diploma#21045:44] 	 affected VCs Indexes:  Set{36, 38, 43, 45, 46, 35} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#21040 diploma#21046] 	 mt indexes:  map[diploma#21040:39 diploma#21046:45] 	 affected VCs Indexes:  Set{43, 44, 46, 41, 42, 40} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#21035 diploma#21048] 	 mt indexes:  map[diploma#21035:34 diploma#21048:47] 	 affected VCs Indexes:  Set{48, 49, 50, 31, 32, 33} 	 number of affected VCs:  6
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21032 	 mt index:  31 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21033 	 mt index:  32 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21034 	 mt index:  33 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21035 	 mt index:  34 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21036 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21037 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21038 	 mt index:  37 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21039 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21040 	 mt index:  39 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21041 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21042 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21043 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21044 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21045 	 mt index:  44 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21046 	 mt index:  45 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21047 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21048 	 mt index:  47 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21049 	 mt index:  48 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21050 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#21051 	 actual status:  valid 	 phase1 result:  true
+SIMULATOR - 	 indexes of VCs that are affected by revocation:  Set{49, 40, 41, 46, 43, 44, 47, 38, 31, 42, 50, 45, 35, 36, 48, 34, 32, 33}
+SIMULATOR - 	 indexes of VCs that are affected by false positives:  Set{}
+SIMULATOR - 	 indexes of VCs that retrieved witnesses from issuer:  Set{}
+SIMULATOR : 	 results:  Total VCs : 20
+Total Revoked VCs : 10
+False Positive Rate : 0.100000
+Bloom Filter Size : 48
+Bloom Filter indexes per entry (no of hash functions) : 4
+Merkle Tree Accumulator height : 5
+Merkle Tree Accumulator Level Stored in DLT : 3
+ 
+Amount (in gwei) paid per revocation: 10609513
+Number of witness that are affected by revocation and require witness update in Merkle Tree Accumulator: 18
+Number of False Positives : 0
+Number of VCS that ended up updating witnesses from issuer: 0
+Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : 0
+
+unable to write results to file
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0x1AAE592e065bFfc89A31808A773109236EE1119f
+BLOCKCHAIN- 	 tx hash:  0x5905fb25d595b1b12730f8a0c41f2b9ba6a0ad5b6bb91bf6da52feace9b82b90
+********************************************************************************************************************************
+
+"MERKLE TREE Accumulator- 	 total nodes:  255
+BlOOM FILTER: size :  48 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************
+ISSUER-   ***ISSUED*** vc: diploma#90319 	 leaf:  2f5b8b2fbcb36af7d04b5bd0659b00525e7594337db7d51f167eee57dd4d9f50
+ISSUER-   ***ISSUED*** vc: diploma#90320 	 leaf:  064cea055625666e1fd34984cfb81e03a55681b7fa482305e10f5355c29c5fdc
+ISSUER-   ***ISSUED*** vc: diploma#90321 	 leaf:  a041fe0052acb601cb2d9a7e3ff23f7687a5810a47669bbfd07a694943909aa3
+ISSUER-   ***ISSUED*** vc: diploma#90322 	 leaf:  bed06f63ee2c2b392158df3380ee734c8b65ae37680d8b34903be0e61df58eb5
+ISSUER-   ***ISSUED*** vc: diploma#90323 	 leaf:  3646a41389ad7de41d8be101bb7a2a119f9f46d17f2ff3d14064838f376ea690
+ISSUER-   ***ISSUED*** vc: diploma#90324 	 leaf:  5997ebc8be04b6d4cf6f7f72a4f56c12f66e79a0a5b5f45eac4bd08504856fb7
+ISSUER-   ***ISSUED*** vc: diploma#90325 	 leaf:  1071ebbb198b087a2e2f7b9c7d67c392e2f3126e6c735edabcbf067c5f71ba17
+ISSUER-   ***ISSUED*** vc: diploma#90326 	 leaf:  c9204f93d8b2ace71e2694b96aa983e184d529dc0fd6565d8f4945c5ad4e6ec1
+ISSUER-   ***ISSUED*** vc: diploma#90327 	 leaf:  891d1c8af831275917cc9d6f7610755beb3a997f301458bf43a2cdf17f6b7db1
+ISSUER-   ***ISSUED*** vc: diploma#90328 	 leaf:  a25bbb019ab9c4838319f560e681517a9c2e0073aae0783fe1f59b70e5687531
+ISSUER-   ***ISSUED*** vc: diploma#90329 	 leaf:  2264aecaf5d743cc85d4460d89085e03baf0c5ecc10e880f526adefeea300eac
+ISSUER-   ***ISSUED*** vc: diploma#90330 	 leaf:  d2a6e6139c51b2c0f96b4b8eef211981a892b59e616d9cf5cac196c71c752c94
+ISSUER-   ***ISSUED*** vc: diploma#90331 	 leaf:  26a82d82b000fc4cf27ad7f0f4657bad2693ac97c08be1fda20bbfc493088dce
+ISSUER-   ***ISSUED*** vc: diploma#90332 	 leaf:  ab7199b54b4401175b08eede59a5f41946609d8a8e184e095a294f72f1517ac6
+ISSUER-   ***ISSUED*** vc: diploma#90333 	 leaf:  32ec40d4d211d45a8c80124b1f45423e2dd9a0fdfc77de98d9fcfcac855cbd9d
+ISSUER-   ***ISSUED*** vc: diploma#90334 	 leaf:  2e11444f1c33ddda0c56f3609e3cfdaf24bc6c75588492e4f69ea8da081cd486
+ISSUER-   ***ISSUED*** vc: diploma#90335 	 leaf:  453912f5a0e93157813618046253a9388f804eda7de286878b09f68c52b43687
+ISSUER-   ***ISSUED*** vc: diploma#90336 	 leaf:  37bb716f6ec8bfb1883f92e5956d7c3b85da2caac5b0a5cb642d426a8d0161d6
+ISSUER-   ***ISSUED*** vc: diploma#90337 	 leaf:  b63c4ad96b57a77ee3b8c70223bc6e52c2320edebbc5d4e82af1b2dc147615a0
+ISSUER-   ***ISSUED*** vc: diploma#90338 	 leaf:  8c2c619906e599a138cc80f40b7573047dff50a60e7117ffc5e9e2a41f1d9e1d
+ISSUER-   ***ISSUED*** vc: diploma#90339 	 leaf:  45333188430528b147a3a9aae322ec5f21dc909e313ee225b43d7052cc6408f4
+ISSUER-   ***ISSUED*** vc: diploma#90340 	 leaf:  686979af3989ce14457d95f38c49a8c348045e39f510296eb17a2e170d8cb11c
+ISSUER-   ***ISSUED*** vc: diploma#90341 	 leaf:  c0bda21bda6681e480bc0f05c6b545fc856d3e53348e4a5d96fdf139b271e457
+ISSUER-   ***ISSUED*** vc: diploma#90342 	 leaf:  bef98c65f4d2a74341950ef04f4fc37153cd97c7d40f41ba6f13132df29b3e08
+ISSUER-   ***ISSUED*** vc: diploma#90343 	 leaf:  76a78854b37cddffb9f42fd4c220ebac77d4b59cb989c30a86f97c15ab21d6a5
+ISSUER-   ***ISSUED*** vc: diploma#90344 	 leaf:  34d5a36272e9a231533bdc211d9e35ecbe0fb66091ee4e752190428fde78bf9b
+ISSUER-   ***ISSUED*** vc: diploma#90345 	 leaf:  8b7d7ed40c431f8c0043ff8438330c4bb85e7d8512345d1801bd0bc080d4d29a
+ISSUER-   ***ISSUED*** vc: diploma#90346 	 leaf:  e7f5c70ba9a58b1986a6233d7783e98266a95ab8a717d91487394b12b658c49c
+ISSUER-   ***ISSUED*** vc: diploma#90347 	 leaf:  8224fbaa420ed4a03a22a51c287ff5067dd318ffe7684be64b91f7496794213f
+ISSUER-   ***ISSUED*** vc: diploma#90348 	 leaf:  fe9ee8815e5a183ac71e72cc2ac6a1472b6dd45aebd7e4ff40be0b74f0e3b768
+ISSUER-   ***ISSUED*** vc: diploma#90349 	 leaf:  a8d679c655c5481820e21fc093927f87b84eb95329629008f6337aaad50ea7da
+ISSUER-   ***ISSUED*** vc: diploma#90350 	 leaf:  ca6cd45e09d36a749c4a0d13c9ffa096d073736e2365096e18e1e83ae1910c70
+ISSUER-   ***ISSUED*** vc: diploma#90351 	 leaf:  2448ba3742dd11ab831fb4e79f6418c9ab3be66ea1e2e55c582115ee91481ec9
+ISSUER-   ***ISSUED*** vc: diploma#90352 	 leaf:  9fc31796b0f3a2f8432ef90a8a9a494075274e6c63f7e6680849d461a3d01780
+ISSUER-   ***ISSUED*** vc: diploma#90353 	 leaf:  ce80e9cc6953125ab40bda16a0643928dbb12631be37e39812310a53604f7658
+ISSUER-   ***ISSUED*** vc: diploma#90354 	 leaf:  50fe2be76d8a02a5b5daddf138fe7d4ddd267bf3ae1d207e2a902ff5f1141a3f
+ISSUER-   ***ISSUED*** vc: diploma#90355 	 leaf:  4c5ef233c0ecac6d847061bc38b18998443f41dd5d495a6c50a80ba65dd56a09
+ISSUER-   ***ISSUED*** vc: diploma#90356 	 leaf:  60329277918bb7eb8e0c00757add89d50e004873a399b7f7d8209a7b0a4e5bd9
+ISSUER-   ***ISSUED*** vc: diploma#90357 	 leaf:  2dea23fb00096d992d01079577c61795de9e30f066082e1dbda47aea59ad529c
+ISSUER-   ***ISSUED*** vc: diploma#90358 	 leaf:  929b0ae0b6023d38663113e4128124f1b920af9aeadb89a0cfe191d4a87c3b07
+ISSUER-   ***ISSUED*** vc: diploma#90359 	 leaf:  64e4a1dfc59c8552f96702b2dc50a4c94870a82c80822b4ab41d15d98cdf5740
+ISSUER-   ***ISSUED*** vc: diploma#90360 	 leaf:  1fd3b9b714d0adb4eee8786234a9605b41f5c9b1f0586df82cca6a96fa3ce4ea
+ISSUER-   ***ISSUED*** vc: diploma#90361 	 leaf:  43415d6ab68833227308b0cb0298ab677fb4f73761364c7754ac070697250e57
+ISSUER-   ***ISSUED*** vc: diploma#90362 	 leaf:  c50915e1df4d7af874f2acde702af0b6b3528904d24960f64b7d28e8b2a744a1
+ISSUER-   ***ISSUED*** vc: diploma#90363 	 leaf:  2b2db4ec3a760babd0b0ba874fc41b19af1648bb9f0a0905d33909426357f6fe
+ISSUER-   ***ISSUED*** vc: diploma#90364 	 leaf:  56d07bff0aa744d44e02cfa4e54021e5aa7c8da85aa1de1550ac36d4de447bae
+ISSUER-   ***ISSUED*** vc: diploma#90365 	 leaf:  eedd28210f63896624d1899b9e46b0a03abdcdb33ed515ff17caa8e7b0f8716e
+ISSUER-   ***ISSUED*** vc: diploma#90366 	 leaf:  fa0f1cd89be2c938cb091f90105f2daf3646e983e5319de6ca4b6df25edae66d
+ISSUER-   ***ISSUED*** vc: diploma#90367 	 leaf:  674bbe56fe736a35b6b1c19480d280e3b138fef7b15b41612efb29a7cb0f05a8
+ISSUER-   ***ISSUED*** vc: diploma#90368 	 leaf:  f47716aca9a3ffa31613ce57a6391718b5385a85c0ac42b0315ddefeda48e85e
+ISSUER-   ***ISSUED*** vc: diploma#90369 	 leaf:  2309bdff29f6551c409b732b3bf4f64b2cb176fc053e586f5b36418ac3602c34
+ISSUER-   ***ISSUED*** vc: diploma#90370 	 leaf:  e4473bde9dd8f9aa36723ebd4ec51ce2b13a3d8f259f60ac81469827b07ebd1b
+ISSUER-   ***ISSUED*** vc: diploma#90371 	 leaf:  4e6b06c4ae8c1972fc3c2819b3e5aae1bd262dbf51df9482f2d702f9ffec781c
+ISSUER-   ***ISSUED*** vc: diploma#90372 	 leaf:  c6ae5ee4bb3bf56e6c8e0b7fec1b064b75150ffd75f0f39f030b35364a222de3
+ISSUER-   ***ISSUED*** vc: diploma#90373 	 leaf:  4ec3c0052df309c9fe5e6ec222002e7b9c3efe99deb6de1d912ee2bcdb3e9b02
+ISSUER-   ***ISSUED*** vc: diploma#90374 	 leaf:  91260d5da429295367b7388ba03d0948582a908a20452875c7b15225f485ad4a
+ISSUER-   ***ISSUED*** vc: diploma#90375 	 leaf:  644f3e03157c26c3b8f00d63aa33036bf9f460f4c3df41e9931bec49feb40748
+ISSUER-   ***ISSUED*** vc: diploma#90376 	 leaf:  246c62411977483355875b950b48f17ddb5cc8c8eca3e8f7c27c35516e704d3b
+ISSUER-   ***ISSUED*** vc: diploma#90377 	 leaf:  a729b4a6ced9a8c876a17233e1ee9e025a1e81c2c2e7b90516871d487c7f00b5
+ISSUER-   ***ISSUED*** vc: diploma#90378 	 leaf:  69f091d949eb685b0892077581065546b38c32dff3ed5e1a527430b00e39a07a
+ISSUER-   ***ISSUED*** vc: diploma#90379 	 leaf:  0627d6d3715f4155d639f30884f430ccbfe2f7805bbcb52921d83d094bcf38a9
+ISSUER-   ***ISSUED*** vc: diploma#90380 	 leaf:  8090b2ea3cff1e68931d50a4a0309556beee198e09a2958439929185521c9ad9
+ISSUER-   ***ISSUED*** vc: diploma#90381 	 leaf:  c5726d898527ba52b899f2de581a802206eb5407a640e05eb9dd6f1e25070102
+ISSUER-   ***ISSUED*** vc: diploma#90382 	 leaf:  323e74be483711059d59d7109640bfc7641732665534e385efc5d65109a68c63
+ISSUER-   ***ISSUED*** vc: diploma#90383 	 leaf:  7b6e2fb489dd301b6f9b3f338bb4ffd488b4be90cb66119b61a0fb80fe986d2f
+ISSUER-   ***ISSUED*** vc: diploma#90384 	 leaf:  2698930983f06822f45287cde2232e49830d68543ef90d1d566e120f6dbab79a
+ISSUER-   ***ISSUED*** vc: diploma#90385 	 leaf:  e56543eba8efb33937983300b50bcaa827220e1f09b5773f77496e874384dca6
+ISSUER-   ***ISSUED*** vc: diploma#90386 	 leaf:  9d10b5da99fdcf22e7eb8f00d048292efc57b7ab4c14a59a1c5adefc3dd63c68
+ISSUER-   ***ISSUED*** vc: diploma#90387 	 leaf:  9a3460aba4223756bbc06cefb117890d254b566a0aa54799853c860c198226f3
+ISSUER-   ***ISSUED*** vc: diploma#90388 	 leaf:  144ff83e4fd0054d1649b3eb904d79e9b4894a6efcfef02280f11da6bb720a4f
+ISSUER-   ***ISSUED*** vc: diploma#90389 	 leaf:  244310fcef07061624f68dfd7d799d801674e41409e180081fc18b651031e34a
+ISSUER-   ***ISSUED*** vc: diploma#90390 	 leaf:  9c863cbd0866cd017eb8141077ca0b2b010648ab60f4b702c3884ab1635b9f80
+ISSUER-   ***ISSUED*** vc: diploma#90391 	 leaf:  b8bae8c6fe1498c4ebdaecefa3a2a03ec532cf8b8a194c46c7442473b37ee452
+ISSUER-   ***ISSUED*** vc: diploma#90392 	 leaf:  5b8e1510ed6617de1734ba724c321fef18775eca507ab25f24464f369e590423
+ISSUER-   ***ISSUED*** vc: diploma#90393 	 leaf:  9bf1fe59f95cde959cc204ba213128025d014712d581cf3df5252b165c659c44
+ISSUER-   ***ISSUED*** vc: diploma#90394 	 leaf:  09d97ead00ec43ac54637a6f0be84fed0fd6a9ab9e2bd89499156a07c066531e
+ISSUER-   ***ISSUED*** vc: diploma#90395 	 leaf:  6326dae2e8d310bcf4dc5a09867bcf36eaf898ff55a55ce18f078dcbb0c7323c
+ISSUER-   ***ISSUED*** vc: diploma#90396 	 leaf:  c6069f7db577d50a7cfd074bfa5a50c2d4adac307928655509d3870408479f34
+ISSUER-   ***ISSUED*** vc: diploma#90397 	 leaf:  caef08fa95fba610024804472782e178a4fc2bb462f5ab9affa339f8fe89f7ac
+ISSUER-   ***ISSUED*** vc: diploma#90398 	 leaf:  3e05df9bdcfb4330557302cad7bed995c28dabf528a004f38251c39ed25cc06e
+ISSUER-   ***ISSUED*** vc: diploma#90399 	 leaf:  77392282fbaca69554b67c57e78fdb3da88bc85f587b6307afbacdc8c50930f0
+ISSUER-   ***ISSUED*** vc: diploma#90400 	 leaf:  58d1b0b803f402069f7cce21aefca082e08763d546fcf5368b6ffa11cc9b32b3
+ISSUER-   ***ISSUED*** vc: diploma#90401 	 leaf:  66156d8d971f1b23aeae4c3590fa32863ab8beb90a3f96af593e4913a411afc1
+ISSUER-   ***ISSUED*** vc: diploma#90402 	 leaf:  6c503a959e6995a4da0f09bead44d04f482fd2d21ea21cb8e82efad4be935f51
+ISSUER-   ***ISSUED*** vc: diploma#90403 	 leaf:  b56d06901a8978b6e9be2413f900c980b6f872b46a0bc53135fb00bef1808842
+ISSUER-   ***ISSUED*** vc: diploma#90404 	 leaf:  2e0453b82f9d9fb32479d226ef3571e4cda620cf04d08b76bde3cb45a9cec152
+ISSUER-   ***ISSUED*** vc: diploma#90405 	 leaf:  5e74a19419fb955157030b2496fd04ea0fb2f63c770ff00dde39483e2e561919
+ISSUER-   ***ISSUED*** vc: diploma#90406 	 leaf:  4d1cddfa1a68cfe0ef4ae37fc259b6a0155c4b7ac798545568d90d404e312bbc
+ISSUER-   ***ISSUED*** vc: diploma#90407 	 leaf:  7ed521b50bc93cab8c766d082ef910c4e5b489f462b44fdebf0a3fb4cf0379aa
+ISSUER-   ***ISSUED*** vc: diploma#90408 	 leaf:  18ed05597b652785973ef5a6bbbea0d554d5ee27eaad6a28f5f34fa25074dc53
+ISSUER-   ***ISSUED*** vc: diploma#90409 	 leaf:  5dbed94e51d1b812c42f796acc01b71c832eddcf6162dbf2f618a6deabd7bd08
+ISSUER-   ***ISSUED*** vc: diploma#90410 	 leaf:  5bb6ab7f5a7b9588d52ff02aad5feb3b55b694444761f6fc9dc758fb704bc316
+ISSUER-   ***ISSUED*** vc: diploma#90411 	 leaf:  4c609a810f6a04c3ea36f6d4378c1e8d0a6db9800cb26538ba696953bb5fd53a
+ISSUER-   ***ISSUED*** vc: diploma#90412 	 leaf:  c9a21e39c430d4db6fdf7f406f3c7c07dd326e39854d5d090a2c50cd891afd92
+ISSUER-   ***ISSUED*** vc: diploma#90413 	 leaf:  41b4d410e66f3c88a5dd44e9baf065701fdd4cce8f998224572f2c5b78a59f20
+ISSUER-   ***ISSUED*** vc: diploma#90414 	 leaf:  ef85c5d823d4a202e5e7d4b84b142f78d65c466b5ce04fe73089a5f01816cb90
+ISSUER-   ***ISSUED*** vc: diploma#90415 	 leaf:  03b5a8da976b582ff225a4b6e41a3fe98677832a0949f7c8cea74f0afb1781bb
+ISSUER-   ***ISSUED*** vc: diploma#90416 	 leaf:  02c53317ba1f06fc685500e10061c1d6d7dc610aaf3261e626684298f6ad7458
+ISSUER-   ***ISSUED*** vc: diploma#90417 	 leaf:  0c45d1c107ac68c9e36d4971b4a7283fde2167572efa9f1613da089465154c2e
+ISSUER-   ***ISSUED*** vc: diploma#90418 	 leaf:  0907ce7c8a20ad0f7b4e9f2b1aa7d76d1f74032d028d2833ff3915338a8134e4
+ISSUER-   ***ISSUED*** vc: diploma#90419 	 leaf:  1d09bc0203865c8604d3411d30b42f9c7262f84ca0e0c8d212dfe03eb27a11c1
+ISSUER-   ***ISSUED*** vc: diploma#90420 	 leaf:  0f58e79fecb76561b602ad189628cb4048d85f14d8d06f1a0b0fa609710d68dd
+ISSUER-   ***ISSUED*** vc: diploma#90421 	 leaf:  48d537bc2e1b8a59cd60e0a84470215f9e375aa1ae15efb328587e1a4843a427
+ISSUER-   ***ISSUED*** vc: diploma#90422 	 leaf:  10a157937d9a8ec6351da7841cbfd78f8381c912e5037f0bf266b39968bffe67
+ISSUER-   ***ISSUED*** vc: diploma#90423 	 leaf:  97741cb3e138d6d7ccec0fd21589e40520ebf93155499e5e0b669d02bd58e777
+ISSUER-   ***ISSUED*** vc: diploma#90424 	 leaf:  c5acff8af01f83b3009ce618e307ada5fc64ef3b92248670bb6cf78d7279687a
+ISSUER-   ***ISSUED*** vc: diploma#90425 	 leaf:  47a8b3214fe0dbe55dbe0e7f4291764ddc02ef1880ed7db0d4fdb1df2986a8bc
+ISSUER-   ***ISSUED*** vc: diploma#90426 	 leaf:  517039aa509abebd2198eec9364c1af5a8a1af5b2dcb4d0c4408952f2ec23b71
+ISSUER-   ***ISSUED*** vc: diploma#90427 	 leaf:  f3eeff2ee9b16136454904de7e6aab18a9c540298dc420f40ef897722a6d6c18
+ISSUER-   ***ISSUED*** vc: diploma#90428 	 leaf:  e3369d7186e837063c350c6d5ae1c384129761fbeb059a3b5292e77f3b27e2db
+ISSUER-   ***ISSUED*** vc: diploma#90429 	 leaf:  1f8377848925560cc831546b02e6a0d0739f18bd7279907c3ab71a7475c2b143
+ISSUER-   ***ISSUED*** vc: diploma#90430 	 leaf:  92b0a1740dc1e67fa988143c48d832a292fe6b3d1f1f667d3dd03ac340928ab1
+ISSUER-   ***ISSUED*** vc: diploma#90431 	 leaf:  01d8953188b3ed47e363b0b71edf8f33b5917023849ace68c25eb06a34c1e730
+ISSUER-   ***ISSUED*** vc: diploma#90432 	 leaf:  68ad8286b89063c14edacb866ef9ea440d1a5fbbc4b759f16666145b539a18d2
+ISSUER-   ***ISSUED*** vc: diploma#90433 	 leaf:  83f2a580b608cb271fa387078901de136936f46610a54de0910540b1e5ede151
+ISSUER-   ***ISSUED*** vc: diploma#90434 	 leaf:  58e198cbbc730f3e670b06b2003bf91529d6b670fb5b0a7c1b4f2d6655fb7b26
+ISSUER-   ***ISSUED*** vc: diploma#90435 	 leaf:  ba5ca2b960e089551d6f6e40a0024e4d68c73a6aea5955ec28cbed9e4b0fe2bf
+ISSUER-   ***ISSUED*** vc: diploma#90436 	 leaf:  b317d7f0de02e9d81711ce4b80bc6191f0bf494e4f3ab2a809aa1c1900d6fb35
+ISSUER-   ***ISSUED*** vc: diploma#90437 	 leaf:  8cf4ec3588d2fac8171ed4c0b9fd3a1649af122a709192a3bf5613f189aa026b
+ISSUER-   ***ISSUED*** vc: diploma#90438 	 leaf:  484d7c93e64057c000b8538749ab63e784104e132135c86cb21b9641f8fa764f
+ISSUER-   ***ISSUED*** vc: diploma#90439 	 leaf:  6efbbec35531ecc7fd0952b0024f4d096b25664cf221f8000f1d011b3f6adf19
+ISSUER-   ***ISSUED*** vc: diploma#90440 	 leaf:  9a5c8d784128246e0d55016652c7d1785846e0d3aed4228ae97ede5cf7c77555
+ISSUER-   ***ISSUED*** vc: diploma#90441 	 leaf:  5d910c07510990283afd234af147427826b0045ef084698db701443b06f9595a
+ISSUER-   ***ISSUED*** vc: diploma#90442 	 leaf:  ddd2cc0571503f878f7a5a7cd467d766c7c319d7fbd78b90e32fd010eee9091d
+ISSUER-   ***ISSUED*** vc: diploma#90443 	 leaf:  386db5f6b94ef13c912709ac659e45eb493792a190d50c2fd6184f347bc6fd32
+ISSUER-   ***ISSUED*** vc: diploma#90444 	 leaf:  6a95ef54ab7968a1684744baa1ef3db9f4845085800b683f3ef2ae9e0ab6b3a8
+ISSUER-   ***ISSUED*** vc: diploma#90445 	 leaf:  82a2d58b1d1b064ef8dac61827e55d703607c8d44e3efb9027a02436f36990e4
+ISSUER-   ***ISSUED*** vc: diploma#90446 	 leaf:  8e7ba57f0e9ee0dd4574244d9b7ca72dfccd928700e5cb3518a49fea697f4cfd
+ISSUER-  ***REVOKED*** vcs: [diploma#90321 diploma#90373] 	 mt indexes:  map[diploma#90321:129 diploma#90373:181] 	 affected VCs Indexes:  Set{178, 180, 177, 127, 128, 130, 131, 132, 134, 179, 182, 133, 175, 176} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#90375 diploma#90320] 	 mt indexes:  map[diploma#90320:128 diploma#90375:183] 	 affected VCs Indexes:  Set{189, 129, 185, 186, 130, 131, 133, 184, 188, 127, 190, 187, 132, 134} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#90391 diploma#90345] 	 mt indexes:  map[diploma#90345:153 diploma#90391:199] 	 affected VCs Indexes:  Set{205, 200, 151, 155, 204, 201, 152, 157, 202, 206, 154, 156, 158, 203} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#90327 diploma#90323] 	 mt indexes:  map[diploma#90323:131 diploma#90327:135] 	 affected VCs Indexes:  Set{136, 138, 140, 130, 142, 137, 139, 134, 127, 129, 133, 141, 128, 132} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#90409 diploma#90387] 	 mt indexes:  map[diploma#90387:195 diploma#90409:217] 	 affected VCs Indexes:  Set{222, 216, 218, 192, 193, 221, 191, 194, 220, 196, 198, 215, 219, 197} 	 number of affected VCs:  14
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90319 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90320 	 mt index:  128 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90321 	 mt index:  129 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90322 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90323 	 mt index:  131 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90324 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90325 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90326 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90327 	 mt index:  135 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90328 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90329 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90330 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90331 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90332 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90333 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90334 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90335 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90336 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90337 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90338 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90339 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90340 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90341 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90342 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90343 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90344 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90345 	 mt index:  153 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90346 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90347 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90348 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90349 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90350 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90351 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90352 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90353 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90354 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90355 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90356 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90357 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90358 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90359 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90360 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90361 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90362 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90363 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90364 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90365 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90366 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90367 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90368 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90369 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90370 	 mt index:  178 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90371 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90372 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90373 	 mt index:  181 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90374 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90375 	 mt index:  183 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90376 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90377 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90378 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90379 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90380 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90381 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90382 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90383 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90384 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90385 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90386 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90387 	 mt index:  195 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90388 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90389 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90390 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90391 	 mt index:  199 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90392 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90393 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90394 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90395 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90396 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90397 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90398 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90399 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90400 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90401 	 mt index:  209 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90402 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90403 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90404 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90405 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90406 	 mt index:  214 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90407 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90408 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90409 	 mt index:  217 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90410 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90411 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90412 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90413 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90414 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90415 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90416 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90417 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#90418 	 actual status:  valid 	 phase1 result:  true
+SIMULATOR - 	 indexes of VCs that are affected by revocation:  Set{187, 196, 190, 189, 198, 218, 158, 133, 197, 184, 205, 221, 131, 140, 204, 206, 134, 222, 201, 194, 138, 157, 216, 128, 182, 180, 220, 191, 178, 155, 185, 176, 139, 219, 192, 193, 142, 127, 179, 188, 215, 154, 200, 177, 141, 151, 186, 132, 136, 129, 130, 156, 152, 203, 202, 137, 175}
+SIMULATOR - 	 indexes of VCs that are affected by false positives:  Set{diploma#90370, diploma#90401, diploma#90406}
+SIMULATOR - 	 indexes of VCs that retrieved witnesses from issuer:  Set{diploma#90370}
+SIMULATOR : 	 results:  Total VCs : 100
+Total Revoked VCs : 10
+False Positive Rate : 0.100000
+Bloom Filter Size : 48
+Bloom Filter indexes per entry (no of hash functions) : 4
+Merkle Tree Accumulator height : 7
+Merkle Tree Accumulator Level Stored in DLT : 4
+ 
+Amount (in gwei) paid per revocation: 14537083
+Number of witness that are affected by revocation and require witness update in Merkle Tree Accumulator: 57
+Number of False Positives : 3
+Number of VCS that ended up updating witnesses from issuer: 1
+Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : 2
+
+unable to write results to file
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0x3d111a1BD9b4906c47108c801DAA8b70903B936E
+blockchain rpc endpoint: http://158.39.200.125:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x4a33ABa050A867968a1a585C7a249A3DaC585ADC
+sender private key: 663f30e301d6f89232d31d6764ee87bf7c7c6799cceeba2150a6687cdc32b7f6
+sender pass phrase: simple phrase
+other accounts in ganache test network :  []
+logger environment: dev
+logger output file name: logs.json
+logger output mode: file
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:
+total of VCs would be issued:10
+total of VCs would be revoked:5
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  2
+merkle tree height:  4
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing Experiment parameters--------------------------------------------------
+exp2 {20 10 0.1 3 5}
+exp3 {100 10 0.1 4 7}
+********************************************************************************************************************************
+
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0x34FA4B3b13d2BE8a59548708A7598aDf05a83522
+BLOCKCHAIN- 	 tx hash:  0x88862f2572074fa995c3cc34ac91853ea8d86a43ec7c42ec90f734ea7147d0a1
+********************************************************************************************************************************
+
+"MERKLE TREE Accumulator- 	 total nodes:  63
+BlOOM FILTER: size :  48 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************
+ISSUER-   ***ISSUED*** vc: diploma#9887 	 leaf:  05fa4d753bd61ffa594d08c17e5b1b3debb5301f6b4da8200ac91ae841fa1662
+ISSUER-   ***ISSUED*** vc: diploma#9888 	 leaf:  512a848534d07c4cbf9ca7ae471b64a5aeca84f3f8fdcd80b7da9cf5e04dfd7d
+ISSUER-   ***ISSUED*** vc: diploma#9889 	 leaf:  8272bac55460ab109021497e412ea08416c13630fc0d344e9b217fab61873817
+ISSUER-   ***ISSUED*** vc: diploma#9890 	 leaf:  e3a92fa9f1dff3319926f4be956cda47515bee0115e01568b023f0032ce8f98b
+ISSUER-   ***ISSUED*** vc: diploma#9891 	 leaf:  f218fd219529f017cdb7f1ee148bb229130b62d7eb4f5949113de54eb7984b16
+ISSUER-   ***ISSUED*** vc: diploma#9892 	 leaf:  2fb400558807ecf4c9e27d95c86f0e8318cc430d5fcbbbd61509a57244e86616
+ISSUER-   ***ISSUED*** vc: diploma#9893 	 leaf:  3e8f78c56c988f25f110b4797951bfab2751cc2f1a4a1960e80ef7046e21469f
+ISSUER-   ***ISSUED*** vc: diploma#9894 	 leaf:  f26df5fe546a46608255c853cfd982fca32b967f208c80447e36159549b3ddcb
+ISSUER-   ***ISSUED*** vc: diploma#9895 	 leaf:  4d4fb3762420410abe60addc04b884db0ded231ec1efa62a5e81535362631f10
+ISSUER-   ***ISSUED*** vc: diploma#9896 	 leaf:  6c46788ae62bfe02eb1ed38f31ab49aa77dc87df4dd9405da669b668f55669ff
+ISSUER-   ***ISSUED*** vc: diploma#9897 	 leaf:  70b3ce7ef58916089a9b2915631f65bb62be58fc032a905bca223116ce04d7d3
+ISSUER-   ***ISSUED*** vc: diploma#9898 	 leaf:  b1c396ea5875bbcfa11f010a3232bff0f73d2d7ed5ebbfe9a109242a99792474
+ISSUER-   ***ISSUED*** vc: diploma#9899 	 leaf:  4a46a2930fbbcc18578ab81e2e68fadc516a38d428495304e40988617f7983f7
+ISSUER-   ***ISSUED*** vc: diploma#9900 	 leaf:  6be8785871571bc02ecdaf0c19fcf198118aeb98bbc4b60c37c18c73aa838779
+ISSUER-   ***ISSUED*** vc: diploma#9901 	 leaf:  b70f7411b39c67b9b76b0cb8a200b93340acffaa0aee5672065b5d9f8edfa0ca
+ISSUER-   ***ISSUED*** vc: diploma#9902 	 leaf:  587a94803bf74d509309d93e05c06887c53eff8feb29c93343a3d2dd967c1b68
+ISSUER-   ***ISSUED*** vc: diploma#9903 	 leaf:  c26110c9606d7f9d5477a5b083afe832584741b1701a05c71be84f61edae74ed
+ISSUER-   ***ISSUED*** vc: diploma#9904 	 leaf:  8ccbb727e94bf15ceb82fcbb2b4d709d8757eae6e106b03ca6b95cd0aa1b4f4b
+ISSUER-   ***ISSUED*** vc: diploma#9905 	 leaf:  d92460657f88ecea581f7c1e777796e6bd9b79528a45f3ad540a8d00e210dcf9
+ISSUER-   ***ISSUED*** vc: diploma#9906 	 leaf:  102f713f693c02e3fa3135701bae8e619b014f9931aa6efce4cf57fbeffdb5cf
+ISSUER-   ***ISSUED*** vc: diploma#9907 	 leaf:  aa20fb775e6081ea00038fa32fd56f606ebe866092144c96b173df3b98eef84c
+ISSUER-   ***ISSUED*** vc: diploma#9908 	 leaf:  6caf8cc0a60a3aed2a12c3c7ed9ccbcb9ada05c9772b6e1fdd67dfe407c3cfed
+ISSUER-   ***ISSUED*** vc: diploma#9909 	 leaf:  06dc248b8ebf9113c8a1802943cc74e0b29364baa5cdccb16527b820e7d316c6
+ISSUER-   ***ISSUED*** vc: diploma#9910 	 leaf:  d89059e5b4db1447bfefa666f5610ad487f0ceb9832a3047bc991ca1200e4b87
+ISSUER-   ***ISSUED*** vc: diploma#9911 	 leaf:  29177da8dfc47adb6359176d189ade6aeacde52a0595230b6e4188280cce443c
+ISSUER-   ***ISSUED*** vc: diploma#9912 	 leaf:  cda16f8c7880ff0d09d3dd7d4585641481509f1db9b20a28f3a75e4869600bf6
+ISSUER-   ***ISSUED*** vc: diploma#9913 	 leaf:  46a483c55de4a4b2d083e9af4f861ce9c7d8b4fb686494b525cd768926d06dd6
+ISSUER-   ***ISSUED*** vc: diploma#9914 	 leaf:  0d4da90fc305b43ab1ebd7e3b3f03ab5f0933701b1eff717a47237fa7b31614e
+ISSUER-   ***ISSUED*** vc: diploma#9915 	 leaf:  9018d30ca151d71ab36ae2cf4a829d782b9d8fc5aefce62bd65cb92b0f4758eb
+ISSUER-   ***ISSUED*** vc: diploma#9916 	 leaf:  211ddd4bb4bd028dea186ad072a5e12d71bb49c6105bf70cf24c40b9b637e02b
+ISSUER-   ***ISSUED*** vc: diploma#9917 	 leaf:  abd81a066f9717b017566a4ed0c0d6708df027e628f2e1c92692d6e4986a44ff
+ISSUER-   ***ISSUED*** vc: diploma#9918 	 leaf:  4ea892e56eecd198883980370cfe0939b7be54234cbfd4a050521f0c9cbc0d96
+ISSUER-  ***REVOKED*** vcs: [diploma#9889 diploma#9906] 	 mt indexes:  map[diploma#9889:33 diploma#9906:50] 	 affected VCs Indexes:  Set{48, 49, 32, 34, 31, 47} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#9895 diploma#9897] 	 mt indexes:  map[diploma#9895:39 diploma#9897:41] 	 affected VCs Indexes:  Set{42, 40, 41, 39} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#9898 diploma#9900] 	 mt indexes:  map[diploma#9898:42 diploma#9900:44] 	 affected VCs Indexes:  Set{43, 39, 40, 41, 45, 46} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#9890 diploma#9904] 	 mt indexes:  map[diploma#9890:34 diploma#9904:48] 	 affected VCs Indexes:  Set{32, 33, 47, 49, 50, 31} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#9901 diploma#9903] 	 mt indexes:  map[diploma#9901:45 diploma#9903:47] 	 affected VCs Indexes:  Set{43, 44, 46, 48, 49, 50} 	 number of affected VCs:  6
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9887 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9888 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9889 	 mt index:  33 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9890 	 mt index:  34 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9891 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9892 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9893 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9894 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9895 	 mt index:  39 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9896 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9897 	 mt index:  41 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9898 	 mt index:  42 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9899 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9900 	 mt index:  44 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9901 	 mt index:  45 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9902 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9903 	 mt index:  47 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9904 	 mt index:  48 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9905 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#9906 	 mt index:  50 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+SIMULATOR - 	 indexes of VCs that are affected by revocation:  Set{34, 48, 49, 42, 45, 46, 43, 47, 44, 32, 50, 41, 31, 39, 40, 33}
+SIMULATOR - 	 indexes of VCs that are affected by false positives:  Set{}
+SIMULATOR - 	 indexes of VCs that retrieved witnesses from issuer:  Set{}
+SIMULATOR : 	 results:  Total VCs : 20
+Total Revoked VCs : 10
+False Positive Rate : 0.100000
+Bloom Filter Size : 48
+Bloom Filter indexes per entry (no of hash functions) : 4
+Merkle Tree Accumulator height : 5
+Merkle Tree Accumulator Level Stored in DLT : 3
+ 
+Amount (in gwei) paid per revocation: 11395081
+Number of witness that are affected by revocation and require witness update in Merkle Tree Accumulator: 16
+Number of False Positives : 0
+Number of VCS that ended up updating witnesses from issuer: 0
+Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : 0
+
+ERROR - results.json file open error
+unable to write results to file
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0x13194334704759297F7460182b35d08472530762
+BLOCKCHAIN- 	 tx hash:  0x9997607a485aeb3b87469327ed3ee2a49e60641a0c08304cc0e15b3f9ca6c299
+********************************************************************************************************************************
+
+"MERKLE TREE Accumulator- 	 total nodes:  255
+BlOOM FILTER: size :  48 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************
+ISSUER-   ***ISSUED*** vc: diploma#80722 	 leaf:  b60f3484a1b28c08b010169ea6f6b9974c7ec6ef7aae3d15a7f260d1cf62e4f5
+ISSUER-   ***ISSUED*** vc: diploma#80723 	 leaf:  2eb7bb2d0548c88e46dc4d71d4c28c7ca99f71d08e8c27b947e0c712c596a043
+ISSUER-   ***ISSUED*** vc: diploma#80724 	 leaf:  b3e9346a0804de8b4cea5d4d28f0b3d7647649a72d02bfa6f521dd8edd9f8834
+ISSUER-   ***ISSUED*** vc: diploma#80725 	 leaf:  c506745729b07627a1ea20fae7b5655b2694256f8e236a4f45c9c762070d8654
+ISSUER-   ***ISSUED*** vc: diploma#80726 	 leaf:  e9d12b23fa4c4715ba64331e5887cd0cb85e45f3613536dfacf4b9e22ae78f3b
+ISSUER-   ***ISSUED*** vc: diploma#80727 	 leaf:  9c4fae6a30146b69a89d93aea8a7bfc48b07d697991987be0c9fa75fde29b6c8
+ISSUER-   ***ISSUED*** vc: diploma#80728 	 leaf:  e36e318e981007c6bc3fe35c4a7b7cad62c412058ac3867cdcc32b44718dc536
+ISSUER-   ***ISSUED*** vc: diploma#80729 	 leaf:  3572a92b03f772f3d34b1a34a93a286c797b80ff6412dae08ef8d7d8293d3011
+ISSUER-   ***ISSUED*** vc: diploma#80730 	 leaf:  b6030c7bf2f805422c692c40aebe06c6ebe8724fb5759025da1140385ee87e5c
+ISSUER-   ***ISSUED*** vc: diploma#80731 	 leaf:  0f33ae445136c975fdfb231d1ea1b0bc45fe5e1d7a286854fbd28cb4409ffe26
+ISSUER-   ***ISSUED*** vc: diploma#80732 	 leaf:  8102823fd3880dfe6a57487cc00fd18c35763d966481b85ff2950ededb6bb098
+ISSUER-   ***ISSUED*** vc: diploma#80733 	 leaf:  85b00b76aac09239a5ad6aa9c2906d4020e1637fa0d0ecec620ad71684eddf37
+ISSUER-   ***ISSUED*** vc: diploma#80734 	 leaf:  25240d7c3117b1d7a2ba8705b6471437de8731520557778a77493d72ccdf0669
+ISSUER-   ***ISSUED*** vc: diploma#80735 	 leaf:  93784402c6dc916593466c8b4945401e9a672ad2a4868cfb6570ba6103143e8e
+ISSUER-   ***ISSUED*** vc: diploma#80736 	 leaf:  bedffece43f796fa68f2600182bf7be78a4d05f087087d7512c14004eb6ed89d
+ISSUER-   ***ISSUED*** vc: diploma#80737 	 leaf:  ae1953ba1b9e4ec8b651b3bce09de7eb7f7a056d6c628f2c28a999174fbf46cf
+ISSUER-   ***ISSUED*** vc: diploma#80738 	 leaf:  7ffd1f55b431fd0cdabed7a6bf3b2ef10e7ca8f2e31f535a3bd8c310f33cfc95
+ISSUER-   ***ISSUED*** vc: diploma#80739 	 leaf:  e27fa1061e7b07c828a48e170a4c6aa06985166df770469037d073841682a425
+ISSUER-   ***ISSUED*** vc: diploma#80740 	 leaf:  ed56711651d376cbdec33cda50e42ad4e5b2ddfe1dffac289a27aacedca85a45
+ISSUER-   ***ISSUED*** vc: diploma#80741 	 leaf:  c639e5fa26d361aac31a3439ba0f5bc3c75c2d752689bc0f52d59d0be344ac14
+ISSUER-   ***ISSUED*** vc: diploma#80742 	 leaf:  d973bc4110ff7e90d55891ba0efea3162a7a97f74281a481387c69f6db03906c
+ISSUER-   ***ISSUED*** vc: diploma#80743 	 leaf:  9b58a569cf96fe11d26ab841e09847f04809bf7fe0b5e21ea6284ada22e7d500
+ISSUER-   ***ISSUED*** vc: diploma#80744 	 leaf:  4e06404a72ba0d8d13e9fbf41c2366ad529eec8cf0b8ef8b48dae6dd14b94124
+ISSUER-   ***ISSUED*** vc: diploma#80745 	 leaf:  9a8f60a9708f152edc535c501dac561066790415f8d2492cab6ddff97fee5a9c
+ISSUER-   ***ISSUED*** vc: diploma#80746 	 leaf:  56e0e34dc497f88dada15a5fe32262a4342cc41527bf77daefa7ddf30d32b61e
+ISSUER-   ***ISSUED*** vc: diploma#80747 	 leaf:  0ba441f54d7a163cc1ab663365734d737c89f4c3dd54cc64d5b79ac0a52e9d06
+ISSUER-   ***ISSUED*** vc: diploma#80748 	 leaf:  58ab78b74e83a7dad3bb0507353b20290463227a08ad8ea4e058d20625f26184
+ISSUER-   ***ISSUED*** vc: diploma#80749 	 leaf:  07162cbca336a452923e22b961d1f94c4eacb5cd4fdd19f609c08dfac394a71f
+ISSUER-   ***ISSUED*** vc: diploma#80750 	 leaf:  bfb53c0d69e853fc4f31392640220dd204f12a9c83cbcbec1d935206d5a2eb9c
+ISSUER-   ***ISSUED*** vc: diploma#80751 	 leaf:  403e6f58838b81b541a5a3ba676ee099b85d832f049a8b18a9d4914a39a39baf
+ISSUER-   ***ISSUED*** vc: diploma#80752 	 leaf:  7cff58f768dcbcd947d7f7b848de4d073929c3ee5387515543e323ae46bd10b6
+ISSUER-   ***ISSUED*** vc: diploma#80753 	 leaf:  533e8452b995e145482f60bb9f81ccd97bc7b2225dad6e60480a24caae3c45b2
+ISSUER-   ***ISSUED*** vc: diploma#80754 	 leaf:  c5bf3794d102a3334ac39ad62c3d5e296a64bc853784dc07d838e85259e161c4
+ISSUER-   ***ISSUED*** vc: diploma#80755 	 leaf:  15fd6cd5c1278b3b46296c5fb5cd2b38b69d027d14dfad5fc49a5b59d8186286
+ISSUER-   ***ISSUED*** vc: diploma#80756 	 leaf:  363e8f060fe0e3cb14e5294374b67f582c215f3a55262c0cfaa5d03eb821ff05
+ISSUER-   ***ISSUED*** vc: diploma#80757 	 leaf:  9724cedcd8792ad19614c9a0bfba2887d94ff8729f05d2d9347a13e8fbb17a3a
+ISSUER-   ***ISSUED*** vc: diploma#80758 	 leaf:  a60b546a6ed226af898d544acfe3000ba0aaebc555490d8a731a2d9a1460a228
+ISSUER-   ***ISSUED*** vc: diploma#80759 	 leaf:  bab3d02852c478cef27ae21a3b29d2a1b694d85c28913b76a0f321c3a897c073
+ISSUER-   ***ISSUED*** vc: diploma#80760 	 leaf:  7d9b65e07e37bd127c6f3d194150236f7125fda9228be232f20c4270588eff1e
+ISSUER-   ***ISSUED*** vc: diploma#80761 	 leaf:  6c495a874dcd3ce8e5564a2cfa6aaa001577034c5d5bb120cf3795e604269b17
+ISSUER-   ***ISSUED*** vc: diploma#80762 	 leaf:  d574aaaa95d912c64c23c1378230b1ff17413c9e5a02f69f5d7ba986da5f6d83
+ISSUER-   ***ISSUED*** vc: diploma#80763 	 leaf:  bb2f381741094a8437a1fe32e230207c9042e6466aefd0040d8ac2a2e76a1add
+ISSUER-   ***ISSUED*** vc: diploma#80764 	 leaf:  6beff0ef6c9916de78a9c1b48e37c700b1bf8267e5dfe6ea62675a60ebbcb311
+ISSUER-   ***ISSUED*** vc: diploma#80765 	 leaf:  5ac16fea9bc649382b96372d499b2049749b975a6666f9e2778f3d0a476226a7
+ISSUER-   ***ISSUED*** vc: diploma#80766 	 leaf:  c650441b576d064423be7a49a778b4b9fdc37c6be91c5f5c9cd30ef090b1f254
+ISSUER-   ***ISSUED*** vc: diploma#80767 	 leaf:  713f945a64bf13c85bfbfb6ad66642b7650888b5852d7ca82703362701214073
+ISSUER-   ***ISSUED*** vc: diploma#80768 	 leaf:  7e00bc4c567bb3ca0e16eaf5cb253842784aeef9f15f119a837315ef26dc0f7a
+ISSUER-   ***ISSUED*** vc: diploma#80769 	 leaf:  7ae8380cb7ed6b97b2fc5259bfc82b62d68cf96e111c1c33594144c03a09b5b8
+ISSUER-   ***ISSUED*** vc: diploma#80770 	 leaf:  e4d170306e19aa6c0111c1257dbc4df1fcd40db3fdc9a1f373c82ad913efba4a
+ISSUER-   ***ISSUED*** vc: diploma#80771 	 leaf:  06fb91baed24895c1046c3a0112117eb6aee9d9c8225ce6bde6640e44d7c1497
+ISSUER-   ***ISSUED*** vc: diploma#80772 	 leaf:  cea9cf9cf9f267a9a8cf0f361cc43c82c51f95d5d3402b25a1b13b97ac762f70
+ISSUER-   ***ISSUED*** vc: diploma#80773 	 leaf:  0f16a04fd366f6b8390778cdc4911ffe0013d97475660114d3d9e89f5a8c1d07
+ISSUER-   ***ISSUED*** vc: diploma#80774 	 leaf:  98d069719bfa04d9c37515656ddb28403bb09338bdac8c0c75acb6834f2ea7e3
+ISSUER-   ***ISSUED*** vc: diploma#80775 	 leaf:  d0068dc0a5a0a58d8a9bd139900ded83014e7f03c035cc55acbde3e7b589e708
+ISSUER-   ***ISSUED*** vc: diploma#80776 	 leaf:  eaa4c3d93a9c6069412b93c154adde23e1eccf0931c571cd0e4510b1e39b8950
+ISSUER-   ***ISSUED*** vc: diploma#80777 	 leaf:  cc85f89af3ea8dce6e1b39a0b7e971b2fad7ab26df860ee8a08371ee27950825
+ISSUER-   ***ISSUED*** vc: diploma#80778 	 leaf:  45909eb454c270e1ba14fbb0d24835ebbfb5008951509b931c18598a55ec9ed5
+ISSUER-   ***ISSUED*** vc: diploma#80779 	 leaf:  321a14c56236361bb9c24190f38b389a4e7fa72b0dc1dd6131bc08507a1c795c
+ISSUER-   ***ISSUED*** vc: diploma#80780 	 leaf:  586e67a178ecbf165a93b34de153c7557359b58eee6c012a968afcea90dca5e3
+ISSUER-   ***ISSUED*** vc: diploma#80781 	 leaf:  afb8e056dd182a7b7e6b9aaf9b4c4dee5143d182f9a1714c0f85b57b61fe6499
+ISSUER-   ***ISSUED*** vc: diploma#80782 	 leaf:  bcc37b7a448bfbb2ae4bc57098813cdb351c2bdcbf0e3e7868a9cc64f0986cf5
+ISSUER-   ***ISSUED*** vc: diploma#80783 	 leaf:  cafa92c0631bad34fd2c46e4549d59ead0161ea35b3397d05c5401a37eb2f055
+ISSUER-   ***ISSUED*** vc: diploma#80784 	 leaf:  54e16c458493d7a27067bed7619ccf12846dcb244f26642990cc0cced18ffa47
+ISSUER-   ***ISSUED*** vc: diploma#80785 	 leaf:  994eba111f7028461e849299f26a46a2589f04e7d2f801e7978ee13082b216e0
+ISSUER-   ***ISSUED*** vc: diploma#80786 	 leaf:  20ab6275aff1fde6957e9c788bfafe40ee10fef3e661610189b4f08e3d4999c8
+ISSUER-   ***ISSUED*** vc: diploma#80787 	 leaf:  e53b57d7a0890f2878ddded098b42be290c080140b5cb84d54b8f5a1b986a5e0
+ISSUER-   ***ISSUED*** vc: diploma#80788 	 leaf:  6ccce8c81b68f7386178c4fae5b0cfdc889d427ee2d62a7b070ca58f86fbe7fe
+ISSUER-   ***ISSUED*** vc: diploma#80789 	 leaf:  11ed61451e4a56250fd3debf5c365db06a3aedf2d730a7e50b5d64b805191a89
+ISSUER-   ***ISSUED*** vc: diploma#80790 	 leaf:  78b7c1d34d4a0392dd14166e1c902d61526e6d0ee72fe0bf99bf59ce541f7f6b
+ISSUER-   ***ISSUED*** vc: diploma#80791 	 leaf:  481b23b469cad561491d50ac687fa9be7ff35207057e531efd34f6d58defb12e
+ISSUER-   ***ISSUED*** vc: diploma#80792 	 leaf:  483eef77d33079b4f98abd4858cba81191eb1becf60340ce34c2e7a258a296ee
+ISSUER-   ***ISSUED*** vc: diploma#80793 	 leaf:  ccef9f77cc232e480220c6c62bb1698ee6025dbb21dc515ce9268cf2a089e770
+ISSUER-   ***ISSUED*** vc: diploma#80794 	 leaf:  0de5fdefb1676b8705acb9874e6bd27cdc342e8c8682b880f365969402253939
+ISSUER-   ***ISSUED*** vc: diploma#80795 	 leaf:  1d3cffea3ff3e9d333d7e69bc1a1827d00a71b91469baac95c46ae26df701f0d
+ISSUER-   ***ISSUED*** vc: diploma#80796 	 leaf:  06365d6e8d0d18bd3499a2dfd9c10cb4ed98c857f5633fea9099fc52acb13996
+ISSUER-   ***ISSUED*** vc: diploma#80797 	 leaf:  d1e725209a39550ac7dafe8ece892287319139dd136ed1624516579ad9df2ab4
+ISSUER-   ***ISSUED*** vc: diploma#80798 	 leaf:  4f2a18b71d64d4ed79445171ef91a76e342e168ba73f64452d8857cc4b40efb4
+ISSUER-   ***ISSUED*** vc: diploma#80799 	 leaf:  78d9176b5ac997e87e52a98fe0981c5e5fc5fa48c5871b811f3d24c41a10b9cd
+ISSUER-   ***ISSUED*** vc: diploma#80800 	 leaf:  578235ed1733c0f1091986963db5ad59db39ad2909cf619c748e6aaf5bdc92f3
+ISSUER-   ***ISSUED*** vc: diploma#80801 	 leaf:  1a7e453016ca1393285e6ed439cf3c924ff7df2ea9073ed7b46c5aaea06d3990
+ISSUER-   ***ISSUED*** vc: diploma#80802 	 leaf:  87bfcb7bf10569e39ddfcd62d28659e7348bf4cc003760a05776629b3400bae9
+ISSUER-   ***ISSUED*** vc: diploma#80803 	 leaf:  e83698563666e114d01f608714fd963e0c54eb6356e9d4b7a7430577e6b57e02
+ISSUER-   ***ISSUED*** vc: diploma#80804 	 leaf:  0736bdec5f582e7a1d2ef7a476d895593c57a19036788f7d6cd0ae1f9572c309
+ISSUER-   ***ISSUED*** vc: diploma#80805 	 leaf:  c8305c744fccd4ea6d173a75e4576996b246c90378fdda8cdaccac5aea900521
+ISSUER-   ***ISSUED*** vc: diploma#80806 	 leaf:  bfe153856608fa115f564304a600f347456ba01eb730fcff43502c19f639fb3c
+ISSUER-   ***ISSUED*** vc: diploma#80807 	 leaf:  990b7d9b81838099e27f4d5f62310670dea8bff9d27a510ef50bba4dfa3dbe51
+ISSUER-   ***ISSUED*** vc: diploma#80808 	 leaf:  f5ba51e39beae7061de7ba09e1714e6b61cc50021dd70639ea6dd9fb5e931080
+ISSUER-   ***ISSUED*** vc: diploma#80809 	 leaf:  ce5423287b1db52dba63139eeb64e00acca8215f481cd329fa636a3ff6b772af
+ISSUER-   ***ISSUED*** vc: diploma#80810 	 leaf:  de5c9df91352b697a952b5013703aca8f8628b390ddb641172c8d475598c5504
+ISSUER-   ***ISSUED*** vc: diploma#80811 	 leaf:  ccb8d1b9411594fd483a9961a77e3a70f12bea3ef83ba93634242a4d454dbc65
+ISSUER-   ***ISSUED*** vc: diploma#80812 	 leaf:  5cab2042ff15d14b98b7d53468a81ab2da90c4afe23ecb02b9d1569775936521
+ISSUER-   ***ISSUED*** vc: diploma#80813 	 leaf:  fe280f4dafe1cb32716ca80811f8137adae272bd352b30e8b115e2234a969f1d
+ISSUER-   ***ISSUED*** vc: diploma#80814 	 leaf:  958755b760249a02cb7f39e9bcd901a55d8cd4f6c706588994a8563ae5c6c10a
+ISSUER-   ***ISSUED*** vc: diploma#80815 	 leaf:  99f957c866c595a8c5eb4faf395f64eeb59b0a5f7cfac55422c5a6a7dbdb31aa
+ISSUER-   ***ISSUED*** vc: diploma#80816 	 leaf:  84b9c63bec361a42b7af6c0890ac5da27daa0bb8733db51569c6a47e62921474
+ISSUER-   ***ISSUED*** vc: diploma#80817 	 leaf:  f0188cb20ac7e06ef7fa4607db820a082c9b7f7eda8d651d030918d20af6049a
+ISSUER-   ***ISSUED*** vc: diploma#80818 	 leaf:  6bfdc32a83c278eb30971383a1bdaeab5f318dc109c2a0c87a9022f7c48f0d2e
+ISSUER-   ***ISSUED*** vc: diploma#80819 	 leaf:  049ea766a571e6667134fbf21d5b1e3e53c9b91d227cf32b5c6bb9eb4b37cc40
+ISSUER-   ***ISSUED*** vc: diploma#80820 	 leaf:  f38be12659f13c3fd0b4408674288d3fc1370faf45db76514a3505d675328e1f
+ISSUER-   ***ISSUED*** vc: diploma#80821 	 leaf:  fe49499e3f00e2b0e12677a860f38153db8d11197efaf6aec3f056f4736d4f35
+ISSUER-   ***ISSUED*** vc: diploma#80822 	 leaf:  e300a276da2165fb566b5c75f0084149daa9efca19a48e584ea41dbfb203a72c
+ISSUER-   ***ISSUED*** vc: diploma#80823 	 leaf:  9da4d584a35f852987e2c4fca8c7b1281a2634fb16ba69e78e19fc8146fa9d93
+ISSUER-   ***ISSUED*** vc: diploma#80824 	 leaf:  3b83fb080268d17b95df4355db5a21ec770c5778a30d0e6d814aff236f047b67
+ISSUER-   ***ISSUED*** vc: diploma#80825 	 leaf:  dc4f67ab556482dae152aee0c3d7ae798edbac4a9958734d1598dcb647352dbe
+ISSUER-   ***ISSUED*** vc: diploma#80826 	 leaf:  443063f5b918b5ec764aa691f5b77068176cc222ef2af4433b84c4eaa6cde03d
+ISSUER-   ***ISSUED*** vc: diploma#80827 	 leaf:  6d2f58f37997c5c067bb60d60f668c94ba8e5fef91be6c7f994ae84e2766e1dd
+ISSUER-   ***ISSUED*** vc: diploma#80828 	 leaf:  c8f5c7fa127698afa6253394f5a4fd50f2b2c66e60fe403f2006b616e20f19f5
+ISSUER-   ***ISSUED*** vc: diploma#80829 	 leaf:  3853c2177d85dffbbb1fb86d77f97ff649ccf7aa545e1b9e1f7aa2dfcd56953d
+ISSUER-   ***ISSUED*** vc: diploma#80830 	 leaf:  f749a2e5769712eca41b79358ef8897f7bd77a909bc84ad4782ee2a0699177cc
+ISSUER-   ***ISSUED*** vc: diploma#80831 	 leaf:  2bad6362ce6b7e5289c362a59f84debbfcc1c9a07a0d9766d152885494afe991
+ISSUER-   ***ISSUED*** vc: diploma#80832 	 leaf:  014fa7acfd58a1ee580ad52b6bfd3c83a4fe284aad4297e567fcf258d52d20ca
+ISSUER-   ***ISSUED*** vc: diploma#80833 	 leaf:  328a47b077d097c98883ed1eaf2c2b549964df9ee9c5b0d96fa8f5b6230bda79
+ISSUER-   ***ISSUED*** vc: diploma#80834 	 leaf:  841ddb14611226db1eac86cdbc7a8430ee3f3da6dfae25b830f16d95c3c994a6
+ISSUER-   ***ISSUED*** vc: diploma#80835 	 leaf:  6ac6df7e4389f08dcdcb1f59909fcff70a900d86136f37772241276069dc8724
+ISSUER-   ***ISSUED*** vc: diploma#80836 	 leaf:  4020b4815660eb11be2510a9f73cb7f8a66941cde1193b084c1273ebfdb3176f
+ISSUER-   ***ISSUED*** vc: diploma#80837 	 leaf:  c9fb6a6aafcbb46867256b081fca5c03ba0281579cf66122ea87c9f158b1130b
+ISSUER-   ***ISSUED*** vc: diploma#80838 	 leaf:  5e0aa96d3c3df1c258b64f36d89ddc34cf25f135bf21e80242a0325c1ae9f48c
+ISSUER-   ***ISSUED*** vc: diploma#80839 	 leaf:  005989f778ce95f8c02f446077b6e37e1994b604e36b2d7cef35615854035332
+ISSUER-   ***ISSUED*** vc: diploma#80840 	 leaf:  051ca43385cfc754ab20e92eaac16b5462abf6296c7c83e1fcbfe9126a75ec1b
+ISSUER-   ***ISSUED*** vc: diploma#80841 	 leaf:  6f56a17f8ee4f128797897ed32ab725c731c1667d44876edae6a246826f52012
+ISSUER-   ***ISSUED*** vc: diploma#80842 	 leaf:  4bc897fc21f563a75430a73fe1b50260d1701ac16c048e560cf72e9e2458ae22
+ISSUER-   ***ISSUED*** vc: diploma#80843 	 leaf:  ede129323a3a147bfca7dcf8c77a8b8e78b980b92b2742dce4abf87a1ec345d4
+ISSUER-   ***ISSUED*** vc: diploma#80844 	 leaf:  b8a865409706aa1a458f3a135149aa5a62c6e6f03bba078cf8b8da439972104a
+ISSUER-   ***ISSUED*** vc: diploma#80845 	 leaf:  5dcf3caf7e33bbefd744837e5b17850f3cb1b7b58287456b553b695bb79313c5
+ISSUER-   ***ISSUED*** vc: diploma#80846 	 leaf:  3febcebb640bf47efe37231a4e2abfa14c1ec74e999bd3726a09663aeaab1bd0
+ISSUER-   ***ISSUED*** vc: diploma#80847 	 leaf:  07ce5aa8571e1daa76c874bf3ff2d7bdaf322c49a25b46cf73e5a447e8ba44e6
+ISSUER-   ***ISSUED*** vc: diploma#80848 	 leaf:  d106be62c703006473ad8afa06440fdaec1cb3c08e1a0ff69c5fc1dea47d8f2e
+ISSUER-   ***ISSUED*** vc: diploma#80849 	 leaf:  de57c82cd0a081881d8684df169895aa3f99755c0ad563c9619819523cdf6112
+ISSUER-  ***REVOKED*** vcs: [diploma#80724 diploma#80759] 	 mt indexes:  map[diploma#80724:129 diploma#80759:164] 	 affected VCs Indexes:  Set{166, 160, 162, 131, 133, 128, 134, 127, 163, 165, 132, 130, 161, 159} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#80781 diploma#80773] 	 mt indexes:  map[diploma#80773:178 diploma#80781:186] 	 affected VCs Indexes:  Set{177, 188, 175, 189, 190, 176, 180, 181, 187, 183, 184, 179, 182, 185} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#80815 diploma#80786] 	 mt indexes:  map[diploma#80786:191 diploma#80815:220] 	 affected VCs Indexes:  Set{222, 193, 194, 218, 195, 196, 197, 216, 217, 219, 221, 215, 192, 198} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#80816 diploma#80776] 	 mt indexes:  map[diploma#80776:181 diploma#80816:221] 	 affected VCs Indexes:  Set{216, 217, 176, 180, 182, 218, 220, 178, 215, 219, 222, 177, 179, 175} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#80797 diploma#80787] 	 mt indexes:  map[diploma#80787:192 diploma#80797:202] 	 affected VCs Indexes:  Set{199, 206, 198, 191, 197, 201, 205, 193, 196, 200, 203, 204, 194, 195} 	 number of affected VCs:  14
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80722 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80723 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80724 	 mt index:  129 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80725 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80726 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80727 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80728 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80729 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80730 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80731 	 mt index:  136 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80732 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80733 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80734 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80735 	 mt index:  140 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80736 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80737 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80738 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80739 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80740 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80741 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80742 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80743 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80744 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80745 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80746 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80747 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80748 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80749 	 mt index:  154 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80750 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80751 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80752 	 mt index:  157 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80753 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80754 	 mt index:  159 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80755 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80756 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80757 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80758 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80759 	 mt index:  164 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80760 	 mt index:  165 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80761 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80762 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80763 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80764 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80765 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80766 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80767 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80768 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80769 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80770 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80771 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80772 	 mt index:  177 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80773 	 mt index:  178 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80774 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80775 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80776 	 mt index:  181 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80777 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80778 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80779 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80780 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80781 	 mt index:  186 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80782 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80783 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80784 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80785 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80786 	 mt index:  191 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80787 	 mt index:  192 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80788 	 mt index:  193 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80789 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80790 	 mt index:  195 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80791 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80792 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80793 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80794 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80795 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80796 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80797 	 mt index:  202 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80798 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80799 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80800 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80801 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80802 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80803 	 mt index:  208 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80804 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80805 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80806 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80807 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80808 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80809 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80810 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80811 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80812 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80813 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80814 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80815 	 mt index:  220 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80816 	 mt index:  221 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80817 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80818 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80819 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80820 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#80821 	 mt index:  226 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+SIMULATOR - 	 indexes of VCs that are affected by revocation:  Set{215, 201, 180, 175, 184, 222, 131, 127, 203, 163, 216, 221, 205, 128, 190, 177, 195, 134, 193, 194, 199, 200, 132, 219, 182, 187, 196, 188, 176, 183, 185, 192, 217, 198, 160, 133, 220, 206, 218, 197, 162, 159, 165, 204, 191, 166, 179, 178, 130, 189, 161, 181}
+SIMULATOR - 	 indexes of VCs that are affected by false positives:  Set{diploma#80749, diploma#80752, diploma#80760, diploma#80788, diploma#80790, diploma#80821, diploma#80731, diploma#80754, diploma#80772, diploma#80803, diploma#80735}
+SIMULATOR - 	 indexes of VCs that retrieved witnesses from issuer:  Set{diploma#80754, diploma#80760, diploma#80772, diploma#80788, diploma#80790}
+SIMULATOR : 	 results:  Total VCs : 100
+Total Revoked VCs : 10
+False Positive Rate : 0.100000
+Bloom Filter Size : 48
+Bloom Filter indexes per entry (no of hash functions) : 4
+Merkle Tree Accumulator height : 7
+Merkle Tree Accumulator Level Stored in DLT : 4
+ 
+Amount (in gwei) paid per revocation: 15732738
+Number of witness that are affected by revocation and require witness update in Merkle Tree Accumulator: 52
+Number of False Positives : 11
+Number of VCS that ended up updating witnesses from issuer: 5
+Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : 6
+
+ERROR - results.json file open error
+unable to write results to file
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0x3d111a1BD9b4906c47108c801DAA8b70903B936E
+blockchain rpc endpoint: http://158.39.200.125:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0x4a33ABa050A867968a1a585C7a249A3DaC585ADC
+sender private key: 663f30e301d6f89232d31d6764ee87bf7c7c6799cceeba2150a6687cdc32b7f6
+sender pass phrase: simple phrase
+other accounts in ganache test network :  []
+logger environment: dev
+logger output file name: logs.json
+logger output mode: file
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:
+total of VCs would be issued:10
+total of VCs would be revoked:5
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  2
+merkle tree height:  4
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing Experiment parameters--------------------------------------------------
+exp2 {20 10 0.1 3 5}
+exp3 {100 10 0.1 4 7}
+********************************************************************************************************************************
+
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0xE95ac8634ba4C8b04d0758672E461683dA426682
+BLOCKCHAIN- 	 tx hash:  0x5215cb084542d1e66e51f1ab2e5391c634bf36b1b6fd2cbcb786bb4006598e11
+********************************************************************************************************************************
+
+"MERKLE TREE Accumulator- 	 total nodes:  63
+BlOOM FILTER: size :  48 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************
+ISSUER-   ***ISSUED*** vc: diploma#57720 	 leaf:  86abfc5017eec247535461ad00d91b666eac2e527cd73f98a202c2c4ec829c91
+ISSUER-   ***ISSUED*** vc: diploma#57721 	 leaf:  5ca840afccfb118c24f085ea75086bf740cf3e7d56a6f8589af5748d46914b40
+ISSUER-   ***ISSUED*** vc: diploma#57722 	 leaf:  63668bfc766bfd43d432ff304be2423605a4436088e21f6eb1b91bdca8bf5a06
+ISSUER-   ***ISSUED*** vc: diploma#57723 	 leaf:  0c1b15640b3aa02af3c416f2cefa5efc166e7e120664756d9086c665852c7833
+ISSUER-   ***ISSUED*** vc: diploma#57724 	 leaf:  1201a4eff0ec4f4a310fa34cfba48342349d5a59fe78ae10d6fdc44e896718c4
+ISSUER-   ***ISSUED*** vc: diploma#57725 	 leaf:  6bc5c0a4f056d4b0e86ab23ee9e42c6c09ca022ddb881022990e72c3ca94c5ec
+ISSUER-   ***ISSUED*** vc: diploma#57726 	 leaf:  0ab801b91023830636cbf8abb25df342c5127939f2870fcf59241980d0b9ac58
+ISSUER-   ***ISSUED*** vc: diploma#57727 	 leaf:  15be06b5c2bd65263454c38bf234533d27b721e406adf13b8f55ce71136fdd73
+ISSUER-   ***ISSUED*** vc: diploma#57728 	 leaf:  d82ef1e10a58fad79160a28313beb712d41a8e3092c24d9b3744928be93fe6a6
+ISSUER-   ***ISSUED*** vc: diploma#57729 	 leaf:  293f5d37ba9135b711b07f43c69895770ffaed2a41e96d2acd8a6a594f5aa695
+ISSUER-   ***ISSUED*** vc: diploma#57730 	 leaf:  afc380ef7c4f21de51fb72f3e0ae0889ffb5e7bdaf72aab8e71a132174fdcfce
+ISSUER-   ***ISSUED*** vc: diploma#57731 	 leaf:  881ca972aa669a5fd5e6f76d06fc5018ca76ac7b748a40e481b40fac0e6e7f42
+ISSUER-   ***ISSUED*** vc: diploma#57732 	 leaf:  76ea1c78fc418d7f16e7e75ab335c551459814e2a9cffcae6adbe3be603d51cd
+ISSUER-   ***ISSUED*** vc: diploma#57733 	 leaf:  1a3a9342d62e17881f21ece709aa194c55615d05fb691fad8e86aba1f80069fb
+ISSUER-   ***ISSUED*** vc: diploma#57734 	 leaf:  58998b3f64eddf4b06837a773dbe88fe88295a5ff848cb5b93476b2c7bd50ffd
+ISSUER-   ***ISSUED*** vc: diploma#57735 	 leaf:  3db25ab1020fa46022a391f81f24a8348bf02395e981965bb9b54ed306d9a2bb
+ISSUER-   ***ISSUED*** vc: diploma#57736 	 leaf:  fa77d8bcbc8642ea07ceae3db324b9f1958cc5752d7a63428ebab0f8f46daacf
+ISSUER-   ***ISSUED*** vc: diploma#57737 	 leaf:  2939402392f7d7dafe8a7709df884752c976a9320993a02bb69dd0a364f8de8c
+ISSUER-   ***ISSUED*** vc: diploma#57738 	 leaf:  34e4aa80f97445c45e30c68de4db9f71783e76998b7f2d64098552ecb9cc06a2
+ISSUER-   ***ISSUED*** vc: diploma#57739 	 leaf:  e3838f47ac47988bcee81a376c6637753048a810600a4f2582f1007ada234a95
+ISSUER-   ***ISSUED*** vc: diploma#57740 	 leaf:  f9386382d96407573586ab8e1567712f41d25ccc1eafe84aa7531e7f8bbcd1a8
+ISSUER-   ***ISSUED*** vc: diploma#57741 	 leaf:  9e1d32e8637d78b0d5cab81ae7aa3bdd497a06fb4ce2eb075ba178e840ed29bb
+ISSUER-   ***ISSUED*** vc: diploma#57742 	 leaf:  e3bcf4513c6dae8acf800f5ce80ecc033dcee54e693ed7f3889fde6a08941dab
+ISSUER-   ***ISSUED*** vc: diploma#57743 	 leaf:  79a37be728b49bbe51c5b3412ec606c19c977555d11976ab2ca28f5138f9147f
+ISSUER-   ***ISSUED*** vc: diploma#57744 	 leaf:  6fa1f99373aeec36f941a7bae1646ca52b0ef7b03eb80b98e66561ef738556ee
+ISSUER-   ***ISSUED*** vc: diploma#57745 	 leaf:  a7ae7248111b5660eb4079a6b231c603e9b5bdd0f5e78825f9312d2f1a22d88e
+ISSUER-   ***ISSUED*** vc: diploma#57746 	 leaf:  ec0e936dde706a0bf4e687f7cca98c51b1c16dbe58caedf92dd443994791bb4c
+ISSUER-   ***ISSUED*** vc: diploma#57747 	 leaf:  f36d501ee3a4f7ad640ce4cf58d2b40d68fc0af2aab6df97de1b9c635c5a6afc
+ISSUER-   ***ISSUED*** vc: diploma#57748 	 leaf:  de833cf1528f1b2dd989bd3ef16b8d0fb2e74f9b1558221ee1728e659cac7bee
+ISSUER-   ***ISSUED*** vc: diploma#57749 	 leaf:  cca7212f741e468324685b0fedd95f6669c01d8dac07e4e15353d2667ae8c7bd
+ISSUER-   ***ISSUED*** vc: diploma#57750 	 leaf:  a3577ae688d27254cb5c2838ddf5bb70444d74c7ec3e82fa4c746d46cc104a06
+ISSUER-   ***ISSUED*** vc: diploma#57751 	 leaf:  887071afba81cccc204d14c1b3324f91b159f231350a4bc5e26c19e32cadb72d
+ISSUER-  ***REVOKED*** vcs: [diploma#57722 diploma#57734] 	 mt indexes:  map[diploma#57722:33 diploma#57734:45] 	 affected VCs Indexes:  Set{34, 43, 44, 46, 31, 32} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#57733 diploma#57729] 	 mt indexes:  map[diploma#57729:40 diploma#57733:44] 	 affected VCs Indexes:  Set{43, 45, 46, 39, 41, 42} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#57731 diploma#57736] 	 mt indexes:  map[diploma#57731:42 diploma#57736:47] 	 affected VCs Indexes:  Set{50, 41, 39, 40, 48, 49} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#57723 diploma#57728] 	 mt indexes:  map[diploma#57723:34 diploma#57728:39] 	 affected VCs Indexes:  Set{41, 42, 31, 32, 33, 40} 	 number of affected VCs:  6
+ISSUER-  ***REVOKED*** vcs: [diploma#57735 diploma#57737] 	 mt indexes:  map[diploma#57735:46 diploma#57737:48] 	 affected VCs Indexes:  Set{50, 43, 44, 45, 47, 49} 	 number of affected VCs:  6
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57720 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57721 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57722 	 mt index:  33 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57723 	 mt index:  34 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57724 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57725 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57726 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57727 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57728 	 mt index:  39 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57729 	 mt index:  40 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57730 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57731 	 mt index:  42 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57732 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57733 	 mt index:  44 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57734 	 mt index:  45 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57735 	 mt index:  46 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57736 	 mt index:  47 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57737 	 mt index:  48 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57738 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#57739 	 mt index:  50 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+SIMULATOR - 	 indexes of VCs that are affected by revocation:  Set{34, 45, 43, 50, 32, 40, 33, 44, 46, 31, 47, 49, 41, 42, 39, 48}
+SIMULATOR - 	 indexes of VCs that are affected by false positives:  Set{diploma#57739}
+SIMULATOR - 	 indexes of VCs that retrieved witnesses from issuer:  Set{diploma#57739}
+SIMULATOR : 	 results:  Total VCs : 20
+Total Revoked VCs : 10
+False Positive Rate : 0.100000
+Bloom Filter Size : 48
+Bloom Filter indexes per entry (no of hash functions) : 4
+Merkle Tree Accumulator height : 5
+Merkle Tree Accumulator Level Stored in DLT : 3
+ 
+Amount (in gwei) paid per revocation: 10294501
+Number of witness that are affected by revocation and require witness update in Merkle Tree Accumulator: 16
+Number of False Positives : 1
+Number of VCS that ended up updating witnesses from issuer: 1
+Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : 0
+
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0xDc0dA4584baCbB468F822a3930D677d867D1B0A3
+BLOCKCHAIN- 	 tx hash:  0x0e5d061a590f453efc182b2e1ff1f44592f8156a9874e795874d6397012319bb
+********************************************************************************************************************************
+
+"MERKLE TREE Accumulator- 	 total nodes:  255
+BlOOM FILTER: size :  48 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************
+ISSUER-   ***ISSUED*** vc: diploma#96036 	 leaf:  a8fcd827a6e53fb1f20189e3352bea0c57f9d2ed04696203712e9b79c290033e
+ISSUER-   ***ISSUED*** vc: diploma#96037 	 leaf:  a96b59576bcad974ff2cc6d2400906ea6abd8a644ec263ab5742e0033b06e018
+ISSUER-   ***ISSUED*** vc: diploma#96038 	 leaf:  a50e3572e9a3536dd782ea5b1000912f46a5d8b06c3f5dffbf72dcec5ee98f85
+ISSUER-   ***ISSUED*** vc: diploma#96039 	 leaf:  86ef6bfe04b72acf08700fbc3a9cb4f6e55484025bb174983d352387e0e7a955
+ISSUER-   ***ISSUED*** vc: diploma#96040 	 leaf:  dbbddd6b46507a1be01e44d1dfca6fc33516f02f881a451df2c11d3c390a4767
+ISSUER-   ***ISSUED*** vc: diploma#96041 	 leaf:  3b9cfa5ce05075bb515c89283f098ac978c07be83a59b6af446f31ccd15787b1
+ISSUER-   ***ISSUED*** vc: diploma#96042 	 leaf:  4cdabc11db9490de780a4f2593930bce07a03051cafd6fa294234cbc98581cb8
+ISSUER-   ***ISSUED*** vc: diploma#96043 	 leaf:  bfb47b33614fa09161eb81a6472a941435a9b15fff4aff733e48db4f8912e582
+ISSUER-   ***ISSUED*** vc: diploma#96044 	 leaf:  c503135bee089682013d3856342ac3d5697acb5df558950d416d06657f525818
+ISSUER-   ***ISSUED*** vc: diploma#96045 	 leaf:  4d3b8635ac63e45a97c944656cb5b953e2c7075df54c467522e9754d9180feed
+ISSUER-   ***ISSUED*** vc: diploma#96046 	 leaf:  415fb1685ebab46beacf6164a7c6b01f55dc4f1f2c1bc70f57976ff0a142bfc6
+ISSUER-   ***ISSUED*** vc: diploma#96047 	 leaf:  e1a608863a42f2c7d8baf50dbf4a217d0871e11b034a5b7247ce74e8e2433a62
+ISSUER-   ***ISSUED*** vc: diploma#96048 	 leaf:  bc2b9991a4f7698bc6482297dc88f815b1f2da6790d7b7f6898b507777c1e05c
+ISSUER-   ***ISSUED*** vc: diploma#96049 	 leaf:  e9e96d2a1ee86b6620672afb25d745e0cb3ca5e8a94b164e2072e19d117994cd
+ISSUER-   ***ISSUED*** vc: diploma#96050 	 leaf:  c342334e02680efb563b442adc571dec47953a5f768a3523a86d84117414ad3e
+ISSUER-   ***ISSUED*** vc: diploma#96051 	 leaf:  f79dd049351d96bc86170e5af9079b010f1259a2dbdecbdecab0e2de1a1146b0
+ISSUER-   ***ISSUED*** vc: diploma#96052 	 leaf:  e483efb6b56425e030c16381b3b56fa9a2661d6ec68affd63a21cad6431b8f94
+ISSUER-   ***ISSUED*** vc: diploma#96053 	 leaf:  d7e10001e54e43343643d8f523d250175894bd30a6565f7b363b1bb1a933d5f9
+ISSUER-   ***ISSUED*** vc: diploma#96054 	 leaf:  f0b7fa0c231577a4d60c45c7ed47a58bc14a624664173a88838978ae20d979b4
+ISSUER-   ***ISSUED*** vc: diploma#96055 	 leaf:  3bc408d11de91665926128509fe61a0bad34bb01a50e9e043565f1f591c24158
+ISSUER-   ***ISSUED*** vc: diploma#96056 	 leaf:  de691f111b11ee5701ebcfb132d81e7f83998466e61d8760c3dca70e8424f7d2
+ISSUER-   ***ISSUED*** vc: diploma#96057 	 leaf:  a50ee9692730a973337ba357f436c9e4ba7639f05939be12f30c9798b95f9f11
+ISSUER-   ***ISSUED*** vc: diploma#96058 	 leaf:  fc7e7cd5d47f091d2e640835ae0c1a499e9bb7c8db59c7b25fce91c2cfebd093
+ISSUER-   ***ISSUED*** vc: diploma#96059 	 leaf:  c315eb7c0737499f17c9d0eefaa35711a6f631fcd2b67769315a5e6dfb94a2ac
+ISSUER-   ***ISSUED*** vc: diploma#96060 	 leaf:  ef5652d906605d686ae512da88b8c7803ff47063f8aa846f6fb1023f23f8253a
+ISSUER-   ***ISSUED*** vc: diploma#96061 	 leaf:  f6fbbe8aeb460ddac21c685fd343b0bace6c18b5adbe32aff1ac37f1dce80991
+ISSUER-   ***ISSUED*** vc: diploma#96062 	 leaf:  b7741021391bd53d1494489c5cfc01bdaba06c89ec391e8427f93ab89ceef56c
+ISSUER-   ***ISSUED*** vc: diploma#96063 	 leaf:  021afd86d530dfa14b78a64368abb224bf479f974ff88eff372f7bb9df8be42c
+ISSUER-   ***ISSUED*** vc: diploma#96064 	 leaf:  82c0a9cde0da2e7d0454232534143fcaad24ae5816d4bd70e5eaad691adb2259
+ISSUER-   ***ISSUED*** vc: diploma#96065 	 leaf:  7d1cf69dee66a87e7909d88c5aab49cdbb438f3219341b21e7479ee83d328c23
+ISSUER-   ***ISSUED*** vc: diploma#96066 	 leaf:  c0d156e0afdba39d49cc76d1602863e1e15a6b82093750b3c5bc3788b8861a60
+ISSUER-   ***ISSUED*** vc: diploma#96067 	 leaf:  3e7d335f724a6ca8e64196cef8600bcafb65ff5c6905d04de7bd6260e34e57fa
+ISSUER-   ***ISSUED*** vc: diploma#96068 	 leaf:  61ae6e874c9a93d9991ba1846808b70580892e4b825629d7f5e4b75bfb13bc4f
+ISSUER-   ***ISSUED*** vc: diploma#96069 	 leaf:  33c7abfb52e4417dde67956ffe8607131fa3cbc238f5084b18218ccca9c8f256
+ISSUER-   ***ISSUED*** vc: diploma#96070 	 leaf:  e5b0b2b7b40c43db6e1584112918af900970a4cf2cff035111600d933b7f2941
+ISSUER-   ***ISSUED*** vc: diploma#96071 	 leaf:  dd39bd8ffb70fba15a0a05768394daaff3d984bc628baf1622b4349e943b6baa
+ISSUER-   ***ISSUED*** vc: diploma#96072 	 leaf:  71289369b83d7840c665ecca341d96e5dad651bbc871acf7acd4439c31065ec0
+ISSUER-   ***ISSUED*** vc: diploma#96073 	 leaf:  72e92188ddf1d83578cfc2aa1801c55c5a5aaa6ea13763d5b02b01f5387c4dc2
+ISSUER-   ***ISSUED*** vc: diploma#96074 	 leaf:  176443430717b92d01980759b02ed9b540b5ce1dec009bdef2a90f53ee32c2b1
+ISSUER-   ***ISSUED*** vc: diploma#96075 	 leaf:  fe3c46cb4bf25a99c428dcad2779df08ff375f6d2f267232c0f74dcf255c0e10
+ISSUER-   ***ISSUED*** vc: diploma#96076 	 leaf:  3ef88fbc01952f8f38a3667953378d49dd16a985595513242c82e1bc4bb82a96
+ISSUER-   ***ISSUED*** vc: diploma#96077 	 leaf:  755a6111815a95807c972152c36d6608c8e0a248dd3d134dcba37e544dc80e91
+ISSUER-   ***ISSUED*** vc: diploma#96078 	 leaf:  4e8b33a3ce9bd332bc830426f3dc32e28a0bc2b0f6bf0f427cc6483150509c80
+ISSUER-   ***ISSUED*** vc: diploma#96079 	 leaf:  d4e15889438b823b69c1f11d565458c1802dc8bc64f80bf15c017bb79b109470
+ISSUER-   ***ISSUED*** vc: diploma#96080 	 leaf:  c6d32826d9f746d0d235fc2dff0cd380d06ddb19bbcee0fb206927a3478ca653
+ISSUER-   ***ISSUED*** vc: diploma#96081 	 leaf:  6fd80a8666291197e99d9fb6fbc5af1aeb4905e1bfed0435483581a3a66b0c10
+ISSUER-   ***ISSUED*** vc: diploma#96082 	 leaf:  1cbf0f62ff54f630359e1e2a45abe59e9a5157683e84604a86a17eed65595d69
+ISSUER-   ***ISSUED*** vc: diploma#96083 	 leaf:  466d9fb0773098dcee3dae58ca40f113aa47cd01b001d717b366b925e78bf22d
+ISSUER-   ***ISSUED*** vc: diploma#96084 	 leaf:  bba36fd906a4ed877f06b25d52b1edae63d9c4a19f208a9a4db318b1ea22e435
+ISSUER-   ***ISSUED*** vc: diploma#96085 	 leaf:  6a292c66c7679d7613f985fa227c7c764ff24f4f898d0644ab0f7e3fec974742
+ISSUER-   ***ISSUED*** vc: diploma#96086 	 leaf:  a9d9a0435f6e6af42f96e7deb1642c03c896b5cf309f9bd389785577fc2b3452
+ISSUER-   ***ISSUED*** vc: diploma#96087 	 leaf:  10b2edb95383ff11229f511c2d0e3411a606ad5f2e77313433be2b5d932919da
+ISSUER-   ***ISSUED*** vc: diploma#96088 	 leaf:  e382b7619d13397f16e0fbff250b4d6cf4dac8e69c0c5ab454265d0de0e5c351
+ISSUER-   ***ISSUED*** vc: diploma#96089 	 leaf:  04b4b7160f7f24c4ea7878019c34718ae711f30d6f09267af16467cdf5bcc949
+ISSUER-   ***ISSUED*** vc: diploma#96090 	 leaf:  fd1c3089f3fbfad3eda53ef328e8f1b91067d265308928c53146bf23e22757f7
+ISSUER-   ***ISSUED*** vc: diploma#96091 	 leaf:  3f82a70abb8575cd593435ca290d59a068259f1ad00ef97771758f072cf86f09
+ISSUER-   ***ISSUED*** vc: diploma#96092 	 leaf:  4b4bae8526d3aeb165b93844d9c56f405347fbc124eb5cb61d11698ddf12c8e4
+ISSUER-   ***ISSUED*** vc: diploma#96093 	 leaf:  a86f9cb00934ad272ba2356db26d893fbb770f55edfa51fb3488e8833e950f3e
+ISSUER-   ***ISSUED*** vc: diploma#96094 	 leaf:  09db547772d0fa06a796621a9cbf1f93f94a11036f906f23224e6378f8c57b25
+ISSUER-   ***ISSUED*** vc: diploma#96095 	 leaf:  95a4a95fc458211d9801c0842c8220d19bb05313f0bf1b7ca959351f31ba0abf
+ISSUER-   ***ISSUED*** vc: diploma#96096 	 leaf:  af1ddebb1bb5a334b0d4853a41d3a7fe0bd9466539bd6bbad07f4c5d8b341391
+ISSUER-   ***ISSUED*** vc: diploma#96097 	 leaf:  7df0539c3f46758a2e2a54edc4ff161ac28ffdc125e3195049c6f35eceb17500
+ISSUER-   ***ISSUED*** vc: diploma#96098 	 leaf:  11c05f3f21ffb0a0a52cf848f26339fe48c16b941299566290f5e473a8ed13c1
+ISSUER-   ***ISSUED*** vc: diploma#96099 	 leaf:  5acd25e74aebb9425659d85766e303ced043d1a18ed89a6a26ccd813dd0cbbbe
+ISSUER-   ***ISSUED*** vc: diploma#96100 	 leaf:  4560fb4a52f942c0719990d057246979c7ded99934ecddd9a1e188a60bb6771c
+ISSUER-   ***ISSUED*** vc: diploma#96101 	 leaf:  6a049f28486d4da4ef272e161cf2125e4c13d8933e63abca8f813d546fbd1682
+ISSUER-   ***ISSUED*** vc: diploma#96102 	 leaf:  8923fb95b3c2d8f875fffe6706106215f7ec72cc1c9084941ffd3df5b9312052
+ISSUER-   ***ISSUED*** vc: diploma#96103 	 leaf:  7b3df7f3d201a53914d077dab4e6f49e1857671afb77697d0cd572165954d0cf
+ISSUER-   ***ISSUED*** vc: diploma#96104 	 leaf:  21561f9fa26e9ff86150a2a09b70e62db4272ff0f58b6c5249ba485e01b542c3
+ISSUER-   ***ISSUED*** vc: diploma#96105 	 leaf:  36cac4f46793d0c7f614f504bfa430c703b5e378d5f6c2eeed98aa9f08a77600
+ISSUER-   ***ISSUED*** vc: diploma#96106 	 leaf:  3c6c76a1bae0197a4fc6569d7aa20394bc3d702996cfa9a5219f288846f6a090
+ISSUER-   ***ISSUED*** vc: diploma#96107 	 leaf:  7cf6e389c58fdb0701482d87a96a7a02ba2631a4653f4fef6f3703efcac848c0
+ISSUER-   ***ISSUED*** vc: diploma#96108 	 leaf:  6f53907d3f8d08f65c1d93ff6d524fb51e2f3646a7d8d6dd5379a99dd6bf32bd
+ISSUER-   ***ISSUED*** vc: diploma#96109 	 leaf:  a1d2fe5d5400ded10aa09e96ba76ee2329cae437dd5a530aae16e5b1bef8bd61
+ISSUER-   ***ISSUED*** vc: diploma#96110 	 leaf:  46df2159b659210c13cb693f2b5c678b55845064059a4149f1091e3aa3506848
+ISSUER-   ***ISSUED*** vc: diploma#96111 	 leaf:  a2cd71e82a016f49acc75de65dfbd7648a3e2aa68a5e1750c8429ea3eee0aa46
+ISSUER-   ***ISSUED*** vc: diploma#96112 	 leaf:  5adbf5f5eccffa9f2a2f225730eb1bf785055489ac76f00bcb79700229eb4f78
+ISSUER-   ***ISSUED*** vc: diploma#96113 	 leaf:  301620b1019dd8034fb2d03376d428775b750929f95a60dbb154f6cf7641f779
+ISSUER-   ***ISSUED*** vc: diploma#96114 	 leaf:  69189bf0941ac3aa1da09cac28375d8461e247f9f06ced1026143a7e8a9b0046
+ISSUER-   ***ISSUED*** vc: diploma#96115 	 leaf:  bab3ce2e70c192626649a71ffd7f13689d71b58007a48a9a4630143cca6707fe
+ISSUER-   ***ISSUED*** vc: diploma#96116 	 leaf:  18f846c297091fa001c3a9bc2e753e829142bb6ee96c19994b9fe6c88ad03663
+ISSUER-   ***ISSUED*** vc: diploma#96117 	 leaf:  e9f81519f1cf4006e17f4a2fd72272120e4921ba1f8e4c8d6845ee4df71fdc75
+ISSUER-   ***ISSUED*** vc: diploma#96118 	 leaf:  8b21bc4040c6de6e8bf674cdfbc9620610e01277f7895f082a9571f3692c1a16
+ISSUER-   ***ISSUED*** vc: diploma#96119 	 leaf:  b4411ea373aeaaee355c827b9851f84c1862ff8bbc1c0ed3bcc02d6125535ee9
+ISSUER-   ***ISSUED*** vc: diploma#96120 	 leaf:  0ccd5f187bbb5410b2b7c47ada7bbf1b8337a0665470f105eecacf077c1f64bc
+ISSUER-   ***ISSUED*** vc: diploma#96121 	 leaf:  3e1ea8ebef486b99b65e17f0aaf38a1f308622eb098409c2c47a87d22257d9b4
+ISSUER-   ***ISSUED*** vc: diploma#96122 	 leaf:  ab23609532535a7cb24e8e200bf45db4311c364de700e7fb05513c326cf0d00c
+ISSUER-   ***ISSUED*** vc: diploma#96123 	 leaf:  66caf14058cbcc63672eb081efae2bc9bbb88416136264869e5baf98483c9a60
+ISSUER-   ***ISSUED*** vc: diploma#96124 	 leaf:  f115fd19022a05e45d601c34bb75d9e0e63eeeccf77ffb1f0238f53fc184a483
+ISSUER-   ***ISSUED*** vc: diploma#96125 	 leaf:  abe5827f95189b4478c51ebab33c688a94419ae125793cf12efda4bf96d1f27c
+ISSUER-   ***ISSUED*** vc: diploma#96126 	 leaf:  5ee07e68f83ad28c93144c92e6b3c85440621efb9e607e98fea2e06529a9a9e4
+ISSUER-   ***ISSUED*** vc: diploma#96127 	 leaf:  0de46f1de1baeaaeba7b30d3409ee5e18f5896e81d3ec6b2c19a3799e3589839
+ISSUER-   ***ISSUED*** vc: diploma#96128 	 leaf:  5ea29f07e57322aa7489b7dd6d177a54e6639cb9f7c9b67cbe6ae5bc6269cd82
+ISSUER-   ***ISSUED*** vc: diploma#96129 	 leaf:  09f7fa85e9a7e4bf143084b018fe7760e9b223f6fc1143034b3b8acda8c170e3
+ISSUER-   ***ISSUED*** vc: diploma#96130 	 leaf:  113d58cf4927525e5b2f497d9dc40bf47326cc7298f6a2d16746ce5647bd4dc8
+ISSUER-   ***ISSUED*** vc: diploma#96131 	 leaf:  7b4ab3c1837224979bca57ffad619a3a92dc6af1aba676156cc581c04615edc3
+ISSUER-   ***ISSUED*** vc: diploma#96132 	 leaf:  8e4273054d09a69e5bc023578de4b3847c86e28abd5d2e89dcea024fa5879658
+ISSUER-   ***ISSUED*** vc: diploma#96133 	 leaf:  f258b3d31170e3a21d3fb01491ae19819f9e3b5d8f235f640c4b5f4ef37833a3
+ISSUER-   ***ISSUED*** vc: diploma#96134 	 leaf:  a7e9430d998a077211152c03e0ad913f497d2ac7120a309b42e29c2cc79e3830
+ISSUER-   ***ISSUED*** vc: diploma#96135 	 leaf:  822c1b5825e6e982aa48827bdea8948016b3e7cfd7fc5d0e288411d01d641c6b
+ISSUER-   ***ISSUED*** vc: diploma#96136 	 leaf:  168639f128b74735aed4725f51bd49d75f44dafa1e76aa5dd47a32095a1723bc
+ISSUER-   ***ISSUED*** vc: diploma#96137 	 leaf:  f951ac6b407f09e7df4fb3df6047410984e24b45de4334b4a5b76a4c038af22c
+ISSUER-   ***ISSUED*** vc: diploma#96138 	 leaf:  b9037903097df688af0f769a5d4c3e79cd7cde3304db88cdfa8ab3e21591714e
+ISSUER-   ***ISSUED*** vc: diploma#96139 	 leaf:  851735e2e6a0f83c3e0d5fbd7021d0087e0b8e45c12b159304d9a1c366a424f7
+ISSUER-   ***ISSUED*** vc: diploma#96140 	 leaf:  615ed0ab65c58c167267398e233e1da3098b941923ce88f1924338b4f5c90688
+ISSUER-   ***ISSUED*** vc: diploma#96141 	 leaf:  553f6278590b80a1ee68710a849ed20f1166593cd18b2d80ee49653395ab02cd
+ISSUER-   ***ISSUED*** vc: diploma#96142 	 leaf:  bbccfea07eba4b4b513c914a10b1cdb704a3c302bdc71a6980343efd16b4b26b
+ISSUER-   ***ISSUED*** vc: diploma#96143 	 leaf:  b38a66709d36854a46002e248809e5d6d1dc4de340598f131833e5e12397742a
+ISSUER-   ***ISSUED*** vc: diploma#96144 	 leaf:  b7874eff38f43e3659e5ae7aa6fb89e0b1fdc0ab49b1469825f95aafb9ec2ca8
+ISSUER-   ***ISSUED*** vc: diploma#96145 	 leaf:  d2c1b930b6c186eaf77eaf94107a9933f4d24754346d7a0dcaaf2b61c49dddd7
+ISSUER-   ***ISSUED*** vc: diploma#96146 	 leaf:  12a15cd063b327022998d7be4b7ea1edf42ab15579fd553808a9f651a32b57a8
+ISSUER-   ***ISSUED*** vc: diploma#96147 	 leaf:  ff3c24e134a3f102bc306a341ff95eb5c43cdefeb53788533411cf3227ecddac
+ISSUER-   ***ISSUED*** vc: diploma#96148 	 leaf:  e5c103037d19cd0dc94d387259334a958c329ba8b0956289dcfd2033e58b1d31
+ISSUER-   ***ISSUED*** vc: diploma#96149 	 leaf:  7013205320468c4ba072bc1b38895697244e89925ce480f93a3f7c25c862b3a1
+ISSUER-   ***ISSUED*** vc: diploma#96150 	 leaf:  83cfb4e71df673328ef2912463a13502d8eb6bc4d465094a5e794cec401e0ae0
+ISSUER-   ***ISSUED*** vc: diploma#96151 	 leaf:  43627305d2a2608b2f80974200aa52159cba9052fc35b3d46539e38acf773fce
+ISSUER-   ***ISSUED*** vc: diploma#96152 	 leaf:  28c56f2c298f6bd4ea1843d81b641c30e40bfe0ba493d2fb48c2523091942294
+ISSUER-   ***ISSUED*** vc: diploma#96153 	 leaf:  6332ab6197b6d672c7d3f0c03ec03c755964b865cfca54d010f20c9853c70036
+ISSUER-   ***ISSUED*** vc: diploma#96154 	 leaf:  dd403b971d552b399d7fb25048c94f7a49ece235e92e657b2801e2998377e241
+ISSUER-   ***ISSUED*** vc: diploma#96155 	 leaf:  1da15a7b4d40f830cf89347a2c8093fa9eb686d66f77273ce1ed2f222055cdac
+ISSUER-   ***ISSUED*** vc: diploma#96156 	 leaf:  03f7e27091a3c0204fb640f5346b5611ee285c92161f0ea7b555b12138a30c11
+ISSUER-   ***ISSUED*** vc: diploma#96157 	 leaf:  b1ddfe2f8d55b43c210f5fba778a8c689284f4e8ed0701e186a564cbc619cc3d
+ISSUER-   ***ISSUED*** vc: diploma#96158 	 leaf:  2aa6e1b703a106a047de16f84391b6781d7a9266c5acaf4ed6c142292c2ef47a
+ISSUER-   ***ISSUED*** vc: diploma#96159 	 leaf:  9c687d9842b3433dd7e4158a6791c270703e5602233c4426f3cea9371ad6477a
+ISSUER-   ***ISSUED*** vc: diploma#96160 	 leaf:  8573d8f4b111b6ee200d2817ccca3d681e88cc38191cc3780fe56baad1c2676f
+ISSUER-   ***ISSUED*** vc: diploma#96161 	 leaf:  c604979d7b6efe3034718763a7e5d43020729c05ae78a5e547aed00a81740a96
+ISSUER-   ***ISSUED*** vc: diploma#96162 	 leaf:  f0359a809dbfd31de75923cdbde7c09f48c7bc69714079d78ce3cc130fdaae3d
+ISSUER-   ***ISSUED*** vc: diploma#96163 	 leaf:  4a6fc3910be75abaad674f174236edd6827261302a6ba8edd552b5ab711466eb
+ISSUER-  ***REVOKED*** vcs: [diploma#96038 diploma#96081] 	 mt indexes:  map[diploma#96038:129 diploma#96081:172] 	 affected VCs Indexes:  Set{173, 134, 128, 130, 167, 132, 127, 131, 174, 170, 133, 168, 169, 171} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#96036 diploma#96064] 	 mt indexes:  map[diploma#96036:127 diploma#96064:155] 	 affected VCs Indexes:  Set{157, 158, 151, 128, 156, 131, 154, 152, 132, 129, 130, 153, 133, 134} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#96089 diploma#96070] 	 mt indexes:  map[diploma#96070:161 diploma#96089:180] 	 affected VCs Indexes:  Set{178, 179, 163, 159, 176, 165, 166, 175, 177, 160, 181, 182, 162, 164} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#96042 diploma#96057] 	 mt indexes:  map[diploma#96042:133 diploma#96057:148] 	 affected VCs Indexes:  Set{131, 132, 146, 134, 127, 144, 147, 143, 145, 130, 149, 150, 128, 129} 	 number of affected VCs:  14
+ISSUER-  ***REVOKED*** vcs: [diploma#96040 diploma#96097] 	 mt indexes:  map[diploma#96040:131 diploma#96097:188] 	 affected VCs Indexes:  Set{127, 133, 190, 186, 128, 130, 185, 183, 184, 187, 189, 129, 132, 134} 	 number of affected VCs:  14
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96036 	 mt index:  127 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96037 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96038 	 mt index:  129 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96039 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96040 	 mt index:  131 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96041 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96042 	 mt index:  133 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96043 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96044 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96045 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96046 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96047 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96048 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96049 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96050 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96051 	 mt index:  142 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96052 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96053 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96054 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96055 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96056 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96057 	 mt index:  148 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96058 	 mt index:  149 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96059 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96060 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96061 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96062 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96063 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96064 	 mt index:  155 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96065 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96066 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96067 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96068 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96069 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96070 	 mt index:  161 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96071 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96072 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96073 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96074 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96075 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96076 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96077 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96078 	 mt index:  169 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96079 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96080 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96081 	 mt index:  172 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96082 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96083 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96084 	 mt index:  175 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96085 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96086 	 mt index:  177 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96087 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96088 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96089 	 mt index:  180 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96090 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96091 	 mt index:  182 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96092 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96093 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96094 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96095 	 mt index:  186 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96096 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96097 	 mt index:  188 	 actual status:  revoked 	 phase1 result:  false 	 phase2 result:  false
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96098 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96099 	 mt index:  190 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96100 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96101 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96102 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96103 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96104 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96105 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96106 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96107 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96108 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96109 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96110 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96111 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96112 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96113 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96114 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96115 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96116 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96117 	 mt index:  208 	 actual status:  valid 	 phase1 result:  false 	 phase2 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96118 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96119 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96120 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96121 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96122 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96123 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96124 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96125 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96126 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96127 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96128 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96129 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96130 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96131 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96132 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96133 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96134 	 actual status:  valid 	 phase1 result:  true
+VERIFICAION TEST- 	 ***VERIFICATION*** vc: diploma#96135 	 actual status:  valid 	 phase1 result:  true
+SIMULATOR - 	 indexes of VCs that are affected by revocation:  Set{166, 179, 163, 170, 147, 127, 129, 152, 187, 173, 133, 185, 158, 168, 144, 184, 164, 150, 128, 159, 153, 175, 174, 182, 186, 146, 181, 169, 189, 143, 132, 154, 130, 149, 145, 162, 165, 167, 171, 178, 156, 134, 177, 190, 151, 131, 160, 183, 157, 176}
+SIMULATOR - 	 indexes of VCs that are affected by false positives:  Set{diploma#96051, diploma#96084, diploma#96095, diploma#96117, diploma#96058, diploma#96078, diploma#96086, diploma#96091, diploma#96099}
+SIMULATOR - 	 indexes of VCs that retrieved witnesses from issuer:  Set{diploma#96078, diploma#96084, diploma#96086, diploma#96091, diploma#96095, diploma#96099, diploma#96058}
+SIMULATOR : 	 results:  Total VCs : 100
+Total Revoked VCs : 10
+False Positive Rate : 0.100000
+Bloom Filter Size : 48
+Bloom Filter indexes per entry (no of hash functions) : 4
+Merkle Tree Accumulator height : 7
+Merkle Tree Accumulator Level Stored in DLT : 4
+ 
+Amount (in gwei) paid per revocation: 15094150
+Number of witness that are affected by revocation and require witness update in Merkle Tree Accumulator: 50
+Number of False Positives : 9
+Number of VCS that ended up updating witnesses from issuer: 7
+Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : 2
+

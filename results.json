@@ -1,0 +1,30 @@
+[
+{
+"total_issued_vcs": 20,
+"total_revoked_vcs": 10,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 3,
+"mt_height": 5,
+"number_of_false_positives": 1,
+"number_of_vcs_retrieved_witness_from_issuer": 1,
+"number_of_vcs_affected_by_revocation_due_to_storing_optimized_MT_accumulator_in_DLT": 16,
+"mt_accumulator_per_update_cost_in_gwei": 10294501,
+"number_of_witness_updates_saved": 0,
+"bloom_filter_size": 48,
+"bloom_filter_indexes_per_entry": 4
+},
+{
+"total_issued_vcs": 100,
+"total_revoked_vcs": 10,
+"false_positive_rate": 0.1,
+"mt_level_in_dlt": 4,
+"mt_height": 7,
+"number_of_false_positives": 9,
+"number_of_vcs_retrieved_witness_from_issuer": 7,
+"number_of_vcs_affected_by_revocation_due_to_storing_optimized_MT_accumulator_in_DLT": 50,
+"mt_accumulator_per_update_cost_in_gwei": 15094150,
+"number_of_witness_updates_saved": 2,
+"bloom_filter_size": 48,
+"bloom_filter_indexes_per_entry": 4
+}
+]
