@@ -185,13 +185,16 @@ func PerformExperiment(config config.Config){
 func  WriteToFile( result Results) {
 
 	var results []Results
-	jsonFile, _ := os.Open("Simulation/results.json")
+	jsonFile, err := os.Open("Simulation/results.json")
+	if err != nil {
+		zap.S().Errorln("ERROR - results.json file open error")
+	}
 	byte, _ := ioutil.ReadAll(jsonFile)
 	json.Unmarshal(byte, &results)
 	results = append(results, result)
 	jsonRes, _ := json.MarshalIndent(results,"","")
 	//filename := fmt.Sprintf("Simulation/results/result_%v_%v_%v.json",numberOfVcs, numberOfRevokedVcs, mtLevelInDLT)
-	err := ioutil.WriteFile("Simulation/results.json", jsonRes, 0644)
+	err = ioutil.WriteFile("Simulation/results.json", jsonRes, 0644)
 	if err != nil {
 		zap.S().Errorln("unable to write results to file")
 	}
