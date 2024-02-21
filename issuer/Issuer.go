@@ -10,11 +10,13 @@ import (
 	"github.com/praveensankar/Revocation-Service/signature"
 	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/praveensankar/Revocation-Service/vc"
+	"github.com/suutaku/go-bbs/pkg/bbs"
 	"go.uber.org/zap"
 	"math"
 	"math/big"
 	"math/rand"
 	"strconv"
+	"sync"
 	"time"
 )
 
@@ -42,6 +44,8 @@ type Issuer struct{
 	AffectedVCIndexes map[int]bool
 	revocationProofs map[string]*revocation_service.RevocationData
 	vcCounter int
+	lock sync.Mutex
+	bbs *bbs.Bbs
 	blockchainEndPoint *ethclient.Client
 	RevocationService revocation_service.IRevocationService
 	BbsKeyPair        []*signature.BBS
@@ -79,11 +83,14 @@ func  CreateIssuer(config config.Config) *Issuer{
 	issuer.BbsKeyPair = make([]*signature.BBS, 2)
 	issuer.BbsKeyPair[0] = keyPair1
 	issuer.BbsKeyPair[1] = keyPair2
+	issuer.bbs = bbs.NewBbs()
 	publicKey1, _ := keyPair1.PublicKey.Marshal()
 	publicKey2, _ := keyPair2.PublicKey.Marshal()
 	keys := make([][]byte, 2)
 	keys[0]=publicKey1
 	keys[1]=publicKey2
+	pk , _ := bbs.UnmarshalPublicKey(publicKey1)
+	zap.S().Infoln("ISSUER - BBS public key: ", pk)
 	rs.AddPublicKeys(keys)
 	zap.S().Infoln("ISSUER-","new issuer created: issuer name - ",issuer.name)
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
@@ -369,7 +376,7 @@ func (issuer *Issuer) VerifyTest(vcID string, vp models.VerifiablePresentation) 
 	}
 
 	publicKeys := issuer.RevocationService.FetchPublicKeysCached()
-	//zap.S().Infoln("ISSUER - public keys: ", publicKeys)
+
 	publicKey := publicKeys[0]
 
 	//verify selective disclosure

@@ -15,13 +15,13 @@ import (
 	_ "time"
 )
 //
-func DeployContract(config config.Config) (string, error){
+func DeployContract(config config.Config, counter int) (string, error){
 	client, err :=  ethclient.Dial(config.BlockchainRpcEndpoint)
 	if err != nil {
 		zap.S().Fatalln(err)
 	}
 
-	privateKey, err := crypto.HexToECDSA(config.PrivateKey)
+	privateKey, err := crypto.HexToECDSA(config.PrivateKeys[counter])
 	if err != nil {
 		zap.S().Fatalln(err)
 	}

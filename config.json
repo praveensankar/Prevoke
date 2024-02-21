@@ -25,15 +25,16 @@
 
 	},
 	 "account" : {
-		 "address" : "0xDea2e2ED75F0c11E892844Ad5C5751235890f6B0",
-		 "privateKey": "49a341700321b1a8b70f56e41ae8d572e651ba5e3bddad78bec696a1fd4b5578",
+		 "address" : "0x8E0368Ce3318Dde3eF304c504cDb8c64C0db7ce4",
+		 "privateKey": "f0e55a03a970fbfcdf6cbfe0951c3b22de52ceac427fa0004b8e7e3dc81c74c7",
 		 "passphrase": "simple phrase",
+		 "privateKeys" : ["f0e55a03a970fbfcdf6cbfe0951c3b22de52ceac427fa0004b8e7e3dc81c74c7"],
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
-	 "otherAccounts" : [],
+
 	 "logger" : {
 		"env" : "dev",
-		 "output": "file",
+		 "output": "console",
 		 "filename": "logs.json",
 		 "_comment1": "ouput:<console> - for printing in console, <file> - for writing to file",
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
@@ -50,13 +51,12 @@
 		 "mtHeight": "5"
 	 },
 		 "exp3": {
-			 "totalVCs": "10000",
-			 "revokedVCs": "1000",
+			 "totalVCs": "1000",
+			 "revokedVCs": "100",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "14",
-			 "mtHeight": "14"
+			 "mtLevelInDLT": "8",
+			 "mtHeight": "10"
 		 }
-
 	 }
  }
 

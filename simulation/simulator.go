@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
-	"github.com/deckarep/golang-set"
 	"github.com/praveensankar/Revocation-Service/blockchain"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/issuer"
@@ -15,13 +14,14 @@ import (
 	"math"
 	"math/rand"
 	"os"
+	"sync/atomic"
 	"time"
 )
 
 
 
 func Start(config config.Config){
-		DeployContract(&config)
+		DeployContract(&config, 0)
 		//zap.S().Infoln("smart contract: ",config.SmartContractAddress)
 		PerformExperiment(config)
 
@@ -30,17 +30,21 @@ func Start(config config.Config){
 func StartExperiments(config config.Config){
 
 	experiments := config.ExpParamters
-
+	counter := 0
 	for _, exp := range experiments{
-		DeployContract(&config)
+		DeployContract(&config, counter)
+		counter++
+		if counter==len(config.PrivateKeys){
+			counter=0
+		}
 		//zap.S().Infoln("smart contract: ",config.SmartContractAddress)
 		SetUpExpParamters(&config, *exp)
 		PerformExperiment(config)
 	}
 }
 
-func DeployContract(conf *config.Config){
-	address, err := blockchain.DeployContract(*conf)
+func DeployContract(conf *config.Config,counter int){
+	address, err := blockchain.DeployContract(*conf, counter)
 
 	if err != nil {
 		zap.S().Errorln("error deploying contract")
@@ -57,16 +61,26 @@ func SetUpExpParamters(conf *config.Config, exp config.Experiment){
 	conf.MTHeight=uint(exp.MtHeight)
 }
 
+
 func PerformExperiment(config config.Config){
 	start := time.Now()
 
 	issuer1 := issuer.CreateIssuer(config)
-	publicKey, _ := issuer1.BbsKeyPair[0].PublicKey.Marshal()
 	remainingSpace := int(math.Pow(2, float64(config.MTHeight)))-int(config.ExpectedNumberOfTotalVCs)
-	claimsSet := issuer1.GenerateMultipleDummyVCClaims(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
-	revocationBatchSize := int(config.RevocationBatchSize)
+	totalVCs := int(config.ExpectedNumberOfTotalVCs)+remainingSpace
 
-	issuer1.IssueBulk(claimsSet, int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
+	claimsSet := issuer1.GenerateMultipleDummyVCClaims(totalVCs)
+	results := CreateResult()
+	vcs := SimulateIssuance(config, issuer1, claimsSet,totalVCs )
+	SimulateRevocation(config, issuer1, vcs, results)
+	SimulateVerification( issuer1, vcs, results)
+	ConstructResults(config, start, results)
+	WriteToFile(*results)
+}
+
+
+func SimulateIssuance(config config.Config, issuer1 *issuer.Issuer, claimsSet []interface{},totalVCs int) []models.VerifiableCredential{
+	issuer1.IssueBulk(claimsSet, totalVCs)
 
 	credentials := issuer1.CredentialStore
 	for _, vc := range credentials{
@@ -79,15 +93,14 @@ func PerformExperiment(config config.Config){
 		vcs = append(vcs, credentials[i])
 	}
 
-	//for _, vc := range vcs{
-	//	issuer1.VerifyTest(*vc)
-	//}
+	return vcs
+}
 
-
-
+func SimulateRevocation(config config.Config, issuer1 *issuer.Issuer, vcs []models.VerifiableCredential, result *Results){
+	revocationBatchSize := int(config.RevocationBatchSize)
 	var amountPaid int64
 	amountPaid = 0
-	affectedIndexes := mapset.NewSet()
+
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	revokedVCs := make([]string, totalRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
@@ -116,76 +129,84 @@ func PerformExperiment(config config.Config){
 			}
 		}
 		indexes, amount := issuer1.RevokeVCInBatches(config, revokedVCsInBatch)
-		affectedIndexes = affectedIndexes.Union(indexes)
+		result.AffectedIndexes = result.AffectedIndexes.Union(indexes)
 		amountPaid = amountPaid + amount;
 		amountPaid = amountPaid / 2;
 	}
 
 	issuer1.RevocationService.CacheRevocationDataStructuresFromSmartContract()
 
+	result.AmountPaid = amountPaid
+	result.NumberOfWitnessUpdatesForMT = result.AffectedIndexes.Cardinality()
+}
+
+func SimulateVerification( issuer1 *issuer.Issuer, vcs []models.VerifiableCredential, result *Results){
+	publicKey, err := issuer1.BbsKeyPair[0].PublicKey.Marshal()
+
+	if err!=nil{
+		zap.S().Infoln("SIMULATION - error parsing public key")
+	}
 	var falsePositiveStatus bool
 	falsePositiveStatus = false
 	var isAffectedInMTAcc bool
 	isAffectedInMTAcc = false
 	numberOfOccuredFalsePositives := 0
 	numberOfVCsRetrievedWitnessFromIssuer := 0
-	falsePositiveResults := mapset.NewSet()
-	fetchedWitnessesFromIssuers := mapset.NewSet()
-	for _, credential := range vcs {
 
+	var fp atomic.Uint64
+	var witFromIssuers atomic.Uint64
+	//mux := &sync.RWMutex{}
+	vps := make(map[string]*models.VerifiablePresentation)
+	for _, credential := range vcs {
 		vp, _ := vc.GenerateProofForSelectiveDisclosure(publicKey, credential)
 		vcId := fmt.Sprintf("%v",credential.Metadata.Id)
+		vps[vcId] = vp
+	}
+	for vcId, vp := range vps {
 
-		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(vcId, *vp)
-		if falsePositiveStatus == true {
-			numberOfOccuredFalsePositives++
-			falsePositiveResults.Add(vcId)
-			if isAffectedInMTAcc == true {
-				numberOfVCsRetrievedWitnessFromIssuer++
-				fetchedWitnessesFromIssuers.Add(vcId)
+			falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(vcId, *vp)
+			if falsePositiveStatus == true {
+				fp.Add(1)
+				result.FalsePositiveResults.Add(vcId)
+				if isAffectedInMTAcc == true {
+					witFromIssuers.Add(1)
+					result.FetchedWitnessesFromIssuers.Add(vcId)
+				}
 			}
-		}
+
+
+
 	}
 
-	//falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(*vc)
-	//// it means false positive
-	//if falsePositiveStatus==true{
-	//	numberOfOccuredFalsePositives++
-	//	if isAffectedInMTAcc==true{
-	//		numberOfVCsRetrievedWitnessFromIssuer++
-	//	}
-	//}
-	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by revocation: ", affectedIndexes)
-	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by false positives: ", falsePositiveResults)
-	zap.S().Infoln("SIMULATOR - \t indexes of VCs that retrieved witnesses from issuer: ", fetchedWitnessesFromIssuers)
+
+	numberOfOccuredFalsePositives = int(fp.Load())
+	numberOfVCsRetrievedWitnessFromIssuer = int(witFromIssuers.Load())
+	result.NumberOfFalsePositives = numberOfOccuredFalsePositives
+	result.NumberOfVCsRetrievedWitnessFromIssuer = numberOfVCsRetrievedWitnessFromIssuer
+	result.NumberOfWitnessUpdatesSaved = numberOfOccuredFalsePositives-numberOfVCsRetrievedWitnessFromIssuer
+}
+
+func ConstructResults(config config.Config, start  time.Time, result *Results){
+	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by revocation: ", result.AffectedIndexes)
+	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by false positives: ", result.FalsePositiveResults)
+	zap.S().Infoln("SIMULATOR - \t indexes of VCs that retrieved witnesses from issuer: ", result.FetchedWitnessesFromIssuers)
 	size, k := BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
 	// Code to measure
-	duration := time.Since(start)
-	zap.S().Infoln("SIMULATOR : \t total time to run the experiment: ", duration.Seconds())
-	result := &Results{
-		TotalVCs:                              int(config.ExpectedNumberOfTotalVCs),
-		RevokedVCs:                            int(config.ExpectedNumberofRevokedVCs),
-		FalsePositiveRate:                     config.FalsePositiveRate,
-		MTHeight:                               int(config.MTHeight),
-		MtLevelInDLT:                          int(config.MtLevelInDLT),
-		NumberOfFalsePositives:                numberOfOccuredFalsePositives,
-		AmountPaid:                            amountPaid,
-		NumberOfWitnessUpdatesForMT:           affectedIndexes.Cardinality(),
-		NumberOfVCsRetrievedWitnessFromIssuer: numberOfVCsRetrievedWitnessFromIssuer,
-		NumberOfWitnessUpdatesSaved:         numberOfOccuredFalsePositives-numberOfVCsRetrievedWitnessFromIssuer,
-		BloomFilterSize:                       int(size),
-		BloomFilterIndexesPerEntry:            int(k),
-		SimulationTime: duration.Seconds(),
-	}
+	end := time.Since(start)
+	zap.S().Infof("SIMULATOR : \t total time to run the experiment: %f", end.Seconds())
 
-	//jsonObj, err := json.Marshal(result)
-	//if err!=nil{
-	//	zap.S().Errorln("marshall json errror: ",err)
-	//}
+	result.SimulationTime = end.Seconds()
+	result.TotalVCs = int(config.ExpectedNumberOfTotalVCs)
+	result.RevokedVCs =  int(config.ExpectedNumberofRevokedVCs)
+	result.FalsePositiveRate = config.FalsePositiveRate
+	result.MTHeight = int(config.MTHeight)
+	result.MtLevelInDLT = int(config.MtLevelInDLT)
+	result.BloomFilterSize = int(size)
+	result.BloomFilterIndexesPerEntry = int(k)
+
 	zap.S().Infoln("SIMULATOR : \t results: ", result.String())
-
-	WriteToFile(*result)
 }
+
 
 
 func  WriteToFile( result Results) {

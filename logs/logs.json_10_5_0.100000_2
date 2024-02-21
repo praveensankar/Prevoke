@@ -13721,3 +13721,93 @@ Number of VCS that ended up updating witnesses from issuer: 0
 Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : 100
 time to run the experiment : %!d(float64=170.675047599)
 
+
+
+--------------------------------------------------------printing blockchain related configuration--------------------------------------------------
+smart contract address:0x3d111a1BD9b4906c47108c801DAA8b70903B936E
+blockchain rpc endpoint: http://158.39.200.125:8545
+gas limit: �
+gas price: 20000000000
+sender address: 0xB825d399bc1c30c6F7C77BfEc7EF791b1Ef3E3a2
+sender private key: 49a341700321b1a8b70f56e41ae8d572e651ba5e3bddad78bec696a1fd4b5578
+sender pass phrase: simple phrase
+private keys in ganache test network :  [57ada7c1c0a376a3f40dc9686b9718ec6792b92caad081544a691a9af1fc28f2]
+logger environment: dev
+logger output file name: logs.json
+logger output mode: file
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing issuer configuration--------------------------------------------------
+issuer name:
+total of VCs would be issued:10
+total of VCs would be revoked:5
+bloom filter false positive rate:  0.1
+merkle tree accumulator level in DLT:  2
+merkle tree height:  4
+revocation batch size:  1
+********************************************************************************************************************************
+
+
+
+--------------------------------------------------------printing Experiment parameters--------------------------------------------------
+exp2 {20 10 0.1 3 5}
+exp3 {10 5 0.1 2 4}
+********************************************************************************************************************************
+
+
+
+------------------------------------------------------- deploying smart contract --------------------------------------------------
+BLOCKCHAIN- 	  smart contract address:  0xF9BdB1aF4F47783cdeDD5738aE361572c15041B2
+BLOCKCHAIN- 	 tx hash:  0x34020100f0ae6309a86c01f9b7da9e4414ef09f2ec339432be39038109dd01b9
+********************************************************************************************************************************
+
+"MERKLE TREE Accumulator- 	 total nodes:  63
+BlOOM FILTER: size :  48 	 number of indexes per entry :  4
+ISSUER- new issuer created: issuer name -  
+
+
+********************************************************************************************************************************
+ISSUER-   ***ISSUED*** vc: diploma#45451 	 leaf:  2d4e090af22a3dbe84579465a75279ca7c4a89021d580df67cfd386115cc830c
+ISSUER-   ***ISSUED*** vc: diploma#45452 	 leaf:  b7599b7afc4d29c70f3773b4104821d9fceebdfbb3d3b9d1355d1297680dd7e8
+ISSUER-   ***ISSUED*** vc: diploma#45453 	 leaf:  472759b7b2d8241db7e733e55cbeec52d4d764203f7f635f230ac3b2d8a6f641
+ISSUER-   ***ISSUED*** vc: diploma#45454 	 leaf:  6523e684147f76b53d59797c31c60f832421cdca82ab8dc094eb635adc71b7e4
+ISSUER-   ***ISSUED*** vc: diploma#45455 	 leaf:  dd9a2fbeea139d2cbdff73873b96de62d76cd4b69aa4c8dfeb6d7d245da6f578
+ISSUER-   ***ISSUED*** vc: diploma#45456 	 leaf:  b4fdfce0826024afa8ff618d1d99bbd7150e9f39f9fcf1f6bc6fcc54bcff70c5
+ISSUER-   ***ISSUED*** vc: diploma#45457 	 leaf:  8fe98073389c2fb811ab65ee1e1ce02f17186cfe8de159aedbc3fe5b1b8d6bb7
+ISSUER-   ***ISSUED*** vc: diploma#45458 	 leaf:  97ec81080d34a34f329bc2b7329f423cb6077b27d8b08737cb545a7d4b04d72d
+ISSUER-   ***ISSUED*** vc: diploma#45459 	 leaf:  abe648175f53e519e40860b16d33a84ee4ebd8be0caad8c8792ebbfb214b8377
+ISSUER-   ***ISSUED*** vc: diploma#45460 	 leaf:  5be766e745fb6c0b9ebaad7e7d44a0f998a145278f5c6d4c3c492cfaa0704d00
+ISSUER-   ***ISSUED*** vc: diploma#45461 	 leaf:  51f7fd29b720e98e1b562c715394fa48e4f75c2886e3f2bcfd6bed6ad8077bad
+ISSUER-   ***ISSUED*** vc: diploma#45462 	 leaf:  48b2954124c2b3f1552570d0838a5d90ccd5f3936220a10b4be4e20d1e67537f
+ISSUER-   ***ISSUED*** vc: diploma#45463 	 leaf:  af9eaf05b9006cc6ae914737b4ec0e7c590a6d6e7d652f76e7725e0ac3345526
+ISSUER-   ***ISSUED*** vc: diploma#45464 	 leaf:  79c54604fc0fecf1760568766bf326f0b850d804875a3e4dfefed66bf3e0b69e
+ISSUER-   ***ISSUED*** vc: diploma#45465 	 leaf:  ff88aaf0683e1aa57e68625bb58b6c67be551df8000637c83194dda903d3e645
+ISSUER-   ***ISSUED*** vc: diploma#45466 	 leaf:  fd6b510ca5c557839e52977a066bc58031b80bddc90462d28f922786f526bab9
+ISSUER-   ***ISSUED*** vc: diploma#45467 	 leaf:  cc594adc048bc8ce21f70c6473f961ca849394c76a1f978cd741fdbbde5afb30
+ISSUER-   ***ISSUED*** vc: diploma#45468 	 leaf:  5e3f1c28b0c7d9ae9922d92762d341120bdeddac96ba4010e8d4fefbfac24ac6
+ISSUER-   ***ISSUED*** vc: diploma#45469 	 leaf:  de8c6e45fa15e2e59622ea15d4ae267c722883f59c8a55e7872603b57c469901
+ISSUER-   ***ISSUED*** vc: diploma#45470 	 leaf:  7d7f74731fe12d8b021b08db99e9c322ddb15650b27b6b0439bb8e284f1f3f55
+ISSUER-   ***ISSUED*** vc: diploma#45471 	 leaf:  d0f2016e3483de1902fd5e81314b1e649ad57d864ed050f299baa74908524c04
+ISSUER-   ***ISSUED*** vc: diploma#45472 	 leaf:  46e3cc2a7dca3297e30470a0e02c4f43729e590b9b32f8d0a3c5e988512e7cbc
+ISSUER-   ***ISSUED*** vc: diploma#45473 	 leaf:  aa4e635a2610404d94eaf480ace81f2756a5d3d3ff838ae55eb3f3b1d7fa488c
+ISSUER-   ***ISSUED*** vc: diploma#45474 	 leaf:  7e6e472c79cf7ac01e232861d909a60380897d5cec08c838673d726e3defdd54
+ISSUER-   ***ISSUED*** vc: diploma#45475 	 leaf:  4f9c3acab0ada20b65d4cea929ee02584d80e7c2e1756d5050041eddb1533023
+ISSUER-   ***ISSUED*** vc: diploma#45476 	 leaf:  02d480b7431b723d9699b0b23c8078a5644d1453466fede42841c62282e94cf9
+ISSUER-   ***ISSUED*** vc: diploma#45477 	 leaf:  5342dc1cc8d6fccae3b1554e4a8c888009e8a812cfa1a6927b46a068a37dab6a
+ISSUER-   ***ISSUED*** vc: diploma#45478 	 leaf:  6ef53c3e00fb49bb629bef1c45c07c9e8257de22b5a0ca6d7a6aed4b34042ad2
+ISSUER-   ***ISSUED*** vc: diploma#45479 	 leaf:  3932fe143fbd0cbf48d7fb2826eec18268c81aec4dff342cbf72b212bc3cf8e6
+ISSUER-   ***ISSUED*** vc: diploma#45480 	 leaf:  836876c652f0d7baa791f4dce5689d4b90e8f15299956174abd00a4fe01b6ddb
+ISSUER-   ***ISSUED*** vc: diploma#45481 	 leaf:  69ad0b67a6a9d6693f97f880049557cda931524a612da60d0c91cd8c31d27793
+ISSUER-   ***ISSUED*** vc: diploma#45482 	 leaf:  b8b8cf5c5eedaca9038e233709e378785986772602c5e1417f8e5e1fb6af823e
+ISSUER-  ***REVOKED*** vcs: [diploma#45453] 	 mt indexes:  map[diploma#45453:33] 	 affected VCs Indexes:  Set{31, 32, 34} 	 number of affected VCs:  3
+ISSUER-  ***REVOKED*** vcs: [diploma#45460] 	 mt indexes:  map[diploma#45460:40] 	 affected VCs Indexes:  Set{41, 42, 39} 	 number of affected VCs:  3
+ISSUER-  ***REVOKED*** vcs: [diploma#45467] 	 mt indexes:  map[diploma#45467:47] 	 affected VCs Indexes:  Set{50, 48, 49} 	 number of affected VCs:  3
+ISSUER-  ***REVOKED*** vcs: [diploma#45462] 	 mt indexes:  map[diploma#45462:42] 	 affected VCs Indexes:  Set{39, 40, 41} 	 number of affected VCs:  3
+ISSUER-  ***REVOKED*** vcs: [diploma#45461] 	 mt indexes:  map[diploma#45461:41] 	 affected VCs Indexes:  Set{42, 39, 40} 	 number of affected VCs:  3
+ISSUER-  ***REVOKED*** vcs: [diploma#45451] 	 mt indexes:  map[diploma#45451:31] 	 affected VCs Indexes:  Set{32, 33, 34} 	 number of affected VCs:  3
+ISSUER-  ***REVOKED*** vcs: [diploma#45469] 	 mt indexes:  map[diploma#45469:49] 	 affected VCs Indexes:  Set{47, 48, 50} 	 number of affected VCs:  3
+ISSUER-  ***REVOKED*** vcs: [diploma#45463] 	 mt indexes:  map[diploma#45463:43] 	 affected VCs Indexes:  Set{44, 45, 46} 	 number of affected VCs:  3
+ISSUER-  ***REVOKED*** vcs: [diploma#45466] 	 mt indexes:  map[diploma#45466:46] 	 affected VCs Indexes:  Set{45, 43, 44} 	 number of affected VCs:  3
+ISSUER-  ***REVOKED*** vcs: [diploma#45465] 	 mt indexes:  map[diploma#45465:45] 	 affected VCs Indexes:  Set{43, 44, 46} 	 number of affected VCs:  3

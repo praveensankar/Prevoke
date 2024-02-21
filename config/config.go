@@ -16,7 +16,7 @@ type Config struct{
 	SenderAddress string
 	PrivateKey    string
 	passPhrase    string
-	OtherAccounts []string
+	PrivateKeys []string
 	LoggerType string
 	LoggerFile string
 	LoggerOutputMode string
@@ -40,7 +40,7 @@ func (config Config) printConfig()  {
 	zap.L().Info("sender address: "+config.SenderAddress)
 	zap.L().Info("sender private key: "+config.PrivateKey)
 	zap.L().Info("sender pass phrase: "+config.passPhrase)
-	zap.S().Infoln("other accounts in ganache test network : ",config.OtherAccounts)
+	zap.S().Infoln("private keys in ganache test network : ",config.PrivateKeys)
 	zap.L().Info("logger environment: "+config.LoggerType)
 	zap.L().Info("logger output file name: "+config.LoggerFile)
 	zap.L().Info("logger output mode: "+config.LoggerOutputMode)
@@ -81,7 +81,7 @@ func ParseConfig() (Config, error){
 	config.SenderAddress = viper.GetString("account.address")
 	config.PrivateKey = viper.GetString("account.privateKey")
 	config.passPhrase = viper.GetString("account.passphrase")
-	config.OtherAccounts = viper.GetStringSlice("otherAccounts")
+	config.PrivateKeys = viper.GetStringSlice("account.privateKeys")
 	config.LoggerType = viper.GetString("logger.env")
 	config.LoggerOutputMode = viper.GetString("logger.output")
 	config.LoggerFile = viper.GetString("logger.filename")

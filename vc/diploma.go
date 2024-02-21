@@ -233,7 +233,7 @@ func GenerateProofForSelectiveDisclosure(publicKey []byte, diploma models.Verifi
 
 }
 
-func VerifySelectiveDisclosureDiploma(publicKey []byte, vp SampleDiplomaPresentation) bool{
+func VerifySelectiveDisclosureDiploma( publicKey []byte, vp SampleDiplomaPresentation) bool{
 
 
 	var messages [][]byte
@@ -251,7 +251,7 @@ func VerifySelectiveDisclosureDiploma(publicKey []byte, vp SampleDiplomaPresenta
 	messages = append(messages, []byte(vp.Degree))
 
 
-	status := signature.VerifySelectiveDisclosureProof(publicKey, vp.Proof, messages, vp.Nonce)
+	status := signature.VerifySelectiveDisclosureProof( publicKey, vp.Proof, messages, vp.Nonce)
 
 
 	if status == true {
@@ -265,11 +265,12 @@ func VerifySelectiveDisclosureDiploma(publicKey []byte, vp SampleDiplomaPresenta
 
 
 func TestDiploma(){
-	bbs := signature.GenerateKeyPair()
-	privateKey := bbs.PrivateKey
+	bbsKeys := signature.GenerateKeyPair()
+
+	privateKey := bbsKeys.PrivateKey
 
 
-	publicKey, _ := bbs.PublicKey.Marshal()
+	publicKey, _ := bbsKeys.PublicKey.Marshal()
 
 	var bfIndexes []string
 	for i := 0; i < techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER; i++ {
@@ -296,7 +297,7 @@ func TestDiploma(){
 
 	diplomaPresentation.Grade="C"
 
-	VerifySelectiveDisclosureDiploma(publicKey, diplomaPresentation)
+	VerifySelectiveDisclosureDiploma( publicKey, diplomaPresentation)
 
 }
 

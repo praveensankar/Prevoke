@@ -558,6 +558,7 @@ func (r RevocationService) AddPublicKeys(publicKeys [][]byte) {
 	if err != nil {
 		zap.S().Infof("Error adding public keys: %v", err)
 	}
+
 }
 
 /*
@@ -582,6 +583,7 @@ func (r RevocationService) FetchPublicKeys()([][]byte) {
 	if err != nil {
 		zap.S().Infof("Error adding public keys: %v", err)
 	}
+
 	return publicKeys
 }
 
@@ -595,6 +597,7 @@ func (r *RevocationService) FetchPublicKeysCached()([][]byte) {
 	if r.isPublicKeysCached==false{
 		publicKeys := r.FetchPublicKeys()
 		r.cachedPublicKeys = append(r.cachedPublicKeys, publicKeys...)
+		r.isPublicKeysCached=true
 	}
 
 	return r.cachedPublicKeys

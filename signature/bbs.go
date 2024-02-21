@@ -39,12 +39,14 @@ func Sign(privateKey *bbs.PrivateKey, messages [][]byte) []byte{
 }
 
 func Verify(publicKey []byte, signature []byte, messages [][]byte) bool{
-	bbsInstance := bbs.NewBbs()
+
+	bbsInstance := &bbs.Bbs{}
 	err := bbsInstance.Verify(messages, signature, publicKey)
 	if err != nil {
 		zap.S().Infoln("BBS - verification failed: ",err)
 		return false
 	}
+
 	zap.S().Infoln("BBS - verification successful")
 	return true
 }
@@ -65,9 +67,10 @@ Output:
 func SelectiveDisclosure(publicKey []byte, signature []byte, messages [][]byte, revealedIndexes []int) ([]byte, []byte ){
 
 	rand.Seed(time.Now().UnixNano())
-
 	nonce := make([]byte, 10)
 	bbsInstance := bbs.NewBbs()
+	//pk , _ := bbs.UnmarshalPublicKey(publicKey)
+	//zap.S().Infoln("BBS - Selective disclosure - public key: ", pk)
 	proof, err := bbsInstance.DeriveProof(messages, signature, nonce, publicKey, revealedIndexes)
 	if err!=nil{
 		zap.S().Infoln("BBS - error creating proof for selective disclosure: ",err)
@@ -75,14 +78,16 @@ func SelectiveDisclosure(publicKey []byte, signature []byte, messages [][]byte, 
 	return proof, nonce
 }
 
-func VerifySelectiveDisclosureProof(publicKey []byte,  proof []byte, selectiveMessages [][]byte, nonce []byte) bool{
+func VerifySelectiveDisclosureProof( publicKey []byte,  proof []byte, selectiveMessages [][]byte, nonce []byte) bool{
 
 	bbsInstance := bbs.NewBbs()
+
 	err := bbsInstance.VerifyProof(selectiveMessages, proof, nonce, publicKey)
 	if err != nil {
-		zap.S().Infoln("BBS - verification failed: ",err)
+		zap.S().Infoln("BBS - selective disclosure verification failed: ",err)
 		return false
 	}
+
 	//zap.S().Infoln("BBS - selective disclosure verification successful")
 	return true
 }

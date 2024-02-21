@@ -17,7 +17,7 @@ func TestConnectionToBlockchain(config config.Config){
 	node.doTransaction(config.PrivateKey)
 	//node.sendEther(config.privateKey,1, config.otherAccounts[0])
 	//node.sendTransaction()
-	node.sendLegacyTransaction(config.PrivateKey, config.OtherAccounts[0])
+	node.sendLegacyTransaction(config.PrivateKey, config.SenderAddress)
 	_ = createNewKeyStore()
 
 
@@ -43,7 +43,7 @@ func TestSmartContract(my_config config.Config){
 }
 
 func TestDeployment(conf config.Config){
-	DeployContract(conf)
+	DeployContract(conf,0)
 }
 
 func Test(conf config.Config){
