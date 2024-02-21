@@ -53,7 +53,7 @@
 			 "totalVCs": "1000",
 			 "revokedVCs": "100",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "5",
+			 "mtLevelInDLT": "10",
 			 "mtHeight": "10"
 		 }
 
