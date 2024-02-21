@@ -25,8 +25,8 @@
 
 	},
 	 "account" : {
-		 "address" : "0x0c5b027d8245edA3B04adD70bF38326f2D71f3ED",
-		 "privateKey": "57ada7c1c0a376a3f40dc9686b9718ec6792b92caad081544a691a9af1fc28f2",
+		 "address" : "0xDea2e2ED75F0c11E892844Ad5C5751235890f6B0",
+		 "privateKey": "49a341700321b1a8b70f56e41ae8d572e651ba5e3bddad78bec696a1fd4b5578",
 		 "passphrase": "simple phrase",
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
@@ -50,11 +50,11 @@
 		 "mtHeight": "5"
 	 },
 		 "exp3": {
-			 "totalVCs": "1000",
-			 "revokedVCs": "100",
+			 "totalVCs": "10000",
+			 "revokedVCs": "1000",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "10",
-			 "mtHeight": "10"
+			 "mtLevelInDLT": "14",
+			 "mtHeight": "14"
 		 }
 
 	 }
