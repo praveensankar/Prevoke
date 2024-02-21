@@ -15,6 +15,7 @@ type Results struct {
 	NumberOfWitnessUpdatesSaved int `json:"number_of_witness_updates_saved"`
 	BloomFilterSize int `json:"bloom_filter_size"`
 	BloomFilterIndexesPerEntry int  `json:"bloom_filter_indexes_per_entry"`
+	SimulationTime float64 `json:"simulation_time"`
 }
 
 
@@ -32,6 +33,7 @@ func (r Results) String() string{
 	response = response + "Number of False Positives : "+ fmt.Sprintf("%d",r.NumberOfFalsePositives) + "\n"
 	response = response + "Number of VCS that ended up updating witnesses from issuer: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromIssuer)+ "\n"
 	response = response + "Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : "+fmt.Sprintf("%d",r.NumberOfWitnessUpdatesSaved)+ "\n"
+	response = response + "time to run the experiment : "+fmt.Sprintf("%d",r.SimulationTime)+ "\n"
 	return response
 }
 

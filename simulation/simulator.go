@@ -58,6 +58,8 @@ func SetUpExpParamters(conf *config.Config, exp config.Experiment){
 }
 
 func PerformExperiment(config config.Config){
+	start := time.Now()
+
 	issuer1 := issuer.CreateIssuer(config)
 	publicKey, _ := issuer1.BbsKeyPair[0].PublicKey.Marshal()
 	remainingSpace := int(math.Pow(2, float64(config.MTHeight)))-int(config.ExpectedNumberOfTotalVCs)
@@ -157,6 +159,9 @@ func PerformExperiment(config config.Config){
 	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by false positives: ", falsePositiveResults)
 	zap.S().Infoln("SIMULATOR - \t indexes of VCs that retrieved witnesses from issuer: ", fetchedWitnessesFromIssuers)
 	size, k := BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
+	// Code to measure
+	duration := time.Since(start)
+	zap.S().Infoln("SIMULATOR : \t total time to run the experiment: ", duration.Seconds())
 	result := &Results{
 		TotalVCs:                              int(config.ExpectedNumberOfTotalVCs),
 		RevokedVCs:                            int(config.ExpectedNumberofRevokedVCs),
@@ -170,6 +175,7 @@ func PerformExperiment(config config.Config){
 		NumberOfWitnessUpdatesSaved:         numberOfOccuredFalsePositives-numberOfVCsRetrievedWitnessFromIssuer,
 		BloomFilterSize:                       int(size),
 		BloomFilterIndexesPerEntry:            int(k),
+		SimulationTime: duration.Seconds(),
 	}
 
 	//jsonObj, err := json.Marshal(result)
