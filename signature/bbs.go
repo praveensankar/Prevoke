@@ -1,10 +1,10 @@
 package signature
 
 import (
-	"crypto/sha256"
 	"fmt"
 	"github.com/suutaku/go-bbs/pkg/bbs"
 	"go.uber.org/zap"
+	"golang.org/x/crypto/sha3"
 	"math/rand"
 	"time"
 )
@@ -17,8 +17,14 @@ type BBS struct {
 }
 
 func GenerateKeyPair() *BBS {
-
-	publicKey, privateKey, err  := bbs.GenerateKeyPair(sha256.New, nil)
+	rand.Seed(time.Now().UnixNano())
+	seed := make([]byte, 32)
+	_, err := rand.Read(seed)
+	if err != nil {
+		zap.S().Infoln("BBS - error while generating random string: %s", err)
+	}
+	//zap.S().Infoln("BBS - key pair generation: seed", seed)
+	publicKey, privateKey, err  := bbs.GenerateKeyPair(sha3.New512, seed)
 	if err != nil {
 		zap.S().Infoln("BBS - error creating new key pair: ", err)
 	}
@@ -47,7 +53,7 @@ func Verify(publicKey []byte, signature []byte, messages [][]byte) bool{
 		return false
 	}
 
-	zap.S().Infoln("BBS - verification successful")
+	//zap.S().Infoln("BBS - digital signature verification successful")
 	return true
 }
 
@@ -67,7 +73,11 @@ Output:
 func SelectiveDisclosure(publicKey []byte, signature []byte, messages [][]byte, revealedIndexes []int) ([]byte, []byte ){
 
 	rand.Seed(time.Now().UnixNano())
-	nonce := make([]byte, 10)
+	nonce := make([]byte, 32)
+	_, err := rand.Read(nonce)
+	if err != nil {
+		zap.S().Infoln("BBS - error while generating random string: %s", err)
+	}
 	bbsInstance := bbs.NewBbs()
 	//pk , _ := bbs.UnmarshalPublicKey(publicKey)
 	//zap.S().Infoln("BBS - Selective disclosure - public key: ", pk)
@@ -88,7 +98,7 @@ func VerifySelectiveDisclosureProof( publicKey []byte,  proof []byte, selectiveM
 		return false
 	}
 
-	//zap.S().Infoln("BBS - selective disclosure verification successful")
+	zap.S().Infoln("BBS - selective disclosure verification successful")
 	return true
 }
 
@@ -102,7 +112,10 @@ Output:
 	public key - string
 */
 func PublicKeyToString(publicKey *bbs.PublicKey) string{
-	res, _ := publicKey.Marshal()
+	res, err := publicKey.Marshal()
+	if err!=nil{
+		zap.S().Infoln("BBS - error marshing public key")
+	}
 
 	str := fmt.Sprintf("%s", res)
 	//zap.S().Infoln("BBS - public key byte: ",res)

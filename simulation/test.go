@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/deckarep/golang-set"
 	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/issuer"
+	"github.com/praveensankar/Revocation-Service/entities"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/vc"
 	"go.uber.org/zap"
@@ -26,11 +26,13 @@ func TestSimulator(conf config.Config) {
 }
 
 func PerformExperimentTest(config config.Config){
-	issuer1 := issuer.CreateTestIssuer(config)
+	issuer1 := entities.CreateTestIssuer(config)
 	publicKey, _ := issuer1.BbsKeyPair[0].PublicKey.Marshal()
 	remainingSpace := int(math.Pow(2, float64(config.MTHeight)))-int(config.ExpectedNumberOfTotalVCs)
 	claimsSet := issuer1.GenerateMultipleDummyVCClaims(int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
 	revocationBatchSize :=5
+	revocationTimePerBatch := 0.0
+	revocationTimeTotal := 0.0
 
 	issuer1.IssueBulk(claimsSet, int(config.ExpectedNumberOfTotalVCs)+remainingSpace)
 
@@ -50,7 +52,7 @@ func PerformExperimentTest(config config.Config){
 
 		vp, _ := vc.GenerateProofForSelectiveDisclosure(publicKey, credential)
 		vcId := fmt.Sprintf("%v",credential.Metadata.Id)
-		issuer1.VerifyTest(vcId, *vp)
+		issuer1.VerifyTest(vcId, vp)
 	}
 
 
@@ -84,10 +86,21 @@ func PerformExperimentTest(config config.Config){
 				i = rand.Intn(int(config.ExpectedNumberOfTotalVCs))
 			}
 		}
-		indexes, amount := issuer1.RevokeVCInBatches(config, revokedVCsInBatch)
+		indexes, amount, revocationTime := issuer1.RevokeVCInBatches(config, revokedVCsInBatch)
 		affectedIndexes = affectedIndexes.Union(indexes)
-		amountPaid = amountPaid + amount;
-		amountPaid = amountPaid / 2;
+		revocationTimeTotal = revocationTimeTotal + revocationTime.Seconds()
+		if revocationTimePerBatch == 0.0{
+			revocationTimePerBatch = revocationTimePerBatch + revocationTime.Seconds();
+		} else{
+			revocationTimePerBatch = (revocationTimePerBatch + revocationTime.Seconds())/2;
+		}
+
+		if amountPaid==0{
+			amountPaid = amountPaid + amount;
+		} else{
+			amountPaid = amountPaid + amount;
+			amountPaid = amountPaid / 2;
+		}
 	}
 
 	var falsePositiveStatus bool
@@ -99,7 +112,7 @@ func PerformExperimentTest(config config.Config){
 	for _, credential := range vcs {
 		vp, _ := vc.GenerateProofForSelectiveDisclosure(publicKey,credential)
 		vcId := fmt.Sprintf("%v",credential.Metadata.Id)
-		falsePositiveStatus, isAffectedInMTAcc = issuer1.VerifyTest(vcId, *vp)
+		falsePositiveStatus, isAffectedInMTAcc, _, _, _, _ = issuer1.VerifyTest(vcId, vp)
 		if falsePositiveStatus == true {
 			numberOfOccuredFalsePositives++
 			if isAffectedInMTAcc == true {

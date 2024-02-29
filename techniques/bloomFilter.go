@@ -10,7 +10,7 @@ import (
 
 
 // Todo: change the value of this constant based on value in smart contract
-const NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER = 4;
+const NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER = 7;
 
 type BloomFilter struct{
 	bloomFilter *bloom.BloomFilter
@@ -25,7 +25,7 @@ At first, the size of bloom filter and number of hash functions required  are es
 Then a new BloomFilter object is created. and retured.
 
 Inputs:
-	TotalNumberofVCs - number of VCs issuer expects to issue in its lifetime
+	TotalNumberofVCs - number of VCs entities expects to issue in its lifetime
 	falsePositiveRate - false positive rate of bloomfilter
 
 Output:

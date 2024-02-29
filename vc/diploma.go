@@ -3,6 +3,7 @@ package vc
 import (
 	"bytes"
 	"encoding/gob"
+	"encoding/json"
 	"fmt"
 	_ "github.com/google/tink/go/keyset"
 	"github.com/praveensankar/Revocation-Service/models"
@@ -89,24 +90,28 @@ func generateMessages( vcId string, claims DiplomaClaim,
 	var messages [][]byte
 
 	// 1) append the bf indexes to the messages
-	for _, bfIndex := range  bfIndexes{
-		messages = append(messages, []byte(bfIndex))
+	for i:=0;i<techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER;i++ {
+		messages = append(messages, []byte(bfIndexes[i]))
+		//zap.S().Infoln("BBS - bf index: ", []byte(bfIndexes[i]))
 	}
 	// 2) append the mt leaf hash to the messages
 	messages = append(messages, []byte(mtLeafHash))
+	//zap.S().Infoln("BBS - mt leaf hash: ", []byte(mtLeafHash))
 
 	// 2) append vc id to the messages
 	messages = append(messages, []byte(vcId))
+	//zap.S().Infoln("BBS - vc  id: ", []byte(vcId))
 
 	// 4) append the claims. All the claims are appended together. However, it is trivial to implement
-	messages = append(messages, []byte(claims.Grade))
+	messages = append(messages, []byte(fmt.Sprintf("%s", claims.Grade)))
+	//zap.S().Infoln("BBS - grade: ",[]byte(fmt.Sprintf("%s", claims.Grade)))
 	messages = append(messages, []byte(claims.Degree))
 	messages = append(messages, []byte(fmt.Sprintf("%v", claims.Id)))
 	messages = append(messages, []byte(fmt.Sprintf("%v", claims.StudentId)))
 
 	messages = append(messages, []byte(claims.University))
 	messages = append(messages, []byte(claims.StudentName))
-	messages = append(messages, []byte(string(claims.GraduationYear)))
+	messages = append(messages, []byte(fmt.Sprintf("%d", claims.GraduationYear)))
 	return messages
 }
 
@@ -117,6 +122,14 @@ func generateProofForDiploma(privateKey *bbs.PrivateKey, vcId string, claims Dip
 	signature  := signature.Sign(privateKey, messages)
 	proof := models.Proof{Type: "bbs+", ProofValue: signature}
 	return proof
+}
+
+func verifyProofForDiploma(publicKey []byte, sign []byte, vcId string, claims DiplomaClaim, bfIndexes []string,
+	mtLeafHash string) bool{
+	messages:= generateMessages(vcId, claims, bfIndexes, mtLeafHash)
+	status  := signature.Verify(publicKey, sign, messages)
+	zap.S().Infoln("DIPLOMA - digital signature verification: ",status)
+	return status
 }
 
 func NewDiploma() models.VerifiableCredential {
@@ -184,9 +197,10 @@ Output:
 	sampleDiplomaPresentation
 	error
  */
-func GenerateProofForSelectiveDisclosure(publicKey []byte, diploma models.VerifiableCredential) (*models.VerifiablePresentation, error){
+func GenerateProofForSelectiveDisclosure(publicKey []byte, diploma models.VerifiableCredential) (models.VerifiablePresentation, error){
 	var revealedIndexes []int
 	claims := diploma.Claims.(DiplomaClaim)
+
 
 	// add bf indexes
 	i:=0
@@ -211,11 +225,17 @@ func GenerateProofForSelectiveDisclosure(publicKey []byte, diploma models.Verifi
 
 	bfIndexes := diploma.Metadata.CredentialStatus.BfIndexes
 	mtLeafHash := diploma.Metadata.CredentialStatus.MTLeafValue
-
+	//zap.S().Infoln("DIPLOMA - revealed indexes: ", revealedIndexes)
 	messages := generateMessages(fmt.Sprintf("%v", diploma.Metadata.Id), claims, bfIndexes , mtLeafHash)
+	//zap.S().Infoln("DIPLOMA - messages: \t ", messages)
 
-
+	signStatus := signature.Verify(publicKey, sign, messages)
+	if signStatus==false{
+		zap.S().Infoln("BBS - digital signature verification failed")
+	}
 	SDproof, nonce := signature.SelectiveDisclosure(publicKey, sign, messages, revealedIndexes)
+
+
 
 	vp := models.VerifiablePresentation{
 		Messages: SampleDiplomaPresentation{
@@ -229,7 +249,31 @@ func GenerateProofForSelectiveDisclosure(publicKey []byte, diploma models.Verifi
 		Proof:    SDproof,
 	}
 
-	return &vp, nil
+
+
+	var revealedMessages [][]byte
+	presentation := vp.Messages.(SampleDiplomaPresentation)
+	for i:=0; i<techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER; i++{
+		revealedMessages = append(revealedMessages, []byte(presentation.BfIndexes[i]))
+		//zap.S().Infoln("DIPLOMA - verification of selective disclosure: bf index: ", []byte(bfIndex))
+	}
+	// 2) append the mt leaf hash to the messages
+	revealedMessages = append(revealedMessages, []byte(presentation.MtLeafHash))
+
+
+	// 4) append the claims. All the claims are appended together. However, it is trivial to implement
+	revealedMessages = append(revealedMessages, []byte(presentation.Grade))
+	revealedMessages = append(revealedMessages, []byte(presentation.Degree))
+
+
+	zap.S().Infoln("DIPLOMA - DIPLOMA - proof: ", presentation.Proof[0:5])
+
+
+	status:= signature.VerifySelectiveDisclosureProof(publicKey, presentation.Proof, revealedMessages, presentation.Nonce)
+	zap.S().Infoln("BBS - selective disclosure:\t verification status: ", status)
+	//zap.S().Infoln("BBS - selective disclosure: proof: ", SDproof, "\t nonce: ", nonce, "\t verification status: ", status)
+
+	return vp, nil
 
 }
 
@@ -239,8 +283,9 @@ func VerifySelectiveDisclosureDiploma( publicKey []byte, vp SampleDiplomaPresent
 	var messages [][]byte
 
 	// 1) append the bf indexes to the messages
-	for _, bfIndex := range  vp.BfIndexes{
-		messages = append(messages, []byte(bfIndex))
+	for i:=0; i<techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER; i++{
+		messages = append(messages, []byte(vp.BfIndexes[i]))
+		//zap.S().Infoln("DIPLOMA - verification of selective disclosure: bf index: ", []byte(bfIndex))
 	}
 	// 2) append the mt leaf hash to the messages
 	messages = append(messages, []byte(vp.MtLeafHash))
@@ -251,18 +296,40 @@ func VerifySelectiveDisclosureDiploma( publicKey []byte, vp SampleDiplomaPresent
 	messages = append(messages, []byte(vp.Degree))
 
 
+	zap.S().Infoln("DIPLOMA - DIPLOMA - proof: ", vp.Proof[0:5])
+
 	status := signature.VerifySelectiveDisclosureProof( publicKey, vp.Proof, messages, vp.Nonce)
 
 
 	if status == true {
-		//zap.S().Infoln("DIPLOMA PRESENTATION - verification successful: ")
+		zap.S().Infoln("DIPLOMA PRESENTATION - verification successful: ")
 		return true
 	}
-	//zap.S().Infoln("DIPLOMA PRESENTATION - verification failed")
+	zap.S().Infoln("DIPLOMA PRESENTATION - verification failed")
 	return false
 }
 
 
+func JsonToDiplomaVC(jsonObj []byte) (*models.VerifiableCredential){
+	credential := models.VerifiableCredential{}
+	var claims DiplomaClaim = DiplomaClaim{}
+	json.Unmarshal(jsonObj, &credential)
+	claimsJson,_ := json.Marshal(credential.Claims)
+	json.Unmarshal(claimsJson, &claims)
+	credential.Claims = claims
+	return &credential
+}
+
+
+func JsonToDiplomaVP(jsonObj []byte) (*models.VerifiablePresentation){
+	vp := models.VerifiablePresentation{}
+	var diplomaVP SampleDiplomaPresentation = SampleDiplomaPresentation{}
+	json.Unmarshal(jsonObj, &vp)
+	messagesJson,_ := json.Marshal(vp.Messages)
+	json.Unmarshal(messagesJson, &diplomaVP)
+	vp.Messages = diplomaVP
+	return &vp
+}
 
 func TestDiploma(){
 	bbsKeys := signature.GenerateKeyPair()
@@ -285,19 +352,31 @@ func TestDiploma(){
 
 	myDiploma,_ := CreateDiploma(privateKey, vcId, claims, bfIndexes, mtLeafHash )
 
-	zap.S().Infoln("DIPLOMA - json \t: ", string(myDiploma.Json()))
+	verifyProofForDiploma(publicKey, myDiploma.Proofs[0].ProofValue, vcId, claims, bfIndexes, mtLeafHash )
+	//zap.S().Infoln("DIPLOMA - json \t: ", string(myDiploma.Json()))
 
 	vp, _ := GenerateProofForSelectiveDisclosure(publicKey, *myDiploma)
 
-	//zap.S().Infoln("DIPLOMA - Presentation: ",vp.Messages)
 
 	diplomaPresentation := vp.Messages.(SampleDiplomaPresentation)
+	zap.S().Infoln("DIPLOMA - Presentation: ",diplomaPresentation.Proof[0:5])
+
+
 
 	VerifySelectiveDisclosureDiploma(publicKey, diplomaPresentation)
+	//
+	//diplomaPresentation.Grade="C"
+	//
+	//VerifySelectiveDisclosureDiploma( publicKey, diplomaPresentation)
 
-	diplomaPresentation.Grade="C"
+	jsonObj := myDiploma.Json()
+	JsonToDiplomaVC(jsonObj)
 
-	VerifySelectiveDisclosureDiploma( publicKey, diplomaPresentation)
+	//vpJson := vp.Json()
+	//vp1 := JsonToDiplomaVP(vpJson)
+	//
+	//VerifySelectiveDisclosureDiploma( publicKey, vp1.Messages.(SampleDiplomaPresentation))
+
 
 }
 

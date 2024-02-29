@@ -14,7 +14,6 @@ type Config struct{
 	BlockchainRpcEndpoint string
 	BlockchainWebSocketEndPoint string
 	SenderAddress string
-	PrivateKey    string
 	passPhrase    string
 	PrivateKeys []string
 	LoggerType string
@@ -29,6 +28,11 @@ type Config struct{
 	RevocationBatchSize uint
 	FalsePositiveRate float64
 	DEBUG bool
+	IssuerAddress string
+	HolderName string
+	HolderAddress string
+	VerifierName string
+	VerifierAddress string
 }
 
 func (config Config) printConfig()  {
@@ -38,7 +42,6 @@ func (config Config) printConfig()  {
 	zap.L().Info("gas limit: "+string(config.GasLimit))
 	zap.L().Info("gas price: "+config.GasPrice.String())
 	zap.L().Info("sender address: "+config.SenderAddress)
-	zap.L().Info("sender private key: "+config.PrivateKey)
 	zap.L().Info("sender pass phrase: "+config.passPhrase)
 	zap.S().Infoln("private keys in ganache test network : ",config.PrivateKeys)
 	zap.L().Info("logger environment: "+config.LoggerType)
@@ -47,6 +50,7 @@ func (config Config) printConfig()  {
 	zap.L().Info("********************************************************************************************************************************\n")
 	zap.L().Info("\n\n--------------------------------------------------------printing issuer configuration--------------------------------------------------")
 	zap.L().Info("issuer name:"+config.IssuerName)
+	zap.L().Info("issuer address:"+config.IssuerAddress)
 	zap.L().Info("total of VCs would be issued:"+ strconv.Itoa(int(config.ExpectedNumberOfTotalVCs)))
 	zap.L().Info("total of VCs would be revoked:"+ strconv.Itoa(int(config.ExpectedNumberofRevokedVCs)))
 	zap.S().Infoln("bloom filter false positive rate: ",config.FalsePositiveRate)
@@ -54,6 +58,15 @@ func (config Config) printConfig()  {
 	zap.S().Infoln("merkle tree height: ", config.MTHeight)
 	zap.S().Infoln("revocation batch size: ", config.RevocationBatchSize)
 	zap.L().Info("********************************************************************************************************************************\n")
+	zap.L().Info("--------------------------------------------------------printing holder configuration--------------------------------------------------")
+	zap.L().Info("holder name:"+config.HolderName)
+	zap.L().Info("holder address:"+config.HolderAddress)
+	zap.L().Info("********************************************************************************************************************************\n")
+	zap.L().Info("--------------------------------------------------------printing verifier configuration--------------------------------------------------")
+	zap.L().Info("verifier name:"+config.VerifierName)
+	zap.L().Info("verifier address:"+config.VerifierAddress)
+	zap.L().Info("********************************************************************************************************************************\n")
+
 	zap.L().Info("\n\n--------------------------------------------------------printing Experiment parameters--------------------------------------------------")
 
 	for key, exp := range config.ExpParamters{
@@ -63,23 +76,40 @@ func (config Config) printConfig()  {
 
 }
 
+/*
+setupConfig sets up the config file, config file type and config file path
+*/
+func setupConfig(){
+	viper.SetConfigFile("config.json")// name of config file (without extension)
+	viper.SetConfigType("json")
+	viper.AddConfigPath(".")
+}
 
 func ParseConfig() (Config, error){
 
 
-
+	viper.SetConfigType("json")
+	viper.AddConfigPath(".")
+	viper.SetConfigName("contractAddress")
+	config := Config{}
 	err := viper.ReadInConfig()
 	if err!=nil{
 		zap.S().Fatalln("error reading config file for viper.\t", err)
 	}
-	config := Config{}
-	config.SmartContractAddress = viper.GetString("contract.address")
+
+	config.SmartContractAddress = viper.GetString("contractAddress")
+
+	viper.SetConfigFile("config.json")// name of config file (without extension)
+	err = viper.MergeInConfig()
+	err = viper.ReadInConfig()
+	if err!=nil{
+		zap.S().Fatalln("error reading config.json file for viper.\t", err)
+	}
 	config.GasLimit = viper.GetUint64("contract.gasLimit")
 	config.GasPrice = big.NewInt(int64(viper.GetUint64("contract.gasPrice")))
 	config.BlockchainRpcEndpoint = viper.GetString("blockchain.rpcEndpoint")
 	config.BlockchainWebSocketEndPoint = viper.GetString("blockchain.wsEndPoint")
 	config.SenderAddress = viper.GetString("account.address")
-	config.PrivateKey = viper.GetString("account.privateKey")
 	config.passPhrase = viper.GetString("account.passphrase")
 	config.PrivateKeys = viper.GetStringSlice("account.privateKeys")
 	config.LoggerType = viper.GetString("logger.env")
@@ -106,11 +136,21 @@ func ParseConfig() (Config, error){
 	config.MTHeight = viper.GetUint("issuer.mtHeight")
 	config.RevocationBatchSize = viper.GetUint("issuer.revocationBatchSize")
 	config.IssuerName = viper.GetString("issuer.name")
+	config.IssuerAddress = viper.GetString("issuer.address")
+
+	config.HolderName = viper.GetString("holder.name")
+	config.HolderAddress = viper.GetString("holder.address")
+
+	config.VerifierName = viper.GetString("verifier.name")
+	config.VerifierAddress = viper.GetString("verifier.address")
+
 	config.DEBUG = viper.GetBool("mode.debug")
 	//"account1" :  "0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A",
 	//	"account2" : "0x6C3d120Ee76E635d7b221a996718a8277BeA973f",
 	//	"account3" : "0xF82407B704B5FF6AB71894ec0f1d78f514c3A13A",
 	//	"_comment": " three other accounts in the ganache test network"
+
+
 	config.printConfig()
 	return config, nil
 }

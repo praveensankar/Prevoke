@@ -8,8 +8,7 @@ contract RevocationService{
 
     bool private constant DEBUG = true;
 
-    // bloom filter
-    uint public constant numberOfHashFunctions = 4;
+
     // const private numberofVCs = 10000;
 
     // // BF size is set for 10% false positive
@@ -34,16 +33,16 @@ contract RevocationService{
     uint[] private indexes;
     mapping (uint => bool) public isExistInMTAccumulator;
 
-    // issuer is the owner of the contract
+    // entities is the owner of the contract
     address issuer;
 
-    // stores the public keys used by the issuer
+    // stores the public keys used by the entities
     bytes[] public publicKeys;
     mapping (string => bool) public isExistInPublicKeys;
 
     event Issue(uint[]  _mtIndexes, bytes1  _mtValue1, bytes1  _mtValue2, bytes1  _mtValue3, bytes1  _mtValue4);
     event VerificationPhase2(bytes32 merkleRoot, bytes32 vcLeaf, bytes32[] proof);
-    // sets the issuer - contract creator is the issuer
+    // sets the entities - contract creator is the entities
     constructor(){
         issuer = msg.sender;
     }
@@ -59,12 +58,12 @@ contract RevocationService{
 
 
     /*
-    This function adds public keys used by the issuer.
+    This function adds public keys used by the entities.
 
     input: public keys
     */
     function addPublicKeys(bytes[] memory _publicKeys) public{
-        //only issuer can perform the revocation
+        //only entities can perform the revocation
         require(msg.sender==issuer);
 
 
@@ -74,7 +73,7 @@ contract RevocationService{
     }
 
     /*
-This function returns the public keys used by the issuer
+This function returns the public keys used by the entities
 
 output: public keys
 */
@@ -92,7 +91,7 @@ output: public keys
     Note: The logic for mapping VCs to level order indexes should be done at the issuers side.
     */
     function issueVC(uint[] memory _mtIndexes, string[] memory _mtValues) public{
-        //only issuer can perform the revocation
+        //only entities can perform the revocation
         require(msg.sender==issuer);
 
         updateMerkleTree(_mtIndexes, _mtValues);
@@ -114,7 +113,7 @@ output: public keys
     Note: set merkle tree to -1 if it is not required to update merkle tree.
     */
     function revokeVC(uint256[] memory _bfIndexes, uint[] memory _mtIndexes, string[] memory _mtValues) public{
-        //only issuer can perform the revocation
+        //only entities can perform the revocation
         require(msg.sender==issuer);
 
         updateBloomFilter(_bfIndexes);
@@ -126,7 +125,7 @@ output: public keys
 
     function updateBloomFilter(uint256[] memory _indexes) public{
 
-        //only issuer can perform the revocation
+        //only entities can perform the revocation
         require(msg.sender==issuer);
 
         // sets the indexes to true
@@ -192,7 +191,7 @@ output: public keys
         True: indicates VC is valid
         False: indicates VC is revoked
     */
-    // function verifyVC(uint256[numberOfHashFunctions] memory _bfIndexes) public view returns(bool){
+    // function verifyVC(uint256[] memory _bfIndexes) public view returns(bool){
 
     //     bool statusInBloomFilter = checkRevocationStatusInBloomFilter(_bfIndexes);
 
@@ -217,7 +216,7 @@ output: public keys
         True: indicates VC is valid
         False: indicates VC is revoked
     */
-    function verificationPhase1(uint256[numberOfHashFunctions] memory _bfIndexes) public view returns(bool){
+    function verificationPhase1(uint256[] memory _bfIndexes) public view returns(bool){
         return checkRevocationStatusInBloomFilter(_bfIndexes);
     }
 
@@ -225,7 +224,7 @@ output: public keys
 
     // if it returns true then the VC is not revoked.
     // if it retuns false then the VC is probably revoked.
-    function checkRevocationStatusInBloomFilter(uint256[numberOfHashFunctions] memory _indexes) public view returns(bool){
+    function checkRevocationStatusInBloomFilter(uint256[] memory _indexes) public view returns(bool){
 
         bool isValid = false;
         for (uint i = 0; i < _indexes.length; i++) {
@@ -295,6 +294,17 @@ output: public keys
 
     function RetrieveBloomFilter() public view returns (uint256[] memory){
         return bfIndexes;
+    }
+
+    function GetMerkleTreeSize() public view returns (uint)  {
+        bytes memory mtNode;
+        uint mtSize;
+        mtSize=0;
+        for (uint i = 0; i < indexes.length; i++) {
+            mtNode =  bytes(merkleTree[i]);
+            mtSize = mtSize + mtNode.length;
+        }
+        return mtSize;
     }
 }
 

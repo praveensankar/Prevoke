@@ -1,4 +1,4 @@
-package issuer
+package entities
 
 import (
 	"fmt"
@@ -10,12 +10,13 @@ import (
 	"go.uber.org/zap"
 	"math"
 	"math/rand"
+	"net"
 	"time"
 )
 
 
 /*
-creates new issuer instance for testing purpose.
+creates new entities instance for testing purpose.
 This instance connects to local stub for revoation service instead of connecting to blockchain
 */
 func  CreateTestIssuer(config config.Config) *Issuer {
@@ -37,7 +38,9 @@ func  CreateTestIssuer(config config.Config) *Issuer {
 	keys := make([][]byte, 1)
 	keys[0]=publicKey1
 	rs.AddPublicKeys(keys)
-	zap.S().Infoln("ISSUER-","issuer test instance created")
+	issuer.activeConnections = []net.Conn{}
+	issuer.processedConnections = []net.Conn{}
+	zap.S().Infoln("ISSUER-","entities test instance created")
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
 	return &issuer
 }
@@ -65,7 +68,7 @@ func TestIssuer(config config.Config){
 	for _, credential := range vcs{
 			vp, _ := vc.GenerateProofForSelectiveDisclosure(publicKey, credential)
 			vcId := fmt.Sprintf("%v",credential.Metadata.Id)
-			issuer.VerifyTest(vcId, *vp)
+			issuer.VerifyTest(vcId, vp)
 	}
 
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
@@ -106,28 +109,28 @@ func TestIssuer(config config.Config){
 	for _, credential := range credentials{
 		vp, _ := vc.GenerateProofForSelectiveDisclosure(publicKey, credential)
 		vcId := fmt.Sprintf("%v",credential.Metadata.Id)
-		issuer.VerifyTest(vcId, *vp)
+		issuer.VerifyTest(vcId, vp)
 	}
-	//vc1 := issuer.generateDummyVC()
-	//issuer.issue(*vc1)
-	////issuer.verifyTest(*vc1)
-	//vc2 := issuer.generateDummyVC()
-	//issuer.issue(*vc2)
-	//issuer.verifyTest(*vc2)
-	//vc3 := issuer.generateDummyVC()
-	//issuer.issue(*vc3)
-	////issuer.verifyTest(*vc3)
-	//vc4 := issuer.generateDummyVC()
-	//issuer.issue(*vc4)
-	//issuer.verifyTest(*vc4)
-	////for index := range issuer.credentialStore{
-	////	fmt.Println(issuer.credentialStore[index])
+	//vc1 := entities.generateDummyVC()
+	//entities.issue(*vc1)
+	////entities.verifyTest(*vc1)
+	//vc2 := entities.generateDummyVC()
+	//entities.issue(*vc2)
+	//entities.verifyTest(*vc2)
+	//vc3 := entities.generateDummyVC()
+	//entities.issue(*vc3)
+	////entities.verifyTest(*vc3)
+	//vc4 := entities.generateDummyVC()
+	//entities.issue(*vc4)
+	//entities.verifyTest(*vc4)
+	////for index := range entities.credentialStore{
+	////	fmt.Println(entities.credentialStore[index])
 	////}
 	//
-	//issuer.getUpdatedMerkleProof(*vc1)
+	//entities.getUpdatedMerkleProof(*vc1)
 	//
 	//
-	//issuer.verifyTest(*vcs[2])
-	//issuer.revoke(*vcs[2])
+	//entities.verifyTest(*vcs[2])
+	//entities.revoke(*vcs[2])
 
 }

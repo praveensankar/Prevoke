@@ -7,6 +7,7 @@ import (
 	"go.uber.org/zap"
 	"math"
 	"math/big"
+	"reflect"
 )
 
 
@@ -33,7 +34,7 @@ func (r *RevocationServiceStub) VerificationPhase2(leafHash string, witnesses []
 	return status, nil
 }
 
-func (r *RevocationServiceStub) VerificationPhase1Cached(bfIndexes [4]*big.Int) (bool, error) {
+func (r *RevocationServiceStub) VerificationPhase1Cached(bfIndexes []*big.Int) (bool, error) {
 	return r.VerificationPhase1(bfIndexes)
 }
 
@@ -145,7 +146,7 @@ func (r RevocationServiceStub) RevokeVCInBatches(vcIDs []string) (map[string]int
 }
 
 
-func (r RevocationServiceStub) VerificationPhase1(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error){
+func (r RevocationServiceStub) VerificationPhase1(bfIndexes []*big.Int) (bool, error){
 
 	//r.bloomFilter.CheckStatusInBloomFilter()
 	var indexes []uint64
@@ -174,7 +175,7 @@ func (r RevocationServiceStub) FetchMerkleTree() ([]string){
 	return mtValues;
 }
 
-func (r RevocationServiceStub) VerifyVC( bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int, data *RevocationData) (bool, error) {
+func (r RevocationServiceStub) VerifyVC( bfIndexes []*big.Int, data *RevocationData) (bool, error) {
 
 
 	//Todo: this function should be moved to the verifiers. The parameters should be shared to the holders.
@@ -219,7 +220,7 @@ func (r* RevocationServiceStub) AddPublicKeys(publicKeys [][]byte) {
 }
 
 /*
-FetchPublicKeys retrieves the issuer's public keys from the smart contract
+FetchPublicKeys retrieves the entities's public keys from the smart contract
 
 Output:
 	public Keys - []string
@@ -227,6 +228,23 @@ Output:
 func (r RevocationServiceStub) FetchPublicKeys()([][]byte) {
 	//zap.S().Infoln("ReVOCATION SERVICE STUB - public keys: ",r.PublicKeys)
 	return r.PublicKeys
+}
+func (r RevocationServiceStub) FetchMerkleTreeSizeInDLT()(uint) {
+	_, mtValues := r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
+	return uint(reflect.TypeOf(mtValues).Size())
+}
+
+func (r RevocationServiceStub) FetchMerkleTreeSizeLocal()(uint) {
+	n := 0
+	for i := 0; i <= r.mtHeight; i++ {
+		n  += int(math.Pow(2, float64(i)))
+	}
+	_, mtValues := r.merkleTreeAcc.GetEntriesInLevelOrder(n)
+	size := 0
+	for _, value := range mtValues{
+		size = size + int(uint(reflect.TypeOf(value).Size()))
+	}
+	return uint(size)
 }
 
 

@@ -16,6 +16,7 @@ import (
 	"go.uber.org/zap"
 	"math"
 	"math/big"
+	"reflect"
 )
 
 type IRevocationService interface {
@@ -24,11 +25,11 @@ type IRevocationService interface {
 	RevokeVC(vcID string) (int, int64, error)
 	RevokeVCInBatches(vcIDs []string) (map[string]int, int64, error)
 	RetreiveUpdatedProof(vcID string) *techniques.MerkleProof
-	VerificationPhase1(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error)
+	VerificationPhase1(bfIndexes []*big.Int) (bool, error)
 	VerificationPhase2(leafHash string, witnesses []*techniques.Witness) (bool, error)
-	VerificationPhase1Cached(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error)
+	VerificationPhase1Cached(bfIndexes []*big.Int) (bool, error)
 	VerificationPhase2Cached(leafHash string, witnesses []*techniques.Witness) (bool, error)
-	VerifyVC( _bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int, data *RevocationData) (bool, error)
+	VerifyVC( _bfIndexes []*big.Int, data *RevocationData) (bool, error)
 	GetMerkleRoot()(string, error)
 	FetchMerkleTree() ([]string)
 	PrintMerkleTree()
@@ -37,6 +38,8 @@ type IRevocationService interface {
 	FetchPublicKeys()([][]byte)
 	FetchPublicKeysCached()([][]byte)
 	CacheRevocationDataStructuresFromSmartContract()
+	FetchMerkleTreeSizeInDLT()(uint)
+	FetchMerkleTreeSizeLocal()(uint)
 }
 
 
@@ -69,7 +72,7 @@ func CreateRevocationService(config config.Config) *RevocationService {
 	rs.merkleTreeAcc = techniques.CreateMerkleTreeAccumulator(config)
 	rs.bloomFilter = techniques.CreateBloomFilter(config.ExpectedNumberofRevokedVCs, config.FalsePositiveRate)
 	rs.smartContractAddress= common.HexToAddress(config.SmartContractAddress)
-	rs.privateKey = config.PrivateKey
+	rs.privateKey = config.PrivateKeys[0]
 	rs.gasLimit = config.GasLimit
 	rs.gasPrice = config.GasPrice
 	rs.VCToBigInts = make(map[string]*big.Int)
@@ -358,7 +361,7 @@ func (r RevocationService) RevokeVCInBatches(vcIDs []string) (map[string]int, in
 	return oldMTIndexes, gasUsed, nil
 }
 
-func (r RevocationService) VerificationPhase1(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error){
+func (r RevocationService) VerificationPhase1(bfIndexes []*big.Int) (bool, error){
 	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
 	if err != nil {
 		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
@@ -407,7 +410,7 @@ func (r* RevocationService) CacheRevocationDataStructuresFromSmartContract(){
 	r.cachedMTRoot = mtRoot
 }
 
-func (r* RevocationService) VerificationPhase1Cached(bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int) (bool, error){
+func (r* RevocationService) VerificationPhase1Cached(bfIndexes []*big.Int) (bool, error){
 
 	if r.isCached==false {
 		client, err := ethclient.Dial(r.blockchainRPCEndpoint)
@@ -480,7 +483,7 @@ func (r RevocationService) FetchMerkleTree() ([]string){
 	return mtValues;
 }
 
-func (r RevocationService) VerifyVC( _bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int, data *RevocationData) (bool, error) {
+func (r RevocationService) VerifyVC( _bfIndexes []*big.Int, data *RevocationData) (bool, error) {
 	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
 	if err != nil {
 		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
@@ -536,7 +539,7 @@ func (r RevocationService) LocalMTVerification(mtRoot string, data *RevocationDa
 }
 
 /*
-AddPublicKeys adds the issuer's public keys to the smart contract
+AddPublicKeys adds the entities's public keys to the smart contract
 
 Input:
 	public Keys - []string
@@ -562,7 +565,7 @@ func (r RevocationService) AddPublicKeys(publicKeys [][]byte) {
 }
 
 /*
-FetchPublicKeys retrieves the issuer's public keys from the smart contract
+FetchPublicKeys retrieves the entities's public keys from the smart contract
 
 Output:
 	public Keys - []string
@@ -588,7 +591,7 @@ func (r RevocationService) FetchPublicKeys()([][]byte) {
 }
 
 /*
-FetchPublicKeys retrieves the issuer's public keys from the smart contract
+FetchPublicKeys retrieves the entities's public keys from the smart contract
 
 Output:
 	public Keys - []string
@@ -613,5 +616,51 @@ func  GetShortString(inputs []string) []string{
 		res = append(res, output )
 	}
 	return res
+}
+
+
+/*
+FetchMerkleTreeSize retrieves the actual size of merkle tree stored in the smart contract
+
+Output:
+	merkle tree size (in bytes) - uint
+*/
+func (r RevocationService) FetchMerkleTreeSizeInDLT()(uint) {
+	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
+	if err != nil {
+		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
+	}
+	revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
+	if err != nil {
+		zap.S().Infof("Failed to instantiate Storage contract: %v", err)
+	}
+
+
+	//Todo: this function should be moved to the verifiers. The parameters should be shared to the holders.
+	mtSize, err := revocationService.GetMerkleTreeSize(nil)
+	if err != nil {
+		zap.S().Infof("Error adding public keys: %v", err)
+	}
+
+	return uint(mtSize.Uint64())
+}
+
+/*
+FetchMerkleTreeSize retrieves the actual size of merkle tree stored local
+
+Output:
+	merkle tree size (in bytes) - uint
+*/
+func (r RevocationService) FetchMerkleTreeSizeLocal()(uint) {
+	n := 0
+	for i := 0; i <= r.mtHeight; i++ {
+		n  += int(math.Pow(2, float64(i)))
+	}
+	_, mtValues := r.merkleTreeAcc.GetEntriesInLevelOrder(n)
+	size := 0
+	for _, value := range mtValues{
+		size = size + int(uint(reflect.TypeOf(value).Size()))
+	}
+	return uint(size)
 }
 

@@ -27,7 +27,7 @@ contract MerkleTreeAccumulator{
     //owner of the contract
     // address public owner;
 
-    // sets the issuer - contract creator is the issuer
+    // sets the entities - contract creator is the entities
     // constructor(){
     //     owner = msg.sender;
     // }

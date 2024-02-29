@@ -1,9 +1,8 @@
 package models
 
-
 import (
-"encoding/json"
-"fmt"
+	"encoding/json"
+	"fmt"
 )
 
 /*
@@ -20,7 +19,7 @@ type VCFactory interface {
 
 type IVerifiableCredential interface {
 	CreateCredential() IVerifiableCredential
-	GetId() URI
+	GetId() string
 }
 
 type VerifiableCredential struct{
@@ -83,7 +82,7 @@ func (metadata Metadata) String() string{
 	response = response + "context : "+ fmt.Sprintf("%v",metadata.Contexts) + "\n"
 	response = response + "vc id : "+ fmt.Sprintf("%v", metadata.Id) + "\n"
 	response = response + "type : "+ fmt.Sprintf("%v", metadata.Types) + "\n"
-	response = response + "issuer : "+ fmt.Sprintf("%v",metadata.Issuer) + "\n"
+	response = response + "entities : "+ fmt.Sprintf("%v",metadata.Issuer) + "\n"
 	response = response + "issuance date : "+ fmt.Sprintf("%v", metadata.IssuanceDate) + "\n"
 	response = response + "expiration date: "+ fmt.Sprintf("%v", metadata.ExpirationDate) + "\n"
 	response = response + "credential status: "+ metadata.CredentialStatus.String()
@@ -91,7 +90,9 @@ func (metadata Metadata) String() string{
 	return response
 }
 
-
+func (vc VerifiableCredential) GetId() string  {
+	return fmt.Sprintf("%v",vc.Metadata.Id)
+}
 
 func (vc VerifiableCredential) String() string  {
 
@@ -107,5 +108,7 @@ func (vc *VerifiableCredential) Json() []byte {
 	jsonObj,_ := json.MarshalIndent(vc, "","    ")
 	return jsonObj
 }
+
+
 
 

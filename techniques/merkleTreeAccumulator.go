@@ -73,7 +73,7 @@ This function creates a new merkle tree accumulator.
 If total number of vcs are not in power of 2, then the leaf counts will be adjusted to the nearest power of 2.
 
 Inputs:
-	TotalNumberofVCs - number of VCs issuer expects to issue in its lifetime
+	TotalNumberofVCs - number of VCs entities expects to issue in its lifetime
 	height - Height of Merkle Tree
 
 Output:

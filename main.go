@@ -25,7 +25,7 @@ The flags are:
 		tests the bloom filter
 
 	-issuerTest
-		tests issuer
+		tests entities
 
 	-revocationServiceTest
 		tests revocation service
@@ -38,18 +38,17 @@ package main
 import (
 	"flag"
 	"fmt"
+	"fyne.io/fyne/v2/app"
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/issuer"
+	"github.com/praveensankar/Revocation-Service/entities"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
 	"github.com/praveensankar/Revocation-Service/signature"
 	"github.com/praveensankar/Revocation-Service/simulation"
 	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/praveensankar/Revocation-Service/vc"
-	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-
 )
 
 /*
@@ -92,14 +91,7 @@ func SetupLogger(conf config.Config){
 
 }
 
-/*
-setupConfig sets up the config file, config file type and config file path
- */
-func setupConfig(){
-	viper.SetConfigFile("config.json")// name of config file (without extension)
-	viper.SetConfigType("json")
-	viper.AddConfigPath(".")
-}
+
 
 /*
 initialize initializes the program and does the following
@@ -108,7 +100,6 @@ initialize initializes the program and does the following
 	3) sets up the logger
  */
 func initialize() {
-	setupConfig()
 	conf, _ := config.ParseConfig()
 	SetupLogger(conf)
 }
@@ -134,6 +125,9 @@ func Run(conf config.Config){
 	rsTestFlag := flag.Bool("revocationServiceTest", false, "a bool")
 	simulationFlag := flag.Bool("simulation", false, "a bool")
 	bbsTestFlag := flag.Bool("bbsTest", false, "a bool")
+	holderFlag := flag.Bool("holder", false, "a bool")
+	issuerFlag := flag.Bool("issuer", false, "a bool")
+	verifierFlag := flag.Bool("verifier", false, "a bool")
 	flag.Parse()
 
 
@@ -151,7 +145,7 @@ func Run(conf config.Config){
 	}
 
 	if *issuerTestFlag==true{
-		issuer.TestIssuer(conf)
+		entities.TestIssuer(conf)
 	}
 
 	if *rsTestFlag == true{
@@ -170,9 +164,21 @@ func Run(conf config.Config){
 
 	if *simulationFlag==true {
 		simulation.StartExperiments(conf)
-
 	}
 
+	if *holderFlag==true{
+		app := app.New()
+		go entities.StartHolder(app, conf)
+		app.Run()
+	}
+
+	if *issuerFlag==true{
+		entities.StartIssuerServer(conf)
+	}
+
+	if *verifierFlag == true{
+		entities.StartVerifierServer(conf)
+	}
 
 	//blockchain.TestConnectionToBlockchain(conf)
 	//blockchain.Test(conf)
@@ -201,7 +207,7 @@ This function that returns estimated size of bloom filter and number of hash fun
 
 
 Inputs:
-	TotalNumberofVCs - number of VCs issuer expects to issue in its lifetime
+	TotalNumberofVCs - number of VCs entities expects to issue in its lifetime
 	falsePositiveRate - false positive rate of bloomfilter
 
 Output:

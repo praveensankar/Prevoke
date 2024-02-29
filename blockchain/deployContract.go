@@ -18,7 +18,7 @@ import (
 func DeployContract(config config.Config, counter int) (string, error){
 	client, err :=  ethclient.Dial(config.BlockchainRpcEndpoint)
 	if err != nil {
-		zap.S().Fatalln(err)
+		zap.S().Fatalln("ERROR in deploying contract",err)
 	}
 
 	privateKey, err := crypto.HexToECDSA(config.PrivateKeys[counter])
@@ -53,7 +53,7 @@ func DeployContract(config config.Config, counter int) (string, error){
 
 
 
-	addresss, tx, revocationservice, err  := contracts.DeployRevocationService(auth, client)
+	addresss, tx, _, err  := contracts.DeployRevocationService(auth, client)
 	if err != nil {
 		zap.S().Infof("Failed to deploy contract: %v", err)
 	}
@@ -61,8 +61,7 @@ func DeployContract(config config.Config, counter int) (string, error){
 
 	zap.S().Infoln("BLOCKCHAIN- \t  smart contract address: ", addresss.String())
 	zap.S().Infoln("BLOCKCHAIN- \t tx hash: ", tx.Hash())
-	_, _ = revocationservice.NumberOfHashFunctions(nil)
-	//zap.S().Infoln("number of hash functions: ", n)
+
 	zap.L().Info("********************************************************************************************************************************\n")
 
 	return addresss.String(), err

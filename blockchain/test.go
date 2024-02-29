@@ -14,10 +14,10 @@ func TestConnectionToBlockchain(config config.Config){
 	node.getBalance(config.SmartContractAddress)
 
 	node.queryBlock()
-	node.doTransaction(config.PrivateKey)
+	node.doTransaction(config.PrivateKeys[0])
 	//node.sendEther(config.privateKey,1, config.otherAccounts[0])
 	//node.sendTransaction()
-	node.sendLegacyTransaction(config.PrivateKey, config.SenderAddress)
+	node.sendLegacyTransaction(config.PrivateKeys[0], config.SenderAddress)
 	_ = createNewKeyStore()
 
 

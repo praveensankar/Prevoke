@@ -7,14 +7,24 @@
 		"gasPrice" : "20000000000"
 	},
 	 "issuer" : {
+		 "name": "university",
+		 "address": "127.0.0.1:8000",
 		 "totalVCs": "10",
 		 "revokedVCs": "5",
-		 "falsePositiveRate": "0.1",
+		 "falsePositiveRate": "0.01",
 		 "mtLevelInDLT": "2",
 		 "mtHeight": "4",
 		 "revocationBatchSize": "1",
 		 "comment": "number of hash functions: 7 if fpr==0.01, 6 if fpr==0.02,0.03, 5 if fpr==0.04,0.05, 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more ",
 		 "_comment": "revocationBatchSize - 'x' - x revocation performed together. 1 if each revocation needs to be performed one by one. "
+	 },
+	 "holder" : {
+		 "name": "praveen",
+		 "address": "127.0.0.1:8010"
+	 },
+	 "verifier" : {
+		 "name": "employer",
+		 "address": "127.0.0.1:8020"
 	 },
 	 "test" : "test",
 	"blockchain" : {
@@ -25,10 +35,9 @@
 
 	},
 	 "account" : {
-		 "address" : "0x8E0368Ce3318Dde3eF304c504cDb8c64C0db7ce4",
-		 "privateKey": "f0e55a03a970fbfcdf6cbfe0951c3b22de52ceac427fa0004b8e7e3dc81c74c7",
+		 "address" : "0xeb083c871403d381F996915411760E5b458F3d76",
 		 "passphrase": "simple phrase",
-		 "privateKeys" : ["f0e55a03a970fbfcdf6cbfe0951c3b22de52ceac427fa0004b8e7e3dc81c74c7"],
+		 "privateKeys" : ["21a052dc8187e906120fab107f8a66df4bb3d1c9941cde9f86584cfbb0092b1d"],
 		 "_comment": "sender info - account used in ganache to deploy smart contract"
 	 },
 
@@ -43,20 +52,34 @@
 		 "debug" : "true"
 	 },
 	 "exp": {
+		 "exp1": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "100",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "2",
+			 "mtHeight": "10"
+		 },
 		 "exp2": {
-		 "totalVCs": "20",
-		 "revokedVCs": "10",
-		 "falsePositiveRate": "0.1",
-		 "mtLevelInDLT": "3",
-		 "mtHeight": "5"
-	 },
+			 "totalVCs": "1000",
+			 "revokedVCs": "100",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "3",
+			 "mtHeight": "10"
+		 },
 		 "exp3": {
 			 "totalVCs": "1000",
 			 "revokedVCs": "100",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "8",
+			 "mtLevelInDLT": "4",
 			 "mtHeight": "10"
-		 }
+		 },
+		 "exp4": {
+		 "totalVCs": "1000",
+		 "revokedVCs": "100",
+		 "falsePositiveRate": "0.1",
+		 "mtLevelInDLT": "5",
+		 "mtHeight": "10"
+	 }
 	 }
  }
 

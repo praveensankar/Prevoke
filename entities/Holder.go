@@ -1,0 +1,170 @@
+package entities
+
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+	"fyne.io/fyne/v2"
+	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/praveensankar/Revocation-Service/models"
+	"github.com/praveensankar/Revocation-Service/revocation_service"
+	"github.com/praveensankar/Revocation-Service/vc"
+	"github.com/suutaku/go-bbs/pkg/bbs"
+	"go.uber.org/zap"
+	"net"
+	"sync"
+	"time"
+)
+
+type IHolder interface {
+	StoreVC(vc models.VerifiableCredential)
+	RetrieveVC(id interface{}) models.VerifiableCredential
+	ConstructVP(vc models.VerifiableCredential) (vp *models.VerifiablePresentation)
+	ShareVP(vp models.VerifiablePresentation)
+}
+
+type Holder struct {
+	sync.RWMutex
+	name string
+	Type Entity
+
+	Conn net.Conn
+
+	app fyne.App
+	issuerAddress string
+	verifierAddress string
+	verfiableCredentials []models.VerifiableCredential
+	totalVCs int
+	RevocationService revocation_service.IRevocationService
+}
+
+
+func NewHolder(config config.Config) *Holder{
+	holder := Holder{ Type: HOLDER}
+	holder.RevocationService = revocation_service.CreateRevocationService(config)
+	holder.setName(config.HolderName)
+	return &holder
+}
+
+
+func (h *Holder) RequestVCFromIssuer(){
+	zap.S().Infoln("HOLDER - requesting ", h.totalVCs, " vcs from issuer")
+	h.receiveVCs(h.issuerAddress)
+}
+
+func (h *Holder) StoreVC(vc models.VerifiableCredential) {
+	h.verfiableCredentials = append(h.verfiableCredentials, vc)
+}
+
+func (h *Holder) RetrieveVC(id interface{}) models.VerifiableCredential {
+	for _, vc := range h.verfiableCredentials{
+		if vc.GetId()==id{
+			return vc
+		}
+	}
+	return models.VerifiableCredential{}
+}
+
+func (h *Holder) ConstructVP(credential models.VerifiableCredential) (vp models.VerifiablePresentation, err error){
+	publicKeys := h.RevocationService.FetchPublicKeysCached()
+	publicKey := publicKeys[0]
+	pk , _ := bbs.UnmarshalPublicKey(publicKey)
+	zap.S().Infoln("HOLDER - issuer's public keys: ", pk.PointG2)
+
+
+	//zap.S().Infoln("HOLDER - proof: ",credential.Proofs)
+	presentation, err := vc.GenerateProofForSelectiveDisclosure(publicKey, credential)
+	if err!=nil{
+		zap.S().Infoln("HOLDER - error in generating vp")
+	}
+	diplomaVP := presentation.Messages.(vc.SampleDiplomaPresentation)
+	//zap.S().Infoln("HOLDER - new vp: \t degree: ", diplomaVP.Degree, "\t grade:", diplomaVP.Grade)
+	//zap.S().Infoln("HOLDER - new vp: : ", diplomaVP)
+
+
+	status := vc.VerifySelectiveDisclosureDiploma(publicKey, diplomaVP)
+	zap.S().Infoln("HOLDER - new vp: signature check: ",status)
+	if status==false{
+	return models.VerifiablePresentation{}, errors.New("signature check failed")
+	}
+
+	return presentation, nil
+}
+
+func (h *Holder) ShareallVPs(){
+	if len(h.verfiableCredentials)==0{
+		zap.S().Infoln("HOLDER - haven't recived any vcs yet")
+		return
+	}
+		vc := h.verfiableCredentials[0]
+	vp,err := h.ConstructVP(vc)
+	if err!=nil{
+		return
+	}
+	h.ShareVP(vp)
+}
+func (h *Holder) ShareVP(vp models.VerifiablePresentation){
+	h.sendVP(vp, h.verifierAddress)
+}
+
+func (h Holder) GetType() Entity{
+	return h.Type
+}
+
+func (h *Holder) setConnection(conn net.Conn){
+	h.Conn = conn
+}
+
+
+func (h *Holder) setName(name string){
+	h.name = name
+}
+
+func (h *Holder) getName() string{
+	return h.name
+}
+
+
+func (h *Holder) Json() ([]byte, error){
+	return json.Marshal(h)
+}
+
+//func JsonToHolder(jsonObj []byte) *Holder{
+//	holder := NewHolder("")
+//	json.Unmarshal(jsonObj, holder)
+//	return holder
+//}
+
+func (h *Holder) String() string  {
+
+	var response string
+	response = response + fmt.Sprintf("%v", h.Type)+"\n"
+	response = response + fmt.Sprintf("%v", h.Conn)+"\n"
+	return response
+}
+
+
+
+
+
+func StartHolder(app fyne.App, config config.Config){
+
+	holder := NewHolder(config)
+	holder.issuerAddress = config.IssuerAddress
+	holder.verifierAddress = config.VerifierAddress
+	holder.totalVCs = int(config.ExpectedNumberOfTotalVCs)
+	if app!=nil{
+		go holder.setupUIForHolder(app)
+	}
+
+	timer1 := time.NewTimer(30 * time.Second)
+	<-timer1.C
+
+}
+
+
+
+
+
+
+
