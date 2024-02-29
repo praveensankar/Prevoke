@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"fyne.io/fyne/v2"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
@@ -30,7 +29,6 @@ type Holder struct {
 
 	Conn net.Conn
 
-	app fyne.App
 	issuerAddress string
 	verifierAddress string
 	verfiableCredentials []models.VerifiableCredential
@@ -147,15 +145,15 @@ func (h *Holder) String() string  {
 
 
 
-func StartHolder(app fyne.App, config config.Config){
+func StartHolder(config config.Config){
 
 	holder := NewHolder(config)
 	holder.issuerAddress = config.IssuerAddress
 	holder.verifierAddress = config.VerifierAddress
 	holder.totalVCs = int(config.ExpectedNumberOfTotalVCs)
-	if app!=nil{
-		go holder.setupUIForHolder(app)
-	}
+
+	holder.RequestVCFromIssuer()
+	holder.ShareallVPs()
 
 	timer1 := time.NewTimer(30 * time.Second)
 	<-timer1.C

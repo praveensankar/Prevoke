@@ -38,7 +38,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"fyne.io/fyne/v2/app"
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/entities"
@@ -167,9 +166,9 @@ func Run(conf config.Config){
 	}
 
 	if *holderFlag==true{
-		app := app.New()
-		go entities.StartHolder(app, conf)
-		app.Run()
+
+		go entities.StartHolder( conf)
+
 	}
 
 	if *issuerFlag==true{
