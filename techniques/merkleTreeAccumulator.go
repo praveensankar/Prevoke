@@ -2,6 +2,7 @@ package techniques
 
 import (
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"github.com/praveensankar/Revocation-Service/config"
 	"go.uber.org/zap"
@@ -48,12 +49,30 @@ type Witness struct{
 }
 
 type MerkleProof struct {
+	MTIndex int
+	AncesstorIndex int
 	LeafHash string
 	LeafValue string
 	Witnesses map[int]*Witness
 	OrderedWitnesses []*Witness
 	Order []int
 }
+
+func (proof *MerkleProof) Json() []byte {
+	jsonObj,_ := json.MarshalIndent(proof, "","    ")
+	return jsonObj
+}
+
+func JsonToMerkleProof(jsonObj []byte) (*MerkleProof, error){
+	proof := MerkleProof{}
+	err := json.Unmarshal(jsonObj, &proof)
+	if err!=nil {
+		return nil, err
+	}
+	return &proof, nil
+}
+
+
 
 // leafsToIndexes - stores (leaf, index) pairs. The leaf value is stored as it is, not the hash digest of leaf.
 type MerkleTreeAccumulator2 struct {
@@ -126,6 +145,16 @@ func (accumulator *MerkleTreeAccumulator2) GetHash(input string) string {
 	h.Write([]byte(input))
 	digest := h.Sum(nil)
 	return accumulator.ByteArrayToString(digest)
+
+}
+
+
+func  GetHash(input string) string {
+	h :=  sha3.New256()
+	h.Write([]byte(input))
+	digest := h.Sum(nil)
+	digestInSting := hex.EncodeToString(digest)
+	return digestInSting
 
 }
 
@@ -333,7 +362,7 @@ func (accumulator *MerkleTreeAccumulator2)  GetProof(leaf string) *MerkleProof{
 	merkleProof.Order=make([]int, 0, accumulator.Height)
 
 	index := accumulator.leafsToIndexes[leaf]
-
+	merkleProof.MTIndex = index
 	if index==-1{
 		zap.S().Infoln("MERKLE TREE ACCUMULATOR- \t the element is not present in the merkle tree accumulator")
 		return nil

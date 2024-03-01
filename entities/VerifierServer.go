@@ -2,7 +2,9 @@ package entities
 
 import (
 	"encoding/gob"
+	"github.com/praveensankar/Revocation-Service/Results"
 	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/praveensankar/Revocation-Service/vc"
 	"go.uber.org/zap"
 	"net"
@@ -44,24 +46,73 @@ func(verifier *Verifier) serverListener(server net.Listener){
 			var reqJson []byte
 			dec.Decode(&reqJson)
 			req := JsonToRequest(reqJson)
+			if req.GetType() ==StoreResults{
+				Results.WriteToFile("results_verifier.json",*verifier.Result)
+				verifier.Result = Results.CreateResult()
+			}
 			if req.GetType() ==VerifyVC{
 				zap.S().Infoln("VERFIER - received new request: ",req)
-				encoder := gob.NewEncoder(conn)
-				req := NewRequest()
-				req.SetId(verifier.name)
-				req.SetType(SendVP)
-				reqJson, _ := req.Json()
-				encoder.Encode(reqJson)
-				dec := gob.NewDecoder(conn)
+				vpReqEncoder := gob.NewEncoder(conn)
+				vpReq := NewRequest()
+				vpReq.SetId(verifier.name)
+				vpReq.SetType(SendVP)
+				reqJson, _ := vpReq.Json()
+				vpReqEncoder.Encode(reqJson)
+				vpDecoder := gob.NewDecoder(conn)
 				var vpJson []byte
-				dec.Decode(&vpJson)
+				vpDecoder.Decode(&vpJson)
 				diplomaVP := vc.JsonToDiplomaVP(vpJson)
 				zap.S().Infoln("VERIFIER - received VP with following claims: \t degree: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Degree,
 					"\t grade: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Grade)
-				verifier.VerifyVP(diplomaVP)
+				phase1result, bbsVerificationTime, phase1Time := verifier.VerifyVPPhase1(diplomaVP)
+
+				verifier.Result.AddVerificationTimePerValidVC(phase1Time)
+				verifier.Result.AddBBSVerificationTimePerVP(bbsVerificationTime)
+
+				if phase1result==true{
+					phase1ResEncoder := gob.NewEncoder(conn)
+					phase1ResultReq := NewRequest()
+					phase1ResultReq.SetId(verifier.name)
+					phase1ResultReq.SetType(SuccessfulVerification)
+					phase1ResultReqJson, _ := phase1ResultReq.Json()
+					phase1ResEncoder.Encode(phase1ResultReqJson)
+				}
+
+				if phase1result==false{
+					//fetch witness from holder
+					witRequestEncoder := gob.NewEncoder(conn)
+					witReq := NewRequest()
+					witReq.SetId(verifier.name)
+					witReq.SetType(SendWitness)
+					witreqJson, _ := witReq.Json()
+					witRequestEncoder.Encode(witreqJson)
+					zap.S().Infoln("VERFIER - sending witness request: ",witReq)
+					witReplyDecoder := gob.NewDecoder(conn)
+					//dec.Decode(&entity)
+					var witJson []byte
+					witReplyDecoder.Decode(&witJson)
+					merkleProof, _ := techniques.JsonToMerkleProof(witJson)
+					zap.S().Infoln("VERIFIER - received merkle proof: ", merkleProof)
+					phase2result := verifier.VerifyVPPhase2(diplomaVP, *merkleProof)
+					phase2ResEncoder := gob.NewEncoder(conn)
+					phase2ResultReq := NewRequest()
+					phase2ResultReq.SetId(verifier.name)
+					if phase2result==true{
+					phase2ResultReq.SetType(SuccessfulVerification)
+					} else{
+						phase2ResultReq.SetType(FailedVerification)
+					}
+					phase2ResultReqJson, _ := phase2ResultReq.Json()
+					phase2ResEncoder.Encode(phase2ResultReqJson)
+				}
 			}
 
 
 		}
 	}
+}
+
+// This function handles the incomming connections. It puts all the incoming connections into a list
+func(verifier *Verifier) getWitnessFromHolder(server net.Listener){
+
 }

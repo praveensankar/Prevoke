@@ -2,6 +2,7 @@ package entities
 
 import (
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/praveensankar/Revocation-Service/Results"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
@@ -30,6 +31,7 @@ type Verifier struct {
 	bbs *bbs.Bbs
 	blockchainEndPoint *ethclient.Client
 	RevocationService revocation_service.IRevocationService
+	Result *Results.Results
 }
 
 /*
@@ -43,13 +45,14 @@ func  CreateVerifier(config config.Config) *Verifier{
 	rs := revocation_service.CreateRevocationService(config)
 	verifier.RevocationService = rs
 	verifier.bbs = bbs.NewBbs()
+	verifier.Result= Results.CreateResult()
 	zap.S().Infoln("VERIFIER-","new entities created: entities name - ",verifier.name)
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
 	return &verifier
 }
 
 /*
-VerifyVP verifies a VP
+VerifyVP verifies a VP - only phase 1
 
 Input:
 vp - models.VerifiablePresentation
@@ -58,31 +61,24 @@ Outputs:
 1) (bool) - actual status of the VP
 2) (float64) - bbs verification time
 3) (float64) - phase 1 time (only valid vcs)
-4) (float64) - phase 2 time (both revoked and false positive vcs)
  */
 
 
-func (verifier *Verifier) VerifyVP(vp *models.VerifiablePresentation) (bool, float64, float64, float64) {
+func (verifier *Verifier) VerifyVPPhase1(vp *models.VerifiablePresentation) (bool, float64, float64) {
 
 	//zap.S().Infoln("\n********************************************************************************************************************************")
 	//zap.S().Infoln("***********************\t  Verification test: \t VC id: ", vc.ID, "***********************")
 	var bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int
-
-
-
 	var bbsTime time.Duration
 
 	// ***************************** Phase 1 **************************************************
 
 
 
-
 	publicKeys := verifier.RevocationService.FetchPublicKeysCached()
 	publicKey := publicKeys[0]
-	pk , _ := bbs.UnmarshalPublicKey(publicKey)
-	zap.S().Infoln("HOLDER - issuer's public keys: ", pk.PointG2)
-
-
+	//pk , _ := bbs.UnmarshalPublicKey(publicKey)
+	//zap.S().Infoln("HOLDER - issuer's public keys: ", pk.PointG2)
 
 	//verify selective disclosure
 
@@ -99,24 +95,40 @@ func (verifier *Verifier) VerifyVP(vp *models.VerifiablePresentation) (bool, flo
 	phase1Start := time.Now()
 	phase1Result, err := verifier.RevocationService.VerificationPhase1(bfIndexes[:])
 	if err != nil {
-		return  false, 0, 0, 0
+		return  false, 0, 0
 	}
 
 	phase1Time := time.Since(phase1Start)
-	if phase1Result == true{
-		zap.S().Infoln("VERIFIER: \t ***VERIFICATION*** vp: \t phase1 result: ", phase1Result)
-		return  phase1Result, bbsTime.Seconds(), phase1Time.Seconds(), 0.0
-	}
+	zap.S().Infoln("VERIFIER: \t ***VERIFICATION*** vp: \t phase1 result: ", phase1Result)
+	return  phase1Result, bbsTime.Seconds(), phase1Time.Seconds()
 
+
+
+}
+
+/*
+VerifyVP verifies a VP - only phase 2
+
+Input:
+vp - models.VerifiablePresentation
+
+Outputs:
+1) (bool) - actual status of the VP (phase 2 result)
+
+*/
+func (verifier *Verifier) VerifyVPPhase2(vp *models.VerifiablePresentation, proof techniques.MerkleProof) (bool) {
 
 	// ***************************** update witness only for valid vcs ***********************************
 
 	//zap.S().Infoln("ISSUER- \t vc id: ", vc.ID, "\t status: : ", revokedStatus)
-
-	if  phase1Result==false{
-
+	diplomaPresentation := vp.Messages.(vc.SampleDiplomaPresentation)
+	phase2Result, err := verifier.RevocationService.VerificationPhase2(diplomaPresentation.MtLeafHash, proof.OrderedWitnesses)
+	if err!=nil{
+		zap.S().Infoln("VERIFIER - phase 2 verification failed: ", err)
 	}
-	return false, 0.0, 0.0, 0.0
+	zap.S().Infoln("VERIFIER: \t ***VERIFICATION*** vp: \t phase2 result: ", phase2Result)
+	return phase2Result
+
+
 
 }
-

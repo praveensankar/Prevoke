@@ -2,13 +2,12 @@ package entities
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
+	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/praveensankar/Revocation-Service/vc"
-	"github.com/suutaku/go-bbs/pkg/bbs"
 	"go.uber.org/zap"
 	"net"
 	"sync"
@@ -17,6 +16,7 @@ import (
 
 type IHolder interface {
 	StoreVC(vc models.VerifiableCredential)
+	StoreMerkleProof(vcID string, proof techniques.MerkleProof)
 	RetrieveVC(id interface{}) models.VerifiableCredential
 	ConstructVP(vc models.VerifiableCredential) (vp *models.VerifiablePresentation)
 	ShareVP(vp models.VerifiablePresentation)
@@ -32,15 +32,21 @@ type Holder struct {
 	issuerAddress string
 	verifierAddress string
 	verfiableCredentials []models.VerifiableCredential
+	merkleProofStore map[string]techniques.MerkleProof
 	totalVCs int
+	MTHeight int
+	MTLevelInDLT int
 	RevocationService revocation_service.IRevocationService
 }
 
 
 func NewHolder(config config.Config) *Holder{
 	holder := Holder{ Type: HOLDER}
+	holder.merkleProofStore = make(map[string]techniques.MerkleProof)
 	holder.RevocationService = revocation_service.CreateRevocationService(config)
 	holder.setName(config.HolderName)
+	holder.MTHeight= int(config.MTHeight)
+	holder.MTLevelInDLT = int(config.MtLevelInDLT)
 	return &holder
 }
 
@@ -52,6 +58,10 @@ func (h *Holder) RequestVCFromIssuer(){
 
 func (h *Holder) StoreVC(vc models.VerifiableCredential) {
 	h.verfiableCredentials = append(h.verfiableCredentials, vc)
+}
+
+func (h *Holder) StoreMerkleProof(vcID string, proof techniques.MerkleProof) {
+	h.merkleProofStore[vcID]=proof
 }
 
 func (h *Holder) RetrieveVC(id interface{}) models.VerifiableCredential {
@@ -66,8 +76,8 @@ func (h *Holder) RetrieveVC(id interface{}) models.VerifiableCredential {
 func (h *Holder) ConstructVP(credential models.VerifiableCredential) (vp models.VerifiablePresentation, err error){
 	publicKeys := h.RevocationService.FetchPublicKeysCached()
 	publicKey := publicKeys[0]
-	pk , _ := bbs.UnmarshalPublicKey(publicKey)
-	zap.S().Infoln("HOLDER - issuer's public keys: ", pk.PointG2)
+	//pk , _ := bbs.UnmarshalPublicKey(publicKey)
+	//zap.S().Infoln("HOLDER - issuer's public keys: ", pk.PointG2)
 
 
 	//zap.S().Infoln("HOLDER - proof: ",credential.Proofs)
@@ -75,16 +85,16 @@ func (h *Holder) ConstructVP(credential models.VerifiableCredential) (vp models.
 	if err!=nil{
 		zap.S().Infoln("HOLDER - error in generating vp")
 	}
-	diplomaVP := presentation.Messages.(vc.SampleDiplomaPresentation)
+
+	//Verification check for the newly generated presentation
+	//diplomaVP := presentation.Messages.(vc.SampleDiplomaPresentation)
 	//zap.S().Infoln("HOLDER - new vp: \t degree: ", diplomaVP.Degree, "\t grade:", diplomaVP.Grade)
 	//zap.S().Infoln("HOLDER - new vp: : ", diplomaVP)
-
-
-	status := vc.VerifySelectiveDisclosureDiploma(publicKey, diplomaVP)
-	zap.S().Infoln("HOLDER - new vp: signature check: ",status)
-	if status==false{
-	return models.VerifiablePresentation{}, errors.New("signature check failed")
-	}
+	//status := vc.VerifySelectiveDisclosureDiploma(publicKey, diplomaVP)
+	//zap.S().Infoln("HOLDER - new vp: signature check: ",status)
+	//if status==false{
+	//return models.VerifiablePresentation{}, errors.New("signature check failed")
+	//}
 
 	return presentation, nil
 }
@@ -94,15 +104,19 @@ func (h *Holder) ShareallVPs(){
 		zap.S().Infoln("HOLDER - haven't recived any vcs yet")
 		return
 	}
-		vc := h.verfiableCredentials[0]
-	vp,err := h.ConstructVP(vc)
-	if err!=nil{
-		return
+	for i:=0;i<len(h.verfiableCredentials);i++ {
+		vc := h.verfiableCredentials[i]
+		zap.S().Infoln("HOLDER - sending presentation of vc: ", vc.GetId())
+		vp, err := h.ConstructVP(vc)
+		if err != nil {
+			return
+		}
+		status := h.ShareVP(vc.GetId(), vp)
+		zap.S().Infoln("HOLDER - verification result: ", status)
 	}
-	h.ShareVP(vp)
 }
-func (h *Holder) ShareVP(vp models.VerifiablePresentation){
-	h.sendVP(vp, h.verifierAddress)
+func (h *Holder) ShareVP(vcID string, vp models.VerifiablePresentation) (bool){
+	return h.sendVP(vcID, vp, h.verifierAddress)
 }
 
 func (h Holder) GetType() Entity{

@@ -251,28 +251,28 @@ func GenerateProofForSelectiveDisclosure(publicKey []byte, diploma models.Verifi
 
 	copy(vp.Proof[:], SDproof[:])
 
+	//zap.S().Infoln("DIPLOMA - DIPLOMA - proof: ", vp.Proof[0:5])
 
-
-	var revealedMessages [][]byte
-	presentation := vp.Messages.(SampleDiplomaPresentation)
-	for i:=0; i<techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER; i++{
-		revealedMessages = append(revealedMessages, []byte(presentation.BfIndexes[i]))
-		//zap.S().Infoln("DIPLOMA - verification of selective disclosure: bf index: ", []byte(bfIndex))
-	}
-	// 2) append the mt leaf hash to the messages
-	revealedMessages = append(revealedMessages, []byte(presentation.MtLeafHash))
-
-
-	// 4) append the claims. All the claims are appended together. However, it is trivial to implement
-	revealedMessages = append(revealedMessages, []byte(presentation.Grade))
-	revealedMessages = append(revealedMessages, []byte(presentation.Degree))
-
-
-	zap.S().Infoln("DIPLOMA - DIPLOMA - proof: ", presentation.Proof[0:5])
-
-
-	status:= signature.VerifySelectiveDisclosureProof(publicKey, presentation.Proof, revealedMessages, presentation.Nonce)
-	zap.S().Infoln("BBS - selective disclosure:\t verification status: ", status)
+	//var revealedMessages [][]byte
+	//presentation := vp.Messages.(SampleDiplomaPresentation)
+	//for i:=0; i<techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER; i++{
+	//	revealedMessages = append(revealedMessages, []byte(presentation.BfIndexes[i]))
+	//	//zap.S().Infoln("DIPLOMA - verification of selective disclosure: bf index: ", []byte(bfIndex))
+	//}
+	//// 2) append the mt leaf hash to the messages
+	//revealedMessages = append(revealedMessages, []byte(presentation.MtLeafHash))
+	//
+	//
+	//// 4) append the claims. All the claims are appended together. However, it is trivial to implement
+	//revealedMessages = append(revealedMessages, []byte(presentation.Grade))
+	//revealedMessages = append(revealedMessages, []byte(presentation.Degree))
+	//
+	//
+	////zap.S().Infoln("DIPLOMA - DIPLOMA - proof: ", presentation.Proof[0:5])
+	//
+	//
+	//status:= signature.VerifySelectiveDisclosureProof(publicKey, presentation.Proof, revealedMessages, presentation.Nonce)
+	//zap.S().Infoln("DIPLOMA - selective disclosure:\t verification status: ", status)
 	//zap.S().Infoln("BBS - selective disclosure: proof: ", SDproof, "\t nonce: ", nonce, "\t verification status: ", status)
 
 	return vp, nil
@@ -298,17 +298,17 @@ func VerifySelectiveDisclosureDiploma( publicKey []byte, vp SampleDiplomaPresent
 	messages = append(messages, []byte(vp.Degree))
 
 
-	zap.S().Infoln("DIPLOMA - DIPLOMA - proof: ", vp.Proof[0:5])
+	//zap.S().Infoln("DIPLOMA - DIPLOMA - proof: ", vp.Proof[0:5])
 	//Todo: I hardcoded bytes 2,3,4. Find a fix.
-	vp.Proof[2]=0
-	vp.Proof[3]=6
-	vp.Proof[4]=255
+	//vp.Proof[2]=0
+	//vp.Proof[3]=6
+	//vp.Proof[4]=255
 
 	status := signature.VerifySelectiveDisclosureProof( publicKey, vp.Proof, messages, vp.Nonce)
 
 
 	if status == true {
-		zap.S().Infoln("DIPLOMA PRESENTATION - verification successful: ")
+		//zap.S().Infoln("DIPLOMA PRESENTATION - verification successful: ")
 		return true
 	}
 	zap.S().Infoln("DIPLOMA PRESENTATION - verification failed")

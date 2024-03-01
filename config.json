@@ -10,9 +10,9 @@
 		 "name": "university",
 		 "address": "127.0.0.1:8000",
 		 "totalVCs": "10",
-		 "revokedVCs": "5",
-		 "falsePositiveRate": "0.01",
-		 "mtLevelInDLT": "2",
+		 "revokedVCs": "1",
+		 "falsePositiveRate": "0.5",
+		 "mtLevelInDLT": "3",
 		 "mtHeight": "4",
 		 "revocationBatchSize": "1",
 		 "comment": "number of hash functions: 7 if fpr==0.01, 6 if fpr==0.02,0.03, 5 if fpr==0.04,0.05, 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more ",
@@ -28,9 +28,9 @@
 	 },
 	 "test" : "test",
 	"blockchain" : {
-		"rpcEndpoint" : "http://158.39.200.125:8545",
-		"wsEndPoint" : "ws://158.39.200.125:8545",
-		"comment2": "158.39.200.125:8545 corresponds to ganache blockchain running at nrec",
+		"rpcEndpoint" : "http://158.39.48.29:8545",
+		"wsEndPoint" : "ws://158.39.48.29:8545",
+		"comment2": "158.39.48.29:8545 corresponds to ganache blockchain running at nrec",
 		"_comment" : "use ganache blockchain address (deployed locally) as endpoint"
 
 	},

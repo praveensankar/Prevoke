@@ -98,7 +98,7 @@ func VerifySelectiveDisclosureProof( publicKey []byte,  proof []byte, selectiveM
 		return false
 	}
 
-	zap.S().Infoln("BBS - selective disclosure verification successful")
+	//zap.S().Infoln("BBS - selective disclosure verification successful")
 	return true
 }
 

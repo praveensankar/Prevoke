@@ -123,6 +123,12 @@ func (r RevocationServiceStub) RetreiveUpdatedProof(vcID string)  *techniques.Me
 	return merkleProof
 }
 
+func (r RevocationServiceStub) FindAncesstorInMerkleTree(index int)(int){
+	//Todo: implement it if needed
+	return -1
+
+}
+
 // returns old mt index and amount of gwei paid
 func (r *RevocationServiceStub) RevokeVC(vcID string) (int, int64, error) {
 	r.bloomFilter.RevokeInBloomFilter(vcID)

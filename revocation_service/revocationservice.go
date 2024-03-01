@@ -40,6 +40,7 @@ type IRevocationService interface {
 	CacheRevocationDataStructuresFromSmartContract()
 	FetchMerkleTreeSizeInDLT()(uint)
 	FetchMerkleTreeSizeLocal()(uint)
+	FindAncesstorInMerkleTree(index int)(int)
 }
 
 
@@ -218,6 +219,16 @@ func (r *RevocationService) IssueVCsInBulk(vcIDs []string) ([]*RevocationData) {
 func (r RevocationService) RetreiveUpdatedProof(vcID string)  *techniques.MerkleProof{
 	merkleProof := r.merkleTreeAcc.GetProof(vcID)
 	return merkleProof
+}
+
+func (r RevocationService) FindAncesstorInMerkleTree(index int)(int){
+	currentLevel := r.mtHeight
+	parentIndex := index
+	for i:=currentLevel; i>r.MtLevelInDLT; i-- {
+		temp := int(math.Floor(float64((parentIndex - 1) / 2)))
+		parentIndex = temp
+	}
+	return parentIndex
 }
 
 // returns old mt index and amount of gwei paid

@@ -60,7 +60,7 @@ func StartIssuerServer(config config.Config){
 		return
 	}
 	defer server.Close()
-	issuer.serverListener(server)
+	issuer.serverListener(server, config)
 	timer1 := time.NewTimer(100 * time.Second)
 	<-timer1.C
 }
@@ -78,12 +78,24 @@ func (issuer *Issuer) BulkIssuance(config config.Config) {
 	}
 }
 // This function handles the incomming connections. It puts all the incoming connections into a list
-func(issuer *Issuer) serverListener(server net.Listener){
+func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 
 	count :=0
+	revoked := false
 	zap.S().Infoln("ISSUER - server set up and listening at : ",server.Addr().String())
 	for{
 
+		if count==int(config.ExpectedNumberOfTotalVCs){
+			if revoked==false {
+				credentials := issuer.CredentialStore
+				for _, vc := range credentials {
+					issuer.UpdateMerkleProof(vc)
+				}
+
+				issuer.SimulateRevocation(config)
+				revoked=true
+			}
+		}
 		conn, err := server.Accept()
 		if err != nil {
 			zap.S().Errorln("ISSUER - error : %v", err)
@@ -93,12 +105,47 @@ func(issuer *Issuer) serverListener(server net.Listener){
 			var reqJson []byte
 			dec.Decode(&reqJson)
 			req := JsonToRequest(reqJson)
-			if req.GetType() ==GetVC{
-				zap.S().Infoln("ISSUER - received new request: ",req)
+			if req.GetType() ==SendWitness {
+				isRevoked := false
+				vcID := req.GetId()
+				for i := 0; i < len(issuer.revokedVcIDs); i++ {
+					if vcID == issuer.revokedVcIDs[i] {
+						revokedVCEncoder := gob.NewEncoder(conn)
+						revokedVCReply := NewRequest()
+						revokedVCReply.SetId(issuer.name)
+						revokedVCReply.SetType(RevokedVC)
+						revokedVCReplyJson, _ := revokedVCReply.Json()
+						//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
+						revokedVCEncoder.Encode(revokedVCReplyJson)
+						isRevoked = true
+						zap.S().Infoln("ISSUER - vc id: ", vcID, "\t revoked. Did not send merkle proof ")
+						break
+					}
+				}
+				if isRevoked == false {
+					proofEncoder := gob.NewEncoder(conn)
+					merkleProof := issuer.getUpdatedMerkleProof(vcID)
+					proofEncoder.Encode(merkleProof.Json())
+					zap.S().Infoln("ISSUER - vc id: ", vcID, "\t send merkle proof: ", merkleProof)
+				}
+			}
+			if req.GetType() ==GetVC {
+				zap.S().Infoln("ISSUER - received new request: ", req)
 				encoder := gob.NewEncoder(conn)
 				encoder.Encode(issuer.CredentialStore[count].Json())
-				count = count + 1
-				zap.S().Infoln("ISSUER - issued vc : ",issuer.CredentialStore[count].GetId(), "  \t to: ",req.GetId())
+
+				dec := gob.NewDecoder(conn)
+				//dec.Decode(&entity)
+				var reqJson []byte
+				dec.Decode(&reqJson)
+				req := JsonToRequest(reqJson)
+				if req.GetType() == GetMerkleProof {
+					proofEncoder := gob.NewEncoder(conn)
+					merkleProof := issuer.getUpdatedMerkleProof(issuer.CredentialStore[count].GetId())
+					proofEncoder.Encode(merkleProof.Json())
+					zap.S().Infoln("ISSUER - issued vc : ", issuer.CredentialStore[count].GetId(), "  \t to: ", req.GetId())
+					count = count + 1
+				}
 			}
 
 

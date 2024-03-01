@@ -1,8 +1,12 @@
-package simulation
+package Results
 
 import (
+	"encoding/json"
 	"fmt"
 	mapset "github.com/deckarep/golang-set"
+	"go.uber.org/zap"
+	"io/ioutil"
+	"os"
 )
 
 type Results struct {
@@ -37,12 +41,34 @@ type Results struct {
 	FetchedWitnessesFromIssuers mapset.Set
 }
 
-func CreateResult() *Results{
+func CreateResult() *Results {
 	result := &Results{}
 	result.AffectedIndexes = mapset.NewSet()
 	result.FalsePositiveResults = mapset.NewSet()
 	result.FetchedWitnessesFromIssuers = mapset.NewSet()
 	return result
+}
+
+func (r *Results) AddVerificationTimeTotalValidVCs(phase1Time float64){
+	r.VerificationTimeTotalValidVCs = r.VerificationTimeTotalValidVCs+phase1Time
+}
+
+func (r *Results) AddVerificationTimePerValidVC(phase1Time float64){
+	if r.VerificationTimePerValidVC==0.0{
+		r.VerificationTimePerValidVC = r.VerificationTimePerValidVC + phase1Time
+	} else {
+		r.VerificationTimePerValidVC = r.VerificationTimePerValidVC + phase1Time
+		r.VerificationTimePerValidVC = r.VerificationTimePerValidVC / 2
+	}
+}
+
+func (r *Results) AddBBSVerificationTimePerVP(bbsTime float64){
+	if r.BBSVerificationTimePerVP==0.0{
+		r.BBSVerificationTimePerVP = r.BBSVerificationTimePerVP + bbsTime
+	} else {
+		r.BBSVerificationTimePerVP = r.BBSVerificationTimePerVP + bbsTime
+		r.BBSVerificationTimePerVP = r.BBSVerificationTimePerVP / 2
+	}
 }
 
 func (r Results) String() string{
@@ -78,4 +104,21 @@ func (r Results) String() string{
 	return response
 }
 
+func  WriteToFile( filename string, result Results) {
 
+	var results []Results
+	jsonFile, err := os.Open(filename)
+	if err != nil {
+		zap.S().Errorln("ERROR - results.json file open error")
+	}
+	resJson, _ := ioutil.ReadAll(jsonFile)
+	json.Unmarshal(resJson, &results)
+	results = append(results, result)
+	jsonRes, _ := json.MarshalIndent(results,"","")
+	//filename := fmt.Sprintf("Simulation/results/result_%v_%v_%v.json",numberOfVcs, numberOfRevokedVcs, mtLevelInDLT)
+	err = ioutil.WriteFile(filename, jsonRes, 0644)
+	if err != nil {
+		zap.S().Errorln("unable to write results to file")
+	}
+
+}

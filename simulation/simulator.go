@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
+	"github.com/praveensankar/Revocation-Service/Results"
 	"github.com/praveensankar/Revocation-Service/blockchain"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/entities"
@@ -13,7 +14,6 @@ import (
 	"io/ioutil"
 	"math"
 	"math/rand"
-	"os"
 	"sync/atomic"
 	"time"
 )
@@ -79,12 +79,12 @@ func PerformExperiment(config config.Config){
 	totalVCs := int(config.ExpectedNumberOfTotalVCs)+remainingSpace
 
 	claimsSet := issuer1.GenerateMultipleDummyVCClaims(totalVCs)
-	results := CreateResult()
+	results := Results.CreateResult()
 	vcs := SimulateIssuance(config, issuer1, claimsSet,totalVCs )
 	SimulateRevocation(config, issuer1, vcs, results)
 	SimulateVerification( issuer1, vcs, results)
 	ConstructResults(config, start, results)
-	WriteToFile(*results)
+	Results.WriteToFile("results.json", *results)
 }
 
 
@@ -105,7 +105,7 @@ func SimulateIssuance(config config.Config, issuer1 *entities.Issuer, claimsSet 
 	return vcs
 }
 
-func SimulateRevocation(config config.Config, issuer1 *entities.Issuer, vcs []models.VerifiableCredential, result *Results){
+func SimulateRevocation(config config.Config, issuer1 *entities.Issuer, vcs []models.VerifiableCredential, result *Results.Results){
 	revocationBatchSize := int(config.RevocationBatchSize)
 	var amountPaid int64
 	amountPaid = 0
@@ -167,7 +167,7 @@ func SimulateRevocation(config config.Config, issuer1 *entities.Issuer, vcs []mo
 	result.RevocationTimeTotal = revocationTimeTotal
 }
 
-func SimulateVerification( issuer1 *entities.Issuer, vcs []models.VerifiableCredential, result *Results){
+func SimulateVerification( issuer1 *entities.Issuer, vcs []models.VerifiableCredential, result *Results.Results){
 	publicKey, err := issuer1.BbsKeyPair[0].PublicKey.Marshal()
 
 	result.MerkleTreeSizeInDLT = int(issuer1.FetchMerkleTreeSizeInDLT())*8
@@ -259,7 +259,7 @@ func SimulateVerification( issuer1 *entities.Issuer, vcs []models.VerifiableCred
 	result.BBSVerificationTimePerVP = avgbbstime
 }
 
-func ConstructResults(config config.Config, start  time.Time, result *Results){
+func ConstructResults(config config.Config, start  time.Time, result *Results.Results){
 	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by revocation: ", result.AffectedIndexes)
 	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by false positives: ", result.FalsePositiveResults)
 	zap.S().Infoln("SIMULATOR - \t indexes of VCs that retrieved witnesses from entities: ", result.FetchedWitnessesFromIssuers)
@@ -283,24 +283,9 @@ func ConstructResults(config config.Config, start  time.Time, result *Results){
 
 
 
-func  WriteToFile( result Results) {
 
-	var results []Results
-	jsonFile, err := os.Open("results.json")
-	if err != nil {
-		zap.S().Errorln("ERROR - results.json file open error")
-	}
-	byte, _ := ioutil.ReadAll(jsonFile)
-	json.Unmarshal(byte, &results)
-	results = append(results, result)
-	jsonRes, _ := json.MarshalIndent(results,"","")
-	//filename := fmt.Sprintf("Simulation/results/result_%v_%v_%v.json",numberOfVcs, numberOfRevokedVcs, mtLevelInDLT)
-	err = ioutil.WriteFile("results.json", jsonRes, 0644)
-	if err != nil {
-		zap.S().Errorln("unable to write results to file")
-	}
 
-}
+
 
 func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate float64) (uint, uint) {
 	size, numberOfIndexesPerEntry := bloom.EstimateParameters(totalNumberOfVCs, falsePositiveRate)

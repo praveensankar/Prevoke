@@ -3,6 +3,7 @@ package simulation
 import (
 	"fmt"
 	"github.com/deckarep/golang-set"
+	"github.com/praveensankar/Revocation-Service/Results"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/entities"
 	"github.com/praveensankar/Revocation-Service/models"
@@ -131,7 +132,7 @@ func PerformExperimentTest(config config.Config){
 	//}
 	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by revocation: ", affectedIndexes)
 	size, k := BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
-	result := &Results{
+	result := &Results.Results{
 		TotalVCs:                              int(config.ExpectedNumberOfTotalVCs),
 		RevokedVCs:                            int(config.ExpectedNumberofRevokedVCs),
 		FalsePositiveRate:                     config.FalsePositiveRate,
@@ -152,6 +153,6 @@ func PerformExperimentTest(config config.Config){
 	//}
 	zap.S().Infoln("SIMULATOR : \t results: ", result.String())
 
-	WriteToFile(*result)
+	Results.WriteToFile("result.json", *result)
 
 }

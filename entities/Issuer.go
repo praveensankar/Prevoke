@@ -265,6 +265,9 @@ func (issuer *Issuer) UpdateMerkleProof(credential models.VerifiableCredential) 
 func (issuer *Issuer) getUpdatedMerkleProof(vcID string) *techniques.MerkleProof {
 
 	merkleProof := issuer.RevocationService.RetreiveUpdatedProof(vcID)
+
+	ancesstorIndex := issuer.RevocationService.FindAncesstorInMerkleTree(merkleProof.MTIndex)
+	merkleProof.AncesstorIndex=ancesstorIndex
 	//zap.S().Infoln("ISSUER- ", entities.name, "\t vc:", vc.ID, "\t merkle tree accumulator witness updated..... ")
 	issuer.UpdateMerkleProofInRevocationData(vcID, merkleProof)
 	return merkleProof
@@ -571,4 +574,65 @@ func (issuer *Issuer) FetchMerkleTreeSizeLocal()(uint) {
 //	}
 //}
 
+func (issuer *Issuer) SimulateRevocation(config config.Config){
+	revocationBatchSize := int(config.RevocationBatchSize)
 
+	//var amountPaid int64
+	//amountPaid = 0
+	//revocationTimePerBatch := 0.0
+	//revocationTimeTotal := 0.0
+	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
+	revokedVCs := make([]string, totalRevokedVCs)
+	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
+	vcs := issuer.CredentialStore
+	for batch:=0; batch<int(int64(math.Ceil(float64(totalRevokedVCs/revocationBatchSize)))); batch++ {
+		revokedVCsInBatch := make([]string, 0)
+		for i, counter := 0, 0; counter < revocationBatchSize; {
+
+			i = 2
+			for {
+				vcID := fmt.Sprintf("%v", vcs[i].Metadata.Id)
+				isalreadyRevoked := false
+				for _, revokedId := range revokedVCs {
+					if vcID == revokedId {
+						isalreadyRevoked = true
+						break
+					}
+				}
+				if isalreadyRevoked == false {
+					revokedVCsInBatch = append(revokedVCsInBatch, vcID)
+					revokedVCs = append(revokedVCs, vcID)
+					counter++
+					break
+				}
+				rand.Seed(time.Now().UnixNano())
+				i = rand.Intn(int(config.ExpectedNumberOfTotalVCs))
+			}
+		}
+		_, _, _ = issuer.RevokeVCInBatches(config, revokedVCsInBatch)
+		issuer.revokedVcIDs = append(issuer.revokedVcIDs, RevokedVC)
+		//result.AffectedIndexes = result.AffectedIndexes.Union(indexes)
+		//revocationTimeTotal = revocationTimeTotal + revocationTime.Seconds()
+		//if revocationTimePerBatch == 0.0{
+		//	revocationTimePerBatch = revocationTimePerBatch + revocationTime.Seconds();
+		//} else{
+		//	revocationTimePerBatch = (revocationTimePerBatch + revocationTime.Seconds())/2;
+		//}
+		//
+		//if amountPaid==0{
+		//	amountPaid = amountPaid + amount;
+		//} else{
+		//	amountPaid = amountPaid + amount;
+		//	amountPaid = amountPaid / 2;
+		//}
+
+
+	}
+
+	//
+	//result.AmountPaid = amountPaid
+	//result.NumberOfWitnessUpdatesForMT = result.AffectedIndexes.Cardinality()
+	//result.RevocationBatchSize = revocationBatchSize
+	//result.RevocationTimeperBatch = revocationTimePerBatch
+	//result.RevocationTimeTotal = revocationTimeTotal
+}

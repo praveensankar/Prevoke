@@ -8,8 +8,13 @@ type RequestType string
 const (
 	GetVC RequestType = "get vc"
 	VerifyVC		  = "verify vc"
-	GetWitness        = "get witness"
+	GetMerkleProof        = "get merkle proof"
+	SendWitness        = "send witness"
 	SendVP			  = "send vp"
+	SuccessfulVerification = "successful verification"
+	FailedVerification = "failed verification"
+	StoreResults			  = "store results"
+	RevokedVC = "revoked vc"
 )
 
 type Request struct {
