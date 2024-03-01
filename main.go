@@ -166,9 +166,7 @@ func Run(conf config.Config){
 	}
 
 	if *holderFlag==true{
-
-		go entities.StartHolder( conf)
-
+		entities.StartHolder(conf)
 	}
 
 	if *issuerFlag==true{

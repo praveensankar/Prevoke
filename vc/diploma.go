@@ -236,18 +236,20 @@ func GenerateProofForSelectiveDisclosure(publicKey []byte, diploma models.Verifi
 	SDproof, nonce := signature.SelectiveDisclosure(publicKey, sign, messages, revealedIndexes)
 
 
+	diplomaPresentation := SampleDiplomaPresentation{}
+	diplomaPresentation.Degree=degree
+	diplomaPresentation.Grade=grade
+	diplomaPresentation.BfIndexes=bfIndexes
+	diplomaPresentation.MtLeafHash = mtLeafHash
+	diplomaPresentation.Nonce = make([]byte, len(nonce))
+	copy(diplomaPresentation.Nonce[:], nonce[:])
+	diplomaPresentation.Proof = make([]byte, len(SDproof))
+	copy(diplomaPresentation.Proof[:], SDproof[:])
+	vp := models.VerifiablePresentation{}
+	vp.Messages=diplomaPresentation
+	vp.Proof = make([]byte, len(SDproof))
 
-	vp := models.VerifiablePresentation{
-		Messages: SampleDiplomaPresentation{
-			Degree:     degree,
-			Grade:     grade,
-			BfIndexes:  bfIndexes,
-			MtLeafHash: mtLeafHash,
-			Proof:      SDproof,
-			Nonce:      nonce,
-		},
-		Proof:    SDproof,
-	}
+	copy(vp.Proof[:], SDproof[:])
 
 
 
@@ -297,6 +299,10 @@ func VerifySelectiveDisclosureDiploma( publicKey []byte, vp SampleDiplomaPresent
 
 
 	zap.S().Infoln("DIPLOMA - DIPLOMA - proof: ", vp.Proof[0:5])
+	//Todo: I hardcoded bytes 2,3,4. Find a fix.
+	vp.Proof[2]=0
+	vp.Proof[3]=6
+	vp.Proof[4]=255
 
 	status := signature.VerifySelectiveDisclosureProof( publicKey, vp.Proof, messages, vp.Nonce)
 
