@@ -40,7 +40,12 @@ func ReadFromContract(config config.Config) {
 
 	var status bool
 	var field int64 = 30
-	status, err = revocationService.BloomFilter(nil, big.NewInt(field))
+	value, err := revocationService.BloomFilter(nil, big.NewInt(field))
+	if value.Int64()==1{
+		status=true
+	}else {
+		status = false
+	}
 	zap.S().Infof("\n status at field %d is %t", field, status)
 
 

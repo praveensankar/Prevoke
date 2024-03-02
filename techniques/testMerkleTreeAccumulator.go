@@ -1,6 +1,7 @@
 package techniques
 
 import (
+	"encoding/hex"
 	"github.com/praveensankar/Revocation-Service/config"
 	"go.uber.org/zap"
 	"math"
@@ -51,6 +52,8 @@ func TestMerkleTreeAccumulator(conf config.Config){
 	proof = accumulator.GetProof(newElements[1])
 	updatedProofs[newElements[1]]=proof
 	TestProofs2(updatedProofs, accumulator)
+	roothash,_ := hex.DecodeString(accumulator.RootHash)
+	zap.S().Infoln("accumulator node length: ", len(accumulator.RootHash), "\t byte representation length: ",len(roothash))
 }
 
 

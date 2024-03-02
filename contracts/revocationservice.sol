@@ -15,30 +15,30 @@ contract RevocationService{
     // const private bfSize = 50000;
 
     // storing bloom filters as maps
-    mapping(uint256=>bool) public bloomFilter;
+    mapping(uint256=>uint256) public bloomFilter;
     // stores the list of indexes present in the merkle tree.
-    uint256[] public bfIndexes;
-    mapping (uint => bool) public isExistInBloomFilter;
+    uint256[] private bfIndexes;
+    mapping (uint => bool) private isExistInBloomFilter;
 
     /*
     merkle tree
     stores entries in level order
     root is stored at index 0.
     */
-    mapping(uint => string) public merkleTree;
+    mapping(uint => bytes32) public merkleTree;
 
-    string public merkleRoot;
+    bytes32 public merkleRoot;
 
     // stores the list of indexes present in the merkle tree.
     uint[] private indexes;
-    mapping (uint => bool) public isExistInMTAccumulator;
+    mapping (uint => bool) private isExistInMTAccumulator;
 
     // entities is the owner of the contract
     address issuer;
 
     // stores the public keys used by the entities
     bytes[] public publicKeys;
-    mapping (string => bool) public isExistInPublicKeys;
+    mapping (string => bool) private isExistInPublicKeys;
 
     event Issue(uint[]  _mtIndexes, bytes1  _mtValue1, bytes1  _mtValue2, bytes1  _mtValue3, bytes1  _mtValue4);
     event VerificationPhase2(bytes32 merkleRoot, bytes32 vcLeaf, bytes32[] proof);
@@ -90,10 +90,9 @@ output: public keys
 
     Note: The logic for mapping VCs to level order indexes should be done at the issuers side.
     */
-    function issueVC(uint[] memory _mtIndexes, string[] memory _mtValues) public{
+    function issueVC(uint[] memory _mtIndexes, bytes32[] memory _mtValues) public{
         //only entities can perform the revocation
         require(msg.sender==issuer);
-
         updateMerkleTree(_mtIndexes, _mtValues);
     }
 
@@ -112,7 +111,7 @@ output: public keys
 
     Note: set merkle tree to -1 if it is not required to update merkle tree.
     */
-    function revokeVC(uint256[] memory _bfIndexes, uint[] memory _mtIndexes, string[] memory _mtValues) public{
+    function revokeVC(uint256[] memory _bfIndexes, uint[] memory _mtIndexes, bytes32[] memory _mtValues) public{
         //only entities can perform the revocation
         require(msg.sender==issuer);
 
@@ -128,9 +127,12 @@ output: public keys
         //only entities can perform the revocation
         require(msg.sender==issuer);
 
-        // sets the indexes to true
+        // sets the bits at the specified indexes
         for (uint i = 0; i < _indexes.length; i++) {
-            bloomFilter[_indexes[i]] = true;
+            uint256 bucket = _indexes[i] >> 8;
+            uint256 mask = 1 << (_indexes[i] & 0xff);
+            bloomFilter[bucket] |= mask;
+            // bloomFilter[_indexes[i]] = true;
         }
 
 
@@ -144,7 +146,7 @@ output: public keys
 
 
     // updates the merkle tree values in the speicified indexes
-    function updateMerkleTree(uint[] memory _indexes, string[] memory _values) public {
+    function updateMerkleTree(uint[] memory _indexes, bytes32[] memory _values) public {
 
         //only own can replace merkle tree
         require(msg.sender==issuer);
@@ -228,7 +230,10 @@ output: public keys
 
         bool isValid = false;
         for (uint i = 0; i < _indexes.length; i++) {
-            if(bloomFilter[_indexes[i]]==false){
+                uint256 bucket = _indexes[i] >> 8;
+                uint256 mask = 1 << (_indexes[i] & 0xff);
+                bool status = bloomFilter[bucket] & mask != 0;
+                if(status==false){
                 isValid = true;
                 break;
             }
@@ -240,11 +245,11 @@ output: public keys
     /*
     Returns the merkle root.
     */
-    function verificationPhase2() public view returns(string memory){
+    function verificationPhase2() public view returns(bytes32){
         return merkleTree[0];
     }
 
-    function verificationPhase2Test() public returns(string memory){
+    function verificationPhase2Test() public view returns(bytes32){
         return merkleTree[0];
     }
 
@@ -253,39 +258,15 @@ output: public keys
 
 
     // updates a non-leaf or leaf node at the specified index
-    function updateNode(uint index, string memory value) public{
+    function updateNode(uint index, bytes32 value) public{
         //only own can replace merkle tree
         require(msg.sender==issuer);
         merkleTree[index] = value;
     }
 
-    // prints the tree in console
-    function printMerkleTree() public view{
 
-        if (DEBUG==true){
-            console.log("priting merkle tree");
-        }
-        for (uint i = 0; i < indexes.length; i++) {
-            if (DEBUG==true){
-                //                console.log("index : %d \t value :",i);
-                //                console.logBytes(abi.encodePacked(merkleTree[i]));
-                console.log("index : %d \t value : %s",i, merkleTree[i]);
-            }
-
-        }
-    }
-
-    function bytes32tostring(bytes32 _bytes32) private returns(string memory){
-        bytes memory bytesArray = new bytes(32);
-        for (uint256 i; i < 32; i++) {
-            bytesArray[i] = _bytes32[i];
-        }
-        return string(bytesArray);
-    }
-
-
-    function RetrieveMerkleTree() public view returns (string[] memory){
-        string [] memory mt = new string[](indexes.length);
+    function RetrieveMerkleTree() public view returns (bytes32[] memory){
+        bytes32 [] memory mt = new bytes32[](indexes.length);
         for (uint i = 0; i < indexes.length; i++) {
             mt[i] = merkleTree[i];
         }
@@ -297,14 +278,40 @@ output: public keys
     }
 
     function GetMerkleTreeSize() public view returns (uint)  {
-        bytes memory mtNode;
         uint mtSize;
         mtSize=0;
         for (uint i = 0; i < indexes.length; i++) {
-            mtNode =  bytes(merkleTree[i]);
-            mtSize = mtSize + mtNode.length;
+            mtSize = mtSize + merkleTree[i].length;
         }
         return mtSize;
+    }
+
+        // prints the tree in console
+    function printMerkleTree() public view{
+
+        if (DEBUG==true){
+            console.log("priting merkle tree");
+        }
+        for (uint i = 0; i < indexes.length; i++) {
+            if (DEBUG==true){
+                               console.log("index : %d \t value :",i);
+                               console.logBytes(abi.encodePacked(merkleTree[i]));
+                // console.log("index : %d \t value : %s",i, merkleTree[i]);
+            }
+
+        }
+    }
+
+    function test() public{
+        uint[] memory mtIndexes = new uint[](2);
+        mtIndexes[0]=0;
+        mtIndexes[1]=1;
+        bytes32[] memory values = new bytes32[](2);
+        values[0] = 0x68656c6c6f000000000000000000000000000000000000000000000000000000;
+        values[1] = 0x68656c6c6f000000000000000000000000000000000000000000000000000000;
+        issueVC(mtIndexes, values);
+        printMerkleTree();
+        console.log("merkle tree size: %d ",GetMerkleTreeSize());
     }
 }
 
