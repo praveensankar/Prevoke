@@ -109,7 +109,11 @@ func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 			if req.GetType() == GetContractAddress{
 				contractAddressEncoder := gob.NewEncoder(conn)
 				//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
-				contractAddressEncoder.Encode(config.SmartContractAddress)
+				contractAddressReply := NewRequest()
+				contractAddressReply.SetId(config.SmartContractAddress)
+				contractAddressReply.SetType(RevokedVC)
+				contractAddressReplyJson, _ := contractAddressReply.Json()
+				contractAddressEncoder.Encode(contractAddressReplyJson)
 			}
 			if req.GetType() ==SendWitness {
 				isRevoked := false

@@ -2,7 +2,6 @@ package entities
 
 import (
 	"encoding/gob"
-	"encoding/json"
 	"fyne.io/fyne/v2"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
@@ -231,12 +230,12 @@ func(holder *Holder) getContractAddressFromIssuer(address string) (string){
 	encoder.Encode(reqJson)
 
 	dec := gob.NewDecoder(conn)
+	//dec.Decode(&entity)
 	var jsonObj []byte
 	dec.Decode(&jsonObj)
-	var contractAddress string
-	json.Unmarshal(jsonObj, &contractAddress)
-	zap.S().Infoln("HOLDER - contract address from issuer: ",contractAddress)
-	return contractAddress
+	reply := JsonToRequest(jsonObj)
+	zap.S().Infoln("HOLDER - contract address from issuer: ",reply.GetId())
+	return reply.GetId()
 }
 
 func(holder *Holder) receiveVCs(address string){
