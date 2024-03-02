@@ -45,22 +45,23 @@ func  StartIssueVCsInBulkToHolders(config config.Config) {
 
 }
 
-func StartIssuerServer(config config.Config){
-	DeployContract(&config, 0)
-	issuer := CreateIssuer(config)
+func StartIssuerServer(conf config.Config){
+	DeployContract(&conf, 0)
+	issuer := CreateIssuer(conf)
 
-	issuer.BulkIssuance(config)
+	issuer.BulkIssuance(conf)
 
 	//if app!=nil{
 	//	go issuer.setupUIForUniversity(app)
 	//}
-	server, err := net.Listen("tcp", config.IssuerAddress)
+
+	server, err := net.Listen("tcp", conf.IssuerAddress)
 	if err!=nil{
 		zap.S().Infof("ISSUER - error creating server")
 		return
 	}
 	defer server.Close()
-	issuer.serverListener(server, config)
+	issuer.serverListener(server, conf)
 	timer1 := time.NewTimer(100 * time.Second)
 	<-timer1.C
 }
