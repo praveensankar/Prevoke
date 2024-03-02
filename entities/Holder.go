@@ -43,7 +43,6 @@ type Holder struct {
 func NewHolder(config config.Config) *Holder{
 	holder := Holder{ Type: HOLDER}
 	holder.merkleProofStore = make(map[string]techniques.MerkleProof)
-	holder.RevocationService = revocation_service.CreateRevocationService(config)
 	holder.setName(config.HolderName)
 	holder.MTHeight= int(config.MTHeight)
 	holder.MTLevelInDLT = int(config.MtLevelInDLT)
@@ -165,7 +164,9 @@ func StartHolder(config config.Config){
 	holder.issuerAddress = config.IssuerAddress
 	holder.verifierAddress = config.VerifierAddress
 	holder.totalVCs = int(config.ExpectedNumberOfTotalVCs)
-
+	contractAddress := holder.getContractAddressFromIssuer(holder.issuerAddress)
+	config.SmartContractAddress=contractAddress
+	holder.RevocationService = revocation_service.CreateRevocationService(config)
 	holder.RequestVCFromIssuer()
 	holder.ShareallVPs()
 

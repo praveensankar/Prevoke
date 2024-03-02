@@ -2,6 +2,7 @@ package entities
 
 import (
 	"encoding/gob"
+	"encoding/json"
 	"fyne.io/fyne/v2"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
@@ -211,6 +212,31 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 
 	conn.Close()
 	return false
+}
+
+func(holder *Holder) getContractAddressFromIssuer(address string) (string){
+	conn, err := net.Dial("tcp",address)
+	if err != nil {
+		zap.S().Infoln("HOLDER - issuer is unavailabe")
+		return ""
+	}
+
+	encoder := gob.NewEncoder(conn)
+	//encoder.Encode(s.GetType())
+	req := NewRequest()
+	req.SetId(holder.name)
+	req.SetType(GetContractAddress)
+	reqJson, _ := req.Json()
+
+	encoder.Encode(reqJson)
+
+	dec := gob.NewDecoder(conn)
+	var jsonObj []byte
+	dec.Decode(&jsonObj)
+	var contractAddress string
+	json.Unmarshal(jsonObj, &contractAddress)
+	zap.S().Infoln("HOLDER - contract address from issuer: ",contractAddress)
+	return contractAddress
 }
 
 func(holder *Holder) receiveVCs(address string){

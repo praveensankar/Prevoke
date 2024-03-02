@@ -15,6 +15,7 @@ const (
 	FailedVerification = "failed verification"
 	StoreResults			  = "store results"
 	RevokedVC = "revoked vc"
+	GetContractAddress = "get contract address"
 )
 
 type Request struct {
