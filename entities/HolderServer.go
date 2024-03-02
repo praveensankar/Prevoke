@@ -235,6 +235,7 @@ func(holder *Holder) getContractAddressFromIssuer(address string) (string){
 	dec.Decode(&jsonObj)
 	reply := JsonToRequest(jsonObj)
 	zap.S().Infoln("HOLDER - contract address from issuer: ",reply.GetId())
+	conn.Close()
 	return reply.GetId()
 }
 

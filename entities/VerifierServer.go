@@ -111,7 +111,31 @@ func(verifier *Verifier) serverListener(server net.Listener){
 		}
 	}
 }
+func(verifier *Verifier) getContractAddressFromIssuer(address string) (string){
+	conn, err := net.Dial("tcp",address)
+	if err != nil {
+		zap.S().Infoln("HOLDER - issuer is unavailabe")
+		return ""
+	}
 
+	encoder := gob.NewEncoder(conn)
+	//encoder.Encode(s.GetType())
+	req := NewRequest()
+	req.SetId(verifier.name)
+	req.SetType(GetContractAddress)
+	reqJson, _ := req.Json()
+
+	encoder.Encode(reqJson)
+
+	dec := gob.NewDecoder(conn)
+	//dec.Decode(&entity)
+	var jsonObj []byte
+	dec.Decode(&jsonObj)
+	reply := JsonToRequest(jsonObj)
+	zap.S().Infoln("VERIFIER - contract address from issuer: ",reply.GetId())
+	conn.Close()
+	return reply.GetId()
+}
 // This function handles the incomming connections. It puts all the incoming connections into a list
 func(verifier *Verifier) getWitnessFromHolder(server net.Listener){
 

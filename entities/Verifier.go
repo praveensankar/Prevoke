@@ -42,6 +42,8 @@ func  CreateVerifier(config config.Config) *Verifier{
 	verifier := Verifier{}
 	verifier.name = config.IssuerName
 	verifier.HolderAddress = config.HolderAddress
+	contractAddress := verifier.getContractAddressFromIssuer(config.IssuerAddress)
+	config.SmartContractAddress=contractAddress
 	rs := revocation_service.CreateRevocationService(config)
 	verifier.RevocationService = rs
 	verifier.bbs = bbs.NewBbs()
