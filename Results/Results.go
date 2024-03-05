@@ -3,10 +3,14 @@ package Results
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/bits-and-blooms/bloom/v3"
 	mapset "github.com/deckarep/golang-set"
+	"github.com/praveensankar/Revocation-Service/config"
 	"go.uber.org/zap"
 	"io/ioutil"
+	"math"
 	"os"
+	"time"
 )
 
 type Results struct {
@@ -123,6 +127,33 @@ func  WriteToFile( filename string, result Results) {
 	}
 	zap.S().Errorln("RESULTS - successfully written to the file")
 
+}
+
+func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate float64) (uint, uint) {
+	size, numberOfIndexesPerEntry := bloom.EstimateParameters(totalNumberOfVCs, falsePositiveRate)
+	return size, numberOfIndexesPerEntry
+}
+
+func ConstructResults(config config.Config, start  time.Time, result *Results){
+	zap.S().Infoln("RESULT - \t indexes of VCs that are affected by revocation: ", result.AffectedIndexes)
+	zap.S().Infoln("RESULT - \t indexes of VCs that are affected by false positives: ", result.FalsePositiveResults)
+	zap.S().Infoln("RESULT - \t indexes of VCs that retrieved witnesses from entities: ", result.FetchedWitnessesFromIssuers)
+	size, k :=BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
+	// Code to measure
+	end := time.Since(start)
+	zap.S().Infof("SIMULATOR : \t total time to run the experiment: %f", end.Seconds())
+
+	result.SimulationTime = end.Seconds()
+	result.TotalVCs = int(config.ExpectedNumberOfTotalVCs)
+	result.RevokedVCs =  int(config.ExpectedNumberofRevokedVCs)
+	result.FalsePositiveRate = config.FalsePositiveRate
+	result.MTHeight = int(config.MTHeight)
+	result.MtLevelInDLT = int(config.MtLevelInDLT)
+	result.BloomFilterSize = int(size)
+	result.BloomFilterIndexesPerEntry = int(k)
+	result.MerkleTreeNodesCountTotal = int(math.Pow(2, float64(config.MTHeight+1)))-1
+	result.MerkleTreeNodesCountInDLT = int(math.Pow(2, float64(config.MtLevelInDLT+1)))-1
+	zap.S().Infoln("SIMULATOR : \t results: ", result.String())
 }
 
 

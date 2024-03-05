@@ -131,7 +131,7 @@ func PerformExperimentTest(config config.Config){
 	//	}
 	//}
 	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by revocation: ", affectedIndexes)
-	size, k := BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
+	size, k := Results.BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
 	result := &Results.Results{
 		TotalVCs:                              int(config.ExpectedNumberOfTotalVCs),
 		RevokedVCs:                            int(config.ExpectedNumberofRevokedVCs),

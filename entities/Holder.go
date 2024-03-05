@@ -175,16 +175,25 @@ func StartHolder(config config.Config){
 	holder := NewHolder(config)
 	holder.issuerAddress = config.IssuerAddress
 	holder.verifierAddress = config.VerifierAddress
-	holder.totalVCs = int(config.ExpectedNumberOfTotalVCs)
-	contractAddress := holder.getContractAddressFromIssuer(holder.issuerAddress)
-	config.SmartContractAddress=contractAddress
-	holder.RevocationService = revocation_service.CreateRevocationService(config)
-	result :=Results.CreateResult()
 
-	holder.RequestVCFromIssuer()
-	holder.ShareallVPs(result)
-	holder.RetrieveandResetResultsAtIssuers(result)
-	Results.WriteToFile("results.json", *result)
+	for i:=0;i<1;i++ {
+		holder.totalVCs = int(config.ExpectedNumberOfTotalVCs)
+		contractAddress := holder.getContractAddressFromIssuer(holder.issuerAddress)
+		config.SmartContractAddress = contractAddress
+		holder.RevocationService = revocation_service.CreateRevocationService(config)
+		result := Results.CreateResult()
+
+		start := time.Now()
+		holder.RequestVCFromIssuer()
+		holder.ShareallVPs(result)
+		holder.RetrieveandResetResultsAtIssuers(result)
+
+		Results.ConstructResults(config, start, result)
+		result.NumberOfFalsePositives = result.NumberOfFalsePositives - result.RevokedVCs
+		Results.WriteToFile("results.json", *result)
+	}
+
+
 
 	timer1 := time.NewTimer(30 * time.Second)
 	<-timer1.C

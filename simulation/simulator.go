@@ -3,7 +3,6 @@ package simulation
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/praveensankar/Revocation-Service/Results"
 	"github.com/praveensankar/Revocation-Service/blockchain"
 	"github.com/praveensankar/Revocation-Service/config"
@@ -83,7 +82,7 @@ func PerformExperiment(config config.Config){
 	vcs := SimulateIssuance(config, issuer1, claimsSet,totalVCs )
 	SimulateRevocation(config, issuer1, vcs, results)
 	SimulateVerification( issuer1, vcs, results)
-	ConstructResults(config, start, results)
+	Results.ConstructResults(config, start, results)
 	Results.WriteToFile("results.json", *results)
 }
 
@@ -259,27 +258,6 @@ func SimulateVerification( issuer1 *entities.Issuer, vcs []models.VerifiableCred
 	result.BBSVerificationTimePerVP = avgbbstime
 }
 
-func ConstructResults(config config.Config, start  time.Time, result *Results.Results){
-	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by revocation: ", result.AffectedIndexes)
-	zap.S().Infoln("SIMULATOR - \t indexes of VCs that are affected by false positives: ", result.FalsePositiveResults)
-	zap.S().Infoln("SIMULATOR - \t indexes of VCs that retrieved witnesses from entities: ", result.FetchedWitnessesFromIssuers)
-	size, k := BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
-	// Code to measure
-	end := time.Since(start)
-	zap.S().Infof("SIMULATOR : \t total time to run the experiment: %f", end.Seconds())
-
-	result.SimulationTime = end.Seconds()
-	result.TotalVCs = int(config.ExpectedNumberOfTotalVCs)
-	result.RevokedVCs =  int(config.ExpectedNumberofRevokedVCs)
-	result.FalsePositiveRate = config.FalsePositiveRate
-	result.MTHeight = int(config.MTHeight)
-	result.MtLevelInDLT = int(config.MtLevelInDLT)
-	result.BloomFilterSize = int(size)
-	result.BloomFilterIndexesPerEntry = int(k)
-	result.MerkleTreeNodesCountTotal = int(math.Pow(2, float64(config.MTHeight+1)))-1
-	result.MerkleTreeNodesCountInDLT = int(math.Pow(2, float64(config.MtLevelInDLT+1)))-1
-	zap.S().Infoln("SIMULATOR : \t results: ", result.String())
-}
 
 
 
@@ -287,10 +265,6 @@ func ConstructResults(config config.Config, start  time.Time, result *Results.Re
 
 
 
-func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate float64) (uint, uint) {
-	size, numberOfIndexesPerEntry := bloom.EstimateParameters(totalNumberOfVCs, falsePositiveRate)
-	return size, numberOfIndexesPerEntry
-}
 
 
 

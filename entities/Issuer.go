@@ -577,7 +577,17 @@ func (issuer *Issuer) FetchMerkleTreeSizeLocal()(uint) {
 //	}
 //}
 
-func (issuer *Issuer) ResetResult() {
+
+func (issuer *Issuer) Reset(conf config.Config) {
+	issuer.CredentialStore = []models.VerifiableCredential{}
+	issuer.revokedVcIDs = []string{}
+	issuer.revocationProofs = make(map[string]*revocation_service.RevocationData)
+	issuer.AffectedVCIndexes = make(map[int]bool)
+	rand.Seed(time.Now().UnixNano())
+	issuer.credentialType="diploma"
+	issuer.vcCounter = rand.Intn(100000)
+	rs := revocation_service.CreateRevocationService(conf)
+	issuer.setRevocationService(rs)
 	issuer.Result = Results.CreateResult()
 }
 
