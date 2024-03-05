@@ -580,6 +580,15 @@ func (issuer *Issuer) FetchMerkleTreeSizeLocal()(uint) {
 //	}
 //}
 
+func (issuer *Issuer) CalculateResult(conf config.Config) {
+	localMTSize := issuer.RevocationService.FetchMerkleTreeSizeLocal()
+	dltMTSize := issuer.RevocationService.FetchMerkleTreeSizeInDLT()
+	bfSize := issuer.RevocationService.FetchBloomFilterSizeInDLT()
+	issuer.Result.MerkleTreeSizeInDLT = int(dltMTSize)
+	issuer.Result.MerkleTreeNodesCountTotal = int(localMTSize)
+	issuer.Result.BloomFilterSize= int(bfSize)
+}
+
 
 func (issuer *Issuer) Reset(conf config.Config) {
 	issuer.CredentialStore = []models.VerifiableCredential{}

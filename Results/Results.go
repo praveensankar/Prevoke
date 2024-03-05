@@ -83,10 +83,10 @@ func (r Results) String() string{
 	response = response + "Merkle Tree Accumulator height : "+fmt.Sprintf("%d",r.MTHeight)+ "\n"
 	response = response + "Merkle Tree Accumulator Level Stored in DLT : "+fmt.Sprintf("%d",r.MtLevelInDLT)+ "\n \n"
 
-	response = response + "Bloom Filter Size (in number of cells) : "+fmt.Sprintf("%d",r.BloomFilterSize)+ "\n"
+	response = response + "Bloom Filter Size (in bytes) : "+fmt.Sprintf("%d",r.BloomFilterSize)+ "\n"
 	response = response + "Bloom Filter indexes per entry (no of hash functions) : "+fmt.Sprintf("%d",r.BloomFilterIndexesPerEntry)+ "\n"
-	response = response + "merkle tree size total (in bits) : "+fmt.Sprintf("%d",r.MerkleTreeSizeTotal)+ "\n"
-	response = response + "merkle tree size in DLT (in bits) : "+fmt.Sprintf("%d",r.MerkleTreeSizeInDLT)+ "\n"
+	response = response + "merkle tree size total (in bytes) : "+fmt.Sprintf("%d",r.MerkleTreeSizeTotal)+ "\n"
+	response = response + "merkle tree size in DLT (in bytes) : "+fmt.Sprintf("%d",r.MerkleTreeSizeInDLT)+ "\n"
 	response = response + "merkle tree total nodes count : "+fmt.Sprintf("%d",r.MerkleTreeNodesCountTotal)+ "\n"
 	response = response + "merkle tree nodes count in DLT : "+fmt.Sprintf("%d",r.MerkleTreeNodesCountInDLT)+ "\n"
 	response = response + "revocation Batch size : "+fmt.Sprintf("%d",r.RevocationBatchSize)+ "\n"
@@ -135,8 +135,6 @@ func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate
 }
 
 func ConstructResults(config config.Config, start  time.Time, result *Results){
-	zap.S().Infoln("RESULT - \t indexes of VCs that are affected by revocation: ", result.AffectedIndexes)
-	zap.S().Infoln("RESULT - \t indexes of VCs that are affected by false positives: ", result.FalsePositiveResults)
 	zap.S().Infoln("RESULT - \t indexes of VCs that retrieved witnesses from entities: ", result.FetchedWitnessesFromIssuers)
 	size, k :=BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
 	// Code to measure

@@ -108,6 +108,7 @@ func(issuer *Issuer) serverListener(server net.Listener, config *config.Config){
 			if req.GetType() == GetandResetResult{
 				resultEncoder := gob.NewEncoder(conn)
 				zap.S().Infoln("ISSUER - sending results to holder: \t", issuer.Result.String())
+				issuer.CalculateResult(*config)
 				resJson, _ := issuer.Result.Json()
 				resultEncoder.Encode(resJson)
 				contractAddress := DeployContract(config, 0)

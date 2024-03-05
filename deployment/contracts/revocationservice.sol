@@ -16,9 +16,9 @@ contract RevocationService{
 
     // storing bloom filters as maps
     mapping(uint256=>uint256) public bloomFilter;
-    // stores the list of indexes present in the merkle tree.
-    uint256[] private bfIndexes;
-    mapping (uint => bool) private isExistInBloomFilter;
+    // stores the list of buckets present in the merkle tree.
+    uint256[] private bfBuckets;
+    mapping (uint256 => bool) private isExistInBloomFilter;
 
     /*
     merkle tree
@@ -133,13 +133,9 @@ output: public keys
             uint256 mask = 1 << (_indexes[i] & 0xff);
             bloomFilter[bucket] |= mask;
             // bloomFilter[_indexes[i]] = true;
-        }
-
-
-        for (uint i = 0; i < _indexes.length; i++) {
-            if (isExistInBloomFilter[_indexes[i]] == false){
-                isExistInBloomFilter[_indexes[i]] = true;
-                bfIndexes.push(_indexes[i]);
+            if (isExistInBloomFilter[bucket] == false){
+                isExistInBloomFilter[bucket] = true;
+                bfBuckets.push(bucket);
             }
         }
     }
@@ -175,34 +171,6 @@ output: public keys
 
 
 
-
-
-    /*
-    verifies a VC by using two phase verification approach.
-
-    Inputs:
-        _bfIndexes: bloom filter indexes that needs to be set
-        vcLeaf: leaf value of the corresponding VC in the merkle tree
-        proof:  merkle proof
-
-    Operations:
-        Phase 1: check the revocation status in bloom filter. if bloom filter returns false, then it means that VC might be revoked.
-        phase 2:  check the merkle tree accumulator. if it returns true then it means the proof is valid otherwise invalid.
-
-    Returns:
-        True: indicates VC is valid
-        False: indicates VC is revoked
-    */
-    // function verifyVC(uint256[] memory _bfIndexes) public view returns(bool){
-
-    //     bool statusInBloomFilter = checkRevocationStatusInBloomFilter(_bfIndexes);
-
-    //     if(statusInBloomFilter==true){
-    //         return true;
-    //     }else{
-    //         return checkRevocationStatusInMerkleTreeAccumulator(vcLeaf, proof);
-    //     }
-    // }
 
     /*
     verifies a VC by using only bloom filters.
@@ -274,7 +242,7 @@ output: public keys
     }
 
     function RetrieveBloomFilter() public view returns (uint256[] memory){
-        return bfIndexes;
+        return bfBuckets;
     }
 
     function GetMerkleTreeSize() public view returns (uint)  {
@@ -284,6 +252,15 @@ output: public keys
             mtSize = mtSize + merkleTree[i].length;
         }
         return mtSize;
+    }
+
+    function GetBloomFilterSize() public view returns (uint)  {
+        uint bfSize;
+        bfSize=0;
+        for (uint i = 0; i < bfBuckets.length; i++) {
+            bfSize = bfSize + 32;
+        }
+        return bfSize;
     }
 
     // prints the tree in console

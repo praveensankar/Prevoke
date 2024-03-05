@@ -42,6 +42,7 @@ type IRevocationService interface {
 	FetchMerkleTreeSizeInDLT()(uint)
 	FetchMerkleTreeSizeLocal()(uint)
 	FindAncesstorInMerkleTree(index int)(int)
+	FetchBloomFilterSizeInDLT()(uint)
 }
 
 
@@ -723,3 +724,30 @@ func (r RevocationService) FetchMerkleTreeSizeLocal()(uint) {
 	return uint(size)
 }
 
+
+
+/*
+FetchBloomFilterSizeInDLT retrieves the actual size of bloom filter in the smart contract
+
+Output:
+	bloom filter size (in bytes) - uint
+*/
+func (r RevocationService) FetchBloomFilterSizeInDLT()(uint) {
+	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
+	if err != nil {
+		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
+	}
+	revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
+	if err != nil {
+		zap.S().Infof("Failed to instantiate Storage contract: %v", err)
+	}
+
+
+	//Todo: this function should be moved to the verifiers. The parameters should be shared to the holders.
+	bfSize, err := revocationService.GetBloomFilterSize(nil)
+	if err != nil {
+		zap.S().Infof("Error adding public keys: %v", err)
+	}
+
+	return uint(bfSize.Uint64())
+}
