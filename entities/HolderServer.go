@@ -202,12 +202,12 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 		phase2Reply := JsonToRequest(phase2ReplyJson)
 
 		if phase2Reply.GetType()==SuccessfulVerification{
+			results.NumberOfFalsePositives = results.NumberOfFalsePositives+1
 			conn.Close()
 			return true
 		}
 		if phase2Reply.GetType()==FailedVerification{
 			conn.Close()
-			results.NumberOfFalsePositives = results.NumberOfFalsePositives+1
 			return false
 		}
 	}

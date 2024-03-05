@@ -45,11 +45,11 @@ func  StartIssueVCsInBulkToHolders(config config.Config) {
 
 }
 
-func StartIssuerServer(conf config.Config){
-	DeployContract(&conf, 0)
-	issuer := CreateIssuer(conf)
+func StartIssuerServer(conf *config.Config){
+	DeployContract(conf, 0)
+	issuer := CreateIssuer(*conf)
 
-	issuer.BulkIssuance(conf)
+	issuer.BulkIssuance(*conf)
 
 	//if app!=nil{
 	//	go issuer.setupUIForUniversity(app)
@@ -79,7 +79,7 @@ func (issuer *Issuer) BulkIssuance(config config.Config) {
 	}
 }
 // This function handles the incomming connections. It puts all the incoming connections into a list
-func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
+func(issuer *Issuer) serverListener(server net.Listener, config *config.Config){
 
 	count :=0
 	revoked := false
@@ -99,7 +99,7 @@ func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 				contractAddressEncoder := gob.NewEncoder(conn)
 				//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
 				contractAddressReply := NewRequest()
-				contractAddressReply.SetId(config.SmartContractAddress)
+				contractAddressReply.SetId(issuer.ContractAddress)
 				contractAddressReply.SetType(RevokedVC)
 				contractAddressReplyJson, _ := contractAddressReply.Json()
 				contractAddressEncoder.Encode(contractAddressReplyJson)
@@ -110,9 +110,11 @@ func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 				zap.S().Infoln("ISSUER - sending results to holder: \t", issuer.Result.String())
 				resJson, _ := issuer.Result.Json()
 				resultEncoder.Encode(resJson)
-				DeployContract(&config, 0)
-				issuer.Reset(config)
-				issuer.BulkIssuance(config)
+				contractAddress := DeployContract(config, 0)
+				issuer.Reset(*config)
+				issuer.ContractAddress=contractAddress
+				issuer.BulkIssuance(*config)
+
 				count = 0
 				revoked=false
 				conn.Close()
@@ -165,7 +167,7 @@ func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 								issuer.UpdateMerkleProof(vc)
 							}
 
-							issuer.SimulateRevocation(config)
+							issuer.SimulateRevocation(*config)
 							revoked=true
 						}
 					}
@@ -181,7 +183,7 @@ func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 	}
 }
 
-func DeployContract(conf *config.Config,counter int){
+func DeployContract(conf *config.Config,counter int) string{
 	address, err := blockchain.DeployContract(*conf, counter)
 
 	if err != nil {
@@ -200,6 +202,7 @@ func DeployContract(conf *config.Config,counter int){
 	if err != nil {
 		zap.S().Errorln("unable to write results to file")
 	}
+	return address
 
 }
 

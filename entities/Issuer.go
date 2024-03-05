@@ -55,6 +55,7 @@ type Issuer struct{
 	activeConnections []net.Conn
 	processedConnections []net.Conn
 	Result *Results.Results
+	ContractAddress string
 }
 
 /*
@@ -102,6 +103,8 @@ func  CreateIssuer(config config.Config) *Issuer{
 	issuer.activeConnections = []net.Conn{}
 	issuer.processedConnections = []net.Conn{}
 	issuer.Result = Results.CreateResult()
+
+	issuer.ContractAddress = config.SmartContractAddress
 	zap.S().Infoln("ISSUER-","new entities created: entities name - ",issuer.name)
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
 
@@ -589,7 +592,6 @@ func (issuer *Issuer) Reset(conf config.Config) {
 	rs := revocation_service.CreateRevocationService(conf)
 	issuer.setRevocationService(rs)
 	issuer.Result = Results.CreateResult()
-
 	keyPair := signature.GenerateKeyPair()
 	issuer.BbsKeyPair = make([]*signature.BBS, 1)
 	issuer.BbsKeyPair[0] = keyPair
