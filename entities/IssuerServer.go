@@ -45,11 +45,11 @@ func  StartIssueVCsInBulkToHolders(config config.Config) {
 
 }
 
-func StartIssuerServer(conf *config.Config){
-	DeployContract(conf, 0)
-	issuer := CreateIssuer(*conf)
+func StartIssuerServer(conf config.Config){
+	DeployContract(&conf, 0)
+	issuer := CreateIssuer(conf)
 
-	issuer.BulkIssuance(*conf)
+	issuer.BulkIssuance(conf)
 
 	//if app!=nil{
 	//	go issuer.setupUIForUniversity(app)
@@ -61,7 +61,7 @@ func StartIssuerServer(conf *config.Config){
 		return
 	}
 	defer server.Close()
-	issuer.serverListener(server, conf)
+	issuer.serverListener(server, &conf)
 	timer1 := time.NewTimer(100 * time.Second)
 	<-timer1.C
 }
