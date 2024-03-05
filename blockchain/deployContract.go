@@ -38,7 +38,7 @@ func DeployContract(config config.Config, counter int) (string, error){
 	}
 
 
-	gasLimit := uint64(80000000)                // in units
+	gasLimit := config.GasLimit             // in units
 	gasPrice, err := client.SuggestGasPrice(context.Background())
 	if err != nil {
 		zap.S().Fatalln(err)
@@ -49,7 +49,7 @@ func DeployContract(config config.Config, counter int) (string, error){
 	auth.Value = big.NewInt(0)
 	auth.GasLimit = gasLimit
 	auth.GasPrice = gasPrice
-	auth.GasPrice=big.NewInt(int64(20000000000))
+	//auth.GasPrice=big.NewInt(gasPrice)
 
 
 
