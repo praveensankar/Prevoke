@@ -140,9 +140,7 @@ func PerformExperimentTest(config config.Config){
 		MtLevelInDLT:                          int(config.MtLevelInDLT),
 		NumberOfFalsePositives:                numberOfOccuredFalsePositives,
 		AmountPaid:                            amountPaid,
-		NumberOfWitnessUpdatesForMT:           affectedIndexes.Cardinality(),
 		NumberOfVCsRetrievedWitnessFromIssuer: numberOfVCsRetrievedWitnessFromIssuer,
-		NumberOfWitnessUpdatesSaved:         numberOfOccuredFalsePositives-numberOfVCsRetrievedWitnessFromIssuer,
 		BloomFilterSize:                       int(size),
 		BloomFilterIndexesPerEntry:            int(k),
 	}

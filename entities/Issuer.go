@@ -585,7 +585,7 @@ func (issuer *Issuer) CalculateResult(conf config.Config) {
 	dltMTSize := issuer.RevocationService.FetchMerkleTreeSizeInDLT()
 	bfSize := issuer.RevocationService.FetchBloomFilterSizeInDLT()
 	issuer.Result.MerkleTreeSizeInDLT = int(dltMTSize)
-	issuer.Result.MerkleTreeNodesCountTotal = int(localMTSize)
+	issuer.Result.MerkleTreeSizeTotal = int(localMTSize)
 	issuer.Result.BloomFilterSize= int(bfSize)
 }
 
@@ -668,7 +668,6 @@ func (issuer *Issuer) SimulateRevocation(config config.Config){
 
 
 	issuer.Result.AmountPaid = amountPaid
-	issuer.Result.NumberOfWitnessUpdatesForMT = issuer.Result.AffectedIndexes.Cardinality()
 	issuer.Result.RevocationBatchSize = revocationBatchSize
 	issuer.Result.RevocationTimeperBatch = revocationTimePerBatch
 	issuer.Result.RevocationTimeTotal = revocationTimeTotal

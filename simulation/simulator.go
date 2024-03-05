@@ -160,7 +160,6 @@ func SimulateRevocation(config config.Config, issuer1 *entities.Issuer, vcs []mo
 	issuer1.RevocationService.CacheRevocationDataStructuresFromSmartContract()
 
 	result.AmountPaid = amountPaid
-	result.NumberOfWitnessUpdatesForMT = result.AffectedIndexes.Cardinality()
 	result.RevocationBatchSize = revocationBatchSize
 	result.RevocationTimeperBatch = revocationTimePerBatch
 	result.RevocationTimeTotal = revocationTimeTotal
@@ -249,7 +248,6 @@ func SimulateVerification( issuer1 *entities.Issuer, vcs []models.VerifiableCred
 	numberOfVCsRetrievedWitnessFromIssuer = int(witFromIssuers.Load())
 	result.NumberOfFalsePositives = numberOfOccuredFalsePositives
 	result.NumberOfVCsRetrievedWitnessFromIssuer = numberOfVCsRetrievedWitnessFromIssuer
-	result.NumberOfWitnessUpdatesSaved = numberOfOccuredFalsePositives-numberOfVCsRetrievedWitnessFromIssuer
 	result.VerificationTimeTotalValidVCs = validVCsTime
 	result.VerificationTimeTotalRevokedorFalsePositiveVCs = notValidVCsTime
 	result.VerificationTimePerValidVC = avgValidVCsTime
