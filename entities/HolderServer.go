@@ -185,7 +185,7 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 				conn1.Close()
 			}
 
-			//Todo: Revoked VCs are also counted 
+			//Todo: Revoked VCs are also counted
 			results.IncrementNumberofVCsRetrievedWitnessesFromIssuer()
 
 		}

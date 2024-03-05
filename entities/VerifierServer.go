@@ -78,14 +78,15 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 				verifier.Result.AddVerificationTimeTotal(phase1Time)
 
 				if phase1result==true{
+					verifier.Result.AddVerificationTimePerValidVC(phase1Time)
+					verifier.Result.AddVerificationTimeTotalValidVCs(phase1Time)
 					phase1ResEncoder := gob.NewEncoder(conn)
 					phase1ResultReq := NewRequest()
 					phase1ResultReq.SetId(verifier.name)
 					phase1ResultReq.SetType(SuccessfulVerification)
 					phase1ResultReqJson, _ := phase1ResultReq.Json()
 					phase1ResEncoder.Encode(phase1ResultReqJson)
-					verifier.Result.AddVerificationTimePerValidVC(phase1Time)
-					verifier.Result.AddVerificationTimeTotalValidVCs(phase1Time)
+
 				}
 
 				if phase1result==false{

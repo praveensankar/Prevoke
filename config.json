@@ -11,7 +11,7 @@
 		 "address": "158.39.77.174:8000",
 		 "totalVCs": "10",
 		 "revokedVCs": "1",
-		 "falsePositiveRate": "0.5",
+		 "falsePositiveRate": "0.1",
 		 "mtLevelInDLT": "3",
 		 "mtHeight": "4",
 		 "revocationBatchSize": "1",
