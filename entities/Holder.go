@@ -60,12 +60,32 @@ func (h *Holder) RequestVCFromIssuer(){
 
 func (h *Holder) RetrieveandResetResultsAtIssuers(result  *Results.Results ){
 	zap.S().Infoln("HOLDER - requesting results from the issuer")
-	h.retrieveandResetResultsAtIssuers(h.issuerAddress, result)
+	res := h.retrieveandResetResultsAtIssuers(h.issuerAddress)
+
+	result.RevocationTimeperBatch = res.RevocationTimeperBatch
+	result.RevocationTimeTotal = res.RevocationTimeTotal
+	result.AmountPaid = res.AmountPaid
+	result.RevocationBatchSize = res.RevocationBatchSize
+	result.NumberOfWitnessUpdatesForMT = res.NumberOfWitnessUpdatesForMT
+	result.MerkleTreeSizeInDLT = res.MerkleTreeSizeInDLT
+	result.MerkleTreeNodesCountTotal = res.MerkleTreeNodesCountTotal
+	result.BloomFilterSize = 	res.BloomFilterSize
 }
 
 func (h *Holder) RetrieveandResetResultsAtVerifiers(result  *Results.Results ){
 	zap.S().Infoln("HOLDER - requesting results from the verifier")
-	h.retrieveandResetResultsAtVerifiers(h.verifierAddress, result)
+	res := h.retrieveandResetResultsAtVerifiers(h.verifierAddress)
+
+	result.BBSVerificationTimePerVP = res.BBSVerificationTimePerVP
+	result.VerificationTimePerValidVC = res.VerificationTimePerValidVC
+	result.VerificationTimeTotalValidVCs = res.VerificationTimeTotalValidVCs
+
+	result.VerificationTimePerRevokedorFalsePositiveVC = res.VerificationTimePerRevokedorFalsePositiveVC
+	result.VerificationTimeTotalRevokedorFalsePositiveVCs = res.VerificationTimeTotalRevokedorFalsePositiveVCs
+
+	result.VerificationTimeTotal = res.VerificationTimeTotal
+
+
 }
 
 func (h *Holder) StoreVC(vc models.VerifiableCredential) {

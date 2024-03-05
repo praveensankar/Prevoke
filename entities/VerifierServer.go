@@ -51,6 +51,10 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 				verifier.Result = Results.CreateResult()
 			}
 			if req.GetType() ==GetandResetResult{
+				resultEncoder := gob.NewEncoder(conn)
+				zap.S().Infoln("ISSUER - sending results to holder: \t", verifier.Result.String())
+				resJson, _ := verifier.Result.Json()
+				resultEncoder.Encode(resJson)
 				verifier.Reset(conf)
 			}
 			if req.GetType() ==VerifyVC{
@@ -67,10 +71,11 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 				diplomaVP := vc.JsonToDiplomaVP(vpJson)
 				zap.S().Infoln("VERIFIER - received VP with following claims: \t degree: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Degree,
 					"\t grade: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Grade)
-				phase1result, bbsVerificationTime, phase1Time := verifier.VerifyVPPhase1(diplomaVP)
 
-				verifier.Result.AddVerificationTimePerValidVC(phase1Time)
+				// phase 1 time does not include bbs verification time
+				phase1result, bbsVerificationTime, phase1Time := verifier.VerifyVPPhase1(diplomaVP)
 				verifier.Result.AddBBSVerificationTimePerVP(bbsVerificationTime)
+				verifier.Result.AddVerificationTimeTotal(phase1Time)
 
 				if phase1result==true{
 					phase1ResEncoder := gob.NewEncoder(conn)
@@ -79,10 +84,16 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 					phase1ResultReq.SetType(SuccessfulVerification)
 					phase1ResultReqJson, _ := phase1ResultReq.Json()
 					phase1ResEncoder.Encode(phase1ResultReqJson)
+					verifier.Result.AddVerificationTimePerValidVC(phase1Time)
+					verifier.Result.AddVerificationTimeTotalValidVCs(phase1Time)
 				}
 
 				if phase1result==false{
 					//fetch witness from holder
+
+					// phase two time calculated as follows: verifier sends witness request to holder, retrieves witness
+					// from the holder, verifies the witness
+					phase2Start := time.Now()
 					witRequestEncoder := gob.NewEncoder(conn)
 					witReq := NewRequest()
 					witReq.SetId(verifier.name)
@@ -96,7 +107,15 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 					witReplyDecoder.Decode(&witJson)
 					merkleProof, _ := techniques.JsonToMerkleProof(witJson)
 					zap.S().Infoln("VERIFIER - received merkle proof: ", merkleProof)
+
+
 					phase2result := verifier.VerifyVPPhase2(diplomaVP, *merkleProof)
+					phase2Time := time.Since(phase2Start)
+
+					verifier.Result.AddVerificationTimePerRevokedandFalsePositiveVC(phase2Time.Seconds())
+					verifier.Result.AddVerificationTimeTotalRevokedandFalsePositiveVCs(phase2Time.Seconds())
+					verifier.Result.AddVerificationTimeTotal(phase2Time.Seconds())
+
 					phase2ResEncoder := gob.NewEncoder(conn)
 					phase2ResultReq := NewRequest()
 					phase2ResultReq.SetId(verifier.name)

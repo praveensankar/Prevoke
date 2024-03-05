@@ -21,6 +21,7 @@ type Results struct {
 	MTHeight int `json:"mt_height"`
 	NumberOfFalsePositives int `json:"number_of_false_positives"`
 	NumberOfVCsRetrievedWitnessFromIssuer int `json:"number_of_vcs_retrieved_witness_from_issuer"`
+	NumberOfVCsRetrievedWitnessFromDLT int `json:"number_of_vcs_retrieved_witness_from_dlt"`
 	NumberOfWitnessUpdatesForMT int `json:"number_of_vcs_affected_by_revocation_due_to_storing_optimized_MT_accumulator_in_DLT"`
 	AmountPaid int64 `json:"mt_accumulator_per_update_cost_in_gwei"`
 	NumberOfWitnessUpdatesSaved int `json:"number_of_witness_updates_saved"`
@@ -53,6 +54,9 @@ func CreateResult() *Results {
 	return result
 }
 
+func (r *Results) AddVerificationTimeTotal(vTime float64){
+	r.VerificationTimeTotal = r.VerificationTimeTotal+vTime
+}
 func (r *Results) AddVerificationTimeTotalValidVCs(phase1Time float64){
 	r.VerificationTimeTotalValidVCs = r.VerificationTimeTotalValidVCs+phase1Time
 }
@@ -66,6 +70,19 @@ func (r *Results) AddVerificationTimePerValidVC(phase1Time float64){
 	}
 }
 
+func (r *Results) AddVerificationTimeTotalRevokedandFalsePositiveVCs(phase2Time float64){
+	r.VerificationTimeTotalRevokedorFalsePositiveVCs = r.VerificationTimeTotalRevokedorFalsePositiveVCs+phase2Time
+}
+
+func (r *Results) AddVerificationTimePerRevokedandFalsePositiveVC(phase2Time float64){
+	if r.VerificationTimePerRevokedorFalsePositiveVC==0.0{
+		r.VerificationTimePerRevokedorFalsePositiveVC = r.VerificationTimePerRevokedorFalsePositiveVC + phase2Time
+	} else {
+		r.VerificationTimePerRevokedorFalsePositiveVC = r.VerificationTimePerRevokedorFalsePositiveVC + phase2Time
+		r.VerificationTimePerRevokedorFalsePositiveVC = r.VerificationTimePerRevokedorFalsePositiveVC / 2
+	}
+}
+
 func (r *Results) AddBBSVerificationTimePerVP(bbsTime float64){
 	if r.BBSVerificationTimePerVP==0.0{
 		r.BBSVerificationTimePerVP = r.BBSVerificationTimePerVP + bbsTime
@@ -73,6 +90,14 @@ func (r *Results) AddBBSVerificationTimePerVP(bbsTime float64){
 		r.BBSVerificationTimePerVP = r.BBSVerificationTimePerVP + bbsTime
 		r.BBSVerificationTimePerVP = r.BBSVerificationTimePerVP / 2
 	}
+}
+
+func (r *Results) IncrementNumberofVCsRetrievedWitnessesFromIssuer(){
+	r.NumberOfVCsRetrievedWitnessFromIssuer++
+}
+
+func (r *Results) IncrementNumberofVCsRetrievedWitnessesFromDLT(){
+	r.NumberOfVCsRetrievedWitnessFromDLT++
 }
 
 func (r Results) String() string{
@@ -102,7 +127,8 @@ func (r Results) String() string{
 	response = response + "Amount (in gwei) paid per revocation: "+fmt.Sprintf("%d",r.AmountPaid)+ "\n"
 	response = response + "Number of witness that are affected by revocation and require witness update in Merkle Tree Accumulator: "+ fmt.Sprintf("%d",r.NumberOfWitnessUpdatesForMT) + "\n"
 	response = response + "Number of False Positives : "+ fmt.Sprintf("%d",r.NumberOfFalsePositives) + "\n"
-	response = response + "Number of VCS that ended up updating witnesses from entities: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromIssuer)+ "\n"
+	response = response + "Number of VCS that ended up updating witnesses from issuer: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromIssuer)+ "\n"
+	response = response + "Number of VCS that updated witnesses from smart contract: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromDLT)+ "\n"
 	response = response + "Number of witness updates that got saved due to storing 'z' levels of merkle tree accumulator in DLT : "+fmt.Sprintf("%d",r.NumberOfWitnessUpdatesSaved)+ "\n"
 	response = response + "time to run the experiment (in seconds) : "+fmt.Sprintf("%f",r.SimulationTime)+ " \n"
 	return response

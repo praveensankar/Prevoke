@@ -148,6 +148,7 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 				}
 			}
 			localMerkleProof.OrderedWitnesses = techniques.OrderWitnesses(localMerkleProof)
+			results.IncrementNumberofVCsRetrievedWitnessesFromDLT()
 		} else{
 			// step 8 - Holder can't update the witness using smart contract. Holder contacts the issuer to retreive the
 			// updated witness
@@ -183,6 +184,10 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 				holder.Unlock()
 				conn1.Close()
 			}
+
+			//Todo: Revoked VCs are also counted 
+			results.IncrementNumberofVCsRetrievedWitnessesFromIssuer()
+
 		}
 
 
@@ -303,63 +308,63 @@ func(holder *Holder) receiveVCs(address string){
 	}
 }
 
-func(holder *Holder) retrieveandResetResultsAtIssuers(address string, result  *Results.Results){
+func(holder *Holder) retrieveandResetResultsAtIssuers(address string)*Results.Results{
 
 		conn, err := net.Dial("tcp",address)
 		if err != nil {
 			zap.S().Infoln("HOLDER - issuer is unavailabe")
-			return
+			return nil
 		}
 
 		//zap.S().Infoln("HOLDER -  address : ",conn.LocalAddr().String())
 		//zap.S().Infoln("connecting with the issuer via ", conn.RemoteAddr().String())
 
 		encoder := gob.NewEncoder(conn)
-		//encoder.Encode(s.GetType())
+
 		req := NewRequest()
 		req.SetId(holder.name)
 		req.SetType(GetandResetResult)
 		reqJson, _ := req.Json()
-		//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
 		encoder.Encode(reqJson)
+
+
 		dec := gob.NewDecoder(conn)
 		var resJson []byte
-		//ticker := time.NewTicker(1 * time.Millisecond)
-		//for {
-		//	select {
-		//	case <-ticker.C:
 		dec.Decode(&resJson)
 		res := Results.JsonToResults(resJson)
 
-		result.RevocationTimeperBatch = res.RevocationTimeperBatch
-		result.RevocationTimeTotal = res.RevocationTimeTotal
-		result.AmountPaid = res.AmountPaid
-		result.RevocationBatchSize = res.RevocationBatchSize
-		result.NumberOfWitnessUpdatesForMT = res.NumberOfWitnessUpdatesForMT
 
 		zap.S().Infoln("HOLDER - received revocation results from issuer")
 		conn.Close()
+		return res
 		//break
 		//	}
 		//}
 }
 
 
-func(holder *Holder) retrieveandResetResultsAtVerifiers(address string, result  *Results.Results){
+func(holder *Holder) retrieveandResetResultsAtVerifiers(address string) *Results.Results{
 	conn, err := net.Dial("tcp", address)
 	if err != nil {
 		zap.S().Infoln("HOLDER - verifier is unavailabe")
 		conn.Close()
 	}
 
-	// step 1 - Holder sends a connection request to send a VP to a verifier
-
 	encoder := gob.NewEncoder(conn)
-	//encoder.Encode(s.GetType())
+
 	req := NewRequest()
 	req.SetId(holder.name)
 	req.SetType(GetandResetResult)
 	reqJson, _ := req.Json()
-	//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
+
 	encoder.Encode(reqJson)
+
+	dec := gob.NewDecoder(conn)
+	var resJson []byte
+	dec.Decode(&resJson)
+	res := Results.JsonToResults(resJson)
+
+
+	zap.S().Infoln("HOLDER - received revocation results from verifier")
+	return res
 }

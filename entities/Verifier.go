@@ -62,7 +62,7 @@ vp - models.VerifiablePresentation
 Outputs:
 1) (bool) - actual status of the VP
 2) (float64) - bbs verification time
-3) (float64) - phase 1 time (only valid vcs)
+3) (float64) - phase 1 time (only valid vcs). It doesnot include bbs verification time
  */
 
 
