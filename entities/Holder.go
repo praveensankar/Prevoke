@@ -3,6 +3,7 @@ package entities
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/praveensankar/Revocation-Service/Results"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
@@ -37,6 +38,8 @@ type Holder struct {
 	MTHeight int
 	MTLevelInDLT int
 	RevocationService revocation_service.IRevocationService
+
+	Results []Results.Results
 }
 
 
@@ -55,8 +58,17 @@ func (h *Holder) RequestVCFromIssuer(){
 	h.receiveVCs(h.issuerAddress)
 }
 
+func (h *Holder) RetrieveandResetResultsAtIssuers(result  *Results.Results ){
+	zap.S().Infoln("HOLDER - requesting results from the issuer")
+	h.retrieveandResetResultsAtIssuers(h.issuerAddress, result)
+}
+
 func (h *Holder) StoreVC(vc models.VerifiableCredential) {
 	h.verfiableCredentials = append(h.verfiableCredentials, vc)
+}
+
+func (h *Holder) StoreResults(result Results.Results) {
+	h.Results = append(	h.Results , result)
 }
 
 func (h *Holder) StoreMerkleProof(vcID string, proof techniques.MerkleProof) {
@@ -98,7 +110,7 @@ func (h *Holder) ConstructVP(credential models.VerifiableCredential) (vp models.
 	return presentation, nil
 }
 
-func (h *Holder) ShareallVPs(){
+func (h *Holder) ShareallVPs(results *Results.Results){
 	if len(h.verfiableCredentials)==0{
 		zap.S().Infoln("HOLDER - haven't recived any vcs yet")
 		return
@@ -110,12 +122,12 @@ func (h *Holder) ShareallVPs(){
 		if err != nil {
 			return
 		}
-		status := h.ShareVP(vc.GetId(), vp)
+		status := h.ShareVP(vc.GetId(), vp, results)
 		zap.S().Infoln("HOLDER - verification result: ", status)
 	}
 }
-func (h *Holder) ShareVP(vcID string, vp models.VerifiablePresentation) (bool){
-	return h.sendVP(vcID, vp, h.verifierAddress)
+func (h *Holder) ShareVP(vcID string, vp models.VerifiablePresentation, results *Results.Results) (bool){
+	return h.sendVP(vcID, vp, h.verifierAddress, results)
 }
 
 func (h Holder) GetType() Entity{
@@ -167,8 +179,12 @@ func StartHolder(config config.Config){
 	contractAddress := holder.getContractAddressFromIssuer(holder.issuerAddress)
 	config.SmartContractAddress=contractAddress
 	holder.RevocationService = revocation_service.CreateRevocationService(config)
+	result :=Results.CreateResult()
+
 	holder.RequestVCFromIssuer()
-	holder.ShareallVPs()
+	holder.ShareallVPs(result)
+	holder.RetrieveandResetResultsAtIssuers(result)
+	Results.WriteToFile("results.json", *result)
 
 	timer1 := time.NewTimer(30 * time.Second)
 	<-timer1.C

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/deckarep/golang-set"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/praveensankar/Revocation-Service/Results"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
@@ -53,6 +54,7 @@ type Issuer struct{
 	BbsKeyPair        []*signature.BBS
 	activeConnections []net.Conn
 	processedConnections []net.Conn
+	Result *Results.Results
 }
 
 /*
@@ -99,6 +101,7 @@ func  CreateIssuer(config config.Config) *Issuer{
 
 	issuer.activeConnections = []net.Conn{}
 	issuer.processedConnections = []net.Conn{}
+	issuer.Result = Results.CreateResult()
 	zap.S().Infoln("ISSUER-","new entities created: entities name - ",issuer.name)
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
 
@@ -574,13 +577,17 @@ func (issuer *Issuer) FetchMerkleTreeSizeLocal()(uint) {
 //	}
 //}
 
+func (issuer *Issuer) ResetResult() {
+	issuer.Result = Results.CreateResult()
+}
+
 func (issuer *Issuer) SimulateRevocation(config config.Config){
 	revocationBatchSize := int(config.RevocationBatchSize)
 
-	//var amountPaid int64
-	//amountPaid = 0
-	//revocationTimePerBatch := 0.0
-	//revocationTimeTotal := 0.0
+	var amountPaid int64
+	amountPaid = 0
+	revocationTimePerBatch := 0.0
+	revocationTimeTotal := 0.0
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	revokedVCs := make([]string, totalRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
@@ -609,30 +616,30 @@ func (issuer *Issuer) SimulateRevocation(config config.Config){
 				i = rand.Intn(int(config.ExpectedNumberOfTotalVCs))
 			}
 		}
-		_, _, _ = issuer.RevokeVCInBatches(config, revokedVCsInBatch)
+		indexes, amount, revocationTime := issuer.RevokeVCInBatches(config, revokedVCsInBatch)
 		issuer.revokedVcIDs = append(issuer.revokedVcIDs, RevokedVC)
-		//result.AffectedIndexes = result.AffectedIndexes.Union(indexes)
-		//revocationTimeTotal = revocationTimeTotal + revocationTime.Seconds()
-		//if revocationTimePerBatch == 0.0{
-		//	revocationTimePerBatch = revocationTimePerBatch + revocationTime.Seconds();
-		//} else{
-		//	revocationTimePerBatch = (revocationTimePerBatch + revocationTime.Seconds())/2;
-		//}
-		//
-		//if amountPaid==0{
-		//	amountPaid = amountPaid + amount;
-		//} else{
-		//	amountPaid = amountPaid + amount;
-		//	amountPaid = amountPaid / 2;
-		//}
+		issuer.Result.AffectedIndexes = issuer.Result.AffectedIndexes.Union(indexes)
+		revocationTimeTotal = revocationTimeTotal + revocationTime.Seconds()
+		if revocationTimePerBatch == 0.0{
+			revocationTimePerBatch = revocationTimePerBatch + revocationTime.Seconds();
+		} else{
+			revocationTimePerBatch = (revocationTimePerBatch + revocationTime.Seconds())/2;
+		}
+
+		if amountPaid==0{
+			amountPaid = amountPaid + amount;
+		} else{
+			amountPaid = amountPaid + amount;
+			amountPaid = amountPaid / 2;
+		}
 
 
 	}
 
-	//
-	//result.AmountPaid = amountPaid
-	//result.NumberOfWitnessUpdatesForMT = result.AffectedIndexes.Cardinality()
-	//result.RevocationBatchSize = revocationBatchSize
-	//result.RevocationTimeperBatch = revocationTimePerBatch
-	//result.RevocationTimeTotal = revocationTimeTotal
+
+	issuer.Result.AmountPaid = amountPaid
+	issuer.Result.NumberOfWitnessUpdatesForMT = issuer.Result.AffectedIndexes.Cardinality()
+	issuer.Result.RevocationBatchSize = revocationBatchSize
+	issuer.Result.RevocationTimeperBatch = revocationTimePerBatch
+	issuer.Result.RevocationTimeTotal = revocationTimeTotal
 }

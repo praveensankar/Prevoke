@@ -104,6 +104,7 @@ func (r Results) String() string{
 	return response
 }
 
+
 func  WriteToFile( filename string, result Results) {
 
 	var results []Results
@@ -120,5 +121,19 @@ func  WriteToFile( filename string, result Results) {
 	if err != nil {
 		zap.S().Errorln("unable to write results to file")
 	}
+	zap.S().Errorln("RESULTS - successfully written to the file")
 
+}
+
+
+func (r *Results) Json() ([]byte, error){
+	return json.MarshalIndent(r, "","    ")
+}
+
+
+
+func JsonToResults(jsonObj []byte) *Results{
+	res := Results{}
+	json.Unmarshal(jsonObj, &res)
+	return &res
 }

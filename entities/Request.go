@@ -16,6 +16,8 @@ const (
 	StoreResults			  = "store results"
 	RevokedVC = "revoked vc"
 	GetContractAddress = "get contract address"
+	GetandResetResult = "send results"
+	Result = "results"
 )
 
 type Request struct {

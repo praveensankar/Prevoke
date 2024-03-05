@@ -86,17 +86,6 @@ func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 	zap.S().Infoln("ISSUER - server set up and listening at : ",server.Addr().String())
 	for{
 
-		if count==int(config.ExpectedNumberOfTotalVCs){
-			if revoked==false {
-				credentials := issuer.CredentialStore
-				for _, vc := range credentials {
-					issuer.UpdateMerkleProof(vc)
-				}
-
-				issuer.SimulateRevocation(config)
-				revoked=true
-			}
-		}
 		conn, err := server.Accept()
 		if err != nil {
 			zap.S().Errorln("ISSUER - error : %v", err)
@@ -114,6 +103,15 @@ func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 				contractAddressReply.SetType(RevokedVC)
 				contractAddressReplyJson, _ := contractAddressReply.Json()
 				contractAddressEncoder.Encode(contractAddressReplyJson)
+				conn.Close()
+			}
+			if req.GetType() == GetandResetResult{
+				resultEncoder := gob.NewEncoder(conn)
+				zap.S().Infoln("ISSUER - sending results to holder:")
+				resJson, _ := issuer.Result.Json()
+				resultEncoder.Encode(resJson)
+				issuer.ResetResult()
+				conn.Close()
 			}
 			if req.GetType() ==SendWitness {
 				isRevoked := false
@@ -138,6 +136,7 @@ func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 					proofEncoder.Encode(merkleProof.Json())
 					zap.S().Infoln("ISSUER - vc id: ", vcID, "\t send merkle proof: ", merkleProof)
 				}
+				conn.Close()
 			}
 			if req.GetType() ==GetVC {
 				zap.S().Infoln("ISSUER - received new request: ", req)
@@ -152,10 +151,25 @@ func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 				if req.GetType() == GetMerkleProof {
 					proofEncoder := gob.NewEncoder(conn)
 					merkleProof := issuer.getUpdatedMerkleProof(issuer.CredentialStore[count].GetId())
-					proofEncoder.Encode(merkleProof.Json())
 					zap.S().Infoln("ISSUER - issued vc : ", issuer.CredentialStore[count].GetId(), "  \t to: ", req.GetId())
 					count = count + 1
+
+					if count==int(config.ExpectedNumberOfTotalVCs){
+						if revoked==false {
+							credentials := issuer.CredentialStore
+							for _, vc := range credentials {
+								issuer.UpdateMerkleProof(vc)
+							}
+
+							issuer.SimulateRevocation(config)
+							revoked=true
+						}
+					}
+
+					proofEncoder.Encode(merkleProof.Json())
+
 				}
+				conn.Close()
 			}
 
 

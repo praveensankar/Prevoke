@@ -3,6 +3,7 @@ package entities
 import (
 	"encoding/gob"
 	"fyne.io/fyne/v2"
+	"github.com/praveensankar/Revocation-Service/Results"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/techniques"
@@ -62,7 +63,7 @@ func(holder *Holder) processConnection(conn net.Conn) {
 	defer holder.Unlock()
 }
 
-func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, address string) (bool){
+func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, address string, results *Results.Results) (bool){
 	conn, err := net.Dial("tcp", address)
 	if err != nil {
 		zap.S().Infoln("HOLDER - verifier is unavailabe")
@@ -98,6 +99,8 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 	}
 
 	// step 4 - Holder receives the result of phase 1 verification from the verifier
+
+
 	phase1ReplyDecoder := gob.NewDecoder(conn)
 	var phase1ReplyJson []byte
 	phase1ReplyDecoder.Decode(&phase1ReplyJson)
@@ -204,6 +207,7 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 		}
 		if phase2Reply.GetType()==FailedVerification{
 			conn.Close()
+			results.NumberOfFalsePositives = results.NumberOfFalsePositives+1
 			return false
 		}
 	}
@@ -295,4 +299,45 @@ func(holder *Holder) receiveVCs(address string){
 		//	}
 		//}
 	}
+}
+
+func(holder *Holder) retrieveandResetResultsAtIssuers(address string, result  *Results.Results){
+
+		conn, err := net.Dial("tcp",address)
+		if err != nil {
+			zap.S().Infoln("HOLDER - issuer is unavailabe")
+			return
+		}
+
+		//zap.S().Infoln("HOLDER -  address : ",conn.LocalAddr().String())
+		//zap.S().Infoln("connecting with the issuer via ", conn.RemoteAddr().String())
+
+		encoder := gob.NewEncoder(conn)
+		//encoder.Encode(s.GetType())
+		req := NewRequest()
+		req.SetId(holder.name)
+		req.SetType(GetandResetResult)
+		reqJson, _ := req.Json()
+		//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
+		encoder.Encode(reqJson)
+		dec := gob.NewDecoder(conn)
+		var resJson []byte
+		//ticker := time.NewTicker(1 * time.Millisecond)
+		//for {
+		//	select {
+		//	case <-ticker.C:
+		dec.Decode(&resJson)
+		res := Results.JsonToResults(resJson)
+
+		result.RevocationTimeperBatch = res.RevocationTimeperBatch
+		result.RevocationTimeTotal = res.RevocationTimeTotal
+		result.AmountPaid = res.AmountPaid
+		result.RevocationBatchSize = res.RevocationBatchSize
+		result.NumberOfWitnessUpdatesForMT = res.NumberOfWitnessUpdatesForMT
+
+		zap.S().Infoln("HOLDER - received revocation results from issuer")
+		conn.Close()
+		//break
+		//	}
+		//}
 }
