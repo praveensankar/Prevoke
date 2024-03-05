@@ -66,8 +66,8 @@ func (h *Holder) RetrieveandResetResultsAtIssuers(result  *Results.Results ){
 	result.RevocationTimeTotal = res.RevocationTimeTotal
 	result.AmountPaid = res.AmountPaid
 	result.RevocationBatchSize = res.RevocationBatchSize
-	result.NumberOfWitnessUpdatesForMT = res.NumberOfWitnessUpdatesForMT
 	result.MerkleTreeSizeInDLT = res.MerkleTreeSizeInDLT
+	result.MerkleTreeSizeTotal = res.MerkleTreeSizeTotal
 	result.MerkleTreeNodesCountTotal = res.MerkleTreeNodesCountTotal
 	result.BloomFilterSize = 	res.BloomFilterSize
 }
@@ -214,7 +214,7 @@ func StartHolder(config config.Config){
 		holder.ShareallVPs(result)
 		holder.RetrieveandResetResultsAtIssuers(result)
 		holder.RetrieveandResetResultsAtVerifiers(result)
-
+		result.NumberOfVCsRetrievedWitnessFromIssuer = result.NumberOfVCsRetrievedWitnessFromIssuer - int(config.ExpectedNumberofRevokedVCs)
 		Results.ConstructResults(config, start, result)
 		Results.WriteToFile("results.json", *result)
 	}
