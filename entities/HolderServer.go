@@ -243,6 +243,8 @@ func(holder *Holder) getContractAddressFromIssuer(address string) (string){
 	return reply.GetId()
 }
 
+
+
 func(holder *Holder) receiveVCs(address string){
 	for i:=0;i<holder.totalVCs;i++ {
 		conn, err := net.Dial("tcp",address)
@@ -340,4 +342,24 @@ func(holder *Holder) retrieveandResetResultsAtIssuers(address string, result  *R
 		//break
 		//	}
 		//}
+}
+
+
+func(holder *Holder) retrieveandResetResultsAtVerifiers(address string, result  *Results.Results){
+	conn, err := net.Dial("tcp", address)
+	if err != nil {
+		zap.S().Infoln("HOLDER - verifier is unavailabe")
+		conn.Close()
+	}
+
+	// step 1 - Holder sends a connection request to send a VP to a verifier
+
+	encoder := gob.NewEncoder(conn)
+	//encoder.Encode(s.GetType())
+	req := NewRequest()
+	req.SetId(holder.name)
+	req.SetType(GetandResetResult)
+	reqJson, _ := req.Json()
+	//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
+	encoder.Encode(reqJson)
 }

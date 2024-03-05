@@ -25,14 +25,14 @@ func StartVerifierServer(config config.Config){
 		return
 	}
 	defer server.Close()
-	verifier.serverListener(server)
+	verifier.serverListener(server, config)
 	timer1 := time.NewTimer(10000 * time.Second)
 	<-timer1.C
 }
 
 
 // This function handles the incomming connections. It puts all the incoming connections into a list
-func(verifier *Verifier) serverListener(server net.Listener){
+func(verifier *Verifier) serverListener(server net.Listener, conf config.Config){
 
 	zap.S().Infoln("VERIFIER - server set up and listening at : ",server.Addr().String())
 	for{
@@ -49,6 +49,9 @@ func(verifier *Verifier) serverListener(server net.Listener){
 			if req.GetType() ==StoreResults{
 				Results.WriteToFile("results_verifier.json",*verifier.Result)
 				verifier.Result = Results.CreateResult()
+			}
+			if req.GetType() ==GetandResetResult{
+				verifier.Reset(conf)
 			}
 			if req.GetType() ==VerifyVC{
 				zap.S().Infoln("VERFIER - received new request: ",req)

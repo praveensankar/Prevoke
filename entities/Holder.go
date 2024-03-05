@@ -63,6 +63,11 @@ func (h *Holder) RetrieveandResetResultsAtIssuers(result  *Results.Results ){
 	h.retrieveandResetResultsAtIssuers(h.issuerAddress, result)
 }
 
+func (h *Holder) RetrieveandResetResultsAtVerifiers(result  *Results.Results ){
+	zap.S().Infoln("HOLDER - requesting results from the issuer")
+	h.retrieveandResetResultsAtVerifiers(h.issuerAddress, result)
+}
+
 func (h *Holder) StoreVC(vc models.VerifiableCredential) {
 	h.verfiableCredentials = append(h.verfiableCredentials, vc)
 }
@@ -188,6 +193,7 @@ func StartHolder(config config.Config){
 		holder.RequestVCFromIssuer()
 		holder.ShareallVPs(result)
 		holder.RetrieveandResetResultsAtIssuers(result)
+		holder.RetrieveandResetResultsAtIssuers(result )
 
 		Results.ConstructResults(config, start, result)
 		result.NumberOfFalsePositives = result.NumberOfFalsePositives - result.RevokedVCs

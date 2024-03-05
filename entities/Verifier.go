@@ -130,7 +130,13 @@ func (verifier *Verifier) VerifyVPPhase2(vp *models.VerifiablePresentation, proo
 	}
 	zap.S().Infoln("VERIFIER: \t ***VERIFICATION*** vp: \t phase2 result: ", phase2Result)
 	return phase2Result
+}
 
-
-
+func (verifier *Verifier) Reset(config config.Config){
+	contractAddress := verifier.getContractAddressFromIssuer(config.IssuerAddress)
+	config.SmartContractAddress=contractAddress
+	rs := revocation_service.CreateRevocationService(config)
+	verifier.RevocationService = rs
+	verifier.bbs = bbs.NewBbs()
+	verifier.Result= Results.CreateResult()
 }
