@@ -112,6 +112,7 @@ func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 				resultEncoder.Encode(resJson)
 				DeployContract(&config, 0)
 				issuer.Reset(config)
+				issuer.BulkIssuance(config)
 				count = 0
 				conn.Close()
 			}
