@@ -255,7 +255,7 @@ func (r RevocationServiceStub) FetchMerkleTreeSizeLocal()(uint) {
 
 func (r RevocationServiceStub) FetchBloomFilterSizeInDLT()(uint) {
 	//Todo: Implement if necessary
-	return -1
+	return 0
 }
 
 
