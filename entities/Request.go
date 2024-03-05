@@ -16,6 +16,7 @@ const (
 	StoreResults			  = "store results"
 	RevokedVC = "revoked vc"
 	GetContractAddress = "get contract address"
+	ContractAddress = "contract address"
 	GetandResetResult = "send results"
 	Result = "results"
 )

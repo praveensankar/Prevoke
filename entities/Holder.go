@@ -176,7 +176,7 @@ func StartHolder(config config.Config){
 	holder.issuerAddress = config.IssuerAddress
 	holder.verifierAddress = config.VerifierAddress
 
-	for i:=0;i<1;i++ {
+	for i:=0;i<2;i++ {
 		holder.totalVCs = int(config.ExpectedNumberOfTotalVCs)
 		contractAddress := holder.getContractAddressFromIssuer(holder.issuerAddress)
 		config.SmartContractAddress = contractAddress
