@@ -589,6 +589,14 @@ func (issuer *Issuer) Reset(conf config.Config) {
 	rs := revocation_service.CreateRevocationService(conf)
 	issuer.setRevocationService(rs)
 	issuer.Result = Results.CreateResult()
+
+	keyPair := signature.GenerateKeyPair()
+	issuer.bbs = bbs.NewBbs()
+	publicKey1, _ := keyPair.PublicKey.Marshal()
+	keys := make([][]byte, 1)
+	keys[0]=publicKey1
+	pk , _ := bbs.UnmarshalPublicKey(publicKey1)
+	rs.AddPublicKeys(keys)
 }
 
 func (issuer *Issuer) SimulateRevocation(config config.Config){
