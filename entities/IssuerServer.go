@@ -114,6 +114,7 @@ func(issuer *Issuer) serverListener(server net.Listener, config config.Config){
 				issuer.Reset(config)
 				issuer.BulkIssuance(config)
 				count = 0
+				revoked=false
 				conn.Close()
 			}
 			if req.GetType() ==SendWitness {
