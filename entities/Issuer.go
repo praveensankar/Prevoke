@@ -591,6 +591,8 @@ func (issuer *Issuer) Reset(conf config.Config) {
 	issuer.Result = Results.CreateResult()
 
 	keyPair := signature.GenerateKeyPair()
+	issuer.BbsKeyPair = make([]*signature.BBS, 1)
+	issuer.BbsKeyPair[0] = keyPair
 	issuer.bbs = bbs.NewBbs()
 	publicKey1, _ := keyPair.PublicKey.Marshal()
 	keys := make([][]byte, 1)
