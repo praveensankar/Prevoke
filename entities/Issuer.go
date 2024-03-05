@@ -595,7 +595,6 @@ func (issuer *Issuer) Reset(conf config.Config) {
 	publicKey1, _ := keyPair.PublicKey.Marshal()
 	keys := make([][]byte, 1)
 	keys[0]=publicKey1
-	pk , _ := bbs.UnmarshalPublicKey(publicKey1)
 	rs.AddPublicKeys(keys)
 }
 
