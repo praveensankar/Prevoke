@@ -109,7 +109,7 @@ func (h *Holder) RetrieveVC(id interface{}) models.VerifiableCredential {
 	return models.VerifiableCredential{}
 }
 
-func (h *Holder) ConstructVP(credential models.VerifiableCredential) (vp models.VerifiablePresentation, err error){
+func (h *Holder) ConstructVP(credential models.VerifiableCredential) (vp models.VerifiablePresentation, bbsProofGenTime float64, err error){
 	publicKeys := h.RevocationService.FetchPublicKeysCached()
 	publicKey := publicKeys[0]
 	//pk , _ := bbs.UnmarshalPublicKey(publicKey)
@@ -117,7 +117,9 @@ func (h *Holder) ConstructVP(credential models.VerifiableCredential) (vp models.
 
 
 	//zap.S().Infoln("HOLDER - proof: ",credential.Proofs)
+	bbsProofGenerationStart := time.Now()
 	presentation, err := vc.GenerateProofForSelectiveDisclosure(publicKey, credential)
+	bbsProofGenerationTime := time.Since(bbsProofGenerationStart)
 	if err!=nil{
 		zap.S().Infoln("HOLDER - error in generating vp")
 	}
@@ -132,7 +134,7 @@ func (h *Holder) ConstructVP(credential models.VerifiableCredential) (vp models.
 	//return models.VerifiablePresentation{}, errors.New("signature check failed")
 	//}
 
-	return presentation, nil
+	return presentation,  bbsProofGenerationTime.Seconds(), nil
 }
 
 func (h *Holder) ShareallVPs(results *Results.Results){
@@ -143,7 +145,8 @@ func (h *Holder) ShareallVPs(results *Results.Results){
 	for i:=0;i<len(h.verfiableCredentials);i++ {
 		vc := h.verfiableCredentials[i]
 		zap.S().Infoln("HOLDER - sending presentation of vc: ", vc.GetId())
-		vp, err := h.ConstructVP(vc)
+		vp, bbsProofGenTime, err := h.ConstructVP(vc)
+		results.AddBBSProofGenerationTimePerVP(bbsProofGenTime)
 		if err != nil {
 			return
 		}
@@ -194,31 +197,44 @@ func (h *Holder) String() string  {
 
 
 
+func SetUpExpParamters(conf *config.Config, exp config.Experiment){
+	conf.ExpectedNumberOfTotalVCs= uint(exp.TotalVCs)
+	conf.ExpectedNumberofRevokedVCs= uint(exp.RevokedVCs)
+	conf.FalsePositiveRate=exp.FalsePositiveRate
+	conf.MtLevelInDLT= uint(exp.MtLevelInDLT)
+	conf.MTHeight=uint(exp.MtHeight)
+}
 
 func StartHolder(config config.Config){
 
+	experiments := config.ExpParamters
 
+	for _, exp := range experiments {
 
-	for i:=0;i<2;i++ {
-		holder := NewHolder(config)
-		holder.issuerAddress = config.IssuerAddress
-		holder.verifierAddress = config.VerifierAddress
-		holder.totalVCs = int(config.ExpectedNumberOfTotalVCs)
-		contractAddress := holder.getContractAddressFromIssuer(holder.issuerAddress)
-		config.SmartContractAddress = contractAddress
-		holder.RevocationService = revocation_service.CreateRevocationService(config)
-		result := Results.CreateResult()
+		//SetUpExpParamters(&config, *exp)
+		//exp.MtHeight=1
 
-		start := time.Now()
-		holder.RequestVCFromIssuer()
-		holder.ShareallVPs(result)
-		holder.RetrieveandResetResultsAtIssuers(result)
-		holder.RetrieveandResetResultsAtVerifiers(result)
-		result.NumberOfVCsRetrievedWitnessFromIssuer = result.NumberOfVCsRetrievedWitnessFromIssuer - int(config.ExpectedNumberofRevokedVCs)
-		Results.ConstructResults(config, start, result)
-		Results.WriteToFile("results.json", *result)
+		if exp.TotalVCs != 0 {
+
+			holder := NewHolder(config)
+			holder.issuerAddress = config.IssuerAddress
+			holder.verifierAddress = config.VerifierAddress
+			holder.totalVCs = int(config.ExpectedNumberOfTotalVCs)
+			contractAddress := holder.getContractAddressFromIssuer(holder.issuerAddress)
+			config.SmartContractAddress = contractAddress
+			holder.RevocationService = revocation_service.CreateRevocationService(config)
+			result := Results.CreateResult()
+
+			start := time.Now()
+			holder.RequestVCFromIssuer()
+			holder.ShareallVPs(result)
+			holder.RetrieveandResetResultsAtIssuers(result)
+			holder.RetrieveandResetResultsAtVerifiers(result)
+			result.NumberOfVCsRetrievedWitnessFromIssuer = result.NumberOfVCsRetrievedWitnessFromIssuer - int(config.ExpectedNumberofRevokedVCs)
+			Results.ConstructResults(config, start, result)
+			Results.WriteToFile("results.json", *result)
+		}
 	}
-
 
 
 	timer1 := time.NewTimer(30 * time.Second)
@@ -228,7 +244,9 @@ func StartHolder(config config.Config){
 
 
 
+func StartWorkLoad(config config.Config){
 
+}
 
 
 

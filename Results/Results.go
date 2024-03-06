@@ -35,6 +35,7 @@ type Results struct {
 	VerificationTimeTotalValidVCs float64 `json:"verification_time_total_valid_vcs"`
 	VerificationTimeTotalRevokedorFalsePositiveVCs float64 `json:"verification_time_total_false_positive_and_revoked_vcs"`
 	VerificationTimePerValidVC float64 `json:"verification_time_per_valid_vc"`
+	BBSProoGenerationTimePerVP float64 `json:"bbs_proof_generation_time"`
 	BBSVerificationTimePerVP float64`json:"bbs_verification_time"`
 	VerificationTimePerRevokedorFalsePositiveVC float64 `json:"verification_time_per_false_positive_or_revoked_vc"`
 	VerificationTimeTotal float64 `json:"verification_time_total"`
@@ -90,6 +91,15 @@ func (r *Results) AddBBSVerificationTimePerVP(bbsTime float64){
 	}
 }
 
+func (r *Results) AddBBSProofGenerationTimePerVP(bbsTime float64){
+	if r.BBSProoGenerationTimePerVP==0.0{
+		r.BBSProoGenerationTimePerVP = r.BBSProoGenerationTimePerVP + bbsTime
+	} else {
+		r.BBSProoGenerationTimePerVP = r.BBSProoGenerationTimePerVP + bbsTime
+		r.BBSProoGenerationTimePerVP = r.BBSProoGenerationTimePerVP / 2
+	}
+}
+
 func (r *Results) IncrementNumberofVCsRetrievedWitnessesFromIssuer(){
 	r.NumberOfVCsRetrievedWitnessFromIssuer++
 }
@@ -116,11 +126,12 @@ func (r Results) String() string{
 
 	response = response + "revocation time per Batch : "+fmt.Sprintf("%f",r.RevocationTimeperBatch)+ "\n"
 	response = response + "revocation time Total : "+fmt.Sprintf("%f",r.RevocationTimeTotal)+ "\n"
-	response = response + "verification time total valid VCs : "+fmt.Sprintf("%f",r.VerificationTimeTotalValidVCs)+ "\n"
-	response = response + "verification time total false positive and revoked VC : "+fmt.Sprintf("%f",r.VerificationTimeTotalRevokedorFalsePositiveVCs)+ "\n"
-	response = response + "BBS verification time per valid VP : "+fmt.Sprintf("%f",r.BBSVerificationTimePerVP)+ "\n"
+	response = response + "avg BBS proof generation time per VP : "+fmt.Sprintf("%f",r.BBSProoGenerationTimePerVP)+ "\n"
+	response = response + "avg BBS verification time per valid VP : "+fmt.Sprintf("%f",r.BBSVerificationTimePerVP)+ "\n"
 	response = response + "verification time per valid VC : "+fmt.Sprintf("%f",r.VerificationTimePerValidVC)+ "\n"
 	response = response + "verification time per false positive and revoked VC : "+fmt.Sprintf("%f",r.VerificationTimePerRevokedorFalsePositiveVC)+ "\n"
+	response = response + "verification time total valid VCs : "+fmt.Sprintf("%f",r.VerificationTimeTotalValidVCs)+ "\n"
+	response = response + "verification time total false positive and revoked VC : "+fmt.Sprintf("%f",r.VerificationTimeTotalRevokedorFalsePositiveVCs)+ "\n"
 	response = response + "verification time Total : "+fmt.Sprintf("%f",r.VerificationTimeTotal)+ "\n"
 
 	response = response + "Amount (in gwei) paid per revocation: "+fmt.Sprintf("%d",r.AmountPaid)+ "\n"
@@ -159,7 +170,7 @@ func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate
 
 func ConstructResults(config config.Config, start  time.Time, result *Results){
 	zap.S().Infoln("RESULT - \t indexes of VCs that retrieved witnesses from entities: ", result.FetchedWitnessesFromIssuers)
-	size, k :=BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
+	_, k :=BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
 	// Code to measure
 	end := time.Since(start)
 	zap.S().Infof("SIMULATOR : \t total time to run the experiment: %f", end.Seconds())
@@ -170,7 +181,6 @@ func ConstructResults(config config.Config, start  time.Time, result *Results){
 	result.FalsePositiveRate = config.FalsePositiveRate
 	result.MTHeight = int(config.MTHeight)
 	result.MtLevelInDLT = int(config.MtLevelInDLT)
-	result.BloomFilterSize = int(size)
 	result.BloomFilterIndexesPerEntry = int(k)
 	result.MerkleTreeNodesCountTotal = int(math.Pow(2, float64(config.MTHeight+1)))-1
 	result.MerkleTreeNodesCountInDLT = int(math.Pow(2, float64(config.MtLevelInDLT+1)))-1

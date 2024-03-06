@@ -583,7 +583,7 @@ func (issuer *Issuer) FetchMerkleTreeSizeLocal()(uint) {
 func (issuer *Issuer) CalculateResult(conf config.Config) {
 	localMTSize := issuer.RevocationService.FetchMerkleTreeSizeLocal()
 	dltMTSize := issuer.RevocationService.FetchMerkleTreeSizeInDLT()
-	bfSize := issuer.RevocationService.FetchBloomFilterSizeInDLT()
+	bfSize := issuer.RevocationService.FetchBloomFilterSizeInDLT(issuer.revokedVcIDs)
 	issuer.Result.MerkleTreeSizeInDLT = int(dltMTSize)
 	issuer.Result.MerkleTreeSizeTotal = int(localMTSize)
 	issuer.Result.BloomFilterSize= int(bfSize)

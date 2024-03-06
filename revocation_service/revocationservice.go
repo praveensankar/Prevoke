@@ -42,7 +42,7 @@ type IRevocationService interface {
 	FetchMerkleTreeSizeInDLT()(uint)
 	FetchMerkleTreeSizeLocal()(uint)
 	FindAncesstorInMerkleTree(index int)(int)
-	FetchBloomFilterSizeInDLT()(uint)
+	FetchBloomFilterSizeInDLT(revokedVcIDs []string)(uint)
 }
 
 
@@ -727,27 +727,41 @@ func (r RevocationService) FetchMerkleTreeSizeLocal()(uint) {
 
 
 /*
-FetchBloomFilterSizeInDLT retrieves the actual size of bloom filter in the smart contract
+FetchBloomFilterSizeInDLT calculates the bloom filter size stored in the smartcontract locally
+
+In the smart contract, each bfIndex is assigned a 256-bit bucket.
+Therefore, each bfIndex is divided by 256 to identify the bucket and then the corresponding
+bit in the bucket is set. Each bucket size is 356 bits (32 bytes).
+
+Here, this function calculates how many buckets are used to store the bf indexes corresponding to the
+revoked vc ids.
+
+BF Size: number of buckets * 32
 
 Output:
 	bloom filter size (in bytes) - uint
 */
-func (r RevocationService) FetchBloomFilterSizeInDLT()(uint) {
-	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
-	if err != nil {
-		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
+func (r RevocationService) FetchBloomFilterSizeInDLT(revokedVcIDs []string)(uint) {
+
+	var bfIndexes []uint
+	for i:=0; i<len(revokedVcIDs);i++ {
+		for _, value := range r.bloomFilter.GetIndexes(revokedVcIDs[i]) {
+			bfIndexes = append(bfIndexes, uint(value.Uint64()))
+		}
 	}
-	revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
-	if err != nil {
-		zap.S().Infof("Failed to instantiate Storage contract: %v", err)
+	buckets := mapset.NewSet()
+
+	for i:=0; i<len(bfIndexes);i++{
+		bucket := bfIndexes[i] >> 8
+
+		if buckets.Contains(bucket) {
+			continue
+		} else {
+			buckets.Add(bucket)
+		}
 	}
 
+	bfSize := buckets.Cardinality() * 32
+	return uint(bfSize)
 
-	//Todo: this function should be moved to the verifiers. The parameters should be shared to the holders.
-	bfSize, err := revocationService.GetBloomFilterSize(nil)
-	if err != nil {
-		zap.S().Infof("Error adding public keys: %v", err)
-	}
-
-	return uint(bfSize.Uint64())
 }
