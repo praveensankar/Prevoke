@@ -134,7 +134,7 @@ func (r Results) String() string{
 	response = response + "verification time total false positive and revoked VC : "+fmt.Sprintf("%f",r.VerificationTimeTotalRevokedorFalsePositiveVCs)+ "\n"
 	response = response + "verification time Total : "+fmt.Sprintf("%f",r.VerificationTimeTotal)+ "\n"
 
-	response = response + "Amount (in gwei) paid per revocation: "+fmt.Sprintf("%d",r.AmountPaid)+ "\n"
+	response = response + "Amount (in unit of gas) spent per revocation: "+fmt.Sprintf("%d",r.AmountPaid)+ "\n"
 	response = response + "Number of False Positives : "+ fmt.Sprintf("%d",r.NumberOfFalsePositives) + "\n"
 	response = response + "Number of VCS that ended up updating witnesses from issuer: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromIssuer)+ "\n"
 	response = response + "Number of VCS that updated witnesses from smart contract: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromDLT)+ "\n"
