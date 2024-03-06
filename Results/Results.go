@@ -22,7 +22,7 @@ type Results struct {
 	NumberOfFalsePositives int `json:"number_of_false_positives"`
 	NumberOfVCsRetrievedWitnessFromIssuer int `json:"number_of_vcs_retrieved_witness_from_issuer"`
 	NumberOfVCsRetrievedWitnessFromDLT int `json:"number_of_vcs_retrieved_witness_from_dlt"`
-	AmountPaid int64 `json:"mt_accumulator_per_update_cost_in_gwei"`
+	AmountPaid int64 `json:"revocation_cost_in_wei"`
 	BloomFilterSize int `json:"bloom_filter_size"`
 	BloomFilterIndexesPerEntry int  `json:"bloom_filter_indexes_per_entry"`
 	MerkleTreeSizeTotal int `json:"merkle_tree_size_total"`

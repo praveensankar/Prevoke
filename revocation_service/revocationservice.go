@@ -294,7 +294,8 @@ func (r RevocationService) RevokeVC(vcID string) (int, int64, error) {
 	startBalance, err := client.BalanceAt(context.Background(), r.account, nil)
 	_, err = revocationService.RevokeVC(auth, bfIndexes, mtIndexes, mtValuesInBytes)
 	endBalance, err := client.BalanceAt(context.Background(), r.account, nil)
-	gasUsed := (startBalance.Int64()-endBalance.Int64())/int64(math.Pow(10,9))
+	gasUsed := (startBalance.Int64()-endBalance.Int64())
+	//gasUsed := (startBalance.Int64()-endBalance.Int64())/int64(math.Pow(10,9))
 	//zap.S().Infoln("REVOCATION SERVICE- \t MT Accumulator levels in DLT: ",r.NumberOfEntriesForMTInDLT, "GAS USAGE in gwei: ", gasUsed)
 
 
@@ -370,7 +371,8 @@ func (r RevocationService) RevokeVCInBatches(vcIDs []string) (map[string]int, in
 	startBalance, err := client.BalanceAt(context.Background(), r.account, nil)
 	_, err = revocationService.RevokeVC(auth, bfIndexes, mtIndexes, mtValuesInBytes)
 	endBalance, err := client.BalanceAt(context.Background(), r.account, nil)
-	gasUsed := (startBalance.Int64()-endBalance.Int64())/int64(math.Pow(10,9))
+	//gasUsed := (startBalance.Int64()-endBalance.Int64())/int64(math.Pow(10,9))
+	gasUsed := (startBalance.Int64()-endBalance.Int64())
 	//zap.S().Infoln("REVOCATION SERVICE- \t MT Accumulator levels in DLT: ",r.NumberOfEntriesForMTInDLT, "GAS USAGE in gwei: ", gasUsed)
 
 
