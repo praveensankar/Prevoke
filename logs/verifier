@@ -1,0 +1,36 @@
+VERIFIER - contract address from issuer:  0x9a27a6DA5bC40AD9a1e618241a145c59E39e09AF
+"MERKLE TREE Accumulator- 	 total nodes:  255
+BlOOM FILTER: size :  24 	 number of indexes per entry :  4
+VERIFIER- new entities created: entities name -  university
+
+
+********************************************************************************************************************************
+VERIFIER - server set up and listening at :  127.0.0.1:8020
+VERIFIER - updated config with experiment config:  Total VCs: 10000
+Revoked VCs: 1000
+Revocation Batch Size: 1
+False Positive Rate: 0.1
+MT Height: 14
+MT Level in DLT: 2
+
+VERIFIER - contract address from issuer:  0xc5c763A7152E268d2DD9652cCA4fD9E9AC0b5bB9
+"MERKLE TREE Accumulator- 	 total nodes:  32767
+BlOOM FILTER: size :  4793 	 number of indexes per entry :  4
+VERIFIER - contract address from issuer:  0xCFA689B445278fCFcD95B868A3a644e231242904
+"MERKLE TREE Accumulator- 	 total nodes:  255
+BlOOM FILTER: size :  24 	 number of indexes per entry :  4
+VERIFIER- new entities created: entities name -  university
+
+
+********************************************************************************************************************************
+VERIFIER - server set up and listening at :  127.0.0.1:8020
+VERIFIER - updated config with experiment config:  Total VCs: 10000
+Revoked VCs: 1000
+Revocation Batch Size: 1
+False Positive Rate: 0.1
+MT Height: 14
+MT Level in DLT: 1
+
+VERIFIER - contract address from issuer:  
+"MERKLE TREE Accumulator- 	 total nodes:  32767
+BlOOM FILTER: size :  4793 	 number of indexes per entry :  4

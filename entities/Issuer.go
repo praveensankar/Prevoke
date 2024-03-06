@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/deckarep/golang-set"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/praveensankar/Revocation-Service/Results"
+	"github.com/praveensankar/Revocation-Service/common"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
@@ -54,7 +54,7 @@ type Issuer struct{
 	BbsKeyPair        []*signature.BBS
 	activeConnections []net.Conn
 	processedConnections []net.Conn
-	Result *Results.Results
+	Result *common.Results
 	ContractAddress string
 }
 
@@ -102,7 +102,7 @@ func  CreateIssuer(config config.Config) *Issuer{
 
 	issuer.activeConnections = []net.Conn{}
 	issuer.processedConnections = []net.Conn{}
-	issuer.Result = Results.CreateResult()
+	issuer.Result = common.CreateResult()
 
 	issuer.ContractAddress = config.SmartContractAddress
 	zap.S().Infoln("ISSUER-","new entities created: entities name - ",issuer.name)
@@ -600,7 +600,7 @@ func (issuer *Issuer) Reset(conf config.Config) {
 	issuer.vcCounter = rand.Intn(100000)
 	rs := revocation_service.CreateRevocationService(conf)
 	issuer.setRevocationService(rs)
-	issuer.Result = Results.CreateResult()
+	issuer.Result = common.CreateResult()
 	keyPair := signature.GenerateKeyPair()
 	issuer.BbsKeyPair = make([]*signature.BBS, 1)
 	issuer.BbsKeyPair[0] = keyPair
@@ -647,7 +647,7 @@ func (issuer *Issuer) SimulateRevocation(config config.Config){
 			}
 		}
 		indexes, amount, revocationTime := issuer.RevokeVCInBatches(config, revokedVCsInBatch)
-		issuer.revokedVcIDs = append(issuer.revokedVcIDs, RevokedVC)
+		issuer.revokedVcIDs = append(issuer.revokedVcIDs, common.RevokedVC)
 		issuer.Result.AffectedIndexes = issuer.Result.AffectedIndexes.Union(indexes)
 		revocationTimeTotal = revocationTimeTotal + revocationTime.Seconds()
 		if revocationTimePerBatch == 0.0{
@@ -671,4 +671,16 @@ func (issuer *Issuer) SimulateRevocation(config config.Config){
 	issuer.Result.RevocationBatchSize = revocationBatchSize
 	issuer.Result.RevocationTimeperBatch = revocationTimePerBatch
 	issuer.Result.RevocationTimeTotal = revocationTimeTotal
+}
+
+
+func (issuer *Issuer) SetExperimentConfigs(conf *config.Config, exp config.Experiment){
+conf.ExpectedNumberOfTotalVCs = uint(exp.TotalVCs)
+conf.ExpectedNumberofRevokedVCs = uint(exp.RevokedVCs)
+conf.FalsePositiveRate = exp.FalsePositiveRate
+conf.MTHeight = uint(exp.MtHeight)
+conf.MtLevelInDLT = uint(exp.MtLevelInDLT)
+conf.RevocationBatchSize = uint(exp.RevocationBatchSize)
+zap.S().Infoln("ISSUER - updated config with experiment config: ", exp.String())
+
 }

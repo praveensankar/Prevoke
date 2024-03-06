@@ -8,6 +8,7 @@ const (
 	VERIFIER        = "verifier"
 	HOLDER      = "holder"
 	REVOCATIONSERVICE ="revocation service"
+	MANGER = "experiment manager"
 )
 
 type IEntity interface {

@@ -34,6 +34,7 @@ type Config struct{
 	HolderAddress string
 	VerifierName string
 	VerifierAddress string
+	ManagerAddress string
 }
 
 func (config Config) printConfig()  {
@@ -69,7 +70,7 @@ func (config Config) printConfig()  {
 	zap.L().Info("********************************************************************************************************************************\n")
 
 	zap.L().Info("\n\n--------------------------------------------------------printing Experiment parameters--------------------------------------------------")
-
+	zap.L().Info("experiment manager address:"+config.ManagerAddress)
 	for key, exp := range config.ExpParamters{
 		zap.S().Infoln(key, *exp)
 	}
@@ -127,6 +128,7 @@ func ParseConfig() (Config, error){
 		exp.MtLevelInDLT, _ = strconv.Atoi(m["mtlevelindlt"].(string))
 		exp.MtHeight, _ = strconv.Atoi(m["mtheight"].(string))
 		exp.FalsePositiveRate, _ = strconv.ParseFloat(m["falsepositiverate"].(string), 64)
+		exp.RevocationBatchSize, _ = strconv.Atoi(m["revocationbatchsize"].(string))
 		config.ExpParamters[k]=exp
 	}
 
@@ -144,7 +146,7 @@ func ParseConfig() (Config, error){
 
 	config.VerifierName = viper.GetString("verifier.name")
 	config.VerifierAddress = viper.GetString("verifier.address")
-
+	config.ManagerAddress = viper.GetString("manager.address")
 	config.DEBUG = viper.GetBool("mode.debug")
 	//"account1" :  "0xB97F44Ce8dA7E824F7aBD0068F92D08438E3405A",
 	//	"account2" : "0x6C3d120Ee76E635d7b221a996718a8277BeA973f",

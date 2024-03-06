@@ -3,8 +3,8 @@ package simulation
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/praveensankar/Revocation-Service/Results"
 	"github.com/praveensankar/Revocation-Service/blockchain"
+	"github.com/praveensankar/Revocation-Service/common"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/entities"
 	"github.com/praveensankar/Revocation-Service/models"
@@ -78,12 +78,12 @@ func PerformExperiment(config config.Config){
 	totalVCs := int(config.ExpectedNumberOfTotalVCs)+remainingSpace
 
 	claimsSet := issuer1.GenerateMultipleDummyVCClaims(totalVCs)
-	results := Results.CreateResult()
+	results := common.CreateResult()
 	vcs := SimulateIssuance(config, issuer1, claimsSet,totalVCs )
 	SimulateRevocation(config, issuer1, vcs, results)
 	SimulateVerification( issuer1, vcs, results)
-	Results.ConstructResults(config, start, results)
-	Results.WriteToFile("results.json", *results)
+	common.ConstructResults(config, start, results)
+	common.WriteToFile("results.json", *results)
 }
 
 
@@ -104,7 +104,7 @@ func SimulateIssuance(config config.Config, issuer1 *entities.Issuer, claimsSet 
 	return vcs
 }
 
-func SimulateRevocation(config config.Config, issuer1 *entities.Issuer, vcs []models.VerifiableCredential, result *Results.Results){
+func SimulateRevocation(config config.Config, issuer1 *entities.Issuer, vcs []models.VerifiableCredential, result *common.Results){
 	revocationBatchSize := int(config.RevocationBatchSize)
 	var amountPaid int64
 	amountPaid = 0
@@ -164,7 +164,7 @@ func SimulateRevocation(config config.Config, issuer1 *entities.Issuer, vcs []mo
 	result.RevocationTimeTotal = revocationTimeTotal
 }
 
-func SimulateVerification( issuer1 *entities.Issuer, vcs []models.VerifiableCredential, result *Results.Results){
+func SimulateVerification( issuer1 *entities.Issuer, vcs []models.VerifiableCredential, result *common.Results){
 	publicKey, err := issuer1.BbsKeyPair[0].PublicKey.Marshal()
 
 	result.MerkleTreeSizeInDLT = int(issuer1.FetchMerkleTreeSizeInDLT())*8

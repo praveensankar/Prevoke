@@ -3,7 +3,7 @@ package entities
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/praveensankar/Revocation-Service/Results"
+	"github.com/praveensankar/Revocation-Service/common"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
@@ -39,7 +39,7 @@ type Holder struct {
 	MTLevelInDLT int
 	RevocationService revocation_service.IRevocationService
 
-	Results []Results.Results
+	Results []common.Results
 }
 
 
@@ -58,7 +58,7 @@ func (h *Holder) RequestVCFromIssuer(){
 	h.receiveVCs(h.issuerAddress)
 }
 
-func (h *Holder) RetrieveandResetResultsAtIssuers(result  *Results.Results ){
+func (h *Holder) RetrieveandResetResultsAtIssuers(result  *common.Results){
 	zap.S().Infoln("HOLDER - requesting results from the issuer")
 	res := h.retrieveandResetResultsAtIssuers(h.issuerAddress)
 
@@ -72,7 +72,7 @@ func (h *Holder) RetrieveandResetResultsAtIssuers(result  *Results.Results ){
 	result.BloomFilterSize = 	res.BloomFilterSize
 }
 
-func (h *Holder) RetrieveandResetResultsAtVerifiers(result  *Results.Results ){
+func (h *Holder) RetrieveandResetResultsAtVerifiers(result  *common.Results){
 	zap.S().Infoln("HOLDER - requesting results from the verifier")
 	res := h.retrieveandResetResultsAtVerifiers(h.verifierAddress)
 
@@ -92,7 +92,7 @@ func (h *Holder) StoreVC(vc models.VerifiableCredential) {
 	h.verfiableCredentials = append(h.verfiableCredentials, vc)
 }
 
-func (h *Holder) StoreResults(result Results.Results) {
+func (h *Holder) StoreResults(result common.Results) {
 	h.Results = append(	h.Results , result)
 }
 
@@ -137,7 +137,7 @@ func (h *Holder) ConstructVP(credential models.VerifiableCredential) (vp models.
 	return presentation,  bbsProofGenerationTime.Seconds(), nil
 }
 
-func (h *Holder) ShareallVPs(results *Results.Results){
+func (h *Holder) ShareallVPs(results *common.Results){
 	if len(h.verfiableCredentials)==0{
 		zap.S().Infoln("HOLDER - haven't recived any vcs yet")
 		return
@@ -154,7 +154,7 @@ func (h *Holder) ShareallVPs(results *Results.Results){
 		zap.S().Infoln("HOLDER - verification result: ", status)
 	}
 }
-func (h *Holder) ShareVP(vcID string, vp models.VerifiablePresentation, results *Results.Results) (bool){
+func (h *Holder) ShareVP(vcID string, vp models.VerifiablePresentation, results *common.Results) (bool){
 	return h.sendVP(vcID, vp, h.verifierAddress, results)
 }
 
@@ -194,6 +194,10 @@ func (h *Holder) String() string  {
 	return response
 }
 
+func (h *Holder) SendExpConfig(address string, exp *config.Experiment) {
+	h.sendExpConfig(address, exp)
+}
+
 
 
 
@@ -219,20 +223,35 @@ func StartHolder(config config.Config){
 			holder := NewHolder(config)
 			holder.issuerAddress = config.IssuerAddress
 			holder.verifierAddress = config.VerifierAddress
-			holder.totalVCs = int(config.ExpectedNumberOfTotalVCs)
+			holder.totalVCs = exp.TotalVCs
+
+			holder.SendExpConfig(config.IssuerAddress, exp)
+			holder.SendExpConfig(config.VerifierAddress, exp)
+
+
 			contractAddress := holder.getContractAddressFromIssuer(holder.issuerAddress)
 			config.SmartContractAddress = contractAddress
+
+			config.ExpectedNumberOfTotalVCs = uint(exp.TotalVCs)
+			config.ExpectedNumberofRevokedVCs = uint(exp.RevokedVCs)
+			config.FalsePositiveRate = exp.FalsePositiveRate
+			config.MTHeight = uint(exp.MtHeight)
+			config.MtLevelInDLT = uint(exp.MtLevelInDLT)
+			config.RevocationBatchSize = uint(exp.RevocationBatchSize)
 			holder.RevocationService = revocation_service.CreateRevocationService(config)
-			result := Results.CreateResult()
+			result := common.CreateResult()
 
 			start := time.Now()
+
+
+
 			holder.RequestVCFromIssuer()
 			holder.ShareallVPs(result)
 			holder.RetrieveandResetResultsAtIssuers(result)
 			holder.RetrieveandResetResultsAtVerifiers(result)
 			result.NumberOfVCsRetrievedWitnessFromIssuer = result.NumberOfVCsRetrievedWitnessFromIssuer - int(config.ExpectedNumberofRevokedVCs)
-			Results.ConstructResults(config, start, result)
-			Results.WriteToFile("results.json", *result)
+			common.ConstructResults(config, start, result)
+			common.WriteToFile("results.json", *result)
 		}
 	}
 

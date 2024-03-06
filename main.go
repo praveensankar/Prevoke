@@ -56,18 +56,9 @@ The logger output mode is retrieved from the config file.
 If the output mode is console then the log is shown on console
 If the output mode is file then the log is stored in a file
 */
-func SetupLogger(conf config.Config){
+func SetupLogger(conf config.Config, filename string){
 
-	var filename string
 
-	if conf.LoggerOutputMode=="console"{
-		filename="stdout"
-	}
-	if conf.LoggerOutputMode=="file"{
-		filename = fmt.Sprintf("logs/%v_%v_%v_%f_%v",conf.LoggerFile, conf.ExpectedNumberOfTotalVCs,
-			conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate, conf.MtLevelInDLT)
-
-	}
 	//OutputPaths: []string{"stdout"},
 //OutputPaths: []string{filename},
 	zapConfig := &zap.Config{
@@ -91,17 +82,6 @@ func SetupLogger(conf config.Config){
 }
 
 
-
-/*
-initialize initializes the program and does the following
-	1) sets up the config
-	2) parses the config file
-	3) sets up the logger
- */
-func initialize() {
-	conf, _ := config.ParseConfig()
-	SetupLogger(conf)
-}
 
 
 /*
@@ -129,51 +109,101 @@ func Run(conf config.Config){
 	verifierFlag := flag.Bool("verifier", false, "a bool")
 	flag.Parse()
 
+	var filename string
+
+	if conf.LoggerOutputMode=="console"{
+		filename="stdout"
+	}
+
 
 	if *bfTestFlag==true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/%v",conf.LoggerFile)
+		}
+		SetupLogger(conf, filename)
 		techniques.TestBloomFilter(100)
 	}
 
 	if *vcTestFlag==true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/%v",conf.LoggerFile)
+		}
+		SetupLogger(conf, filename)
 		vc.TestVC(conf)
 	}
 
 	if *mtTestFlag==true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/%v",conf.LoggerFile)
+		}
+		SetupLogger(conf, filename)
 		//techniques.TestMerkleTree(conf)
 		techniques.TestMerkleTreeAccumulator(conf)
 	}
 
 	if *issuerTestFlag==true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/%v",conf.LoggerFile)
+		}
+		SetupLogger(conf, filename)
 		entities.TestIssuer(conf)
 	}
 
 	if *rsTestFlag == true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/%v",conf.LoggerFile)
+		}
+		SetupLogger(conf, filename)
 		revocation_service.TestRevocationService(conf)
 	}
 
 	if *bbsTestFlag == true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/%v",conf.LoggerFile)
+		}
+		SetupLogger(conf, filename)
 		signature.TestBBS(conf)
 	}
 
 
 	if *simulatorTestFlag==true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/%v",conf.LoggerFile)
+		}
+		SetupLogger(conf, filename)
 		simulation.TestSimulator(conf)
 	}
 
 
 	if *simulationFlag==true {
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/%v",conf.LoggerFile)
+		}
+		SetupLogger(conf, filename)
 		simulation.StartExperiments(conf)
 	}
 
 	if *holderFlag==true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/holder")
+		}
+		SetupLogger(conf, filename)
 		entities.StartHolder(conf)
 	}
 
 	if *issuerFlag==true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/issuer")
+		}
+		SetupLogger(conf, filename)
 		entities.StartIssuerServer(conf)
 	}
 
 	if *verifierFlag == true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/verifier")
+		}
+		SetupLogger(conf, filename)
 		entities.StartVerifierServer(conf)
 	}
 
@@ -186,7 +216,7 @@ func main()  {
 
 	//testAries()
 
-	initialize()
+
 	conf, _ := config.ParseConfig()
 	Run(conf)
 

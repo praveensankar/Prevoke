@@ -16,7 +16,9 @@
 		 "mtHeight": "7",
 		 "revocationBatchSize": "1",
 		 "comment": "number of hash functions: 7 if fpr==0.01, 6 if fpr==0.02,0.03, 5 if fpr==0.04,0.05, 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more ",
-		 "_comment": "revocationBatchSize - 'x' - x revocation performed together. 1 if each revocation needs to be performed one by one. "
+		 "_comment": "revocationBatchSize - 'x' - x revocation performed together. 1 if each revocation needs to be performed one by one. ",
+		 "_addressNREC": "158.39.77.174:8000",
+		 "addressLocal": "127.0.0.1:8000"
 	 },
 	 "holder" : {
 		 "name": "praveen",
@@ -24,7 +26,13 @@
 	 },
 	 "verifier" : {
 		 "name": "employer",
-		 "address": "158.39.77.211:8020"
+		 "address": "158.39.77.211:8020",
+		 "_addressNREC": "158.39.77.211:8020",
+		 "_addressLocal": "127.0.0.1:8020"
+	 },
+	 "manager" : {
+		 "name": "experiment manager",
+		 "address": "127.0.0.1:8030"
 	 },
 	 "test" : "test",
 	"blockchain" : {
@@ -43,7 +51,7 @@
 
 	 "logger" : {
 		"env" : "dev",
-		 "output": "console",
+		 "output": "file",
 		 "filename": "logs.json",
 		 "_comment1": "ouput:<console> - for printing in console, <file> - for writing to file",
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
@@ -53,33 +61,13 @@
 	 },
 	 "exp": {
 		 "exp1": {
-			 "totalVCs": "1000",
-			 "revokedVCs": "100",
+			 "totalVCs": "10000",
+			 "revokedVCs": "1000",
+			 "revocationBatchSize": "1",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "2",
-			 "mtHeight": "10"
-		 },
-		 "exp2": {
-			 "totalVCs": "1000",
-			 "revokedVCs": "100",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "3",
-			 "mtHeight": "10"
-		 },
-		 "exp3": {
-			 "totalVCs": "1000",
-			 "revokedVCs": "100",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "4",
-			 "mtHeight": "10"
-		 },
-		 "exp4": {
-		 "totalVCs": "1000",
-		 "revokedVCs": "100",
-		 "falsePositiveRate": "0.1",
-		 "mtLevelInDLT": "5",
-		 "mtHeight": "10"
-	 }
+			 "mtLevelInDLT": "1",
+			 "mtHeight": "14"
+		 }
 	 }
  }
 

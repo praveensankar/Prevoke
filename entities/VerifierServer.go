@@ -2,7 +2,7 @@ package entities
 
 import (
 	"encoding/gob"
-	"github.com/praveensankar/Revocation-Service/Results"
+	"github.com/praveensankar/Revocation-Service/common"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/praveensankar/Revocation-Service/vc"
@@ -45,24 +45,41 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 			//dec.Decode(&entity)
 			var reqJson []byte
 			dec.Decode(&reqJson)
-			req := JsonToRequest(reqJson)
-			if req.GetType() ==StoreResults{
-				Results.WriteToFile("results_verifier.json",*verifier.Result)
-				verifier.Result = Results.CreateResult()
+			req := common.JsonToRequest(reqJson)
+			if req.GetType() == common.StoreResults {
+				common.WriteToFile("results_verifier.json",*verifier.Result)
+				verifier.Result = common.CreateResult()
 			}
-			if req.GetType() ==GetandResetResult{
+			if req.GetType() == common.SetExpConfigs {
+				expReqEncoder := gob.NewEncoder(conn)
+				expReq := common.NewRequest()
+				expReq.SetId(verifier.name)
+				expReq.SetType(common.SendExpConfigs)
+				expReqJson, _ := expReq.Json()
+				expReqEncoder.Encode(expReqJson)
+
+
+				expDecoder := gob.NewDecoder(conn)
+				//dec.Decode(&entity)
+				var expJson []byte
+				expDecoder.Decode(&expJson)
+				exp := config.JsonToExperiment(expJson)
+				verifier.SetExperimentConfigs(&conf, *exp)
+				verifier.Reset(conf)
+			}
+			if req.GetType() == common.GetandResetResult {
 				resultEncoder := gob.NewEncoder(conn)
 				zap.S().Infoln("ISSUER - sending results to holder: \t", verifier.Result.String())
 				resJson, _ := verifier.Result.Json()
 				resultEncoder.Encode(resJson)
 				verifier.Reset(conf)
 			}
-			if req.GetType() ==VerifyVC{
+			if req.GetType() == common.VerifyVC {
 				zap.S().Infoln("VERFIER - received new request: ",req)
 				vpReqEncoder := gob.NewEncoder(conn)
-				vpReq := NewRequest()
+				vpReq := common.NewRequest()
 				vpReq.SetId(verifier.name)
-				vpReq.SetType(SendVP)
+				vpReq.SetType(common.SendVP)
 				reqJson, _ := vpReq.Json()
 				vpReqEncoder.Encode(reqJson)
 				vpDecoder := gob.NewDecoder(conn)
@@ -81,9 +98,9 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 					verifier.Result.AddVerificationTimePerValidVC(phase1Time)
 					verifier.Result.AddVerificationTimeTotalValidVCs(phase1Time)
 					phase1ResEncoder := gob.NewEncoder(conn)
-					phase1ResultReq := NewRequest()
+					phase1ResultReq := common.NewRequest()
 					phase1ResultReq.SetId(verifier.name)
-					phase1ResultReq.SetType(SuccessfulVerification)
+					phase1ResultReq.SetType(common.SuccessfulVerification)
 					phase1ResultReqJson, _ := phase1ResultReq.Json()
 					phase1ResEncoder.Encode(phase1ResultReqJson)
 
@@ -96,9 +113,9 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 					// from the holder, verifies the witness
 					phase2Start := time.Now()
 					witRequestEncoder := gob.NewEncoder(conn)
-					witReq := NewRequest()
+					witReq := common.NewRequest()
 					witReq.SetId(verifier.name)
-					witReq.SetType(SendWitness)
+					witReq.SetType(common.SendWitness)
 					witreqJson, _ := witReq.Json()
 					witRequestEncoder.Encode(witreqJson)
 					zap.S().Infoln("VERFIER - sending witness request: ",witReq)
@@ -118,12 +135,12 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 					verifier.Result.AddVerificationTimeTotal(phase2Time.Seconds())
 
 					phase2ResEncoder := gob.NewEncoder(conn)
-					phase2ResultReq := NewRequest()
+					phase2ResultReq := common.NewRequest()
 					phase2ResultReq.SetId(verifier.name)
 					if phase2result==true{
-					phase2ResultReq.SetType(SuccessfulVerification)
+					phase2ResultReq.SetType(common.SuccessfulVerification)
 					} else{
-						phase2ResultReq.SetType(FailedVerification)
+						phase2ResultReq.SetType(common.FailedVerification)
 					}
 					phase2ResultReqJson, _ := phase2ResultReq.Json()
 					phase2ResEncoder.Encode(phase2ResultReqJson)
@@ -143,9 +160,9 @@ func(verifier *Verifier) getContractAddressFromIssuer(address string) (string){
 
 	encoder := gob.NewEncoder(conn)
 	//encoder.Encode(s.GetType())
-	req := NewRequest()
+	req := common.NewRequest()
 	req.SetId(verifier.name)
-	req.SetType(GetContractAddress)
+	req.SetType(common.GetContractAddress)
 	reqJson, _ := req.Json()
 
 	encoder.Encode(reqJson)
@@ -154,7 +171,7 @@ func(verifier *Verifier) getContractAddressFromIssuer(address string) (string){
 	//dec.Decode(&entity)
 	var jsonObj []byte
 	dec.Decode(&jsonObj)
-	reply := JsonToRequest(jsonObj)
+	reply := common.JsonToRequest(jsonObj)
 	zap.S().Infoln("VERIFIER - contract address from issuer: ",reply.GetId())
 	conn.Close()
 	return reply.GetId()

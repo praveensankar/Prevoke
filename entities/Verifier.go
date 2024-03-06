@@ -2,7 +2,7 @@ package entities
 
 import (
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/praveensankar/Revocation-Service/Results"
+	"github.com/praveensankar/Revocation-Service/common"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
@@ -31,7 +31,7 @@ type Verifier struct {
 	bbs *bbs.Bbs
 	blockchainEndPoint *ethclient.Client
 	RevocationService revocation_service.IRevocationService
-	Result *Results.Results
+	Result *common.Results
 }
 
 /*
@@ -47,7 +47,7 @@ func  CreateVerifier(config config.Config) *Verifier{
 	rs := revocation_service.CreateRevocationService(config)
 	verifier.RevocationService = rs
 	verifier.bbs = bbs.NewBbs()
-	verifier.Result= Results.CreateResult()
+	verifier.Result= common.CreateResult()
 	zap.S().Infoln("VERIFIER-","new entities created: entities name - ",verifier.name)
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
 	return &verifier
@@ -138,5 +138,17 @@ func (verifier *Verifier) Reset(config config.Config){
 	rs := revocation_service.CreateRevocationService(config)
 	verifier.RevocationService = rs
 	verifier.bbs = bbs.NewBbs()
-	verifier.Result= Results.CreateResult()
+	verifier.Result= common.CreateResult()
+}
+
+
+func (verifier *Verifier) SetExperimentConfigs(conf *config.Config, exp config.Experiment){
+	conf.ExpectedNumberOfTotalVCs = uint(exp.TotalVCs)
+	conf.ExpectedNumberofRevokedVCs = uint(exp.RevokedVCs)
+	conf.FalsePositiveRate = exp.FalsePositiveRate
+	conf.MTHeight = uint(exp.MtHeight)
+	conf.MtLevelInDLT = uint(exp.MtLevelInDLT)
+	conf.RevocationBatchSize = uint(exp.RevocationBatchSize)
+	zap.S().Infoln("VERIFIER - updated config with experiment config: ", exp.String())
+
 }

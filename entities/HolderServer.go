@@ -3,7 +3,7 @@ package entities
 import (
 	"encoding/gob"
 	"fyne.io/fyne/v2"
-	"github.com/praveensankar/Revocation-Service/Results"
+	"github.com/praveensankar/Revocation-Service/common"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/techniques"
@@ -63,7 +63,7 @@ func(holder *Holder) processConnection(conn net.Conn) {
 	defer holder.Unlock()
 }
 
-func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, address string, results *Results.Results) (bool){
+func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, address string, results *common.Results) (bool){
 	conn, err := net.Dial("tcp", address)
 	if err != nil {
 		zap.S().Infoln("HOLDER - verifier is unavailabe")
@@ -75,9 +75,9 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 
 	encoder := gob.NewEncoder(conn)
 	//encoder.Encode(s.GetType())
-	req := NewRequest()
+	req := common.NewRequest()
 	req.SetId(holder.name)
-	req.SetType(VerifyVC)
+	req.SetType(common.VerifyVC)
 	reqJson, _ := req.Json()
 	//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
 	encoder.Encode(reqJson)
@@ -88,8 +88,8 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 	dec := gob.NewDecoder(conn)
 	var replyJson []byte
 	dec.Decode(&replyJson)
-	reply := JsonToRequest(replyJson)
-	if reply.GetType() ==SendVP{
+	reply := common.JsonToRequest(replyJson)
+	if reply.GetType() == common.SendVP {
 
 		// step 3 - Holder sends a VP to the verifier. Initiates the phase 1 verification
 		encoder := gob.NewEncoder(conn)
@@ -104,17 +104,17 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 	phase1ReplyDecoder := gob.NewDecoder(conn)
 	var phase1ReplyJson []byte
 	phase1ReplyDecoder.Decode(&phase1ReplyJson)
-	phase1Reply := JsonToRequest(phase1ReplyJson)
+	phase1Reply := common.JsonToRequest(phase1ReplyJson)
 	//zap.S().Infoln("HOLDER - phase 1 reply: ",phase1Reply)
 
 	// step 5 - return true if the verification resulted in success
-	if phase1Reply.GetType()==SuccessfulVerification{
+	if phase1Reply.GetType()== common.SuccessfulVerification {
 		conn.Close()
 		return true
 	}
 
 	// step 6 - phase 1 resulted in failure, verifier asks the holder to witness
-	if phase1Reply.GetType()==SendWitness{
+	if phase1Reply.GetType()== common.SendWitness {
 
 
 		// step 7 - Holder checks the merkle tree from the smart contract and identifies whether the holder
@@ -161,9 +161,9 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 			zap.S().Infoln("HOLDER - requests merkle proof from issuer: vc id: ", vcID)
 			witReqEncoder := gob.NewEncoder(conn1)
 			//encoder.Encode(s.GetType())
-			witReq := NewRequest()
+			witReq := common.NewRequest()
 			witReq.SetId(vcID)
-			witReq.SetType(SendWitness)
+			witReq.SetType(common.SendWitness)
 			witReqJson, _ := witReq.Json()
 			//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
 			witReqEncoder.Encode(witReqJson)
@@ -175,7 +175,7 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 			proofDecoder.Decode(&merkleProofJson)
 			merkleProof, err := techniques.JsonToMerkleProof(merkleProofJson)
 			if err!=nil{
-				reply := JsonToRequest(merkleProofJson)
+				reply := common.JsonToRequest(merkleProofJson)
 				zap.S().Infoln("Holder - vc id: ", vcID, "\t reply from issuer: ",reply.GetType())
 			}
 			if err==nil {
@@ -204,14 +204,14 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 		phase2ReplyDecoder := gob.NewDecoder(conn)
 		var phase2ReplyJson []byte
 		phase2ReplyDecoder.Decode(&phase2ReplyJson)
-		phase2Reply := JsonToRequest(phase2ReplyJson)
+		phase2Reply := common.JsonToRequest(phase2ReplyJson)
 
-		if phase2Reply.GetType()==SuccessfulVerification{
+		if phase2Reply.GetType()== common.SuccessfulVerification {
 			results.NumberOfFalsePositives = results.NumberOfFalsePositives+1
 			conn.Close()
 			return true
 		}
-		if phase2Reply.GetType()==FailedVerification{
+		if phase2Reply.GetType()== common.FailedVerification {
 			conn.Close()
 			return false
 		}
@@ -231,9 +231,9 @@ func(holder *Holder) getContractAddressFromIssuer(address string) (string){
 
 	encoder := gob.NewEncoder(conn)
 	//encoder.Encode(s.GetType())
-	req := NewRequest()
+	req := common.NewRequest()
 	req.SetId(holder.name)
-	req.SetType(GetContractAddress)
+	req.SetType(common.GetContractAddress)
 	reqJson, _ := req.Json()
 
 	encoder.Encode(reqJson)
@@ -242,7 +242,7 @@ func(holder *Holder) getContractAddressFromIssuer(address string) (string){
 	//dec.Decode(&entity)
 	var jsonObj []byte
 	dec.Decode(&jsonObj)
-	reply := JsonToRequest(jsonObj)
+	reply := common.JsonToRequest(jsonObj)
 	zap.S().Infoln("HOLDER - contract address from issuer: ",reply.GetId())
 	conn.Close()
 	return reply.GetId()
@@ -263,9 +263,9 @@ func(holder *Holder) receiveVCs(address string){
 
 		encoder := gob.NewEncoder(conn)
 		//encoder.Encode(s.GetType())
-		req := NewRequest()
+		req := common.NewRequest()
 		req.SetId(holder.name)
-		req.SetType(GetVC)
+		req.SetType(common.GetVC)
 		reqJson, _ := req.Json()
 		//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
 		encoder.Encode(reqJson)
@@ -284,9 +284,9 @@ func(holder *Holder) receiveVCs(address string){
 
 		proofEncoder := gob.NewEncoder(conn)
 		//encoder.Encode(s.GetType())
-		proofReq := NewRequest()
+		proofReq := common.NewRequest()
 		proofReq.SetId(holder.name)
-		proofReq.SetType(GetMerkleProof)
+		proofReq.SetType(common.GetMerkleProof)
 		proofReqJson, _ := proofReq.Json()
 		//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
 		proofEncoder.Encode(proofReqJson)
@@ -308,7 +308,7 @@ func(holder *Holder) receiveVCs(address string){
 	}
 }
 
-func(holder *Holder) retrieveandResetResultsAtIssuers(address string)*Results.Results{
+func(holder *Holder) retrieveandResetResultsAtIssuers(address string)*common.Results {
 
 		conn, err := net.Dial("tcp",address)
 		if err != nil {
@@ -321,9 +321,9 @@ func(holder *Holder) retrieveandResetResultsAtIssuers(address string)*Results.Re
 
 		encoder := gob.NewEncoder(conn)
 
-		req := NewRequest()
+		req := common.NewRequest()
 		req.SetId(holder.name)
-		req.SetType(GetandResetResult)
+		req.SetType(common.GetandResetResult)
 		reqJson, _ := req.Json()
 		encoder.Encode(reqJson)
 
@@ -331,7 +331,7 @@ func(holder *Holder) retrieveandResetResultsAtIssuers(address string)*Results.Re
 		dec := gob.NewDecoder(conn)
 		var resJson []byte
 		dec.Decode(&resJson)
-		res := Results.JsonToResults(resJson)
+		res := common.JsonToResults(resJson)
 
 
 		zap.S().Infoln("HOLDER - received revocation results from issuer")
@@ -343,7 +343,7 @@ func(holder *Holder) retrieveandResetResultsAtIssuers(address string)*Results.Re
 }
 
 
-func(holder *Holder) retrieveandResetResultsAtVerifiers(address string) *Results.Results{
+func(holder *Holder) retrieveandResetResultsAtVerifiers(address string) *common.Results {
 	conn, err := net.Dial("tcp", address)
 	if err != nil {
 		zap.S().Infoln("HOLDER - verifier is unavailabe")
@@ -352,9 +352,9 @@ func(holder *Holder) retrieveandResetResultsAtVerifiers(address string) *Results
 
 	encoder := gob.NewEncoder(conn)
 
-	req := NewRequest()
+	req := common.NewRequest()
 	req.SetId(holder.name)
-	req.SetType(GetandResetResult)
+	req.SetType(common.GetandResetResult)
 	reqJson, _ := req.Json()
 
 	encoder.Encode(reqJson)
@@ -362,9 +362,41 @@ func(holder *Holder) retrieveandResetResultsAtVerifiers(address string) *Results
 	dec := gob.NewDecoder(conn)
 	var resJson []byte
 	dec.Decode(&resJson)
-	res := Results.JsonToResults(resJson)
+	res := common.JsonToResults(resJson)
 
 
 	zap.S().Infoln("HOLDER - received revocation results from verifier")
 	return res
+}
+
+func (holder *Holder) sendExpConfig(address string, exp *config.Experiment) {
+	conn, err := net.Dial("tcp", address)
+	if err != nil {
+		zap.S().Infoln("HOLDER - issuer is unavailabe")
+		conn.Close()
+	}
+
+	encoder := gob.NewEncoder(conn)
+
+	req := common.NewRequest()
+	req.SetId(holder.name)
+	req.SetType(common.SetExpConfigs)
+	reqJson, _ := req.Json()
+	encoder.Encode(reqJson)
+
+	dec := gob.NewDecoder(conn)
+	var replyJson []byte
+	dec.Decode(&replyJson)
+	reply := common.JsonToRequest(replyJson)
+
+	if reply.GetType() == common.SendExpConfigs {
+
+		// step 3 - Holder sends a VP to the verifier. Initiates the phase 1 verification
+		expEncoder := gob.NewEncoder(conn)
+		expJson, _ := exp.Json()
+		//zap.S().Infoln("HOLDER - sending vp: ")
+		expEncoder.Encode(expJson)
+	}
+
+
 }

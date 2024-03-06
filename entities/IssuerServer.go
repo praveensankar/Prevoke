@@ -4,6 +4,7 @@ import (
 	"encoding/gob"
 	"encoding/json"
 	"github.com/praveensankar/Revocation-Service/blockchain"
+	"github.com/praveensankar/Revocation-Service/common"
 	"github.com/praveensankar/Revocation-Service/config"
 	"go.uber.org/zap"
 	"io/ioutil"
@@ -49,7 +50,7 @@ func StartIssuerServer(conf config.Config){
 	DeployContract(&conf, 0)
 	issuer := CreateIssuer(conf)
 
-	issuer.BulkIssuance(conf)
+	//issuer.BulkIssuance(conf)
 
 	//if app!=nil{
 	//	go issuer.setupUIForUniversity(app)
@@ -79,7 +80,7 @@ func (issuer *Issuer) BulkIssuance(config config.Config) {
 	}
 }
 // This function handles the incomming connections. It puts all the incoming connections into a list
-func(issuer *Issuer) serverListener(server net.Listener, config *config.Config){
+func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 
 	count :=0
 	revoked := false
@@ -94,41 +95,60 @@ func(issuer *Issuer) serverListener(server net.Listener, config *config.Config){
 			//dec.Decode(&entity)
 			var reqJson []byte
 			dec.Decode(&reqJson)
-			req := JsonToRequest(reqJson)
-			if req.GetType() == GetContractAddress{
+			req := common.JsonToRequest(reqJson)
+			if req.GetType() == common.GetContractAddress {
 				contractAddressEncoder := gob.NewEncoder(conn)
 				//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
-				contractAddressReply := NewRequest()
+				contractAddressReply := common.NewRequest()
 				contractAddressReply.SetId(issuer.ContractAddress)
-				contractAddressReply.SetType(RevokedVC)
+				contractAddressReply.SetType(common.RevokedVC)
 				contractAddressReplyJson, _ := contractAddressReply.Json()
 				contractAddressEncoder.Encode(contractAddressReplyJson)
 				conn.Close()
 			}
-			if req.GetType() == GetandResetResult{
+			if req.GetType() == common.SetExpConfigs {
+				expReqEncoder := gob.NewEncoder(conn)
+				expReq := common.NewRequest()
+				expReq.SetId(issuer.name)
+				expReq.SetType(common.SendExpConfigs)
+				expReqJson, _ := expReq.Json()
+				expReqEncoder.Encode(expReqJson)
+
+
+				expDecoder := gob.NewDecoder(conn)
+				//dec.Decode(&entity)
+				var expJson []byte
+				expDecoder.Decode(&expJson)
+				exp := config.JsonToExperiment(expJson)
+				issuer.SetExperimentConfigs(conf, *exp)
+				contractAddress := DeployContract(conf, 0)
+				conf.SmartContractAddress=contractAddress
+				issuer.Reset(*conf)
+				issuer.ContractAddress=contractAddress
+				issuer.BulkIssuance(*conf)
+			}
+
+			if req.GetType() == common.GetandResetResult {
 				resultEncoder := gob.NewEncoder(conn)
 				zap.S().Infoln("ISSUER - sending results to holder: \t", issuer.Result.String())
-				issuer.CalculateResult(*config)
+				issuer.CalculateResult(*conf)
 				resJson, _ := issuer.Result.Json()
 				resultEncoder.Encode(resJson)
-				contractAddress := DeployContract(config, 0)
-				issuer.Reset(*config)
-				issuer.ContractAddress=contractAddress
-				issuer.BulkIssuance(*config)
+				//issuer.BulkIssuance(*conf)
 
 				count = 0
 				revoked=false
 				conn.Close()
 			}
-			if req.GetType() ==SendWitness {
+			if req.GetType() == common.SendWitness {
 				isRevoked := false
 				vcID := req.GetId()
 				for i := 0; i < len(issuer.revokedVcIDs); i++ {
 					if vcID == issuer.revokedVcIDs[i] {
 						revokedVCEncoder := gob.NewEncoder(conn)
-						revokedVCReply := NewRequest()
+						revokedVCReply := common.NewRequest()
 						revokedVCReply.SetId(issuer.name)
-						revokedVCReply.SetType(RevokedVC)
+						revokedVCReply.SetType(common.RevokedVC)
 						revokedVCReplyJson, _ := revokedVCReply.Json()
 						//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
 						revokedVCEncoder.Encode(revokedVCReplyJson)
@@ -145,7 +165,7 @@ func(issuer *Issuer) serverListener(server net.Listener, config *config.Config){
 				}
 				conn.Close()
 			}
-			if req.GetType() ==GetVC {
+			if req.GetType() == common.GetVC {
 				zap.S().Infoln("ISSUER - received new request: ", req)
 				encoder := gob.NewEncoder(conn)
 				encoder.Encode(issuer.CredentialStore[count].Json())
@@ -154,21 +174,21 @@ func(issuer *Issuer) serverListener(server net.Listener, config *config.Config){
 				//dec.Decode(&entity)
 				var reqJson []byte
 				dec.Decode(&reqJson)
-				req := JsonToRequest(reqJson)
-				if req.GetType() == GetMerkleProof {
+				req := common.JsonToRequest(reqJson)
+				if req.GetType() == common.GetMerkleProof {
 					proofEncoder := gob.NewEncoder(conn)
 					merkleProof := issuer.getUpdatedMerkleProof(issuer.CredentialStore[count].GetId())
 					zap.S().Infoln("ISSUER - issued vc : ", issuer.CredentialStore[count].GetId(), "  \t to: ", req.GetId())
 					count = count + 1
 
-					if count==int(config.ExpectedNumberOfTotalVCs){
+					if count==int(conf.ExpectedNumberOfTotalVCs){
 						if revoked==false {
 							credentials := issuer.CredentialStore
 							for _, vc := range credentials {
 								issuer.UpdateMerkleProof(vc)
 							}
 
-							issuer.SimulateRevocation(*config)
+							issuer.SimulateRevocation(*conf)
 							revoked=true
 						}
 					}
