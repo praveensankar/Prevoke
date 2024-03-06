@@ -28,8 +28,6 @@ type IRevocationService interface {
 	RetreiveUpdatedProof(vcID string) *techniques.MerkleProof
 	VerificationPhase1(bfIndexes []*big.Int) (bool, error)
 	VerificationPhase2(leafHash string, witnesses []*techniques.Witness) (bool, error)
-	VerificationPhase1Cached(bfIndexes []*big.Int) (bool, error)
-	VerificationPhase2Cached(leafHash string, witnesses []*techniques.Witness) (bool, error)
 	VerifyVC( _bfIndexes []*big.Int, data *RevocationData) (bool, error)
 	GetMerkleRoot()(string, error)
 	FetchMerkleTree() ([]string)
@@ -38,7 +36,6 @@ type IRevocationService interface {
 	AddPublicKeys(publicKeys [][]byte)
 	FetchPublicKeys()([][]byte)
 	FetchPublicKeysCached()([][]byte)
-	CacheRevocationDataStructuresFromSmartContract()
 	FetchMerkleTreeSizeInDLT()(uint)
 	FetchMerkleTreeSizeLocal()(uint)
 	FindAncesstorInMerkleTree(index int)(int)
@@ -62,8 +59,6 @@ type RevocationService struct{
 	gasPrice *big.Int
 	isCached  bool
 	isPublicKeysCached bool
-	cachedBF mapset.Set
-	cachedMTRoot string
 	cachedPublicKeys [][]byte
 }
 
@@ -88,8 +83,6 @@ func CreateRevocationService(config config.Config) *RevocationService {
 	}
 	rs.vcCounter = 0
 	rs.isCached=false
-	rs.cachedBF = mapset.NewSet()
-	rs.cachedMTRoot=""
 	rs.isPublicKeysCached=false
 	rs.cachedPublicKeys=make([][]byte,0)
 	return &rs
@@ -274,7 +267,6 @@ func (r RevocationService) RevokeVC(vcID string) (int, int64, error) {
 	var mtValues []string
 	var parentIndex int
 
-	//oldMTIndex := r.VCToBigInts[vc.ID]
 	vcIndex, _ := r.merkleTreeAcc.UpdateLeaf(vcID, "-1")
 
 	currentLevel := r.mtHeight
@@ -299,24 +291,6 @@ func (r RevocationService) RevokeVC(vcID string) (int, int64, error) {
 	}
 
 
-	//for i := r.merkleTreeAcc.Height -1 ; i > (r.mtHeight-r.MtLevelInDLT)+1 ; i--{
-	//	//zap.S().Infoln("MERKLE TREE ACCUMULATOR: \t i: ", i)
-	//	parentIndex = int(math.Floor(float64((index - 1) / 2)))
-	//	index = parentIndex
-	//}
-	//
-	//for i := r.MtLevelInDLT ; i > 0 ; i--{
-	//	//zap.S().Infoln("MERKLE TREE ACCUMULATOR: \t i: ", i)
-	//	parentIndex = int(math.Floor(float64((index - 1) / 2)))
-	//	hashValue := r.merkleTreeAcc.Tree[parentIndex]
-	//	mtIndexes = append(mtIndexes, big.NewInt(int64(parentIndex)))
-	//	mtValues = append(mtValues, hashValue.Value)
-	//	index = parentIndex
-	//}
-
-
-	//zap.S().Infoln("REVOCATION SERVICE- \t mt indexes: ", mtIndexes, "\t mt values: ",mtValues)
-	//zap.S().Infoln("REVOCATION SERVICE- \t number of non-leaf nodes of MT accumulator stored in smart contract ",levelCounter)
 	startBalance, err := client.BalanceAt(context.Background(), r.account, nil)
 	_, err = revocationService.RevokeVC(auth, bfIndexes, mtIndexes, mtValuesInBytes)
 	endBalance, err := client.BalanceAt(context.Background(), r.account, nil)
@@ -444,62 +418,7 @@ func (r RevocationService) VerificationPhase2(leafHash string, witnesses []*tech
 	return status, nil
 }
 
-func (r* RevocationService) CacheRevocationDataStructuresFromSmartContract(){
-	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
-	if err != nil {
-		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
-	}
-	revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
-	setIndexes, _ := revocationService.RetrieveBloomFilter(nil)
-	for i:=0;i< len(setIndexes);i++{
-		r.cachedBF.Add(setIndexes[1].String())
-	}
 
-	mtRoot, _ := revocationService.VerificationPhase2(nil)
-
-	mtRootInHex := hex.EncodeToString(mtRoot[:])
-	r.cachedMTRoot = mtRootInHex
-}
-
-func (r* RevocationService) VerificationPhase1Cached(bfIndexes []*big.Int) (bool, error){
-
-	if r.isCached==false {
-		client, err := ethclient.Dial(r.blockchainRPCEndpoint)
-		if err != nil {
-			zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
-		}
-		revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
-		setIndexes, _ := revocationService.RetrieveBloomFilter(nil)
-		for i:=0;i< len(setIndexes);i++{
-			r.cachedBF.Add(setIndexes[1].String())
-		}
-
-		mtRoot, _ := revocationService.VerificationPhase2(nil)
-
-		mtRootInHex := hex.EncodeToString(mtRoot[:])
-		r.cachedMTRoot = mtRootInHex
-		r.isCached=true
-	}
-		vcStatus := false
-		for i:=0; i< len(bfIndexes);i++ {
-			if r.cachedBF.Contains(bfIndexes[i].String()) == false {
-				vcStatus = true;
-				break;
-			}
-		}
-		//zap.S().Errorln("REVOCATION SERVICE-  vc.IDverification phase 1: ",vcStatus)
-
-		return vcStatus, nil
-
-}
-
-
-func (r RevocationService) VerificationPhase2Cached(leafHash string, witnesses []*techniques.Witness)(bool, error) {
-	status := r.merkleTreeAcc.VerifyProof(leafHash, witnesses, r.cachedMTRoot)
-
-	//zap.S().Errorln("REVOCATION SERVICE-  verification phase 2: ",status)
-	return status, nil
-}
 
 func (r RevocationService) GetMerkleRoot()(string, error) {
 	client, err := ethclient.Dial(r.blockchainRPCEndpoint)

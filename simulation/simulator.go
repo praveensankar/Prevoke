@@ -156,8 +156,7 @@ func SimulateRevocation(config config.Config, issuer1 *entities.Issuer, vcs []mo
 
 
 	}
-
-	issuer1.RevocationService.CacheRevocationDataStructuresFromSmartContract()
+	
 
 	result.AmountPaid = amountPaid
 	result.RevocationBatchSize = revocationBatchSize

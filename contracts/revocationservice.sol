@@ -2,23 +2,14 @@
 
 pragma solidity ^0.8.7;
 import "./console.sol";
-import "./MerkleProof.sol";
 
 contract RevocationService{
 
     bool private constant DEBUG = true;
 
 
-    // const private numberofVCs = 10000;
-
-    // // BF size is set for 10% false positive
-    // const private bfSize = 50000;
-
     // storing bloom filters as maps
     mapping(uint256=>uint256) public bloomFilter;
-    // stores the list of buckets present in the merkle tree.
-    uint256[] private bfBuckets;
-    mapping (uint256 => bool) private isExistInBloomFilter;
 
     /*
     merkle tree
@@ -26,8 +17,6 @@ contract RevocationService{
     root is stored at index 0.
     */
     mapping(uint => bytes32) public merkleTree;
-
-    bytes32 public merkleRoot;
 
     // stores the list of indexes present in the merkle tree.
     uint[] private indexes;
@@ -40,8 +29,6 @@ contract RevocationService{
     bytes[] public publicKeys;
     mapping (string => bool) private isExistInPublicKeys;
 
-    event Issue(uint[]  _mtIndexes, bytes1  _mtValue1, bytes1  _mtValue2, bytes1  _mtValue3, bytes1  _mtValue4);
-    event VerificationPhase2(bytes32 merkleRoot, bytes32 vcLeaf, bytes32[] proof);
     // sets the entities - contract creator is the entities
     constructor(){
         issuer = msg.sender;
@@ -132,11 +119,6 @@ output: public keys
             uint256 bucket = _indexes[i] >> 8;
             uint256 mask = 1 << (_indexes[i] & 0xff);
             bloomFilter[bucket] |= mask;
-            // bloomFilter[_indexes[i]] = true;
-            if (isExistInBloomFilter[bucket] == false){
-                isExistInBloomFilter[bucket] = true;
-                bfBuckets.push(bucket);
-            }
         }
     }
 
@@ -164,9 +146,6 @@ output: public keys
                 indexes.push(_indexes[i]);
             }
         }
-        merkleRoot = merkleTree[0];
-        //        emit Issue(indexes, _values[0][0], _values[0][1], _values[0][2], _values[0][3]);
-
     }
 
 
@@ -241,9 +220,6 @@ output: public keys
         return mt;
     }
 
-    function RetrieveBloomFilter() public view returns (uint256[] memory){
-        return bfBuckets;
-    }
 
     function GetMerkleTreeSize() public view returns (uint)  {
         uint mtSize;
@@ -254,14 +230,7 @@ output: public keys
         return mtSize;
     }
 
-    function GetBloomFilterSize() public view returns (uint)  {
-        uint bfSize;
-        bfSize=0;
-        for (uint i = 0; i < bfBuckets.length; i++) {
-                    bfSize = bfSize + 32;
-         }    
-        return bfSize;
-    }
+ 
 
         // prints the tree in console
     function printMerkleTree() public view{
