@@ -9,11 +9,11 @@
 	 "issuer" : {
 		 "name": "university",
 		 "address": "158.39.77.174:8000",
-		 "totalVCs": "10",
+		 "totalVCs": "100",
 		 "revokedVCs": "5",
 		 "falsePositiveRate": "0.1",
 		 "mtLevelInDLT": "3",
-		 "mtHeight": "4",
+		 "mtHeight": "7",
 		 "revocationBatchSize": "1",
 		 "comment": "number of hash functions: 7 if fpr==0.01, 6 if fpr==0.02,0.03, 5 if fpr==0.04,0.05, 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more ",
 		 "_comment": "revocationBatchSize - 'x' - x revocation performed together. 1 if each revocation needs to be performed one by one. "
