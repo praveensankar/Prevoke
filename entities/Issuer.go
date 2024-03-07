@@ -395,7 +395,7 @@ func (issuer *Issuer) VerifyTest(vcID string, vp models.VerifiablePresentation) 
 
 	//zap.S().Infoln("\n********************************************************************************************************************************")
 	//zap.S().Infoln("***********************\t  Verification test: \t VC id: ", vc.ID, "***********************")
-	var bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int
+	var bfIndexes []*big.Int
 
 	falsePositive := false
 	isAffected := false

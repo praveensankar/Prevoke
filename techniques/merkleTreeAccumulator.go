@@ -58,6 +58,16 @@ type MerkleProof struct {
 	Order []int
 }
 
+
+func (proof MerkleProof) String() string{
+	var response string
+	response = response + "MT Index : "+fmt.Sprintf("%d",proof.MTIndex)+ "\t"
+	response = response + "Ancesstor Index : "+fmt.Sprintf("%d",proof.AncesstorIndex)+ "\t"
+	response = response + "Leaf Hash: "+fmt.Sprintf("%v",proof.LeafHash)+ "\t"
+	response = response + "Ordered Witnesses: "+fmt.Sprintf("%v",proof.OrderedWitnesses)+ "\t"
+	return response
+}
+
 func (proof *MerkleProof) Json() []byte {
 	jsonObj,_ := json.MarshalIndent(proof, "","    ")
 	return jsonObj

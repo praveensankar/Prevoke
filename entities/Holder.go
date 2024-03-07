@@ -224,7 +224,8 @@ func StartHolder(config config.Config){
 			holder.issuerAddress = config.IssuerAddress
 			holder.verifierAddress = config.VerifierAddress
 			holder.totalVCs = exp.TotalVCs
-
+			holder.MTHeight= int(exp.MtHeight)
+			holder.MTLevelInDLT = int(exp.MtLevelInDLT)
 			holder.SendExpConfig(config.IssuerAddress, exp)
 			holder.SendExpConfig(config.VerifierAddress, exp)
 

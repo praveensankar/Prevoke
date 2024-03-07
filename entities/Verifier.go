@@ -70,7 +70,7 @@ func (verifier *Verifier) VerifyVPPhase1(vp *models.VerifiablePresentation) (boo
 
 	//zap.S().Infoln("\n********************************************************************************************************************************")
 	//zap.S().Infoln("***********************\t  Verification test: \t VC id: ", vc.ID, "***********************")
-	var bfIndexes [techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER]*big.Int
+	var bfIndexes []*big.Int
 	var bbsTime time.Duration
 
 	// ***************************** Phase 1 **************************************************

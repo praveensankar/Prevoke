@@ -1,7 +1,6 @@
 package techniques
 
 import (
-	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/deckarep/golang-set"
 	"go.uber.org/zap"
@@ -10,7 +9,7 @@ import (
 
 
 // Todo: change the value of this constant based on value in smart contract
-const NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER = 4;
+//const NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER = 4;
 
 type BloomFilter struct{
 	bloomFilter *bloom.BloomFilter
@@ -43,9 +42,9 @@ func CreateBloomFilter(expectedNumberOfRevokedVCs uint, falsePositiveRate float6
 
 	zap.S().Infoln("BlOOM FILTER: size : ", size, "\t number of indexes per entry : ", numberOfIndexesPerEntry)
 
-	if numberOfIndexesPerEntry !=NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER{
-		zap.S().Errorln("ERROR:    \t bloom filter index mismatch.", numberOfIndexesPerEntry, "is given by go code")
-	}
+	//if numberOfIndexesPerEntry !=NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER{
+	//	zap.S().Errorln("ERROR:    \t bloom filter index mismatch.", numberOfIndexesPerEntry, "is given by go code")
+	//}
 
 	newBloomFilter.assignedIndexes = mapset.NewSet()
 
@@ -141,57 +140,5 @@ func (bf *BloomFilter) GetIndexes(vc string) []*big.Int {
 
 func (bf BloomFilter) getCollisions() uint{
 return bf.collisions
-}
-
-
-func testBloomFilter(estimatedVCs ...int){
-
-	numberOfVCs := 100000
-	for _, count := range estimatedVCs {
-		numberOfVCs=count
-	}
-
-	bloomFilter1 := CreateBloomFilter(uint(numberOfVCs), 0.5)
-	fmt.Println("bloom filter for", numberOfVCs,"VCs is created with size: ",bloomFilter1.size, "\t number of hash functions: ",bloomFilter1.numberOfIndexesPerEntry)
-	statusBool := bloomFilter1.CheckStatusInBloomFilter("vc1")
-	var status string
-	if statusBool==true{
-		status = "vc is valid"
-	} else{
-		status = "vc is revoked"
-	}
-	fmt.Println("revocation status of vc1: ", status)
-
-	fmt.Println("revoking vc1")
-	indexes:= bloomFilter1.RevokeInBloomFilter("vc1")
-	fmt.Println("vc1 indexes in bloom filter: ", indexes)
-	statusBool = bloomFilter1.CheckStatusInBloomFilter("vc1")
-	statusLocationsBool := bloomFilter1.bloomFilter.TestLocations(indexes)
-	if statusBool==true{
-		status = "vc is valid"
-	} else{
-		status = "vc is revoked"
-	}
-	fmt.Println("revocation status of vc1: ", status)
-
-	if statusLocationsBool==false{
-		status = "vc is valid"
-	} else{
-		status = "vc is revoked"
-	}
-	fmt.Println("revocation status of vc1 in by testing indexes: ", status)
-
-
-
-	fmt.Println("revoking 10 vcs")
-	for i := 1; i <= numberOfVCs; i++ {
-		revokedId := fmt.Sprintf("id_%d", i)
-		bloomFilter1.RevokeInBloomFilter(revokedId)
-	}
-
-
-	fmt.Println("number of collisions: ",bloomFilter1.getCollisions())
-
-
 }
 

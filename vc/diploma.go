@@ -8,7 +8,6 @@ import (
 	_ "github.com/google/tink/go/keyset"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/signature"
-	"github.com/praveensankar/Revocation-Service/techniques"
 	"github.com/suutaku/go-bbs/pkg/bbs"
 	"go.uber.org/zap"
 	"log"
@@ -90,7 +89,7 @@ func generateMessages( vcId string, claims DiplomaClaim,
 	var messages [][]byte
 
 	// 1) append the bf indexes to the messages
-	for i:=0;i<techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER;i++ {
+	for i:=0;i< len(bfIndexes);i++ {
 		messages = append(messages, []byte(bfIndexes[i]))
 		//zap.S().Infoln("BBS - bf index: ", []byte(bfIndexes[i]))
 	}
@@ -201,10 +200,10 @@ func GenerateProofForSelectiveDisclosure(publicKey []byte, diploma models.Verifi
 	var revealedIndexes []int
 	claims := diploma.Claims.(DiplomaClaim)
 
-
+	bfIndexesCount := len(diploma.Metadata.CredentialStatus.BfIndexes)
 	// add bf indexes
 	i:=0
-	for ; i < techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER; i++ {
+	for ; i < bfIndexesCount; i++ {
 		revealedIndexes = append(revealedIndexes, i)
 	}
 
@@ -283,9 +282,9 @@ func VerifySelectiveDisclosureDiploma( publicKey []byte, vp SampleDiplomaPresent
 
 
 	var messages [][]byte
-
+	bfIndexesCount := len(vp.BfIndexes)
 	// 1) append the bf indexes to the messages
-	for i:=0; i<techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER; i++{
+	for i:=0; i< bfIndexesCount; i++{
 		messages = append(messages, []byte(vp.BfIndexes[i]))
 		//zap.S().Infoln("DIPLOMA - verification of selective disclosure: bf index: ", []byte(bfIndex))
 	}
@@ -346,7 +345,8 @@ func TestDiploma(){
 	publicKey, _ := bbsKeys.PublicKey.Marshal()
 
 	var bfIndexes []string
-	for i := 0; i < techniques.NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER; i++ {
+	bfIndexesCount := 4
+	for i := 0; i < bfIndexesCount; i++ {
 		bfIndexes = append(bfIndexes, strconv.Itoa(rand.Int()))
 	}
 

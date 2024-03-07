@@ -129,6 +129,7 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 		currentHash := localMerkleProof.LeafHash
 		hashValue := currentHash
 		j:=0
+		zap.S().Infoln("HOLDER - MT Height: ", holder.MTHeight, "\t MT Level in DLT:", holder.MTLevelInDLT)
 		for i:=holder.MTHeight;i>holder.MTLevelInDLT;i--{
 			witness:=localMerkleProof.OrderedWitnesses[j]
 			j++
@@ -300,7 +301,7 @@ func(holder *Holder) receiveVCs(address string){
 		holder.StoreMerkleProof(cred.GetId(), *merkleProof)
 		holder.Unlock()
 
-		zap.S().Infoln("HOLDER - received new vc: ", cred.GetId(), "\t merkle proof: ",merkleProof)
+		zap.S().Infoln("HOLDER - received new vc: ", cred.GetId(), "\t merkle proof: ",merkleProof.String())
 		conn.Close()
 		//break
 		//	}
