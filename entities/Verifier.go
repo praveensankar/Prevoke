@@ -70,7 +70,7 @@ func (verifier *Verifier) VerifyVPPhase1(vp *models.VerifiablePresentation) (boo
 
 	//zap.S().Infoln("\n********************************************************************************************************************************")
 	//zap.S().Infoln("***********************\t  Verification test: \t VC id: ", vc.ID, "***********************")
-	var bfIndexes []*big.Int
+
 	var bbsTime time.Duration
 
 	// ***************************** Phase 1 **************************************************
@@ -85,13 +85,13 @@ func (verifier *Verifier) VerifyVPPhase1(vp *models.VerifiablePresentation) (boo
 	//verify selective disclosure
 
 	diplomaPresentation := vp.Messages.(vc.SampleDiplomaPresentation)
-
+	var bfIndexes []*big.Int
 	bbsVerificationStart := time.Now()
 	vc.VerifySelectiveDisclosureDiploma(publicKey, diplomaPresentation)
 	bbsTime = time.Since(bbsVerificationStart)
-	for i, v:= range diplomaPresentation.BfIndexes{
+	for _, v:= range diplomaPresentation.BfIndexes{
 		intValue, _ := strconv.Atoi(v)
-		bfIndexes[i]=big.NewInt(int64(intValue))
+		bfIndexes = append(bfIndexes, big.NewInt(int64(intValue)))
 	}
 
 	phase1Start := time.Now()
