@@ -56,6 +56,7 @@ type Issuer struct{
 	processedConnections []net.Conn
 	Result *common.Results
 	ContractAddress string
+	Debug bool
 }
 
 /*
@@ -105,6 +106,8 @@ func  CreateIssuer(config config.Config) *Issuer{
 	issuer.Result = common.CreateResult()
 
 	issuer.ContractAddress = config.SmartContractAddress
+	issuer.Debug = config.DEBUG
+
 	zap.S().Infoln("ISSUER-","new entities created: entities name - ",issuer.name)
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
 
@@ -168,7 +171,9 @@ func (issuer *Issuer) UpdateMerkleProofsInStorage() {
 	for _,vc := range issuer.CredentialStore {
 		vcID := fmt.Sprintf("%v", vc.Metadata.Id)
 		merkleProof := issuer.RevocationService.RetreiveUpdatedProof(vcID)
-		zap.S().Infoln("ISSUER-  UPDATING MERKLE PROOF", issuer.name, "\t vc:", vcID, "\t updated merkle proof: ",merkleProof)
+		if issuer.Debug==true {
+			zap.S().Infoln("ISSUER-  UPDATING MERKLE PROOF", issuer.name, "\t vc:", vcID, "\t updated merkle proof: ", merkleProof)
+		}
 		issuer.UpdateMerkleProofInRevocationData(vcID, merkleProof)
 	}
 
@@ -193,10 +198,11 @@ func (issuer *Issuer) Issue(claims interface{})  {
 	if issuer.credentialType=="diploma"{
 		credential, _ = vc.CreateDiploma(issuer.BbsKeyPair[0].PrivateKey, vcID, claims, bfIndexes, mtLeafHash)
 	}
-	zap.S().Infoln("ISSUER- ",issuer.name, "***GENERATED*** vc:", vcID, "\t mt index: ", revocationData.MtIndex,
-		"\t mt leaf: ", revocationData.MerkleProof.LeafHash[:techniques.SHORT_STRING_SIZE] + "..",
-		"\t bf indexes: ",revocationData.BloomFilterIndexes)
-
+	if issuer.Debug==true {
+		zap.S().Infoln("ISSUER- ", issuer.name, "***GENERATED*** vc:", vcID, "\t mt index: ", revocationData.MtIndex,
+			"\t mt leaf: ", revocationData.MerkleProof.LeafHash[:techniques.SHORT_STRING_SIZE]+"..",
+			"\t bf indexes: ", revocationData.BloomFilterIndexes)
+	}
 	//entities.RevocationService.PrintMerkleTree()
 	issuer.AddCretentialToStore(*credential)
 	issuer.AddRevocationProofForNewVC(revocationData)
@@ -244,7 +250,9 @@ func (issuer *Issuer) IssueBulk(claimsForMutipleVCs []interface{}, total int){
 
 	for _, rd := range revocationData{
 		issuer.AddRevocationProofForNewVC(rd)
-		zap.S().Infoln("ISSUER- ",issuer.name, "***ISSUED*** vc:", rd.VcId, "\t leaf: ", rd.MerkleProof.LeafHash)
+		if issuer.Debug==true {
+			zap.S().Infoln("ISSUER- ", issuer.name, "***ISSUED*** vc:", rd.VcId, "\t leaf: ", rd.MerkleProof.LeafHash)
+		}
 	}
 }
 
@@ -338,9 +346,10 @@ func (issuer *Issuer) Revoke(conf config.Config, vc models.VerifiableCredential)
 	end := time.Since(start)
 	issuer.revokedVcIDs = append(issuer.revokedVcIDs, vcID)
 	affectedIndexes, numberOfAffectedVCs := issuer.UpdateAffectedVCs(conf, mtIndex)
-	zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vc:", vcID,"\t mt index: ",mtIndex,
-		"\t affected VCs Indexes: ",affectedIndexes, "\t number of affected VCs: ", numberOfAffectedVCs)
-
+	if issuer.Debug==true {
+		zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vc:", vcID, "\t mt index: ", mtIndex,
+			"\t affected VCs Indexes: ", affectedIndexes, "\t number of affected VCs: ", numberOfAffectedVCs)
+	}
 	//zap.S().Infoln("\n\n********************************************************************************************************************************")
 	return affectedIndexes, amountPaid, end
 }
@@ -366,10 +375,10 @@ func (issuer *Issuer) RevokeVCInBatches(conf config.Config, vcIDs []string) (map
 		affectedIndexesAll= affectedIndexesAll.Union(affectedIndexes)
 		numberOfAffectedVCsTotal+=numberOfAffectedVCs
 	}
-
-	zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vcs:", vcIDs,"\t mt indexes: ",mtIndexes,
-		"\t affected VCs Indexes: ",affectedIndexesAll, "\t number of affected VCs: ", numberOfAffectedVCsTotal)
-
+	if issuer.Debug==true {
+		zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vcs:", vcIDs, "\t mt indexes: ", mtIndexes,
+			"\t affected VCs Indexes: ", affectedIndexesAll, "\t number of affected VCs: ", numberOfAffectedVCsTotal)
+	}
 	//zap.S().Infoln("\n\n********************************************************************************************************************************")
 	return affectedIndexesAll, amountPaid, end
 }
@@ -446,9 +455,10 @@ func (issuer *Issuer) VerifyTest(vcID string, vp models.VerifiablePresentation) 
 
 	phase1Time := time.Since(phase1Start)
 	if phase1Result == true{
-		zap.S().Infoln("VERIFICAION TEST- \t ***VERIFICATION*** vc:", vcID, "\t actual status: ","valid",
-			"\t phase1 result: ", phase1Result)
-
+		if issuer.Debug==true {
+			zap.S().Infoln("VERIFICAION TEST- \t ***VERIFICATION*** vc:", vcID, "\t actual status: ", "valid",
+				"\t phase1 result: ", phase1Result)
+		}
 		return false, false, phase1Result, bbsTime.Seconds(), phase1Time.Seconds(), 0.0
 	}
 
@@ -518,8 +528,10 @@ func (issuer *Issuer) VerifyTest(vcID string, vp models.VerifiablePresentation) 
 	} else{
 		vcStatus="revoked"
 	}
-	zap.S().Infoln("VERIFICAION TEST- \t ***VERIFICATION*** vc:", vcID, "\t mt index: ", rd1.MtIndex, "\t actual status: ",vcStatus,
-		"\t phase1 result: ", phase1Result, "\t phase2 result: ", phase2Result)
+	if issuer.Debug==true {
+		zap.S().Infoln("VERIFICAION TEST- \t ***VERIFICATION*** vc:", vcID, "\t mt index: ", rd1.MtIndex, "\t actual status: ", vcStatus,
+			"\t phase1 result: ", phase1Result, "\t phase2 result: ", phase2Result)
+	}
 	// This is to check whether the VC is actuall revoked or not
 	//revokedStatus := true
 	//for _, vcID := range entities.revokedVcIDs {
@@ -539,13 +551,17 @@ func (issuer *Issuer) VerifyTest(vcID string, vp models.VerifiablePresentation) 
 
 func (issuer *Issuer) FetchMerkleTreeSizeInDLT()(uint) {
 	mtSize := issuer.RevocationService.FetchMerkleTreeSizeInDLT()
-	zap.S().Infoln("ISSUER- \t merkle tree size in smart contract: ", mtSize)
+	if issuer.Debug==true {
+		zap.S().Infoln("ISSUER- \t merkle tree size in smart contract: ", mtSize)
+	}
 	return mtSize
 }
 
 func (issuer *Issuer) FetchMerkleTreeSizeLocal()(uint) {
 	mtSize:= issuer.RevocationService.FetchMerkleTreeSizeLocal()
-	zap.S().Infoln("ISSUER- \t merkle tree size local: ", mtSize)
+	if issuer.Debug==true {
+		zap.S().Infoln("ISSUER- \t merkle tree size local: ", mtSize)
+	}
 	return mtSize
 }
 //func (entities *Issuer) verifyLocalTest(vc verifiable.Credential) {

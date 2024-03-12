@@ -56,8 +56,10 @@ func(holder *Holder) processConnection(conn net.Conn) {
 	//os.WriteFile("vc.json", vcJson, 0644)
 	cred := vc.JsonToDiplomaVC(vcJson)
 	//len, _ := conn.Read(buffer)
-	zap.S().Infoln(" HOLDER - received vc from issuer via: ",conn.RemoteAddr().String() )
-	zap.S().Infoln("HOLDER - new vc: ", cred.GetId())
+	if holder.Debug==true {
+		zap.S().Infoln(" HOLDER - received vc from issuer via: ", conn.RemoteAddr().String())
+		zap.S().Infoln("HOLDER - new vc: ", cred.GetId())
+	}
 	holder.Lock()
 	holder.StoreVC(*cred)
 	defer holder.Unlock()
@@ -129,7 +131,7 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 		currentHash := localMerkleProof.LeafHash
 		hashValue := currentHash
 		j:=0
-		zap.S().Infoln("HOLDER - MT Height: ", holder.MTHeight, "\t MT Level in DLT:", holder.MTLevelInDLT)
+		//zap.S().Infoln("HOLDER - MT Height: ", holder.MTHeight, "\t MT Level in DLT:", holder.MTLevelInDLT)
 		for i:=holder.MTHeight;i>holder.MTLevelInDLT;i--{
 			witness:=localMerkleProof.OrderedWitnesses[j]
 			j++
@@ -141,7 +143,9 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 			}
 		}
 		if hashValue == mTree[ancesstorIndex]{
-			zap.S().Infoln("HOLDER - fetches witness from the smart contract: vc id: ", vcID)
+			if holder.Debug==true {
+				zap.S().Infoln("HOLDER - fetches witness from the smart contract: vc id: ", vcID)
+			}
 			for i:=0;i< len(mTree);i++{
 				_, ok := localMerkleProof.Witnesses[i]
 				if ok{
@@ -159,7 +163,9 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 				conn.Close()
 				return false
 			}
-			zap.S().Infoln("HOLDER - requests merkle proof from issuer: vc id: ", vcID)
+			if holder.Debug==true {
+				zap.S().Infoln("HOLDER - requests merkle proof from issuer: vc id: ", vcID)
+			}
 			witReqEncoder := gob.NewEncoder(conn1)
 			//encoder.Encode(s.GetType())
 			witReq := common.NewRequest()
@@ -244,7 +250,9 @@ func(holder *Holder) getContractAddressFromIssuer(address string) (string){
 	var jsonObj []byte
 	dec.Decode(&jsonObj)
 	reply := common.JsonToRequest(jsonObj)
-	zap.S().Infoln("HOLDER - contract address from issuer: ",reply.GetId())
+	if holder.Debug==true {
+		zap.S().Infoln("HOLDER - contract address from issuer: ", reply.GetId())
+	}
 	conn.Close()
 	return reply.GetId()
 }
@@ -300,8 +308,9 @@ func(holder *Holder) receiveVCs(address string){
 		holder.Lock()
 		holder.StoreMerkleProof(cred.GetId(), *merkleProof)
 		holder.Unlock()
-
-		zap.S().Infoln("HOLDER - received new vc: ", cred.GetId(), "\t merkle proof: ",merkleProof.String())
+		if holder.Debug==true {
+			zap.S().Infoln("HOLDER - received new vc: ", cred.GetId(), "\t merkle proof: ", merkleProof.String())
+		}
 		conn.Close()
 		//break
 		//	}
@@ -334,8 +343,9 @@ func(holder *Holder) retrieveandResetResultsAtIssuers(address string)*common.Res
 		dec.Decode(&resJson)
 		res := common.JsonToResults(resJson)
 
-
+	if holder.Debug==true {
 		zap.S().Infoln("HOLDER - received revocation results from issuer")
+	}
 		conn.Close()
 		return res
 		//break
@@ -365,8 +375,9 @@ func(holder *Holder) retrieveandResetResultsAtVerifiers(address string) *common.
 	dec.Decode(&resJson)
 	res := common.JsonToResults(resJson)
 
-
-	zap.S().Infoln("HOLDER - received revocation results from verifier")
+	if holder.Debug==true {
+		zap.S().Infoln("HOLDER - received revocation results from verifier")
+	}
 	return res
 }
 

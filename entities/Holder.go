@@ -38,7 +38,7 @@ type Holder struct {
 	MTHeight int
 	MTLevelInDLT int
 	RevocationService revocation_service.IRevocationService
-
+	Debug bool
 	Results []common.Results
 }
 
@@ -49,17 +49,22 @@ func NewHolder(config config.Config) *Holder{
 	holder.setName(config.HolderName)
 	holder.MTHeight= int(config.MTHeight)
 	holder.MTLevelInDLT = int(config.MtLevelInDLT)
+	holder.Debug = config.DEBUG
 	return &holder
 }
 
 
 func (h *Holder) RequestVCFromIssuer(){
-	zap.S().Infoln("HOLDER - requesting ", h.totalVCs, " vcs from issuer")
+	if h.Debug==true {
+		zap.S().Infoln("HOLDER - requesting ", h.totalVCs, " vcs from issuer")
+	}
 	h.receiveVCs(h.issuerAddress)
 }
 
 func (h *Holder) RetrieveandResetResultsAtIssuers(result  *common.Results){
-	zap.S().Infoln("HOLDER - requesting results from the issuer")
+	if h.Debug==true {
+		zap.S().Infoln("HOLDER - requesting results from the issuer")
+	}
 	res := h.retrieveandResetResultsAtIssuers(h.issuerAddress)
 
 	result.RevocationTimeperBatch = res.RevocationTimeperBatch
@@ -73,7 +78,9 @@ func (h *Holder) RetrieveandResetResultsAtIssuers(result  *common.Results){
 }
 
 func (h *Holder) RetrieveandResetResultsAtVerifiers(result  *common.Results){
-	zap.S().Infoln("HOLDER - requesting results from the verifier")
+	if h.Debug==true {
+		zap.S().Infoln("HOLDER - requesting results from the verifier")
+	}
 	res := h.retrieveandResetResultsAtVerifiers(h.verifierAddress)
 
 	result.BBSVerificationTimePerVP = res.BBSVerificationTimePerVP
@@ -144,14 +151,19 @@ func (h *Holder) ShareallVPs(results *common.Results){
 	}
 	for i:=0;i<len(h.verfiableCredentials);i++ {
 		vc := h.verfiableCredentials[i]
-		zap.S().Infoln("HOLDER - sending presentation of vc: ", vc.GetId())
+		if h.Debug==true {
+			zap.S().Infoln("HOLDER - sending presentation of vc: ", vc.GetId())
+
+		}
 		vp, bbsProofGenTime, err := h.ConstructVP(vc)
 		results.AddBBSProofGenerationTimePerVP(bbsProofGenTime)
 		if err != nil {
 			return
 		}
 		status := h.ShareVP(vc.GetId(), vp, results)
-		zap.S().Infoln("HOLDER - verification result: ", status)
+		if h.Debug==true {
+			zap.S().Infoln("HOLDER - verification result: ", status)
+		}
 	}
 }
 func (h *Holder) ShareVP(vcID string, vp models.VerifiablePresentation, results *common.Results) (bool){

@@ -38,7 +38,9 @@ func  StartIssueVCsInBulkToHolders(config config.Config) {
 		encoder := gob.NewEncoder(conn)
 		encoder.Encode(cred.Json())
 		conn.Close()
-		zap.S().Infoln("ISSUER - issued vc : ",cred.GetId(), " \t to: ",conn.RemoteAddr().String())
+		if issuer.Debug==true {
+			zap.S().Infoln("ISSUER - issued vc : ", cred.GetId(), " \t to: ", conn.RemoteAddr().String())
+		}
 	}
 
 
@@ -130,7 +132,9 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 
 			if req.GetType() == common.GetandResetResult {
 				resultEncoder := gob.NewEncoder(conn)
-				zap.S().Infoln("ISSUER - sending results to holder: \t", issuer.Result.String())
+				if issuer.Debug==true {
+					zap.S().Infoln("ISSUER - sending results to holder: \t", issuer.Result.String())
+				}
 				issuer.CalculateResult(*conf)
 				resJson, _ := issuer.Result.Json()
 				resultEncoder.Encode(resJson)
@@ -161,12 +165,16 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 					proofEncoder := gob.NewEncoder(conn)
 					merkleProof := issuer.getUpdatedMerkleProof(vcID)
 					proofEncoder.Encode(merkleProof.Json())
-					zap.S().Infoln("ISSUER - vc id: ", vcID, "\t send merkle proof: ", merkleProof)
+					if issuer.Debug==true {
+						zap.S().Infoln("ISSUER - vc id: ", vcID, "\t send merkle proof: ", merkleProof)
+					}
 				}
 				conn.Close()
 			}
 			if req.GetType() == common.GetVC {
-				zap.S().Infoln("ISSUER - received new request: ", req)
+				if issuer.Debug==true {
+					zap.S().Infoln("ISSUER - received new request: ", req)
+				}
 				encoder := gob.NewEncoder(conn)
 				encoder.Encode(issuer.CredentialStore[count].Json())
 
@@ -178,7 +186,9 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 				if req.GetType() == common.GetMerkleProof {
 					proofEncoder := gob.NewEncoder(conn)
 					merkleProof := issuer.getUpdatedMerkleProof(issuer.CredentialStore[count].GetId())
-					zap.S().Infoln("ISSUER - issued vc : ", issuer.CredentialStore[count].GetId(), "  \t to: ", req.GetId())
+					if issuer.Debug==true {
+						zap.S().Infoln("ISSUER - issued vc : ", issuer.CredentialStore[count].GetId(), "  \t to: ", req.GetId())
+					}
 					count = count + 1
 
 					if count==int(conf.ExpectedNumberOfTotalVCs){

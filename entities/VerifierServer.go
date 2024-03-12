@@ -69,13 +69,17 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 			}
 			if req.GetType() == common.GetandResetResult {
 				resultEncoder := gob.NewEncoder(conn)
-				zap.S().Infoln("ISSUER - sending results to holder: \t", verifier.Result.String())
+				if verifier.Debug==true {
+					zap.S().Infoln("ISSUER - sending results to holder: \t", verifier.Result.String())
+				}
 				resJson, _ := verifier.Result.Json()
 				resultEncoder.Encode(resJson)
 				verifier.Reset(conf)
 			}
 			if req.GetType() == common.VerifyVC {
-				zap.S().Infoln("VERFIER - received new request: ",req)
+				if verifier.Debug==true {
+					zap.S().Infoln("VERFIER - received new request: ", req)
+				}
 				vpReqEncoder := gob.NewEncoder(conn)
 				vpReq := common.NewRequest()
 				vpReq.SetId(verifier.name)
@@ -86,9 +90,10 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 				var vpJson []byte
 				vpDecoder.Decode(&vpJson)
 				diplomaVP := vc.JsonToDiplomaVP(vpJson)
-				zap.S().Infoln("VERIFIER - received VP with following claims: \t degree: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Degree,
-					"\t grade: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Grade)
-
+				if verifier.Debug==true {
+					zap.S().Infoln("VERIFIER - received VP with following claims: \t degree: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Degree,
+						"\t grade: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Grade)
+				}
 				// phase 1 time does not include bbs verification time
 				phase1result, bbsVerificationTime, phase1Time := verifier.VerifyVPPhase1(diplomaVP)
 				verifier.Result.AddBBSVerificationTimePerVP(bbsVerificationTime)
@@ -118,13 +123,17 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 					witReq.SetType(common.SendWitness)
 					witreqJson, _ := witReq.Json()
 					witRequestEncoder.Encode(witreqJson)
-					zap.S().Infoln("VERFIER - sending witness request: ",witReq)
+					if verifier.Debug==true {
+						zap.S().Infoln("VERFIER - sending witness request: ", witReq)
+					}
 					witReplyDecoder := gob.NewDecoder(conn)
 					//dec.Decode(&entity)
 					var witJson []byte
 					witReplyDecoder.Decode(&witJson)
 					merkleProof, _ := techniques.JsonToMerkleProof(witJson)
-					zap.S().Infoln("VERIFIER - received merkle proof: ", merkleProof)
+					if verifier.Debug==true {
+						zap.S().Infoln("VERIFIER - received merkle proof: ", merkleProof)
+					}
 
 
 					phase2result := verifier.VerifyVPPhase2(diplomaVP, *merkleProof)
@@ -172,7 +181,9 @@ func(verifier *Verifier) getContractAddressFromIssuer(address string) (string){
 	var jsonObj []byte
 	dec.Decode(&jsonObj)
 	reply := common.JsonToRequest(jsonObj)
-	zap.S().Infoln("VERIFIER - contract address from issuer: ",reply.GetId())
+	if verifier.Debug==true {
+		zap.S().Infoln("VERIFIER - contract address from issuer: ", reply.GetId())
+	}
 	conn.Close()
 	return reply.GetId()
 }

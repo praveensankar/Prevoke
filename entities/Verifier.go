@@ -32,6 +32,7 @@ type Verifier struct {
 	blockchainEndPoint *ethclient.Client
 	RevocationService revocation_service.IRevocationService
 	Result *common.Results
+	Debug bool
 }
 
 /*
@@ -48,6 +49,7 @@ func  CreateVerifier(config config.Config) *Verifier{
 	verifier.RevocationService = rs
 	verifier.bbs = bbs.NewBbs()
 	verifier.Result= common.CreateResult()
+	verifier.Debug=config.DEBUG
 	zap.S().Infoln("VERIFIER-","new entities created: entities name - ",verifier.name)
 	zap.S().Infoln("\n\n********************************************************************************************************************************")
 	return &verifier
@@ -101,7 +103,9 @@ func (verifier *Verifier) VerifyVPPhase1(vp *models.VerifiablePresentation) (boo
 	}
 
 	phase1Time := time.Since(phase1Start)
-	zap.S().Infoln("VERIFIER: \t ***VERIFICATION*** vp: \t phase1 result: ", phase1Result)
+	if verifier.Debug==true {
+		zap.S().Infoln("VERIFIER: \t ***VERIFICATION*** vp: \t phase1 result: ", phase1Result)
+	}
 	return  phase1Result, bbsTime.Seconds(), phase1Time.Seconds()
 
 
@@ -128,7 +132,9 @@ func (verifier *Verifier) VerifyVPPhase2(vp *models.VerifiablePresentation, proo
 	if err!=nil{
 		zap.S().Infoln("VERIFIER - phase 2 verification failed: ", err)
 	}
-	zap.S().Infoln("VERIFIER: \t ***VERIFICATION*** vp: \t phase2 result: ", phase2Result)
+	if verifier.Debug==true {
+		zap.S().Infoln("VERIFIER: \t ***VERIFICATION*** vp: \t phase2 result: ", phase2Result)
+	}
 	return phase2Result
 }
 

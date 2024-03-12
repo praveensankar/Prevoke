@@ -187,7 +187,7 @@ func Run(conf config.Config){
 		if conf.LoggerOutputMode=="file"{
 			filename = fmt.Sprintf("logs/holder")
 		}
-		//SetupLogger(conf, filename)
+		SetupLogger(conf, filename)
 		entities.StartHolder(conf)
 	}
 
