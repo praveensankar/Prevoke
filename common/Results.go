@@ -35,11 +35,14 @@ type Results struct {
 	VerificationTimePerValidVC float64 `json:"verification_time_per_valid_vc"`
 	VerificationTimeTotalValidVCs float64 `json:"verification_time_total_valid_vcs"`
 	VerificationTimePerRevokedorFalsePositiveVC float64 `json:"verification_time_per_false_positive_or_revoked_vc"`
+	AvgTimeToFetchWitnessFromIssuer float64 `json:"avg_time_to_fetch_witness_from_issuer"`
+	AvgTimeToFetchWitnessFromSmartContract float64 `json:"avg_time_to_fetch_witness_from_smart_contract"`
 	VerificationTimeTotalRevokedorFalsePositiveVCs float64 `json:"verification_time_total_false_positive_and_revoked_vcs"`
 	VerificationTimeTotal float64 `json:"verification_time_total"`
 	BBSProoGenerationTimePerVP float64 `json:"bbs_proof_generation_time"`
 	BBSVerificationTimePerVP float64`json:"bbs_verification_time"`
 	SimulationTime float64 `json:"simulation_time"`
+
 	AffectedIndexes mapset.Set
 	FalsePositiveResults mapset.Set
 	FetchedWitnessesFromIssuers mapset.Set
@@ -79,6 +82,24 @@ func (r *Results) AddVerificationTimePerRevokedandFalsePositiveVC(phase2Time flo
 	} else {
 		r.VerificationTimePerRevokedorFalsePositiveVC = r.VerificationTimePerRevokedorFalsePositiveVC + phase2Time
 		r.VerificationTimePerRevokedorFalsePositiveVC = r.VerificationTimePerRevokedorFalsePositiveVC / 2
+	}
+}
+
+func (r *Results) AddAvgTimeToFetchWitnessFromIssuer(timeToFetch float64) {
+	if r.AvgTimeToFetchWitnessFromIssuer==0.0{
+		r.AvgTimeToFetchWitnessFromIssuer = r.AvgTimeToFetchWitnessFromIssuer + timeToFetch
+	} else {
+		r.AvgTimeToFetchWitnessFromIssuer = r.AvgTimeToFetchWitnessFromIssuer + timeToFetch
+		r.AvgTimeToFetchWitnessFromIssuer = r.AvgTimeToFetchWitnessFromIssuer / 2
+	}
+}
+
+func (r *Results) AddAvgTimeToFetchWitnessFromSmartContract(timeToFetch float64) {
+	if r.AvgTimeToFetchWitnessFromSmartContract==0.0{
+		r.AvgTimeToFetchWitnessFromSmartContract = r.AvgTimeToFetchWitnessFromSmartContract + timeToFetch
+	} else {
+		r.AvgTimeToFetchWitnessFromSmartContract = r.AvgTimeToFetchWitnessFromSmartContract + timeToFetch
+		r.AvgTimeToFetchWitnessFromSmartContract = r.AvgTimeToFetchWitnessFromSmartContract / 2
 	}
 }
 
@@ -130,6 +151,8 @@ func (r Results) String() string{
 	response = response + "avg BBS verification time per valid VP : "+fmt.Sprintf("%f",r.BBSVerificationTimePerVP)+ "\n"
 	response = response + "verification time per valid VC : "+fmt.Sprintf("%f",r.VerificationTimePerValidVC)+ "\n"
 	response = response + "verification time per false positive and revoked VC : "+fmt.Sprintf("%f",r.VerificationTimePerRevokedorFalsePositiveVC)+ "\n"
+	response = response + "avg time to fetch witness from issuer: "+fmt.Sprintf("%f",r.AvgTimeToFetchWitnessFromIssuer)+ "\n"
+	response = response + "avg time to fetch witness from smart contract: "+fmt.Sprintf("%f",r.AvgTimeToFetchWitnessFromSmartContract)+ "\n"
 	response = response + "verification time total valid VCs : "+fmt.Sprintf("%f",r.VerificationTimeTotalValidVCs)+ "\n"
 	response = response + "verification time total false positive and revoked VC : "+fmt.Sprintf("%f",r.VerificationTimeTotalRevokedorFalsePositiveVCs)+ "\n"
 	response = response + "verification time Total : "+fmt.Sprintf("%f",r.VerificationTimeTotal)+ "\n"
