@@ -195,7 +195,7 @@ func Run(conf config.Config){
 		if conf.LoggerOutputMode=="file"{
 			filename = fmt.Sprintf("logs/issuer")
 		}
-		//SetupLogger(conf, filename)
+		SetupLogger(conf, filename)
 		entities.StartIssuerServer(conf)
 	}
 
@@ -203,7 +203,7 @@ func Run(conf config.Config){
 		if conf.LoggerOutputMode=="file"{
 			filename = fmt.Sprintf("logs/verifier")
 		}
-		//SetupLogger(conf, filename)
+		SetupLogger(conf, filename)
 		entities.StartVerifierServer(conf)
 	}
 
