@@ -16,29 +16,29 @@ import (
 type Results struct {
 	TotalVCs int `json:"total_issued_vcs"`
 	RevokedVCs int `json:"total_revoked_vcs"`
-	FalsePositiveRate float64 `json:"false_positive_rate"`
+	RevocationBatchSize int `json:"revocation_batch_size"`
 	MtLevelInDLT int `json:"mt_level_in_dlt"`
 	MTHeight int `json:"mt_height"`
-	NumberOfFalsePositives int `json:"number_of_false_positives"`
-	NumberOfVCsRetrievedWitnessFromIssuer int `json:"number_of_vcs_retrieved_witness_from_issuer"`
-	NumberOfVCsRetrievedWitnessFromDLT int `json:"number_of_vcs_retrieved_witness_from_dlt"`
-	AmountPaid int64 `json:"revocation_cost_in_wei"`
+	FalsePositiveRate float64 `json:"false_positive_rate"`
 	BloomFilterSize int `json:"bloom_filter_size"`
 	BloomFilterIndexesPerEntry int  `json:"bloom_filter_indexes_per_entry"`
 	MerkleTreeSizeTotal int `json:"merkle_tree_size_total"`
-	MerkleTreeSizeInDLT int `json:"merkle_tree_size_in_dlt"`
 	MerkleTreeNodesCountTotal int `json:"merkle_tree_nodes_count_total"`
+	MerkleTreeSizeInDLT int `json:"merkle_tree_size_in_dlt"`
 	MerkleTreeNodesCountInDLT int `json:"merkle_tree_nodes_count_in_dlt"`
+	NumberOfFalsePositives int `json:"number_of_false_positives"`
+	NumberOfVCsRetrievedWitnessFromDLT int `json:"number_of_vcs_retrieved_witness_from_dlt"`
+	NumberOfVCsRetrievedWitnessFromIssuer int `json:"number_of_vcs_retrieved_witness_from_issuer"`
+	AmountPaid int64 `json:"revocation_cost_in_wei"`
 	RevocationTimeperBatch float64 `json:"revocation_timeper_vc"`
-	RevocationBatchSize int `json:"revocation_batch_size"`
 	RevocationTimeTotal float64 `json:"revocation_time_total"`
-	VerificationTimeTotalValidVCs float64 `json:"verification_time_total_valid_vcs"`
-	VerificationTimeTotalRevokedorFalsePositiveVCs float64 `json:"verification_time_total_false_positive_and_revoked_vcs"`
 	VerificationTimePerValidVC float64 `json:"verification_time_per_valid_vc"`
+	VerificationTimeTotalValidVCs float64 `json:"verification_time_total_valid_vcs"`
+	VerificationTimePerRevokedorFalsePositiveVC float64 `json:"verification_time_per_false_positive_or_revoked_vc"`
+	VerificationTimeTotalRevokedorFalsePositiveVCs float64 `json:"verification_time_total_false_positive_and_revoked_vcs"`
+	VerificationTimeTotal float64 `json:"verification_time_total"`
 	BBSProoGenerationTimePerVP float64 `json:"bbs_proof_generation_time"`
 	BBSVerificationTimePerVP float64`json:"bbs_verification_time"`
-	VerificationTimePerRevokedorFalsePositiveVC float64 `json:"verification_time_per_false_positive_or_revoked_vc"`
-	VerificationTimeTotal float64 `json:"verification_time_total"`
 	SimulationTime float64 `json:"simulation_time"`
 	AffectedIndexes mapset.Set
 	FalsePositiveResults mapset.Set

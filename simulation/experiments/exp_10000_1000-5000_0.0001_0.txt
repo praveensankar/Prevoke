@@ -1,0 +1,40 @@
+ "exp1": {
+			 "totalVCs": "10000",
+			 "revokedVCs": "1000",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.0001",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "14"
+		 },
+		 "exp2": {
+			 "totalVCs": "10000",
+			 "revokedVCs": "2000",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.0001",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "14"
+		 },
+		 "exp3": {
+			 "totalVCs": "10000",
+			 "revokedVCs": "3000",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.0001",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "14"
+		 },
+		 "exp4": {
+			 "totalVCs": "10000",
+			 "revokedVCs": "4000",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.0001",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "14"
+		 },
+		 "exp5": {
+			 "totalVCs": "10000",
+			 "revokedVCs": "5000",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.0001",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "14"
+		 }

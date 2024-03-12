@@ -127,7 +127,7 @@ func verifyProofForDiploma(publicKey []byte, sign []byte, vcId string, claims Di
 	mtLeafHash string) bool{
 	messages:= generateMessages(vcId, claims, bfIndexes, mtLeafHash)
 	status  := signature.Verify(publicKey, sign, messages)
-	zap.S().Infoln("DIPLOMA - digital signature verification: ",status)
+	//zap.S().Infoln("DIPLOMA - digital signature verification: ",status)
 	return status
 }
 
