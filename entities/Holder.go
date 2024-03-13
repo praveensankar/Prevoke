@@ -225,6 +225,7 @@ func StartHolder(config config.Config){
 
 	experiments := config.ExpParamters
 
+	counter:=1
 	for _, exp := range experiments {
 
 		//SetUpExpParamters(&config, *exp)
@@ -232,6 +233,7 @@ func StartHolder(config config.Config){
 
 		if exp.TotalVCs != 0 {
 
+			zap.S().Infoln("Experiment: ",counter,"/", len(experiments),"  running")
 			holder := NewHolder(config)
 			holder.issuerAddress = config.IssuerAddress
 			holder.verifierAddress = config.VerifierAddress

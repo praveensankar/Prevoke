@@ -3,7 +3,6 @@ package techniques
 import (
 	"github.com/bits-and-blooms/bloom/v3"
 	"github.com/deckarep/golang-set"
-	"go.uber.org/zap"
 	"math/big"
 )
 
@@ -40,7 +39,8 @@ func CreateBloomFilter(expectedNumberOfRevokedVCs uint, falsePositiveRate float6
 		numberOfIndexesPerEntry: numberOfIndexesPerEntry,
 	}
 
-	zap.S().Infoln("BlOOM FILTER: size : ", size, "\t number of indexes per entry : ", numberOfIndexesPerEntry)
+
+	//zap.S().Infoln("BlOOM FILTER: size : ", size, "\t number of indexes per entry : ", numberOfIndexesPerEntry)
 
 	//if numberOfIndexesPerEntry !=NUMBER_OF_INDEXES_PER_ENTRY_IN_BLOOMFILTER{
 	//	zap.S().Errorln("ERROR:    \t bloom filter index mismatch.", numberOfIndexesPerEntry, "is given by go code")

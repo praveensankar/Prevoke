@@ -192,7 +192,7 @@ func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate
 }
 
 func ConstructResults(config config.Config, start  time.Time, result *Results){
-	zap.S().Infoln("RESULT - \t indexes of VCs that retrieved witnesses from entities: ", result.FetchedWitnessesFromIssuers)
+	//zap.S().Infoln("RESULT - \t indexes of VCs that retrieved witnesses from entities: ", result.FetchedWitnessesFromIssuers)
 	_, k := BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
 	// Code to measure
 	end := time.Since(start)
@@ -207,7 +207,7 @@ func ConstructResults(config config.Config, start  time.Time, result *Results){
 	result.BloomFilterIndexesPerEntry = int(k)
 	result.MerkleTreeNodesCountTotal = int(math.Pow(2, float64(config.MTHeight+1)))-1
 	result.MerkleTreeNodesCountInDLT = int(math.Pow(2, float64(config.MtLevelInDLT+1)))-1
-	zap.S().Infoln("SIMULATOR : \t results: ", result.String())
+	//zap.S().Infoln("SIMULATOR : \t results: ", result.String())
 }
 
 

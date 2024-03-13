@@ -123,7 +123,7 @@ func  CreateMerkleTreeAccumulator(conf config.Config) *MerkleTreeAccumulator2 {
 	accumulator.TotalLeafs = int(totalLeafs)
 	accumulator.TotalNodes = totalNodes
 
-	zap.S().Errorln("\"MERKLE TREE Accumulator- \t total nodes: ", accumulator.TotalNodes)
+	//zap.S().Errorln("\"MERKLE TREE Accumulator- \t total nodes: ", accumulator.TotalNodes)
 	accumulator.Tree=make([]*Node, totalNodes)
 	for i:=0; i<totalNodes; i++{
 		accumulator.Tree[i] = &Node{}
