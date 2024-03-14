@@ -57,7 +57,7 @@
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
 	 },
 	 "mode" : {
-		 "debug" : "true"
+		 "debug" : "false"
 	 },
 	 "exp": {
 		 "exp1": {
