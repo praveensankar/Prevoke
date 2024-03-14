@@ -18,9 +18,6 @@ contract RevocationService{
     */
     mapping(uint => bytes32) public merkleTree;
 
-    // stores the list of indexes present in the merkle tree.
-    uint[] private indexes;
-    mapping (uint => bool) private isExistInMTAccumulator;
 
     // entities is the owner of the contract
     address issuer;
@@ -138,14 +135,6 @@ output: public keys
             merkleTree[_indexes[i]] = _values[i];
 
         }
-
-
-        for (uint i = 0; i < _indexes.length; i++) {
-            if (isExistInMTAccumulator[_indexes[i]] == false){
-                isExistInMTAccumulator[_indexes[i]] = true;
-                indexes.push(_indexes[i]);
-            }
-        }
     }
 
 
@@ -212,19 +201,19 @@ output: public keys
     }
 
 
-    function RetrieveMerkleTree() public view returns (bytes32[] memory){
-        bytes32 [] memory mt = new bytes32[](indexes.length);
-        for (uint i = 0; i < indexes.length; i++) {
+    function RetrieveMerkleTree(uint256 _length) public view returns (bytes32[] memory){
+        bytes32 [] memory mt = new bytes32[](_length);
+        for (uint i = 0; i < _length; i++) {
             mt[i] = merkleTree[i];
         }
         return mt;
     }
 
 
-    function GetMerkleTreeSize() public view returns (uint)  {
+    function GetMerkleTreeSize(uint256 _length) public view returns (uint)  {
         uint mtSize;
         mtSize=0;
-        for (uint i = 0; i < indexes.length; i++) {
+        for (uint i = 0; i < _length; i++) {
             mtSize = mtSize + merkleTree[i].length;
         }
         return mtSize;
@@ -233,12 +222,12 @@ output: public keys
  
 
         // prints the tree in console
-    function printMerkleTree() public view{
+    function printMerkleTree(uint256 _length) public view{
 
         if (DEBUG==true){
             console.log("priting merkle tree");
         }
-        for (uint i = 0; i < indexes.length; i++) {
+        for (uint i = 0; i < _length; i++) {
             if (DEBUG==true){
                                console.log("index : %d \t value :",i);
                                console.logBytes(abi.encodePacked(merkleTree[i]));
@@ -256,8 +245,8 @@ output: public keys
         values[0] = 0x68656c6c6f000000000000000000000000000000000000000000000000000000;
         values[1] = 0x68656c6c6f000000000000000000000000000000000000000000000000000000;
         issueVC(mtIndexes, values);
-        printMerkleTree();
-        console.log("merkle tree size: %d ",GetMerkleTreeSize());
+        printMerkleTree(2);
+        console.log("merkle tree size: %d ",GetMerkleTreeSize(2));
     }
 }
 

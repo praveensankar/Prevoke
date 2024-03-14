@@ -451,7 +451,8 @@ func (r RevocationService) FetchMerkleTree() ([]string){
 	if err != nil {
 		zap.S().Infof("Failed to instantiate Storage contract: %v", err)
 	}
-	mtValues , err := revocationService.RetrieveMerkleTree(nil)
+	mtSize := big.NewInt(int64(r.NumberOfEntriesForMTInDLT))
+	mtValues , err := revocationService.RetrieveMerkleTree(nil,mtSize)
 
 	var mtValuesInHex []string
 
@@ -619,7 +620,8 @@ func (r RevocationService) FetchMerkleTreeSizeInDLT()(uint) {
 
 
 	//Todo: this function should be moved to the verifiers. The parameters should be shared to the holders.
-	mtSize, err := revocationService.GetMerkleTreeSize(nil)
+	mtLength := big.NewInt(int64(r.NumberOfEntriesForMTInDLT))
+	mtSize, err := revocationService.GetMerkleTreeSize(nil, mtLength)
 	if err != nil {
 		zap.S().Infof("Error adding public keys: %v", err)
 	}

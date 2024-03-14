@@ -61,12 +61,12 @@
 	 },
 	 "exp": {
 		 "exp1": {
-			 "totalVCs": "10000",
-			 "revokedVCs": "1000",
+			 "totalVCs": "10",
+			 "revokedVCs": "2",
 			 "revocationBatchSize": "1",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "12",
-			 "mtHeight": "14"
+			 "mtLevelInDLT": "3",
+			 "mtHeight": "4"
 		 }
 	 }
  }
