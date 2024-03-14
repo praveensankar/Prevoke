@@ -22,7 +22,7 @@ import (
 
 type IRevocationService interface {
 	IssueVC(vcID string) *RevocationData
-	IssueVCsInBulk(vcIDs []string) ([]*RevocationData)
+	IssueVCsInBulk(vcIDs []string) ([]*RevocationData, int64)
 	RevokeVC(vcID string) (int, int64, error)
 	RevokeVCInBatches(vcIDs []string) (map[string]int, int64, error)
 	RetreiveUpdatedProof(vcID string) *techniques.MerkleProof
@@ -191,7 +191,7 @@ Inputs:
 Output:
 	RevocationData - []RevocationData
  */
-func (r *RevocationService) IssueVCsInBulk(vcIDs []string) ([]*RevocationData) {
+func (r *RevocationService) IssueVCsInBulk(vcIDs []string) ([]*RevocationData, int64) {
 	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
 	if err != nil {
 		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
@@ -220,14 +220,17 @@ func (r *RevocationService) IssueVCsInBulk(vcIDs []string) ([]*RevocationData) {
 		mtValuesInBytes = append(mtValuesInBytes, byteRepr)
 	}
 
-
+	startBalance, err := client.BalanceAt(context.Background(), r.account, nil)
 	_, err =revocationService.IssueVC(auth, mtIndexes, mtValuesInBytes)
+	endBalance, err := client.BalanceAt(context.Background(), r.account, nil)
+	gasUsed := (startBalance.Int64()-endBalance.Int64()) / r.gasPrice.Int64()
+
 	if err != nil {
 		zap.S().Fatalln("failed to issue vc", err)
 	}
-	mt := r.FetchMerkleTree()
-	zap.S().Infoln("REVOCATION SERVICE - merkle tree: ", mt)
-	return revocationDataALl
+	//mt := r.FetchMerkleTree()
+	//zap.S().Infoln("REVOCATION SERVICE - merkle tree: ", mt)
+	return revocationDataALl, gasUsed
 }
 
 func (r RevocationService) RetreiveUpdatedProof(vcID string)  *techniques.MerkleProof{

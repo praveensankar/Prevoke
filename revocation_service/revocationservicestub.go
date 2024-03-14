@@ -101,7 +101,7 @@ Inputs:
 	_mtIndexes: merkle tree indexes
 	_mtValues: merkle tree values
 */
-func (r *RevocationServiceStub) IssueVCsInBulk(vcIDs []string) ([]*RevocationData) {
+func (r *RevocationServiceStub) IssueVCsInBulk(vcIDs []string) ([]*RevocationData, int64) {
 
 	var revocationDataALl []*RevocationData
 	for _, vcID := range vcIDs {
@@ -114,7 +114,7 @@ func (r *RevocationServiceStub) IssueVCsInBulk(vcIDs []string) ([]*RevocationDat
 	}
 	//mtIndexes, mtValues := r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
 	//zap.S().Infoln("REVOCATION SERVICE - merkle tree indexes and values: ", mtIndexes, mtValues)
-	return revocationDataALl
+	return revocationDataALl, 0
 }
 
 func (r RevocationServiceStub) RetreiveUpdatedProof(vcID string)  *techniques.MerkleProof{

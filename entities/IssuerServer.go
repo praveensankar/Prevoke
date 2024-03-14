@@ -124,11 +124,11 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 				exp := config.JsonToExperiment(expJson)
 				issuer.SetExperimentConfigs(conf, *exp)
 				contractAddress, gasUsed := DeployContract(conf, 0)
-				issuer.Result.ContractDeploymentCost = gasUsed
 				conf.SmartContractAddress=contractAddress
 				issuer.Reset(*conf)
 				issuer.ContractAddress=contractAddress
 				issuer.BulkIssuance(*conf)
+				issuer.Result.ContractDeploymentCost = gasUsed
 			}
 
 			if req.GetType() == common.GetandResetResult {
@@ -158,7 +158,9 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 						//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
 						revokedVCEncoder.Encode(revokedVCReplyJson)
 						isRevoked = true
-						zap.S().Infoln("ISSUER - vc id: ", vcID, "\t revoked. Did not send merkle proof ")
+						if issuer.Debug==true {
+							zap.S().Infoln("ISSUER - vc id: ", vcID, "\t revoked. Did not send merkle proof ")
+						}
 						break
 					}
 				}

@@ -29,7 +29,6 @@ type Results struct {
 	NumberOfFalsePositives int `json:"number_of_false_positives"`
 	NumberOfVCsRetrievedWitnessFromDLT int `json:"number_of_vcs_retrieved_witness_from_dlt"`
 	NumberOfVCsRetrievedWitnessFromIssuer int `json:"number_of_vcs_retrieved_witness_from_issuer"`
-	AmountPaid int64 `json:"revocation_cost_in_wei"`
 	RevocationTimeperBatch float64 `json:"revocation_timeper_vc"`
 	RevocationTimeTotal float64 `json:"revocation_time_total"`
 	VerificationTimePerValidVC float64 `json:"verification_time_per_valid_vc"`
@@ -43,6 +42,8 @@ type Results struct {
 	BBSVerificationTimePerVP float64`json:"bbs_verification_time"`
 	SimulationTime float64 `json:"simulation_time"`
 	ContractDeploymentCost int64 `json:"contract_deployment_cost"`
+	BulkIssuanceCost int64 `json:"bulk_issuance_cost"`
+	AmountPaid int64 `json:"revocation_cost_in_wei"`
 	AffectedIndexes mapset.Set
 	FalsePositiveResults mapset.Set
 	FetchedWitnessesFromIssuers mapset.Set
@@ -137,7 +138,6 @@ func (r Results) String() string{
 	response = response + "False Positive Rate : "+fmt.Sprintf("%f",r.FalsePositiveRate)+ "\n"
 	response = response + "Merkle Tree Accumulator height : "+fmt.Sprintf("%d",r.MTHeight)+ "\n"
 	response = response + "Merkle Tree Accumulator Level Stored in DLT : "+fmt.Sprintf("%d",r.MtLevelInDLT)+ "\n \n"
-	response = response + "contract deployment cost: "+fmt.Sprintf("%d",r.ContractDeploymentCost)+ "\n \n"
 	response = response + "Bloom Filter Size (in bytes) : "+fmt.Sprintf("%d",r.BloomFilterSize)+ "\n"
 	response = response + "Bloom Filter indexes per entry (no of hash functions) : "+fmt.Sprintf("%d",r.BloomFilterIndexesPerEntry)+ "\n"
 	response = response + "merkle tree size total (in bytes) : "+fmt.Sprintf("%d",r.MerkleTreeSizeTotal)+ "\n"
@@ -157,10 +157,13 @@ func (r Results) String() string{
 	response = response + "verification time total false positive and revoked VC : "+fmt.Sprintf("%f",r.VerificationTimeTotalRevokedorFalsePositiveVCs)+ "\n"
 	response = response + "verification time Total : "+fmt.Sprintf("%f",r.VerificationTimeTotal)+ "\n"
 
-	response = response + "Amount (in unit of gas) spent per revocation: "+fmt.Sprintf("%d",r.AmountPaid)+ "\n"
 	response = response + "Number of False Positives : "+ fmt.Sprintf("%d",r.NumberOfFalsePositives) + "\n"
 	response = response + "Number of VCS that ended up updating witnesses from issuer: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromIssuer)+ "\n"
 	response = response + "Number of VCS that updated witnesses from smart contract: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromDLT)+ "\n"
+
+	response = response + "contract deployment cost: "+fmt.Sprintf("%d",r.ContractDeploymentCost)+ "\n \n"
+	response = response + "Amount (in unit of gas) spent per revocation: "+fmt.Sprintf("%d",r.AmountPaid)+ "\n"
+	response = response + "Amount (in unit of gas) spent for bulk issuance: "+fmt.Sprintf("%d",r.BulkIssuanceCost)+ "\n"
 	response = response + "time to run the experiment (in seconds) : "+fmt.Sprintf("%f",r.SimulationTime)+ " \n"
 	return response
 }

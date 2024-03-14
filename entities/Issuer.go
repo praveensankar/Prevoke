@@ -225,8 +225,8 @@ func (issuer *Issuer) IssueBulk(claimsForMutipleVCs []interface{}, total int){
 		vcIDs=append(vcIDs, vcID)
 	}
 
-	revocationData := issuer.RevocationService.IssueVCsInBulk(vcIDs)
-
+	revocationData, cost := issuer.RevocationService.IssueVCsInBulk(vcIDs)
+	issuer.Result.BulkIssuanceCost = cost 
 
 	for i:=0; i<total; i++{
 
