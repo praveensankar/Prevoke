@@ -1,4 +1,12 @@
- "exp1": {
+ 		 "exp0": {
+ 			 "totalVCs": "10000",
+ 			 "revokedVCs": "1000",
+ 			 "revocationBatchSize": "1",
+ 			 "falsePositiveRate": "0.1",
+ 			 "mtLevelInDLT": "0",
+ 			 "mtHeight": "14"
+ 		 },
+ 		 "exp1": {
 			 "totalVCs": "10000",
 			 "revokedVCs": "1000",
 			 "revocationBatchSize": "1",
