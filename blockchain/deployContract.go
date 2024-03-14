@@ -5,6 +5,7 @@ import (
 	"crypto/ecdsa"
 	_ "github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/common"
 	_ "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -15,7 +16,7 @@ import (
 	_ "time"
 )
 //
-func DeployContract(config config.Config, counter int) (string, error){
+func DeployContract(config config.Config, counter int) (string, int64, error){
 	client, err :=  ethclient.Dial(config.BlockchainRpcEndpoint)
 	if err != nil {
 		zap.S().Fatalln("ERROR in deploying contract",err)
@@ -48,12 +49,15 @@ func DeployContract(config config.Config, counter int) (string, error){
 	auth.Nonce = big.NewInt(int64(nonce))
 	auth.Value = big.NewInt(0)
 	auth.GasLimit = gasLimit
-	auth.GasPrice = gasPrice
+	auth.GasPrice = config.GasPrice
 	//auth.GasPrice=big.NewInt(gasPrice)
 
-
-
+	account := common.HexToAddress(config.SenderAddress)
+	startBalance, err := client.BalanceAt(context.Background(), account, nil)
 	addresss, tx, _, err  := contracts.DeployRevocationService(auth, client)
+
+	endBalance, err := client.BalanceAt(context.Background(), account, nil)
+	gasUsed := (startBalance.Int64()-endBalance.Int64()) / config.GasPrice.Int64()
 	if err != nil {
 		zap.S().Infof("Failed to deploy contract: %v", err)
 	}
@@ -61,8 +65,8 @@ func DeployContract(config config.Config, counter int) (string, error){
 
 	zap.S().Infoln("BLOCKCHAIN- \t  smart contract address: ", addresss.String())
 	zap.S().Infoln("BLOCKCHAIN- \t tx hash: ", tx.Hash())
-
+	zap.S().Infoln("BLOCKCHAIN - \t gas price: ",gasPrice)
 	zap.L().Info("********************************************************************************************************************************\n")
 
-	return addresss.String(), err
+	return addresss.String(), gasUsed, err
 }

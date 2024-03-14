@@ -123,7 +123,8 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 				expDecoder.Decode(&expJson)
 				exp := config.JsonToExperiment(expJson)
 				issuer.SetExperimentConfigs(conf, *exp)
-				contractAddress := DeployContract(conf, 0)
+				contractAddress, gasUsed := DeployContract(conf, 0)
+				issuer.Result.ContractDeploymentCost = gasUsed
 				conf.SmartContractAddress=contractAddress
 				issuer.Reset(*conf)
 				issuer.ContractAddress=contractAddress
@@ -214,8 +215,8 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 	}
 }
 
-func DeployContract(conf *config.Config,counter int) string{
-	address, err := blockchain.DeployContract(*conf, counter)
+func DeployContract(conf *config.Config,counter int) (string, int64){
+	address, gasUsed, err := blockchain.DeployContract(*conf, counter)
 
 	if err != nil {
 		zap.S().Errorln("error deploying contract")
@@ -233,7 +234,7 @@ func DeployContract(conf *config.Config,counter int) string{
 	if err != nil {
 		zap.S().Errorln("unable to write results to file")
 	}
-	return address
+	return address, gasUsed
 
 }
 

@@ -42,7 +42,7 @@ func StartExperiments(config config.Config){
 }
 
 func DeployContract(conf *config.Config,counter int){
-	address, err := blockchain.DeployContract(*conf, counter)
+	address, _, err := blockchain.DeployContract(*conf, counter)
 
 	if err != nil {
 		zap.S().Errorln("error deploying contract")

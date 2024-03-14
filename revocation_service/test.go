@@ -10,7 +10,7 @@ import (
 )
 
 func DeployContract(conf *config.Config){
-	address, err := blockchain.DeployContract(*conf, 0)
+	address, _, err := blockchain.DeployContract(*conf, 0)
 
 	if err != nil {
 		zap.S().Errorln("error deploying contract")

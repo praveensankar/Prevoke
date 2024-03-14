@@ -42,7 +42,7 @@ type Results struct {
 	BBSProoGenerationTimePerVP float64 `json:"bbs_proof_generation_time"`
 	BBSVerificationTimePerVP float64`json:"bbs_verification_time"`
 	SimulationTime float64 `json:"simulation_time"`
-
+	ContractDeploymentCost int64 `json:"contract_deployment_cost"`
 	AffectedIndexes mapset.Set
 	FalsePositiveResults mapset.Set
 	FetchedWitnessesFromIssuers mapset.Set
@@ -137,7 +137,7 @@ func (r Results) String() string{
 	response = response + "False Positive Rate : "+fmt.Sprintf("%f",r.FalsePositiveRate)+ "\n"
 	response = response + "Merkle Tree Accumulator height : "+fmt.Sprintf("%d",r.MTHeight)+ "\n"
 	response = response + "Merkle Tree Accumulator Level Stored in DLT : "+fmt.Sprintf("%d",r.MtLevelInDLT)+ "\n \n"
-
+	response = response + "contract deployment cost: "+fmt.Sprintf("%d",r.ContractDeploymentCost)+ "\n \n"
 	response = response + "Bloom Filter Size (in bytes) : "+fmt.Sprintf("%d",r.BloomFilterSize)+ "\n"
 	response = response + "Bloom Filter indexes per entry (no of hash functions) : "+fmt.Sprintf("%d",r.BloomFilterIndexesPerEntry)+ "\n"
 	response = response + "merkle tree size total (in bytes) : "+fmt.Sprintf("%d",r.MerkleTreeSizeTotal)+ "\n"
