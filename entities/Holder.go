@@ -75,6 +75,8 @@ func (h *Holder) RetrieveandResetResultsAtIssuers(result  *common.Results){
 	result.MerkleTreeSizeTotal = res.MerkleTreeSizeTotal
 	result.MerkleTreeNodesCountTotal = res.MerkleTreeNodesCountTotal
 	result.BloomFilterSize = 	res.BloomFilterSize
+	result.BulkIssuanceCost = res.BulkIssuanceCost
+	result.ContractDeploymentCost = res.ContractDeploymentCost
 }
 
 func (h *Holder) RetrieveandResetResultsAtVerifiers(result  *common.Results){

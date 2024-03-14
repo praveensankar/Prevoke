@@ -226,7 +226,11 @@ func (issuer *Issuer) IssueBulk(claimsForMutipleVCs []interface{}, total int){
 	}
 
 	revocationData, cost := issuer.RevocationService.IssueVCsInBulk(vcIDs)
-	issuer.Result.BulkIssuanceCost = cost 
+	issuer.Result.BulkIssuanceCost = cost
+	if issuer.Debug==true{
+		zap.S().Infoln("ISSUER - bulk issuance cost (in gas):  ",issuer.Result.BulkIssuanceCost)
+	}
+
 
 	for i:=0; i<total; i++{
 

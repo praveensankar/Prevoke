@@ -124,6 +124,9 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 				exp := config.JsonToExperiment(expJson)
 				issuer.SetExperimentConfigs(conf, *exp)
 				contractAddress, gasUsed := DeployContract(conf, 0)
+				if issuer.Debug==true {
+					zap.S().Infoln("ISSUER - contract deployment cost (in gas): \t", gasUsed)
+				}
 				conf.SmartContractAddress=contractAddress
 				issuer.Reset(*conf)
 				issuer.ContractAddress=contractAddress

@@ -8,7 +8,7 @@
 	},
 	 "issuer" : {
 		 "name": "university",
-		 "address": "158.39.77.174:8000",
+		 "address": "127.0.0.1:8000",
 		 "totalVCs": "100",
 		 "revokedVCs": "5",
 		 "falsePositiveRate": "0.1",
@@ -26,7 +26,7 @@
 	 },
 	 "verifier" : {
 		 "name": "employer",
-		 "address": "158.39.77.211:8020",
+		 "address": "127.0.0.1:8020",
 		 "_addressNREC": "158.39.77.211:8020",
 		 "_addressLocal": "127.0.0.1:8020"
 	 },
@@ -57,70 +57,16 @@
 		 "_comment" : "env is used to configure the logger level at zapper. <dev> for devlopment, <prod> for production "
 	 },
 	 "mode" : {
-		 "debug" : "false"
+		 "debug" : "true"
 	 },
 	 "exp": {
-		 "exp1": {
-			 "totalVCs": "100",
-			 "revokedVCs": "25",
+		 "exp12": {
+			 "totalVCs": "10000",
+			 "revokedVCs": "1000",
 			 "revocationBatchSize": "1",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "0",
-			 "mtHeight": "7"
-		 },
-		 "exp2": {
-			 "totalVCs": "100",
-			 "revokedVCs": "25",
-			 "revocationBatchSize": "1",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "1",
-			 "mtHeight": "7"
-		 },
-		 "exp3": {
-			 "totalVCs": "100",
-			 "revokedVCs": "25",
-			 "revocationBatchSize": "1",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "2",
-			 "mtHeight": "7"
-		 },
-		 "exp4": {
-			 "totalVCs": "100",
-			 "revokedVCs": "25",
-			 "revocationBatchSize": "1",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "3",
-			 "mtHeight": "7"
-		 },
-		 "exp5": {
-			 "totalVCs": "100",
-			 "revokedVCs": "25",
-			 "revocationBatchSize": "1",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "4",
-			 "mtHeight": "7"
-		 },  "exp6": {
-			 "totalVCs": "100",
-			 "revokedVCs": "25",
-			 "revocationBatchSize": "1",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "5",
-			 "mtHeight": "7"
-		 },
-		 "exp7": {
-			 "totalVCs": "100",
-			 "revokedVCs": "25",
-			 "revocationBatchSize": "1",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "6",
-			 "mtHeight": "7"
-		 }, 		 "exp8": {
-			 "totalVCs": "100",
-			 "revokedVCs": "25",
-			 "revocationBatchSize": "1",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "7",
-			 "mtHeight": "7"
+			 "mtLevelInDLT": "11",
+			 "mtHeight": "14"
 		 }
 	 }
  }
