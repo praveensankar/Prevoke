@@ -40,7 +40,7 @@ func DeployContract(config config.Config, counter int) (string, int64, error){
 
 
 	gasLimit := config.GasLimit             // in units
-	gasPrice, err := client.SuggestGasPrice(context.Background())
+	_, err = client.SuggestGasPrice(context.Background())
 	if err != nil {
 		zap.S().Fatalln(err)
 	}
@@ -65,7 +65,7 @@ func DeployContract(config config.Config, counter int) (string, int64, error){
 
 	zap.S().Infoln("BLOCKCHAIN- \t  smart contract address: ", addresss.String())
 	zap.S().Infoln("BLOCKCHAIN- \t tx hash: ", tx.Hash())
-	zap.S().Infoln("BLOCKCHAIN - \t gas price: ",gasPrice)
+	zap.S().Infoln("BLOCKCHAIN - \t gas used: ",gasUsed)
 	zap.L().Info("********************************************************************************************************************************\n")
 
 	return addresss.String(), gasUsed, err
