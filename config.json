@@ -3,7 +3,7 @@
  {
 	"contract" : {
 		"address" : "0x3d111a1BD9b4906c47108c801DAA8b70903B936E",
-		"gasLimit" : "30000000",
+		"gasLimit" : "100000000",
 		"gasPrice" : "20000000000"
 	},
 	 "issuer" : {
@@ -65,7 +65,7 @@
 			 "revokedVCs": "1000",
 			 "revocationBatchSize": "1",
 			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "14",
+			 "mtLevelInDLT": "12",
 			 "mtHeight": "14"
 		 }
 	 }
