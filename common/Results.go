@@ -182,7 +182,7 @@ func  WriteToFile( filename string, result Results) {
 	if err != nil {
 		zap.S().Errorln("unable to write results to file")
 	}
-	zap.S().Errorln("RESULTS - successfully written to the file")
+	//zap.S().Errorln("RESULTS - successfully written to the file")
 
 }
 

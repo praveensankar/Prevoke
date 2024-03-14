@@ -225,7 +225,8 @@ func (r *RevocationService) IssueVCsInBulk(vcIDs []string) ([]*RevocationData) {
 	if err != nil {
 		zap.S().Fatalln("failed to issue vc", err)
 	}
-
+	mt := r.FetchMerkleTree()
+	zap.S().Infoln("REVOCATION SERVICE - merkle tree: ", mt)
 	return revocationDataALl
 }
 

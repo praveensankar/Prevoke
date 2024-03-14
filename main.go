@@ -39,6 +39,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
+	"github.com/praveensankar/Revocation-Service/blockchain"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/entities"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
@@ -107,6 +108,7 @@ func Run(conf config.Config){
 	holderFlag := flag.Bool("holder", false, "a bool")
 	issuerFlag := flag.Bool("issuer", false, "a bool")
 	verifierFlag := flag.Bool("verifier", false, "a bool")
+	IPFSTestFlag := flag.Bool("ipfsTest", false, "a bool")
 	flag.Parse()
 
 	var filename string
@@ -207,6 +209,10 @@ func Run(conf config.Config){
 		entities.StartVerifierServer(conf)
 	}
 
+	if *IPFSTestFlag == true{
+		SetupLogger(conf, filename)
+		blockchain.TestIPFS()
+	}
 	//blockchain.TestConnectionToBlockchain(conf)
 	//blockchain.Test(conf)
 
