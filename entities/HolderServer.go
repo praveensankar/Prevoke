@@ -263,6 +263,50 @@ func(holder *Holder) getContractAddressFromIssuer(address string) (string){
 	return reply.GetId()
 }
 
+func(holder *Holder) receiveVCsAtOnce(address string){
+
+		conn, err := net.Dial("tcp",address)
+		if err != nil {
+			zap.S().Infoln("HOLDER - issuer is unavailabe")
+			return
+		}
+
+		//zap.S().Infoln("HOLDER -  address : ",conn.LocalAddr().String())
+		//zap.S().Infoln("connecting with the issuer via ", conn.RemoteAddr().String())
+
+		encoder := gob.NewEncoder(conn)
+		//encoder.Encode(s.GetType())
+		req := common.NewRequest()
+		req.SetId(holder.name)
+		req.SetType(common.GetVCs)
+		reqJson, _ := req.Json()
+		//zap.S().Infoln("HOLDER - sending new request: ", JsonToRequest(reqJson))
+		encoder.Encode(reqJson)
+		dec := gob.NewDecoder(conn)
+		var vcoffersJson []byte
+		//ticker := time.NewTicker(1 * time.Millisecond)
+		//for {
+		//	select {
+		//	case <-ticker.C:
+		dec.Decode(&vcoffersJson)
+		vcOffers := common.JsonToVCOffers(vcoffersJson)
+
+
+		for i:=0; i< len(vcOffers);i++{
+		cred := vcOffers[i].VC
+		merkleProof :=vcOffers[i].MerkleProof
+		holder.Lock()
+		holder.StoreVC(*cred)
+		holder.Unlock()
+		holder.StoreMerkleProof(cred.GetId(), *merkleProof)
+		holder.Unlock()
+		}
+		conn.Close()
+		//break
+		//	}
+		//}
+	}
+
 
 
 func(holder *Holder) receiveVCs(address string){
@@ -309,19 +353,29 @@ func(holder *Holder) receiveVCs(address string){
 		proofDecoder := gob.NewDecoder(conn)
 		var merkleProofJson []byte
 		proofDecoder.Decode(&merkleProofJson)
-		merkleProof, _ := techniques.JsonToMerkleProof(merkleProofJson)
+		merkleProof, err := techniques.JsonToMerkleProof(merkleProofJson)
+		if err!=nil{
+			zap.S().Infoln("HOLDER - error retrieving merkle proof from issuer: ",err)
+			return
+		}
 
-		holder.Lock()
-		holder.StoreMerkleProof(cred.GetId(), *merkleProof)
-		holder.Unlock()
+		if cred.GetId()==""{
+			zap.S().Infoln("HOLDER - error retrieving VC from issuer: ",err)
+			return
+		}
 		if holder.Debug==true {
 			zap.S().Infoln("HOLDER - received new vc: ", cred.GetId(), "\t merkle proof: ", merkleProof.String())
 		}
+		holder.Lock()
+		holder.StoreMerkleProof(cred.GetId(), *merkleProof)
+		holder.Unlock()
+
 		conn.Close()
 		//break
 		//	}
 		//}
 	}
+
 }
 
 func(holder *Holder) retrieveandResetResultsAtIssuers(address string)*common.Results {

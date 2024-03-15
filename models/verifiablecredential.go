@@ -112,3 +112,4 @@ func (vc *VerifiableCredential) Json() []byte {
 
 
 
+

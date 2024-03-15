@@ -350,6 +350,7 @@ func (issuer *Issuer) Revoke(conf config.Config, vc models.VerifiableCredential)
 	end := time.Since(start)
 	issuer.revokedVcIDs = append(issuer.revokedVcIDs, vcID)
 	affectedIndexes, numberOfAffectedVCs := issuer.UpdateAffectedVCs(conf, mtIndex)
+	zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vc:", vcID, "\t mt index: ", mtIndex)
 	if issuer.Debug==true {
 		zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vc:", vcID, "\t mt index: ", mtIndex,
 			"\t affected VCs Indexes: ", affectedIndexes, "\t number of affected VCs: ", numberOfAffectedVCs)
@@ -379,6 +380,7 @@ func (issuer *Issuer) RevokeVCInBatches(conf config.Config, vcIDs []string) (map
 		affectedIndexesAll= affectedIndexesAll.Union(affectedIndexes)
 		numberOfAffectedVCsTotal+=numberOfAffectedVCs
 	}
+	zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vcs:", vcIDs)
 	if issuer.Debug==true {
 		zap.S().Infoln("ISSUER-", issuer.name, "***REVOKED*** vcs:", vcIDs, "\t mt indexes: ", mtIndexes,
 			"\t affected VCs Indexes: ", affectedIndexesAll, "\t number of affected VCs: ", numberOfAffectedVCsTotal)

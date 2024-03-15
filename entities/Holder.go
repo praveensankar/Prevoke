@@ -58,7 +58,10 @@ func (h *Holder) RequestVCFromIssuer(){
 	if h.Debug==true {
 		zap.S().Infoln("HOLDER - requesting ", h.totalVCs, " vcs from issuer")
 	}
+	//h.receiveVCsAtOnce(h.issuerAddress)
+	//  to receive vcs one by one
 	h.receiveVCs(h.issuerAddress)
+	zap.S().Infoln("HOLDER - received ", h.totalVCs, "vcs from issuer ")
 }
 
 func (h *Holder) RetrieveandResetResultsAtIssuers(result  *common.Results){
@@ -99,6 +102,10 @@ func (h *Holder) RetrieveandResetResultsAtVerifiers(result  *common.Results){
 
 func (h *Holder) StoreVC(vc models.VerifiableCredential) {
 	h.verfiableCredentials = append(h.verfiableCredentials, vc)
+}
+
+func (h *Holder) StoreVCs(vcs []models.VerifiableCredential) {
+	h.verfiableCredentials = append(h.verfiableCredentials, vcs...)
 }
 
 func (h *Holder) StoreResults(result common.Results) {
@@ -151,6 +158,7 @@ func (h *Holder) ShareallVPs(results *common.Results){
 		zap.S().Infoln("HOLDER - haven't recived any vcs yet")
 		return
 	}
+	zap.S().Infoln("HOLDER - sharing vps with verifier")
 	for i:=0;i<len(h.verfiableCredentials);i++ {
 		vc := h.verfiableCredentials[i]
 		if h.Debug==true {

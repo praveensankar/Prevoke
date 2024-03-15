@@ -82,7 +82,16 @@ func JsonToMerkleProof(jsonObj []byte) (*MerkleProof, error){
 	return &proof, nil
 }
 
+func MerkleProofsToJson(proofs []MerkleProof) []byte {
+	jsonObj, _ := json.Marshal(proofs)
+	return jsonObj
+}
 
+func JsonToMerkleProofs(jsonObj []byte) []MerkleProof {
+	var proofs []MerkleProof
+	json.Unmarshal(jsonObj, &proofs)
+	return proofs
+}
 
 // leafsToIndexes - stores (leaf, index) pairs. The leaf value is stored as it is, not the hash digest of leaf.
 type MerkleTreeAccumulator2 struct {

@@ -124,9 +124,9 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 				exp := config.JsonToExperiment(expJson)
 				issuer.SetExperimentConfigs(conf, *exp)
 				contractAddress, gasUsed := DeployContract(conf, 0)
-				if issuer.Debug==true {
-					zap.S().Infoln("ISSUER - contract deployment cost (in gas): \t", gasUsed)
-				}
+
+				zap.S().Infoln("ISSUER - contract deployment cost (in gas): \t", gasUsed)
+
 				conf.SmartContractAddress=contractAddress
 				issuer.Reset(*conf)
 				issuer.ContractAddress=contractAddress
@@ -136,9 +136,8 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 
 			if req.GetType() == common.GetandResetResult {
 				resultEncoder := gob.NewEncoder(conn)
-				if issuer.Debug==true {
-					zap.S().Infoln("ISSUER - sending results to holder: \t", issuer.Result.String())
-				}
+				zap.S().Infoln("ISSUER - sending results to holder: \t", issuer.Result.String())
+
 				issuer.CalculateResult(*conf)
 				resJson, _ := issuer.Result.Json()
 				resultEncoder.Encode(resJson)
@@ -192,9 +191,9 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 				if req.GetType() == common.GetMerkleProof {
 					proofEncoder := gob.NewEncoder(conn)
 					merkleProof := issuer.getUpdatedMerkleProof(issuer.CredentialStore[count].GetId())
-					if issuer.Debug==true {
-						zap.S().Infoln("ISSUER - issued vc : ", issuer.CredentialStore[count].GetId(), "  \t to: ", req.GetId())
-					}
+
+					zap.S().Infoln("ISSUER - issued vc : ", issuer.CredentialStore[count].GetId(), "  \t to: ", req.GetId())
+
 					count = count + 1
 
 					if count==int(conf.ExpectedNumberOfTotalVCs){
@@ -214,11 +213,36 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 				}
 				conn.Close()
 			}
+			if req.GetType() == common.GetVCs {
+				if issuer.Debug==true {
+					zap.S().Infoln("ISSUER - received new request: ", req)
+				}
+				encoder := gob.NewEncoder(conn)
 
+				var vcOffers []*common.VCOffer
+				for i:=0;i<int(conf.ExpectedNumberOfTotalVCs);i++{
+					cred := issuer.CredentialStore[i]
+					merkleProof := issuer.getUpdatedMerkleProof(cred.GetId())
+					vcOffer := common.VCOffer{VC: &cred, MerkleProof: merkleProof}
+					vcOffers = append(vcOffers, &vcOffer)
+				}
+				jsonObj := common.VCoffersToJson(vcOffers)
+				encoder.Encode(jsonObj)
 
+				if revoked==false {
+					credentials := issuer.CredentialStore
+					for _, vc := range credentials {
+						issuer.UpdateMerkleProof(vc)
+					}
+					issuer.SimulateRevocation(*conf)
+					revoked=true
+				}
+				conn.Close()
+				}
+			}
 		}
 	}
-}
+
 
 func DeployContract(conf *config.Config,counter int) (string, int64){
 	address, gasUsed, err := blockchain.DeployContract(*conf, counter)

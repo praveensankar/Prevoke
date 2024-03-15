@@ -90,10 +90,9 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 				var vpJson []byte
 				vpDecoder.Decode(&vpJson)
 				diplomaVP := vc.JsonToDiplomaVP(vpJson)
-				if verifier.Debug==true {
-					zap.S().Infoln("VERIFIER - received VP with following claims: \t degree: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Degree,
-						"\t grade: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Grade)
-				}
+
+
+
 				// phase 1 time does not include bbs verification time
 				phase1result, bbsVerificationTime, phase1Time := verifier.VerifyVPPhase1(diplomaVP)
 				verifier.Result.AddBBSVerificationTimePerVP(bbsVerificationTime)
@@ -146,6 +145,9 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 					phase2ResEncoder := gob.NewEncoder(conn)
 					phase2ResultReq := common.NewRequest()
 					phase2ResultReq.SetId(verifier.name)
+					zap.S().Infoln("VERIFIER - claims: \t degree: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Degree,
+						"\t grade: ", diplomaVP.Messages.(vc.SampleDiplomaPresentation).Grade, "\t result: ", phase2result)
+
 					if phase2result==true{
 					phase2ResultReq.SetType(common.SuccessfulVerification)
 					} else{

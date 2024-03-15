@@ -2,13 +2,17 @@ package common
 
 import (
 	"encoding/json"
+	"github.com/praveensankar/Revocation-Service/models"
+	"github.com/praveensankar/Revocation-Service/techniques"
 	"net"
 )
 type RequestType string
 const (
 	GetVC    RequestType = "get vc"
+	GetVCs    RequestType = "get vcs"
 	VerifyVC             = "verify vc"
 	GetMerkleProof        = "get merkle proof"
+	GetMerkleProofs        = "get merkle proofs"
 	SendWitness        = "send witness"
 	SendVP			  = "send vp"
 	SuccessfulVerification = "successful verification"
@@ -83,4 +87,21 @@ func NewRequest() Request {
 	return r
 }
 
+
+
+type VCOffer struct {
+	VC *models.VerifiableCredential
+	MerkleProof *techniques.MerkleProof
+}
+
+func VCoffersToJson(vcs []*VCOffer) []byte{
+	jsonObj, _ := json.Marshal(vcs)
+	return jsonObj
+}
+
+func JsonToVCOffers(jsonObj []byte) []VCOffer{
+	var vcs []VCOffer
+	json.Unmarshal(jsonObj, &vcs)
+	return vcs
+}
 
