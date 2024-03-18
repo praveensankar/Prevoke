@@ -236,6 +236,7 @@ func StartHolder(config config.Config){
 	experiments := config.ExpParamters
 
 	counter:=1
+	expStart := time.Now()
 	for _, exp := range experiments {
 
 		//SetUpExpParamters(&config, *exp)
@@ -281,7 +282,8 @@ func StartHolder(config config.Config){
 		}
 	}
 
-
+	expEnd := time.Since(expStart)
+	zap.S().Infoln("HOLDER - Total time to run the experiments: ", expEnd.Hours(), "  hours")
 	timer1 := time.NewTimer(30 * time.Second)
 	<-timer1.C
 
