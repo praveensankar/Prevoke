@@ -636,10 +636,7 @@ func (issuer *Issuer) Reset(conf config.Config) {
 func (issuer *Issuer) SimulateRevocation(config config.Config){
 	revocationBatchSize := int(config.RevocationBatchSize)
 
-	var amountPaid int64
-	amountPaid = 0
-	revocationTimePerBatch := 0.0
-	revocationTimeTotal := 0.0
+
 	totalRevokedVCs := int(config.ExpectedNumberofRevokedVCs)
 	revokedVCs := make([]string, totalRevokedVCs)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
@@ -671,30 +668,52 @@ func (issuer *Issuer) SimulateRevocation(config config.Config){
 		indexes, amount, revocationTime := issuer.RevokeVCInBatches(config, revokedVCsInBatch)
 		issuer.revokedVcIDs = append(issuer.revokedVcIDs, common.RevokedVC)
 		issuer.Result.AffectedIndexes = issuer.Result.AffectedIndexes.Union(indexes)
-		revocationTimeTotal = revocationTimeTotal + revocationTime.Seconds()
-		if revocationTimePerBatch == 0.0{
-			revocationTimePerBatch = revocationTimePerBatch + revocationTime.Seconds();
-		} else{
-			revocationTimePerBatch = (revocationTimePerBatch + revocationTime.Seconds())/2;
-		}
-
-		if amountPaid==0{
-			amountPaid = amountPaid + amount;
-		} else{
-			amountPaid = amountPaid + amount;
-			amountPaid = amountPaid / 2;
-		}
-
-
+		issuer.Result.AddRevocationCostPerBatch(amount)
+		issuer.Result.AddRevocationTimePerBatch(revocationTime.Seconds())
+		issuer.Result.AddRevocationTimeTotal(revocationTime.Seconds())
 	}
 
 
-	issuer.Result.AmountPaid = amountPaid
+
 	issuer.Result.RevocationBatchSize = revocationBatchSize
-	issuer.Result.RevocationTimeperBatch = revocationTimePerBatch
-	issuer.Result.RevocationTimeTotal = revocationTimeTotal
+
 }
 
+/*
+CalculateNumberOfVCsWouldRetrieveWitnessFromDLT calculates how many valid vcs need to retrieve witness from dlt
+
+First, it computes the list of valid vcs that are affected by the bloom filter
+ */
+func (issuer *Issuer) CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) int{
+
+	count := 0
+	var vcIDs []string
+	revokedVCIDs := make(map[string]bool)
+
+
+	bf := techniques.CreateBloomFilter(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
+	for i := 0; i < len(issuer.revokedVcIDs); i +=2 {
+		revokedVCIDs[issuer.revokedVcIDs[i]] = true
+		bf.RevokeInBloomFilter(issuer.revokedVcIDs[i])
+	}
+
+
+
+	for i:=0; i< int(conf.ExpectedNumberOfTotalVCs);i++{
+		vcId := issuer.CredentialStore[i].GetId()
+		if bf.CheckStatusInBloomFilter(vcId)==false{
+		if revokedVCIDs[vcId]==false{
+				mtIndex := issuer.revocationProofs[vcId].MtIndex
+				if issuer.AffectedVCIndexes[mtIndex]==false{
+					count++
+					vcIDs = append(vcIDs, vcId)
+				}
+			}
+		}
+}
+	zap.S().Infoln("VCs that would retrieve witness from DLTs: ", vcIDs)
+	return count
+}
 
 func (issuer *Issuer) SetExperimentConfigs(conf *config.Config, exp config.Experiment){
 conf.ExpectedNumberOfTotalVCs = uint(exp.TotalVCs)

@@ -151,6 +151,6 @@ func PerformExperimentTest(config config.Config){
 	//}
 	zap.S().Infoln("SIMULATOR : \t results: ", result.String())
 
-	common.WriteToFile("result.json", *result)
+	common.WriteToFile(*result)
 
 }

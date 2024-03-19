@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/praveensankar/Revocation-Service/models"
 	"github.com/praveensankar/Revocation-Service/techniques"
+	"go.uber.org/zap"
 	"net"
 )
 type RequestType string
@@ -14,6 +15,7 @@ const (
 	GetMerkleProof        = "get merkle proof"
 	GetMerkleProofs        = "get merkle proofs"
 	SendWitness        = "send witness"
+	CalculateVCsRetreivingWitnessFromDLT ="calculate witness"
 	SendVP			  = "send vp"
 	SuccessfulVerification = "successful verification"
 	FailedVerification = "failed verification"
@@ -105,3 +107,36 @@ func JsonToVCOffers(jsonObj []byte) []VCOffer{
 	return vcs
 }
 
+type CalWitnessReply struct {
+	VcIDs []string
+	Result string
+	Type RequestType
+}
+
+func (r *CalWitnessReply) SetResult(result string){
+	r.Result = result
+}
+
+func (r *CalWitnessReply) GetResult() string {
+	return r.Result
+}
+
+func (r *CalWitnessReply) Json() ([]byte, error){
+	return json.Marshal(r)
+}
+
+
+
+func JsonToCalWitnessReply(jsonObj []byte) *CalWitnessReply {
+	reply := CalWitnessReply{}
+	err := json.Unmarshal(jsonObj, &reply)
+	if err!=nil{
+		zap.S().Infoln("REQUEST - error unmarshalling witness calculation reply: ", err)
+	}
+	return &reply
+}
+
+func NewCalWitnessReply() CalWitnessReply {
+	r := CalWitnessReply{}
+	return r
+}

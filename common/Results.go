@@ -31,11 +31,16 @@ type Results struct {
 	NumberOfVCsRetrievedWitnessFromIssuer int `json:"number_of_vcs_retrieved_witness_from_issuer"`
 	RevocationTimeperBatch float64 `json:"revocation_timeper_vc"`
 	RevocationTimeTotal float64 `json:"revocation_time_total"`
+	RevocationTimeRawData []float64 `json:"revocation_time_raw_data"`
 	VerificationTimePerValidVC float64 `json:"verification_time_per_valid_vc"`
+	VerificationTimePerValidVCRawData []float64 `json:"verification_time_per_valid_vc_raw_data"`
 	VerificationTimeTotalValidVCs float64 `json:"verification_time_total_valid_vcs"`
 	VerificationTimePerRevokedorFalsePositiveVC float64 `json:"verification_time_per_false_positive_or_revoked_vc"`
+	VerificationTimePerRevokedorFalsePositiveVCRawData []float64 `json:"verification_time_per_revokedor_false_positive_vc_raw_data"`
 	AvgTimeToFetchWitnessFromIssuer float64 `json:"avg_time_to_fetch_witness_from_issuer"`
+	AvgTimeToFetchWitnessFromIssuerRawData []float64 `json:"avg_time_to_fetch_witness_from_issuer_raw_data"`
 	AvgTimeToFetchWitnessFromSmartContract float64 `json:"avg_time_to_fetch_witness_from_smart_contract"`
+	AvgTimeToFetchWitnessFromSmartContractRawData []float64 `json:"avg_time_to_fetch_witness_from_smart_contract_raw_data"`
 	VerificationTimeTotalRevokedorFalsePositiveVCs float64 `json:"verification_time_total_false_positive_and_revoked_vcs"`
 	VerificationTimeTotal float64 `json:"verification_time_total"`
 	BBSProoGenerationTimePerVP float64 `json:"bbs_proof_generation_time"`
@@ -44,6 +49,7 @@ type Results struct {
 	ContractDeploymentCost int64 `json:"contract_deployment_cost"`
 	BulkIssuanceCost int64 `json:"bulk_issuance_cost"`
 	AmountPaid int64 `json:"revocation_cost_in_wei"`
+	RevocationCostRawData []int64 `json:"revocation_cost_raw_data"`
 	AffectedIndexes mapset.Set
 	FalsePositiveResults mapset.Set
 	FetchedWitnessesFromIssuers mapset.Set
@@ -57,6 +63,20 @@ func CreateResult() *Results {
 	return result
 }
 
+func (r *Results) AddRevocationTimeTotal(revocationTime float64){
+	r.RevocationTimeTotal = r.RevocationTimeTotal+revocationTime
+}
+
+func (r *Results) AddRevocationTimePerBatch(revocationTime float64){
+	r.RevocationTimeRawData = append(r.RevocationTimeRawData, revocationTime)
+	if r.RevocationTimeperBatch==0.0{
+		r.RevocationTimeperBatch = r.RevocationTimeperBatch + revocationTime
+	} else {
+		r.RevocationTimeperBatch = r.RevocationTimeperBatch + revocationTime
+		r.RevocationTimeperBatch = r.RevocationTimeperBatch / 2
+	}
+}
+
 func (r *Results) AddVerificationTimeTotal(vTime float64){
 	r.VerificationTimeTotal = r.VerificationTimeTotal+vTime
 }
@@ -65,6 +85,7 @@ func (r *Results) AddVerificationTimeTotalValidVCs(phase1Time float64){
 }
 
 func (r *Results) AddVerificationTimePerValidVC(phase1Time float64){
+	r.VerificationTimePerValidVCRawData = append(r.VerificationTimePerValidVCRawData, phase1Time)
 	if r.VerificationTimePerValidVC==0.0{
 		r.VerificationTimePerValidVC = r.VerificationTimePerValidVC + phase1Time
 	} else {
@@ -78,6 +99,7 @@ func (r *Results) AddVerificationTimeTotalRevokedandFalsePositiveVCs(phase2Time 
 }
 
 func (r *Results) AddVerificationTimePerRevokedandFalsePositiveVC(phase2Time float64){
+	r.VerificationTimePerRevokedorFalsePositiveVCRawData = append(r.VerificationTimePerRevokedorFalsePositiveVCRawData, phase2Time)
 	if r.VerificationTimePerRevokedorFalsePositiveVC==0.0{
 		r.VerificationTimePerRevokedorFalsePositiveVC = r.VerificationTimePerRevokedorFalsePositiveVC + phase2Time
 	} else {
@@ -87,6 +109,7 @@ func (r *Results) AddVerificationTimePerRevokedandFalsePositiveVC(phase2Time flo
 }
 
 func (r *Results) AddAvgTimeToFetchWitnessFromIssuer(timeToFetch float64) {
+	r.AvgTimeToFetchWitnessFromIssuerRawData = append(r.AvgTimeToFetchWitnessFromIssuerRawData, timeToFetch)
 	if r.AvgTimeToFetchWitnessFromIssuer==0.0{
 		r.AvgTimeToFetchWitnessFromIssuer = r.AvgTimeToFetchWitnessFromIssuer + timeToFetch
 	} else {
@@ -96,6 +119,7 @@ func (r *Results) AddAvgTimeToFetchWitnessFromIssuer(timeToFetch float64) {
 }
 
 func (r *Results) AddAvgTimeToFetchWitnessFromSmartContract(timeToFetch float64) {
+	r.AvgTimeToFetchWitnessFromSmartContractRawData = append(r.AvgTimeToFetchWitnessFromSmartContractRawData, timeToFetch)
 	if r.AvgTimeToFetchWitnessFromSmartContract==0.0{
 		r.AvgTimeToFetchWitnessFromSmartContract = r.AvgTimeToFetchWitnessFromSmartContract + timeToFetch
 	} else {
@@ -129,6 +153,18 @@ func (r *Results) IncrementNumberofVCsRetrievedWitnessesFromIssuer(){
 func (r *Results) IncrementNumberofVCsRetrievedWitnessesFromDLT(){
 	r.NumberOfVCsRetrievedWitnessFromDLT++
 }
+
+
+func (r *Results) AddRevocationCostPerBatch(revocationCost int64){
+	r.RevocationCostRawData = append(r.RevocationCostRawData, revocationCost)
+	if r.AmountPaid==0{
+		r.AmountPaid = r.AmountPaid + revocationCost
+	} else {
+		r.AmountPaid = r.AmountPaid + revocationCost
+		r.AmountPaid = r.AmountPaid / 2
+	}
+}
+
 
 func (r Results) String() string{
 	var response string
@@ -169,10 +205,11 @@ func (r Results) String() string{
 }
 
 
-func  WriteToFile( filename string, result Results) {
+func  WriteToFile(result Results) {
 
 	var results []Results
-	jsonFile, err := os.Open(filename)
+	filename := fmt.Sprintf("results/results_%d_%d_%f_%d.json",result.TotalVCs, result.RevokedVCs, result.FalsePositiveRate, result.MtLevelInDLT)
+	jsonFile, err := os.Create(filename)
 	if err != nil {
 		zap.S().Errorln("ERROR - results.json file open error")
 	}

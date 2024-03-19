@@ -71,8 +71,10 @@ func (h *Holder) RetrieveandResetResultsAtIssuers(result  *common.Results){
 	res := h.retrieveandResetResultsAtIssuers(h.issuerAddress)
 
 	result.RevocationTimeperBatch = res.RevocationTimeperBatch
+	result.RevocationTimeRawData = res.RevocationTimeRawData
 	result.RevocationTimeTotal = res.RevocationTimeTotal
 	result.AmountPaid = res.AmountPaid
+	result.RevocationCostRawData = res.RevocationCostRawData
 	result.RevocationBatchSize = res.RevocationBatchSize
 	result.MerkleTreeSizeInDLT = res.MerkleTreeSizeInDLT
 	result.MerkleTreeSizeTotal = res.MerkleTreeSizeTotal
@@ -90,9 +92,12 @@ func (h *Holder) RetrieveandResetResultsAtVerifiers(result  *common.Results){
 
 	result.BBSVerificationTimePerVP = res.BBSVerificationTimePerVP
 	result.VerificationTimePerValidVC = res.VerificationTimePerValidVC
+	result.VerificationTimePerValidVCRawData = res.VerificationTimePerValidVCRawData
+
 	result.VerificationTimeTotalValidVCs = res.VerificationTimeTotalValidVCs
 
 	result.VerificationTimePerRevokedorFalsePositiveVC = res.VerificationTimePerRevokedorFalsePositiveVC
+	result.VerificationTimePerRevokedorFalsePositiveVCRawData = res.VerificationTimePerRevokedorFalsePositiveVCRawData
 	result.VerificationTimeTotalRevokedorFalsePositiveVCs = res.VerificationTimeTotalRevokedorFalsePositiveVCs
 
 	result.VerificationTimeTotal = res.VerificationTimeTotal
@@ -223,6 +228,8 @@ func (h *Holder) SendExpConfig(address string, exp *config.Experiment) {
 
 
 
+
+
 func SetUpExpParamters(conf *config.Config, exp config.Experiment){
 	conf.ExpectedNumberOfTotalVCs= uint(exp.TotalVCs)
 	conf.ExpectedNumberofRevokedVCs= uint(exp.RevokedVCs)
@@ -278,7 +285,7 @@ func StartHolder(config config.Config){
 			holder.RetrieveandResetResultsAtVerifiers(result)
 			result.NumberOfVCsRetrievedWitnessFromIssuer = result.NumberOfVCsRetrievedWitnessFromIssuer - int(config.ExpectedNumberofRevokedVCs)
 			common.ConstructResults(config, start, result)
-			common.WriteToFile("results.json", *result)
+			common.WriteToFile( *result)
 		}
 	}
 
@@ -290,6 +297,51 @@ func StartHolder(config config.Config){
 }
 
 
+func CalculateWitness(config config.Config){
+
+	experiments := config.ExpParamters
+
+	counter:=1
+	expStart := time.Now()
+	for _, exp := range experiments {
+
+		//SetUpExpParamters(&config, *exp)
+		//exp.MtHeight=1
+
+		if exp.TotalVCs != 0 {
+
+			zap.S().Infoln("Experiment: ",counter,"/", len(experiments),"  running")
+			counter++
+			holder := NewHolder(config)
+			holder.issuerAddress = config.IssuerAddress
+			holder.verifierAddress = config.VerifierAddress
+			holder.totalVCs = exp.TotalVCs
+			holder.MTHeight= int(exp.MtHeight)
+			holder.MTLevelInDLT = int(exp.MtLevelInDLT)
+
+			config.ExpectedNumberOfTotalVCs = uint(exp.TotalVCs)
+			config.ExpectedNumberofRevokedVCs = uint(exp.RevokedVCs)
+			config.FalsePositiveRate = exp.FalsePositiveRate
+			config.MTHeight = uint(exp.MtHeight)
+			config.MtLevelInDLT = uint(exp.MtLevelInDLT)
+			config.RevocationBatchSize = uint(exp.RevocationBatchSize)
+			holder.RevocationService = revocation_service.CreateRevocationService(config)
+			result := common.CreateResult()
+			start := time.Now()
+			numberOfVCsRetrievedWitnessFromDLT := holder.CalculateVCsThatWouldRetrieveWitnessFromDLT(holder.issuerAddress, exp)
+			zap.S().Infoln("HOLDER - number of vcs retrieving witness from dlt: ", numberOfVCsRetrievedWitnessFromDLT)
+			result.NumberOfVCsRetrievedWitnessFromDLT = int(numberOfVCsRetrievedWitnessFromDLT)
+			common.ConstructResults(config, start, result)
+			common.WriteToFile( *result)
+		}
+	}
+
+	expEnd := time.Since(expStart)
+	zap.S().Infoln("HOLDER - Total time to run the experiment: ", expEnd.Hours(), "  hours")
+	timer1 := time.NewTimer(30 * time.Second)
+	<-timer1.C
+
+}
 
 func StartWorkLoad(config config.Config){
 

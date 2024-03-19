@@ -10,6 +10,7 @@ import (
 	"github.com/praveensankar/Revocation-Service/vc"
 	"go.uber.org/zap"
 	"net"
+	"strconv"
 	"time"
 )
 
@@ -439,6 +440,45 @@ func(holder *Holder) retrieveandResetResultsAtVerifiers(address string) *common.
 		zap.S().Infoln("HOLDER - received revocation results from verifier")
 	}
 	return res
+}
+
+func (holder *Holder) CalculateVCsThatWouldRetrieveWitnessFromDLT(address string,  exp *config.Experiment) int{
+	conn, err := net.Dial("tcp", address)
+	if err != nil {
+		zap.S().Infoln("HOLDER - issuer is unavailabe")
+		conn.Close()
+	}
+
+	encoder := gob.NewEncoder(conn)
+
+	req := common.NewRequest()
+	req.SetId(holder.name)
+	req.SetType(common.CalculateVCsRetreivingWitnessFromDLT)
+	reqJson, _ := req.Json()
+
+	encoder.Encode(reqJson)
+
+
+	dec := gob.NewDecoder(conn)
+	var replyJson []byte
+	dec.Decode(&replyJson)
+	_ = common.JsonToRequest(replyJson)
+
+
+		// step 3 - Holder sends a VP to the verifier. Initiates the phase 1 verification
+		expEncoder := gob.NewEncoder(conn)
+		expJson, _ := exp.Json()
+		//zap.S().Infoln("HOLDER - sending vp: ")
+		expEncoder.Encode(expJson)
+
+		witReplyDecoder := gob.NewDecoder(conn)
+		var resJson []byte
+		witReplyDecoder.Decode(&resJson)
+		res := common.JsonToCalWitnessReply(resJson)
+		conn.Close()
+
+	vcCount , err := strconv.Atoi(res.GetResult())
+	return vcCount
 }
 
 func (holder *Holder) sendExpConfig(address string, exp *config.Experiment) {

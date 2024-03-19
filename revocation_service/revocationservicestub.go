@@ -258,6 +258,8 @@ func (r RevocationServiceStub) FetchBloomFilterSizeInDLT(revokedVcIDs []string)(
 	return 0
 }
 
-
+func (r RevocationServiceStub)  GetLocalBloomFilter() *techniques.BloomFilter{
+	return r.bloomFilter
+}
 
 

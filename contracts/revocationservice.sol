@@ -29,6 +29,7 @@ contract RevocationService{
     // sets the entities - contract creator is the entities
     constructor(){
         issuer = msg.sender;
+        merkleTree[0]=bytes32(0);
     }
 
     /*

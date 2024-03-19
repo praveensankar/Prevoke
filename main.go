@@ -109,6 +109,7 @@ func Run(conf config.Config){
 	issuerFlag := flag.Bool("issuer", false, "a bool")
 	verifierFlag := flag.Bool("verifier", false, "a bool")
 	IPFSTestFlag := flag.Bool("ipfsTest", false, "a bool")
+	witnessCalculationFlag := flag.Bool("calWitness", false, "a bool")
 	flag.Parse()
 
 	var filename string
@@ -212,6 +213,14 @@ func Run(conf config.Config){
 	if *IPFSTestFlag == true{
 		SetupLogger(conf, filename)
 		blockchain.TestIPFS()
+	}
+
+	if *witnessCalculationFlag==true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/holder")
+		}
+		SetupLogger(conf, filename)
+		entities.CalculateWitness(conf)
 	}
 	//blockchain.TestConnectionToBlockchain(conf)
 	//blockchain.Test(conf)

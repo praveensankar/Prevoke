@@ -83,7 +83,7 @@ func PerformExperiment(config config.Config){
 	SimulateRevocation(config, issuer1, vcs, results)
 	SimulateVerification( issuer1, vcs, results)
 	common.ConstructResults(config, start, results)
-	common.WriteToFile("results.json", *results)
+	common.WriteToFile(*results)
 }
 
 

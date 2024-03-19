@@ -47,7 +47,7 @@ func(verifier *Verifier) serverListener(server net.Listener, conf config.Config)
 			dec.Decode(&reqJson)
 			req := common.JsonToRequest(reqJson)
 			if req.GetType() == common.StoreResults {
-				common.WriteToFile("results_verifier.json",*verifier.Result)
+				common.WriteToFile(*verifier.Result)
 				verifier.Result = common.CreateResult()
 			}
 			if req.GetType() == common.SetExpConfigs {
