@@ -209,13 +209,22 @@ func  WriteToFile(result Results) {
 
 	var results []Results
 	filename := fmt.Sprintf("results/results_%d_%d_%f_%d.json",result.TotalVCs, result.RevokedVCs, result.FalsePositiveRate, result.MtLevelInDLT)
-	jsonFile, err := os.Create(filename)
+
+	jsonFile, err := os.Open(filename)
 	if err != nil {
-		zap.S().Errorln("ERROR - results.json file open error")
+		jsonFile2, err2 := os.Create(filename)
+		if err2 != nil {
+			zap.S().Errorln("ERROR - results.json file creation error")
+		}
+		resJson, _ := ioutil.ReadAll(jsonFile2)
+		json.Unmarshal(resJson, &results)
+		results = append(results, result)
+	} else{
+		resJson, _ := ioutil.ReadAll(jsonFile)
+		json.Unmarshal(resJson, &results)
+		results = append(results, result)
 	}
-	resJson, _ := ioutil.ReadAll(jsonFile)
-	json.Unmarshal(resJson, &results)
-	results = append(results, result)
+
 	jsonRes, _ := json.MarshalIndent(results,"","")
 	//filename := fmt.Sprintf("Simulation/results/result_%v_%v_%v.json",numberOfVcs, numberOfRevokedVcs, mtLevelInDLT)
 	err = ioutil.WriteFile(filename, jsonRes, 0644)
