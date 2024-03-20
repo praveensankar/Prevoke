@@ -328,9 +328,10 @@ func CalculateWitness(config config.Config){
 			holder.RevocationService = revocation_service.CreateRevocationService(config)
 			result := common.CreateResult()
 			start := time.Now()
-			numberOfVCsRetrievedWitnessFromDLT := holder.CalculateVCsThatWouldRetrieveWitnessFromDLT(holder.issuerAddress, exp)
-			zap.S().Infoln("HOLDER - number of vcs retrieving witness from dlt: ", numberOfVCsRetrievedWitnessFromDLT)
-			result.NumberOfVCsRetrievedWitnessFromDLT = int(numberOfVCsRetrievedWitnessFromDLT)
+			numberOfFalsePositives, numberOfVCsRetrievingVCsFromDLT := holder.CalculateVCsThatWouldRetrieveWitnessFromDLT(holder.issuerAddress, exp)
+			zap.S().Infoln("HOLDER - false positives: ", numberOfFalsePositives, "\t number of vcs retrieving witness from dlt: ", numberOfVCsRetrievingVCsFromDLT)
+			result.NumberOfVCsRetrievedWitnessFromDLT = int(numberOfVCsRetrievingVCsFromDLT)
+			result.NumberOfFalsePositives = numberOfFalsePositives
 			common.ConstructResults(config, start, result)
 			common.WriteToFile( *result)
 		}

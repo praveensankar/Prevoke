@@ -442,7 +442,7 @@ func(holder *Holder) retrieveandResetResultsAtVerifiers(address string) *common.
 	return res
 }
 
-func (holder *Holder) CalculateVCsThatWouldRetrieveWitnessFromDLT(address string,  exp *config.Experiment) int{
+func (holder *Holder) CalculateVCsThatWouldRetrieveWitnessFromDLT(address string,  exp *config.Experiment) (int, int){
 	conn, err := net.Dial("tcp", address)
 	if err != nil {
 		zap.S().Infoln("HOLDER - issuer is unavailabe")
@@ -476,9 +476,9 @@ func (holder *Holder) CalculateVCsThatWouldRetrieveWitnessFromDLT(address string
 		witReplyDecoder.Decode(&resJson)
 		res := common.JsonToCalWitnessReply(resJson)
 		conn.Close()
-
-	vcCount , err := strconv.Atoi(res.GetResult())
-	return vcCount
+	numberOfFalsePositives, err := strconv.Atoi(res.GetFalsePositives())
+	numberOfVCsRetrievingVCsFromDLT, err := strconv.Atoi(res.GetNumberOfVCsRetrievingVCsFromDLT())
+	return numberOfFalsePositives, numberOfVCsRetrievingVCsFromDLT
 }
 
 func (holder *Holder) sendExpConfig(address string, exp *config.Experiment) {

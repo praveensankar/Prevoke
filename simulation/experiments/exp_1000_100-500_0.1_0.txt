@@ -1,0 +1,120 @@
+"exp_1000_100_0.1_0_run1": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "100",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+"exp_1000_100_0.1_0_run2": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "100",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+"exp_1000_100_0.1_0_run3": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "100",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+"exp_1000_200_0.1_0_run1": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "200",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+"exp_1000_200_0.1_0_run2": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "200",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+"exp_1000_200_0.1_0_run3": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "200",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+"exp_1000_300_0.1_0_run1": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "300",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+"exp_1000_300_0.1_0_run2": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "300",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+"exp_1000_300_0.1_0_run3": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "300",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+		 "exp_1000_400_0.1_0_run1": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "400",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+		 "exp_1000_400_0.1_0_run2": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "400",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+		 "exp_1000_400_0.1_0_run3": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "400",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+		 "exp_1000_500_0.1_0_run1": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "500",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+		 "exp_1000_500_0.1_0_run2": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "500",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },
+		 "exp_1000_500_0.1_0_run3": {
+			 "totalVCs": "1000",
+			 "revokedVCs": "500",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "0",
+			 "mtHeight": "10"
+		 },

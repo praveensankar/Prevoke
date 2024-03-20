@@ -684,15 +684,16 @@ CalculateNumberOfVCsWouldRetrieveWitnessFromDLT calculates how many valid vcs ne
 
 First, it computes the list of valid vcs that are affected by the bloom filter
  */
-func (issuer *Issuer) CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) int{
+func (issuer *Issuer) CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) (int, int){
 
-	count := 0
+	numberOfVCsRetrievingVCsFromDLT := 0
+	numberOfFalsePositives := 0
 	var vcIDs []string
 	revokedVCIDs := make(map[string]bool)
 
 
 	bf := techniques.CreateBloomFilter(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
-	for i := 0; i < len(issuer.revokedVcIDs); i +=2 {
+	for i := 0; i < len(issuer.revokedVcIDs); i++ {
 		revokedVCIDs[issuer.revokedVcIDs[i]] = true
 		bf.RevokeInBloomFilter(issuer.revokedVcIDs[i])
 	}
@@ -703,16 +704,17 @@ func (issuer *Issuer) CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf confi
 		vcId := issuer.CredentialStore[i].GetId()
 		if bf.CheckStatusInBloomFilter(vcId)==false{
 		if revokedVCIDs[vcId]==false{
+			numberOfFalsePositives++
 				mtIndex := issuer.revocationProofs[vcId].MtIndex
 				if issuer.AffectedVCIndexes[mtIndex]==false{
-					count++
+					numberOfVCsRetrievingVCsFromDLT++
 					vcIDs = append(vcIDs, vcId)
 				}
 			}
 		}
 }
 	zap.S().Infoln("VCs that would retrieve witness from DLTs: ", vcIDs)
-	return count
+	return numberOfFalsePositives, numberOfVCsRetrievingVCsFromDLT
 }
 
 func (issuer *Issuer) SetExperimentConfigs(conf *config.Config, exp config.Experiment){

@@ -158,16 +158,17 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 				issuer.SimulateRevocation(*conf)
 
 
-				vcCount := issuer.CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(*conf)
+				numberOfFalsePositives, numberOfVCsRetrievingVCsFromDLT := issuer.CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(*conf)
 				calWitReplyEncoder := gob.NewEncoder(conn)
 				calWitReply := common.NewCalWitnessReply()
-				calWitReply.SetResult(strconv.Itoa(vcCount))
+				calWitReply.SetFalsePositives(strconv.Itoa(numberOfFalsePositives))
+				calWitReply.SetNumberOfVCsRetrievingVCsFromDLT(strconv.Itoa(numberOfVCsRetrievingVCsFromDLT))
 				calWitReplyJson, _ := calWitReply.Json()
 				calwitEncErr := calWitReplyEncoder.Encode(calWitReplyJson)
 				if calwitEncErr!=nil{
 					zap.S().Infoln("ISSUER - witness calculation encoding error: ", calwitEncErr)
 				}
-				zap.S().Infoln("ISSUER - number of vcs retrieving witness from dlt: \t", calWitReply.Result)
+				zap.S().Infoln("ISSUER - number of vcs retrieving witness from dlt: \t", calWitReply.String())
 				conn.Close()
 			}
 			if req.GetType() == common.GetandResetResult {
