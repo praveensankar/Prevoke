@@ -379,7 +379,7 @@ func (r RevocationService) RevokeVCInBatches(vcIDs []string) (map[string]int, in
 	endBalance, err := client.BalanceAt(context.Background(), r.account, nil)
 	//gasUsed := (startBalance.Int64()-endBalance.Int64())/int64(math.Pow(10,9))
 	gasUsed := (startBalance.Int64()-endBalance.Int64()) / r.gasPrice.Int64()
-	zap.S().Infoln("REVOCATION SERVICE- \t bf indexes: ",bfIndexes, "\t mt indexes: ", mtIndexes, "\t mt values: ", mtValues, "\tGAS USAGE in gwei: ", gasUsed)
+	//zap.S().Infoln("REVOCATION SERVICE- \t bf indexes: ",bfIndexes, "\t mt indexes: ", mtIndexes, "\t mt values: ", mtValues, "\tGAS USAGE in gwei: ", gasUsed)
 
 
 
