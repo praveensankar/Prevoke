@@ -220,7 +220,7 @@ func Run(conf config.Config){
 			filename = fmt.Sprintf("logs/holder")
 		}
 		SetupLogger(conf, filename)
-		entities.CalculateWitness(conf)
+		simulation.CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf)
 	}
 	//blockchain.TestConnectionToBlockchain(conf)
 	//blockchain.Test(conf)

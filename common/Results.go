@@ -50,9 +50,10 @@ type Results struct {
 	BulkIssuanceCost int64 `json:"bulk_issuance_cost"`
 	AmountPaid int64 `json:"revocation_cost_in_wei"`
 	RevocationCostRawData []int64 `json:"revocation_cost_raw_data"`
-	AffectedIndexes mapset.Set
-	FalsePositiveResults mapset.Set
-	FetchedWitnessesFromIssuers mapset.Set
+	AffectedIndexes mapset.Set `json:"affectedIndexes"`
+	AffectedVCIDs []string `json:"affected_vcIDs"`
+	FalsePositiveResults mapset.Set `json:"false_positive_vcIDs"`
+	FetchedWitnessesFromIssuers mapset.Set `json:"vcIDs_fetched_witnesses_from_DLT"`
 }
 
 func CreateResult() *Results {
@@ -208,8 +209,8 @@ func (r Results) String() string{
 func  WriteToFile(result Results) {
 
 	var results []Results
-	filename := fmt.Sprintf("results/results_%d_%d_%f_%d.json",result.TotalVCs, result.RevokedVCs, result.FalsePositiveRate, result.MtLevelInDLT)
-
+	filename := fmt.Sprintf("results/results_computed.json")
+	//filename := fmt.Sprintf("results/results_%d_%d_%f_%d.json",result.TotalVCs, result.RevokedVCs, result.FalsePositiveRate, result.MtLevelInDLT)
 	jsonFile, err := os.Open(filename)
 	if err != nil {
 		jsonFile2, err2 := os.Create(filename)

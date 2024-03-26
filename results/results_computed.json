@@ -1,0 +1,168 @@
+[
+{
+"total_issued_vcs": 10,
+"total_revoked_vcs": 2,
+"revocation_batch_size": 1,
+"mt_level_in_dlt": 3,
+"mt_height": 4,
+"false_positive_rate": 0.8,
+"bloom_filter_size": 32,
+"bloom_filter_indexes_per_entry": 1,
+"merkle_tree_size_total": 496,
+"merkle_tree_nodes_count_total": 31,
+"merkle_tree_size_in_dlt": 480,
+"merkle_tree_nodes_count_in_dlt": 15,
+"number_of_false_positives": 8,
+"number_of_vcs_retrieved_witness_from_dlt": 8,
+"number_of_vcs_retrieved_witness_from_issuer": 0,
+"revocation_timeper_vc": 0.040677658500000005,
+"revocation_time_total": 0.08135531700000001,
+"revocation_time_raw_data": [
+0.039231397,
+0.04212392
+],
+"verification_time_per_valid_vc": 0,
+"verification_time_per_valid_vc_raw_data": null,
+"verification_time_total_valid_vcs": 0,
+"verification_time_per_false_positive_or_revoked_vc": 0.03882963721875,
+"verification_time_per_revokedor_false_positive_vc_raw_data": [
+0.037204162,
+0.03738427,
+0.036609456,
+0.036122924,
+0.038260326,
+0.036120554,
+0.034778378,
+0.055960551,
+0.036501675,
+0.036476039
+],
+"avg_time_to_fetch_witness_from_issuer": 0.0002176995,
+"avg_time_to_fetch_witness_from_issuer_raw_data": [
+0.000202305,
+0.000233094
+],
+"avg_time_to_fetch_witness_from_smart_contract": 0.0317300225234375,
+"avg_time_to_fetch_witness_from_smart_contract_raw_data": [
+0.030104154,
+0.030447743,
+0.031344307,
+0.028955895,
+0.027777607,
+0.048550091,
+0.029499186,
+0.029365352
+],
+"verification_time_total_false_positive_and_revoked_vcs": 0.38541833499999995,
+"verification_time_total": 0.479186091,
+"bbs_proof_generation_time": 0.01591350833203125,
+"bbs_verification_time": 0.007015275828125,
+"simulation_time": 0.927626881,
+"contract_deployment_cost": 1725580,
+"bulk_issuance_cost": 379177,
+"revocation_cost_in_wei": 65528,
+"revocation_cost_raw_data": [
+75460,
+55596
+],
+"affectedIndexes": null,
+"affected_vcIDs": [
+"diploma#51306",
+"diploma#51307"
+],
+"false_positive_vcIDs": null,
+"vcIDs_fetched_witnesses_from_DLT": null
+},
+{
+"total_issued_vcs": 10,
+"total_revoked_vcs": 2,
+"revocation_batch_size": 1,
+"mt_level_in_dlt": 2,
+"mt_height": 4,
+"false_positive_rate": 0.8,
+"bloom_filter_size": 32,
+"bloom_filter_indexes_per_entry": 1,
+"merkle_tree_size_total": 496,
+"merkle_tree_nodes_count_total": 31,
+"merkle_tree_size_in_dlt": 224,
+"merkle_tree_nodes_count_in_dlt": 7,
+"number_of_false_positives": 8,
+"number_of_vcs_retrieved_witness_from_dlt": 6,
+"number_of_vcs_retrieved_witness_from_issuer": 2,
+"revocation_timeper_vc": 0.040743259500000004,
+"revocation_time_total": 0.08148651900000001,
+"revocation_time_raw_data": [
+0.046786975,
+0.034699544
+],
+"verification_time_per_valid_vc": 0,
+"verification_time_per_valid_vc_raw_data": null,
+"verification_time_total_valid_vcs": 0,
+"verification_time_per_false_positive_or_revoked_vc": 0.024142681646484372,
+"verification_time_per_revokedor_false_positive_vc_raw_data": [
+0.026514613,
+0.025453452,
+0.025394661,
+0.025740698,
+0.024294829,
+0.025949415,
+0.024396144,
+0.024067222,
+0.023668801,
+0.024199993
+],
+"avg_time_to_fetch_witness_from_issuer": 0.0005026175000000001,
+"avg_time_to_fetch_witness_from_issuer_raw_data": [
+0.000391392,
+0.00056192,
+0.000267574,
+0.00063312
+],
+"avg_time_to_fetch_witness_from_smart_contract": 0.016711437375,
+"avg_time_to_fetch_witness_from_smart_contract_raw_data": [
+0.016723828,
+0.019112358,
+0.017235987,
+0.016410565,
+0.016320833,
+0.016765557
+],
+"verification_time_total_false_positive_and_revoked_vcs": 0.249679828,
+"verification_time_total": 0.34038300899999996,
+"bbs_proof_generation_time": 0.01528879641015625,
+"bbs_verification_time": 0.0053544044531249994,
+"simulation_time": 0.685831235,
+"contract_deployment_cost": 1725580,
+"bulk_issuance_cost": 190623,
+"revocation_cost_in_wei": 59071,
+"revocation_cost_raw_data": [
+69027,
+49115
+],
+"affectedIndexes": null,
+"affected_vcIDs": [
+"diploma#71649",
+"diploma#71650",
+"diploma#71651",
+"diploma#71652"
+],
+"false_positive_vcIDs": [
+"diploma#71656",
+"diploma#71657",
+"diploma#71658",
+"diploma#71650",
+"diploma#71652",
+"diploma#71653",
+"diploma#71654",
+"diploma#71655"
+],
+"vcIDs_fetched_witnesses_from_DLT": [
+"diploma#71658",
+"diploma#71653",
+"diploma#71654",
+"diploma#71655",
+"diploma#71656",
+"diploma#71657"
+]
+}
+]

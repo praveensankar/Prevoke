@@ -66,12 +66,14 @@ func(holder *Holder) processConnection(conn net.Conn) {
 	defer holder.Unlock()
 }
 
-func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, address string, results *common.Results) (bool){
+func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, address string, results *common.Results) (bool, bool, bool){
 	conn, err := net.Dial("tcp", address)
+	falsePositive := false
+	fromDLT := false
 	if err != nil {
 		zap.S().Infoln("HOLDER - verifier is unavailabe")
 		conn.Close()
-		return false
+		return false, false, false
 	}
 
 	// step 1 - Holder sends a connection request to send a VP to a verifier
@@ -113,7 +115,7 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 	// step 5 - return true if the verification resulted in success
 	if phase1Reply.GetType()== common.SuccessfulVerification {
 		conn.Close()
-		return true
+		return true, falsePositive, false
 	}
 
 	// step 6 - phase 1 resulted in failure, verifier asks the holder to witness
@@ -129,22 +131,23 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 		localMerkleProof := holder.merkleProofStore[vcID]
 		ancesstorIndex := localMerkleProof.AncesstorIndex
 		//zap.S().Infoln("HOLDER - local merkle proof: ", localMerkleProof.Witnesses, "\t ancesstor index: ",ancesstorIndex)
-
-		currentHash := localMerkleProof.LeafHash
-		hashValue := currentHash
-		j:=0
 		//zap.S().Infoln("HOLDER - MT Height: ", holder.MTHeight, "\t MT Level in DLT:", holder.MTLevelInDLT)
-		for i:=holder.MTHeight;i>holder.MTLevelInDLT;i--{
-			witness:=localMerkleProof.OrderedWitnesses[j]
-			j++
-			if witness.Position==techniques.LEFT{
-				hashValue = techniques.GetHash( witness.HashValue + currentHash)
-			}
-			if witness.Position==techniques.RIGHT{
-				hashValue = techniques.GetHash(currentHash + witness.HashValue)
-			}
-		}
-		if hashValue == mTree[ancesstorIndex]{
+
+		//currentHash := localMerkleProof.LeafHash
+		//hashValue := currentHash
+		//j:=0
+
+		//for i:=holder.MTHeight;i>holder.MTLevelInDLT;i--{
+		//	witness:=localMerkleProof.OrderedWitnesses[j]
+		//	j++
+		//	if witness.Position==techniques.LEFT{
+		//		hashValue = techniques.GetHash(witness.HashValue + currentHash)
+		//	}
+		//	if witness.Position==techniques.RIGHT{
+		//		hashValue = techniques.GetHash(currentHash + witness.HashValue)
+		//	}
+		//}
+		if localMerkleProof.AncesstorValue == mTree[ancesstorIndex]{
 			if holder.Debug==true {
 				zap.S().Infoln("HOLDER - fetches witness from the smart contract: vc id: ", vcID)
 			}
@@ -158,6 +161,7 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 			TimeTofetchWitnessFromSC := time.Since(TimeTofetchWitnessFromSCStart).Seconds()
 			results.IncrementNumberofVCsRetrievedWitnessesFromDLT()
 			results.AddAvgTimeToFetchWitnessFromSmartContract(TimeTofetchWitnessFromSC)
+			fromDLT = true
 		} else{
 			// step 8 - Holder can't update the witness using smart contract. Holder contacts the issuer to retreive the
 			// updated witness
@@ -165,7 +169,7 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 			if err != nil {
 				zap.S().Infoln("HOLDER - issuer is unavailabe")
 				conn.Close()
-				return false
+				return false, false, false
 			}
 			if holder.Debug==true {
 				zap.S().Infoln("HOLDER - requests merkle proof from issuer: vc id: ", vcID)
@@ -223,17 +227,17 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 		if phase2Reply.GetType()== common.SuccessfulVerification {
 			results.NumberOfFalsePositives = results.NumberOfFalsePositives+1
 			conn.Close()
-			return true
+			return true, true, fromDLT
 		}
 		if phase2Reply.GetType()== common.FailedVerification {
 			conn.Close()
-			return false
+			return false, false, fromDLT
 		}
 	}
 
 
 	conn.Close()
-	return false
+	return false, false, false
 }
 
 func(holder *Holder) getContractAddressFromIssuer(address string) (string){

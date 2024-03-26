@@ -38,7 +38,7 @@ type IRevocationService interface {
 	FetchPublicKeysCached()([][]byte)
 	FetchMerkleTreeSizeInDLT()(uint)
 	FetchMerkleTreeSizeLocal()(uint)
-	FindAncesstorInMerkleTree(index int)(int)
+	FindAncesstorInMerkleTree(index int)(int, string)
 	FetchBloomFilterSizeInDLT(revokedVcIDs []string)(uint)
 	GetLocalBloomFilter() *techniques.BloomFilter
 }
@@ -240,14 +240,16 @@ func (r RevocationService) RetreiveUpdatedProof(vcID string)  *techniques.Merkle
 	return merkleProof
 }
 
-func (r RevocationService) FindAncesstorInMerkleTree(index int)(int){
+func (r RevocationService) FindAncesstorInMerkleTree(index int)(int, string){
 	currentLevel := r.mtHeight
 	parentIndex := index
 	for i:=currentLevel; i>r.MtLevelInDLT; i-- {
 		temp := int(math.Floor(float64((parentIndex - 1) / 2)))
 		parentIndex = temp
 	}
-	return parentIndex
+	_, values := r.merkleTreeAcc.GetEntriesInLevelOrder(r.NumberOfEntriesForMTInDLT)
+	ancesstor := values[parentIndex]
+	return parentIndex, ancesstor
 }
 
 // returns old mt index and amount of gwei paid

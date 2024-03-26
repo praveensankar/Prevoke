@@ -82,6 +82,8 @@ func (h *Holder) RetrieveandResetResultsAtIssuers(result  *common.Results){
 	result.BloomFilterSize = 	res.BloomFilterSize
 	result.BulkIssuanceCost = res.BulkIssuanceCost
 	result.ContractDeploymentCost = res.ContractDeploymentCost
+	result.AffectedIndexes = res.AffectedIndexes
+	result.AffectedVCIDs = res.AffectedVCIDs
 }
 
 func (h *Holder) RetrieveandResetResultsAtVerifiers(result  *common.Results){
@@ -175,13 +177,23 @@ func (h *Holder) ShareallVPs(results *common.Results){
 		if err != nil {
 			return
 		}
-		status := h.ShareVP(vc.GetId(), vp, results)
+		status, fp, fromDLT := h.ShareVP(vc.GetId(), vp, results)
+		if fp==true {
+			results.FalsePositiveResults.Add(vc.GetId())
+		}
+		if fromDLT == true{
+			results.FetchedWitnessesFromIssuers.Add(vc.GetId())
+		}
 		if h.Debug==true {
 			zap.S().Infoln("HOLDER - verification result: ", status)
 		}
 	}
 }
-func (h *Holder) ShareVP(vcID string, vp models.VerifiablePresentation, results *common.Results) (bool){
+
+// returns
+// bool - actual status
+// bool - false positive. true - resulted in false positive. went to phase 2. false - not false positive
+func (h *Holder) ShareVP(vcID string, vp models.VerifiablePresentation, results *common.Results) (bool, bool, bool){
 	return h.sendVP(vcID, vp, h.verifierAddress, results)
 }
 

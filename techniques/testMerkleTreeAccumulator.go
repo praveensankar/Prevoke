@@ -5,6 +5,7 @@ import (
 	"github.com/praveensankar/Revocation-Service/config"
 	"go.uber.org/zap"
 	"math"
+	"strconv"
 )
 
 func TestMerkleTreeAccumulator(conf config.Config){
@@ -14,7 +15,7 @@ func TestMerkleTreeAccumulator(conf config.Config){
 	totalElements := int(conf.ExpectedNumberOfTotalVCs)+remainingSpace
 	elements :=  make([]string, 0)
 	for i:=0; i<totalElements-2; i++{
-		elements = append(elements,string(i))
+		elements = append(elements,strconv.Itoa(i))
 	}
 
 	accumulator := CreateMerkleTreeAccumulator(conf)
@@ -63,8 +64,8 @@ func TestInsertion2(elements []string, accumulator *MerkleTreeAccumulator2) {
 		_, hash := accumulator.AddLeaf(elements[i])
 
 		//zap.S().Infoln("TEST MERKLE TREE- \t new leaf added with hash in hex: ",newTree.GetHashValueOfLeafInHex(elements[i]))
-		zap.S().Infoln("TEST MERKLE TREE- \t new leaf added: \t int value: ", elements[i], "\t hash string: ",accumulator.PrintShortString(hash))
-		accumulator.PrintTree()
+		zap.S().Infoln("TEST MERKLE TREE- \t element: ", elements[i], "\t leaf hash: ",accumulator.PrintShortString(hash))
+		//accumulator.PrintTree()
 	}
 
 
@@ -93,7 +94,7 @@ func TestUpdate2(oldLeaf string, newLeaf string, accumulator *MerkleTreeAccumula
 	zap.S().Infoln("TEST MERKLE TREE- \t updated leaf: \t old leaf value: ",oldLeaf, "\t hash value: ", accumulator.PrintShortString(oldHash),
 		"\t new leaf value: ", newLeaf, "\t new hash: ",accumulator.PrintShortString(newHash))
 
-	accumulator.PrintTree()
+	//accumulator.PrintTree()
 
 	proof := accumulator.GetProof(newLeaf)
 	return proof

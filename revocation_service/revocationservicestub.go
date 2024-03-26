@@ -123,9 +123,9 @@ func (r RevocationServiceStub) RetreiveUpdatedProof(vcID string)  *techniques.Me
 	return merkleProof
 }
 
-func (r RevocationServiceStub) FindAncesstorInMerkleTree(index int)(int){
+func (r RevocationServiceStub) FindAncesstorInMerkleTree(index int)(int, string){
 	//Todo: implement it if needed
-	return -1
+	return -1, ""
 
 }
 

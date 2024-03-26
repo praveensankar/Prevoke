@@ -51,6 +51,7 @@ type Witness struct{
 type MerkleProof struct {
 	MTIndex int
 	AncesstorIndex int
+	AncesstorValue string
 	LeafHash string
 	LeafValue string
 	Witnesses map[int]*Witness
@@ -63,8 +64,9 @@ func (proof MerkleProof) String() string{
 	var response string
 	response = response + "MT Index : "+fmt.Sprintf("%d",proof.MTIndex)+ "\t"
 	response = response + "Ancesstor Index : "+fmt.Sprintf("%d",proof.AncesstorIndex)+ "\t"
+	response = response + "Ancesstor Value : "+fmt.Sprintf("%s",proof.AncesstorValue)+ "\t"
 	response = response + "Leaf Hash: "+fmt.Sprintf("%v",proof.LeafHash)+ "\t"
-	response = response + "Ordered Witnesses: "+fmt.Sprintf("%v",proof.OrderedWitnesses)+ "\t"
+	response = response + "Ordered Witnesses: "+fmt.Sprintf("%v",proof.OrderedWitnesses[:])+ "\t"
 	return response
 }
 

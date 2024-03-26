@@ -284,8 +284,11 @@ func (issuer *Issuer) getUpdatedMerkleProof(vcID string) *techniques.MerkleProof
 
 	merkleProof := issuer.RevocationService.RetreiveUpdatedProof(vcID)
 
-	ancesstorIndex := issuer.RevocationService.FindAncesstorInMerkleTree(merkleProof.MTIndex)
+	ancesstorIndex, ancesstorValue := issuer.RevocationService.FindAncesstorInMerkleTree(merkleProof.MTIndex)
 	merkleProof.AncesstorIndex=ancesstorIndex
+	merkleProof.AncesstorValue = ancesstorValue
+
+
 	//zap.S().Infoln("ISSUER- ", entities.name, "\t vc:", vc.ID, "\t merkle tree accumulator witness updated..... ")
 	issuer.UpdateMerkleProofInRevocationData(vcID, merkleProof)
 	return merkleProof
@@ -606,6 +609,14 @@ func (issuer *Issuer) CalculateResult(conf config.Config) {
 	localMTSize := issuer.RevocationService.FetchMerkleTreeSizeLocal()
 	dltMTSize := issuer.RevocationService.FetchMerkleTreeSizeInDLT()
 	bfSize := issuer.RevocationService.FetchBloomFilterSizeInDLT(issuer.revokedVcIDs)
+
+	for i:=0; i< len(issuer.CredentialStore);i++{
+		vcID := issuer.CredentialStore[i].GetId()
+		mtIndex := issuer.revocationProofs[vcID].MtIndex
+		if issuer.Result.AffectedIndexes.Contains(mtIndex)==true{
+			issuer.Result.AffectedVCIDs = append(issuer.Result.AffectedVCIDs, vcID)
+		}
+	}
 	issuer.Result.MerkleTreeSizeInDLT = int(dltMTSize)
 	issuer.Result.MerkleTreeSizeTotal = int(localMTSize)
 	issuer.Result.BloomFilterSize= int(bfSize)
@@ -679,43 +690,6 @@ func (issuer *Issuer) SimulateRevocation(config config.Config){
 
 }
 
-/*
-CalculateNumberOfVCsWouldRetrieveWitnessFromDLT calculates how many valid vcs need to retrieve witness from dlt
-
-First, it computes the list of valid vcs that are affected by the bloom filter
- */
-func (issuer *Issuer) CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) (int, int){
-
-	numberOfVCsRetrievingVCsFromDLT := 0
-	numberOfFalsePositives := 0
-	var vcIDs []string
-	revokedVCIDs := make(map[string]bool)
-
-
-	bf := techniques.CreateBloomFilter(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
-	for i := 0; i < len(issuer.revokedVcIDs); i++ {
-		revokedVCIDs[issuer.revokedVcIDs[i]] = true
-		bf.RevokeInBloomFilter(issuer.revokedVcIDs[i])
-	}
-
-
-
-	for i:=0; i< int(conf.ExpectedNumberOfTotalVCs);i++{
-		vcId := issuer.CredentialStore[i].GetId()
-		if bf.CheckStatusInBloomFilter(vcId)==false{
-		if revokedVCIDs[vcId]==false{
-			numberOfFalsePositives++
-				mtIndex := issuer.revocationProofs[vcId].MtIndex
-				if issuer.AffectedVCIndexes[mtIndex]==false{
-					numberOfVCsRetrievingVCsFromDLT++
-					vcIDs = append(vcIDs, vcId)
-				}
-			}
-		}
-}
-	zap.S().Infoln("VCs that would retrieve witness from DLTs: ", vcIDs)
-	return numberOfFalsePositives, numberOfVCsRetrievingVCsFromDLT
-}
 
 func (issuer *Issuer) SetExperimentConfigs(conf *config.Config, exp config.Experiment){
 conf.ExpectedNumberOfTotalVCs = uint(exp.TotalVCs)

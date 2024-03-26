@@ -6,12 +6,10 @@ import (
 	"github.com/praveensankar/Revocation-Service/blockchain"
 	"github.com/praveensankar/Revocation-Service/common"
 	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/revocation_service"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"math"
 	"net"
-	"strconv"
 	"time"
 )
 
@@ -136,41 +134,41 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 				issuer.Result.ContractDeploymentCost = gasUsed
 			}
 
-			if req.GetType() == common.CalculateVCsRetreivingWitnessFromDLT {
-				expReqEncoder := gob.NewEncoder(conn)
-				expReq := common.NewRequest()
-				expReq.SetId(issuer.name)
-				expReq.SetType(common.SendExpConfigs)
-				expReqJson, _ := expReq.Json()
-				expReqEncoder.Encode(expReqJson)
-
-
-				expDecoder := gob.NewDecoder(conn)
-				//dec.Decode(&entity)
-				var expJson []byte
-				expDecoder.Decode(&expJson)
-				exp := config.JsonToExperiment(expJson)
-				issuer.SetExperimentConfigs(conf, *exp)
-				issuer.Reset(*conf)
-				rs := revocation_service.CreateRevocationServiceStub(*conf)
-				issuer.setRevocationService(rs)
-				issuer.BulkIssuance(*conf)
-				issuer.SimulateRevocation(*conf)
-
-
-				numberOfFalsePositives, numberOfVCsRetrievingVCsFromDLT := issuer.CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(*conf)
-				calWitReplyEncoder := gob.NewEncoder(conn)
-				calWitReply := common.NewCalWitnessReply()
-				calWitReply.SetFalsePositives(strconv.Itoa(numberOfFalsePositives))
-				calWitReply.SetNumberOfVCsRetrievingVCsFromDLT(strconv.Itoa(numberOfVCsRetrievingVCsFromDLT))
-				calWitReplyJson, _ := calWitReply.Json()
-				calwitEncErr := calWitReplyEncoder.Encode(calWitReplyJson)
-				if calwitEncErr!=nil{
-					zap.S().Infoln("ISSUER - witness calculation encoding error: ", calwitEncErr)
-				}
-				zap.S().Infoln("ISSUER - number of vcs retrieving witness from dlt: \t", calWitReply.String())
-				conn.Close()
-			}
+			//if req.GetType() == common.CalculateVCsRetreivingWitnessFromDLT {
+			//	expReqEncoder := gob.NewEncoder(conn)
+			//	expReq := common.NewRequest()
+			//	expReq.SetId(issuer.name)
+			//	expReq.SetType(common.SendExpConfigs)
+			//	expReqJson, _ := expReq.Json()
+			//	expReqEncoder.Encode(expReqJson)
+			//
+			//
+			//	expDecoder := gob.NewDecoder(conn)
+			//	//dec.Decode(&entity)
+			//	var expJson []byte
+			//	expDecoder.Decode(&expJson)
+			//	exp := config.JsonToExperiment(expJson)
+			//	issuer.SetExperimentConfigs(conf, *exp)
+			//	issuer.Reset(*conf)
+			//	rs := revocation_service.CreateRevocationServiceStub(*conf)
+			//	issuer.setRevocationService(rs)
+			//	issuer.BulkIssuance(*conf)
+			//	issuer.SimulateRevocation(*conf)
+			//
+			//
+			//	numberOfFalsePositives, numberOfVCsRetrievingVCsFromDLT := issuer.CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(*conf)
+			//	calWitReplyEncoder := gob.NewEncoder(conn)
+			//	calWitReply := common.NewCalWitnessReply()
+			//	calWitReply.SetFalsePositives(strconv.Itoa(numberOfFalsePositives))
+			//	calWitReply.SetNumberOfVCsRetrievingVCsFromDLT(strconv.Itoa(numberOfVCsRetrievingVCsFromDLT))
+			//	calWitReplyJson, _ := calWitReply.Json()
+			//	calwitEncErr := calWitReplyEncoder.Encode(calWitReplyJson)
+			//	if calwitEncErr!=nil{
+			//		zap.S().Infoln("ISSUER - witness calculation encoding error: ", calwitEncErr)
+			//	}
+			//	zap.S().Infoln("ISSUER - number of vcs retrieving witness from dlt: \t", calWitReply.String())
+			//	conn.Close()
+			//}
 			if req.GetType() == common.GetandResetResult {
 				resultEncoder := gob.NewEncoder(conn)
 				zap.S().Infoln("ISSUER - sending results to holder: \t", issuer.Result.String())
@@ -208,7 +206,7 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 					merkleProof := issuer.getUpdatedMerkleProof(vcID)
 					proofEncoder.Encode(merkleProof.Json())
 					if issuer.Debug==true {
-						zap.S().Infoln("ISSUER - vc id: ", vcID, "\t send merkle proof: ", merkleProof)
+						zap.S().Infoln("ISSUER - vc id: ", vcID, "\t send merkle proof: ", merkleProof.String())
 					}
 				}
 				conn.Close()
