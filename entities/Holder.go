@@ -3,6 +3,7 @@ package entities
 import (
 	"encoding/json"
 	"fmt"
+	mapset "github.com/deckarep/golang-set"
 	"github.com/praveensankar/Revocation-Service/common"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/models"
@@ -296,6 +297,20 @@ func StartHolder(config config.Config){
 			holder.RetrieveandResetResultsAtIssuers(result)
 			holder.RetrieveandResetResultsAtVerifiers(result)
 			result.NumberOfVCsRetrievedWitnessFromIssuer = result.NumberOfVCsRetrievedWitnessFromIssuer - int(config.ExpectedNumberofRevokedVCs)
+
+			// verify the results
+			it := result.FalsePositiveResults.Iterator()
+			affectedVCIDs := mapset.NewSet()
+			for i:=0; i< len(result.AffectedVCIDs);i++{
+				affectedVCIDs.Add(result.AffectedVCIDs[i])
+			}
+			for elem := range it.C {
+			if affectedVCIDs.Contains(elem)==true{
+				if result.FetchedWitnessesFromIssuers.Contains(elem)==true{
+					zap.S().Infoln("something went wrong with verification: check ",elem)
+				}
+			}
+			}
 			common.ConstructResults(config, start, result)
 			common.WriteToFile( *result)
 		}

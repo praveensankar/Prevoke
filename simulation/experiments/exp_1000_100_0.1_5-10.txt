@@ -9,7 +9,6 @@
 		 },
 		 "exp_1000_100_0.1_2_run1": {
          			 "totalVCs": "1000",
-
          			 "revokedVCs": "100",
          			 "revocationBatchSize": "1",
          			 "falsePositiveRate": "0.1",

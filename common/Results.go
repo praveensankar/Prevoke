@@ -209,8 +209,8 @@ func (r Results) String() string{
 func  WriteToFile(result Results) {
 
 	var results []Results
-	filename := fmt.Sprintf("results/results_computed.json")
-	//filename := fmt.Sprintf("results/results_%d_%d_%f_%d.json",result.TotalVCs, result.RevokedVCs, result.FalsePositiveRate, result.MtLevelInDLT)
+	//filename := fmt.Sprintf("results/results_computed.json")
+	filename := fmt.Sprintf("results/results_%d_%d_%f_%d.json",result.TotalVCs, result.RevokedVCs, result.FalsePositiveRate, result.MtLevelInDLT)
 	jsonFile, err := os.Open(filename)
 	if err != nil {
 		jsonFile2, err2 := os.Create(filename)
@@ -226,7 +226,11 @@ func  WriteToFile(result Results) {
 		results = append(results, result)
 	}
 
-	jsonRes, _ := json.MarshalIndent(results,"","")
+	jsonRes, err3 := json.MarshalIndent(results,"","")
+	if err3 != nil {
+		zap.S().Errorln("ERROR - marshalling the results")
+	}
+
 	//filename := fmt.Sprintf("Simulation/results/result_%v_%v_%v.json",numberOfVcs, numberOfRevokedVcs, mtLevelInDLT)
 	err = ioutil.WriteFile(filename, jsonRes, 0644)
 	if err != nil {
@@ -262,9 +266,48 @@ func ConstructResults(config config.Config, start  time.Time, result *Results){
 
 
 func (r *Results) Json() ([]byte, error){
-	return json.MarshalIndent(r, "","    ")
+	//return json.MarshalIndent(r, "","    ")
+	return json.Marshal(r)
 }
 
+//func (r Results) MarshalJSON() ([]byte, error) {
+//	var response string
+//	response = response + "Total VCs : "+fmt.Sprintf("%d",r.TotalVCs)+ "\n"
+//	response = response + "Total Revoked VCs : "+fmt.Sprintf("%d",r.RevokedVCs)+ "\n"
+//	response = response + "revocation Batch size : "+fmt.Sprintf("%d",r.RevocationBatchSize)+ "\n"
+//	response = response + "False Positive Rate : "+fmt.Sprintf("%f",r.FalsePositiveRate)+ "\n"
+//	response = response + "Merkle Tree Accumulator height : "+fmt.Sprintf("%d",r.MTHeight)+ "\n"
+//	response = response + "Merkle Tree Accumulator Level Stored in DLT : "+fmt.Sprintf("%d",r.MtLevelInDLT)+ "\n \n"
+//	response = response + "Bloom Filter Size (in bytes) : "+fmt.Sprintf("%d",r.BloomFilterSize)+ "\n"
+//	response = response + "Bloom Filter indexes per entry (no of hash functions) : "+fmt.Sprintf("%d",r.BloomFilterIndexesPerEntry)+ "\n"
+//	response = response + "merkle tree size total (in bytes) : "+fmt.Sprintf("%d",r.MerkleTreeSizeTotal)+ "\n"
+//	response = response + "merkle tree size in DLT (in bytes) : "+fmt.Sprintf("%d",r.MerkleTreeSizeInDLT)+ "\n"
+//	response = response + "merkle tree total nodes count : "+fmt.Sprintf("%d",r.MerkleTreeNodesCountTotal)+ "\n"
+//	response = response + "merkle tree nodes count in DLT : "+fmt.Sprintf("%d",r.MerkleTreeNodesCountInDLT)+ "\n"
+//
+//	response = response + "revocation time per Batch : "+fmt.Sprintf("%f",r.RevocationTimeperBatch)+ "\n"
+//	response = response + "revocation time Total : "+fmt.Sprintf("%f",r.RevocationTimeTotal)+ "\n"
+//	response = response + "avg BBS proof generation time per VP : "+fmt.Sprintf("%f",r.BBSProoGenerationTimePerVP)+ "\n"
+//	response = response + "avg BBS verification time per valid VP : "+fmt.Sprintf("%f",r.BBSVerificationTimePerVP)+ "\n"
+//	response = response + "verification time per valid VC : "+fmt.Sprintf("%f",r.VerificationTimePerValidVC)+ "\n"
+//	response = response + "verification time per false positive and revoked VC : "+fmt.Sprintf("%f",r.VerificationTimePerRevokedorFalsePositiveVC)+ "\n"
+//	response = response + "avg time to fetch witness from issuer: "+fmt.Sprintf("%f",r.AvgTimeToFetchWitnessFromIssuer)+ "\n"
+//	response = response + "avg time to fetch witness from smart contract: "+fmt.Sprintf("%f",r.AvgTimeToFetchWitnessFromSmartContract)+ "\n"
+//	response = response + "verification time total valid VCs : "+fmt.Sprintf("%f",r.VerificationTimeTotalValidVCs)+ "\n"
+//	response = response + "verification time total false positive and revoked VC : "+fmt.Sprintf("%f",r.VerificationTimeTotalRevokedorFalsePositiveVCs)+ "\n"
+//	response = response + "verification time Total : "+fmt.Sprintf("%f",r.VerificationTimeTotal)+ "\n"
+//
+//	response = response + "Number of False Positives : "+ fmt.Sprintf("%d",r.NumberOfFalsePositives) + "\n"
+//	response = response + "Number of VCS that ended up updating witnesses from issuer: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromIssuer)+ "\n"
+//	response = response + "Number of VCS that updated witnesses from smart contract: "+fmt.Sprintf("%d",r.NumberOfVCsRetrievedWitnessFromDLT)+ "\n"
+//
+//	response = response + "contract deployment cost: "+fmt.Sprintf("%d",r.ContractDeploymentCost)+ "\n \n"
+//	response = response + "Amount (in unit of gas) spent per revocation: "+fmt.Sprintf("%d",r.AmountPaid)+ "\n"
+//	response = response + "Amount (in unit of gas) spent for bulk issuance: "+fmt.Sprintf("%d",r.BulkIssuanceCost)+ "\n"
+//
+//
+//	return []byte(response), nil
+//}
 
 
 func JsonToResults(jsonObj []byte) *Results {

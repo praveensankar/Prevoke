@@ -39,7 +39,6 @@ import (
 	"flag"
 	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
-	"github.com/praveensankar/Revocation-Service/blockchain"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/entities"
 	"github.com/praveensankar/Revocation-Service/revocation_service"
@@ -212,7 +211,7 @@ func Run(conf config.Config){
 
 	if *IPFSTestFlag == true{
 		SetupLogger(conf, filename)
-		blockchain.TestIPFS()
+		//blockchain.TestIPFS()
 	}
 
 	if *witnessCalculationFlag==true{
