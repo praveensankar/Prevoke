@@ -683,9 +683,6 @@ func (issuer *Issuer) SimulateRevocation(config config.Config){
 		issuer.Result.AddRevocationTimePerBatch(revocationTime.Seconds())
 		issuer.Result.AddRevocationTimeTotal(revocationTime.Seconds())
 	}
-
-
-
 	issuer.Result.RevocationBatchSize = revocationBatchSize
 
 }

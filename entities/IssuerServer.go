@@ -233,10 +233,10 @@ func(issuer *Issuer) serverListener(server net.Listener, conf *config.Config){
 
 					if count==int(conf.ExpectedNumberOfTotalVCs){
 						if revoked==false {
-							credentials := issuer.CredentialStore
-							for _, vc := range credentials {
-								issuer.UpdateMerkleProof(vc)
-							}
+							//credentials := issuer.CredentialStore
+							//for _, vc := range credentials {
+							//	issuer.UpdateMerkleProof(vc)
+							//}
 
 							issuer.SimulateRevocation(*conf)
 							revoked=true
