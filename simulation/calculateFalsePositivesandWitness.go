@@ -3,6 +3,7 @@ package simulation
 import (
 	"fmt"
 	"github.com/deckarep/golang-set"
+	"github.com/praveensankar/Revocation-Service/common"
 	"github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/techniques"
 	"go.uber.org/zap"
@@ -139,6 +140,9 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 	experiments := conf.ExpParamters
 
+	filename := fmt.Sprintf("results/results_computed.json")
+	var results []common.FalsePositiveAndWitnessUpdateResults
+
 	for _, exp := range experiments {
 
 		//SetUpExpParamters(&config, *exp)
@@ -150,14 +154,14 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 		conf.MTHeight = uint(exp.MtHeight)
 		conf.MtLevelInDLT = uint(exp.MtLevelInDLT)
 		conf.RevocationBatchSize = uint(exp.RevocationBatchSize)
-		zap.S().Infoln("ISSUER - updated config with experiment config: ", exp.String())
+		//zap.S().Infoln("ISSUER - updated config with experiment config: ", exp.String())
 
 		if exp.TotalVCs != 0 {
 
 			numberOfVCsRetrievingVCsFromDLT := 0
 			numberOfFalsePositives := 0
 			vcIDs := GenerateVCIDs(conf)
-			zap.S().Infoln("vc ids: ", vcIDs)
+			//zap.S().Infoln("vc ids: ", vcIDs)
 			var vcIDsFromDLT []string
 			var fpVCIDs []string
 
@@ -165,23 +169,25 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 			bf := techniques.CreateBloomFilter(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
 
 			mtIndexStore := InsertIntoMT(conf, vcIDs, mtAcc)
-			zap.S().Infoln("mt index store: ", mtIndexStore)
+			//zap.S().Infoln("mt index store: ", mtIndexStore)
 
 			//mtAcc.PrintTree()
 
 			revokedVcIDs := GenerateRevokedVCIDs(conf, vcIDs)
-			zap.S().Infoln("revoked vc ids: ", revokedVcIDs)
+			//zap.S().Infoln("revoked vc ids: ", revokedVcIDs)
 
 			revokedVCIDMaps, affectedIndexes := RevokeVCs(conf, bf, mtAcc, revokedVcIDs)
-			zap.S().Infoln("affected indexes: ", affectedIndexes)
+			//zap.S().Infoln("affected indexes: ", affectedIndexes)
 
 			affectedVCs := make(map[int]string)
+			var affectedVCIDs []string
 			for i:=0;i< len(vcIDs);i++{
 				if affectedIndexes.Contains(mtIndexStore[vcIDs[i]])==true{
 					affectedVCs[mtIndexStore[vcIDs[i]]]=vcIDs[i]
+					affectedVCIDs = append(affectedVCIDs, vcIDs[i])
 				}
 			}
-			zap.S().Infoln("affected vc ids: ", affectedVCs)
+			//zap.S().Infoln("affected vc ids: ", affectedVCs)
 
 			for i := 0; i < int(conf.ExpectedNumberOfTotalVCs); i++ {
 				vcId := vcIDs[i]
@@ -197,14 +203,29 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 					}
 				}
 			}
-			zap.S().Infoln("false positive vc ids: ",fpVCIDs)
-			zap.S().Infoln("VCs that would retrieve witness from DLTs: ", vcIDsFromDLT)
-			zap.S().Infoln("number of vcs affected by z levels: ",affectedIndexes.Cardinality())
-			zap.S().Infoln("number of false positives: ",numberOfFalsePositives, "\t number of vcs retrieved witness" +
+			//zap.S().Infoln("false positive vc ids: ",fpVCIDs)
+			//zap.S().Infoln("VCs that would retrieve witness from DLTs: ", vcIDsFromDLT)
+			//zap.S().Infoln("number of vcs affected by z levels: ",affectedIndexes.Cardinality())
+			zap.S().Infoln("total vc: ", exp.TotalVCs, " revoked vcs: ",exp.RevokedVCs, "false positive rate: ",
+				exp.FalsePositiveRate, "z levels: ",exp.MtLevelInDLT, "number of false positives: ",numberOfFalsePositives, "\t number of vcs retrieved witness" +
 				"from dlts: ",numberOfVCsRetrievingVCsFromDLT)
-		}
 
+			result :=common.CreateFalsePositiveAndWitnessUpdateResults()
+			result.TotalVCs = exp.TotalVCs
+			result.RevokedVCs = exp.RevokedVCs
+			result.FalsePositiveRate = exp.FalsePositiveRate
+			result.MTHeight = exp.MtHeight
+			result.MtLevelInDLT = exp.MtLevelInDLT
+			result.NumberOfFalsePositives = numberOfFalsePositives
+			result.NumberOfVCsRetrievedWitnessFromDLT = numberOfVCsRetrievingVCsFromDLT
+
+			result.AffectedVCIDs = affectedVCIDs
+			result.FalsePositiveResults = fpVCIDs
+			result.FetchedWitnessesFromDLT=vcIDsFromDLT
+			results = append(results, *result)
+		}
 	}
+	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(filename, results)
 }
 
 

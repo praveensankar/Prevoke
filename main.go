@@ -109,6 +109,7 @@ func Run(conf config.Config){
 	verifierFlag := flag.Bool("verifier", false, "a bool")
 	IPFSTestFlag := flag.Bool("ipfsTest", false, "a bool")
 	witnessCalculationFlag := flag.Bool("calWitness", false, "a bool")
+	revocationCostCalculationFlag := flag.Bool("revocationCostCalculation", false, "a bool")
 	flag.Parse()
 
 	var filename string
@@ -220,6 +221,14 @@ func Run(conf config.Config){
 		}
 		SetupLogger(conf, filename)
 		simulation.CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf)
+	}
+
+	if *revocationCostCalculationFlag==true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/holder")
+		}
+		SetupLogger(conf, filename)
+		simulation.RevocationCostCalculator(conf)
 	}
 	//blockchain.TestConnectionToBlockchain(conf)
 	//blockchain.Test(conf)

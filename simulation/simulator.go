@@ -207,7 +207,7 @@ func SimulateVerification( issuer1 *entities.Issuer, vcs []models.VerifiableCred
 				result.FalsePositiveResults.Add(vcId)
 				if isAffectedInMTAcc == true {
 					witFromIssuers.Add(1)
-					result.FetchedWitnessesFromIssuers.Add(vcId)
+					//result.FetchedWitnessesFromIssuers.Add(vcId)
 				}
 			}
 

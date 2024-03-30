@@ -262,4 +262,8 @@ func (r RevocationServiceStub)  GetLocalBloomFilter() *techniques.BloomFilter{
 	return r.bloomFilter
 }
 
+func (r RevocationServiceStub) RevocationCostCalculator(bfIndexes []*big.Int, mtIndexes []*big.Int, mtValuesInBytes [][32]byte) (int64, error){
+	//Todo: Implement if necessary
+	return -1, nil
+}
 

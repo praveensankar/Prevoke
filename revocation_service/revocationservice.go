@@ -24,6 +24,7 @@ type IRevocationService interface {
 	IssueVC(vcID string) *RevocationData
 	IssueVCsInBulk(vcIDs []string) ([]*RevocationData, int64)
 	RevokeVC(vcID string) (int, int64, error)
+	RevocationCostCalculator(bfIndexes []*big.Int, mtIndexes []*big.Int, mtValuesInBytes [][32]byte) (int64, error)
 	RevokeVCInBatches(vcIDs []string) (map[string]int, int64, error)
 	RetreiveUpdatedProof(vcID string) *techniques.MerkleProof
 	VerificationPhase1(bfIndexes []*big.Int) (bool, error)
@@ -41,6 +42,7 @@ type IRevocationService interface {
 	FindAncesstorInMerkleTree(index int)(int, string)
 	FetchBloomFilterSizeInDLT(revokedVcIDs []string)(uint)
 	GetLocalBloomFilter() *techniques.BloomFilter
+
 }
 
 
@@ -698,4 +700,34 @@ func (r RevocationService) FetchBloomFilterSizeInDLT(revokedVcIDs []string)(uint
 }
 func (r RevocationService)  GetLocalBloomFilter() *techniques.BloomFilter{
 	return r.bloomFilter
+}
+
+/*
+RevocationCostCalculator calculates the revocation cost by calling the revoke function in the smart contract
+
+Inputs:
+1) bfIndexes - bloom filter indexes
+2) mtIndexes - merkle tree indexes
+3) mtValues - merkle tree values
+
+Outputs:
+1) gasUsed
+2) error message
+ */
+func (r RevocationService) RevocationCostCalculator(bfIndexes []*big.Int, mtIndexes []*big.Int, mtValuesInBytes [][32]byte) (int64, error){
+	client, err := ethclient.Dial(r.blockchainRPCEndpoint)
+	if err != nil {
+		zap.S().Infof("Failed to connect to the Ethereum client: %v", err)
+	}
+	revocationService, err := contracts.NewRevocationService(r.smartContractAddress, client)
+	if err != nil {
+		zap.S().Infof("Failed to instantiate Storage contract: %v", err)
+	}
+	auth := r.getAuth()
+
+	startBalance, err := client.BalanceAt(context.Background(), r.account, nil)
+	_, err = revocationService.RevokeVC(auth, bfIndexes, mtIndexes, mtValuesInBytes)
+	endBalance, err := client.BalanceAt(context.Background(), r.account, nil)
+	gasUsed := (startBalance.Int64()-endBalance.Int64()) / r.gasPrice.Int64()
+	return gasUsed, err
 }

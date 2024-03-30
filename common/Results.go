@@ -53,14 +53,14 @@ type Results struct {
 	AffectedIndexes mapset.Set `json:"affectedIndexes"`
 	AffectedVCIDs []string `json:"affected_vcIDs"`
 	FalsePositiveResults mapset.Set `json:"false_positive_vcIDs"`
-	FetchedWitnessesFromIssuers mapset.Set `json:"vcIDs_fetched_witnesses_from_DLT"`
+	FetchedWitnessesFromDLT mapset.Set `json:"vcIDs_fetched_witnesses_from_DLT"`
 }
 
 func CreateResult() *Results {
 	result := &Results{}
 	result.AffectedIndexes = mapset.NewSet()
 	result.FalsePositiveResults = mapset.NewSet()
-	result.FetchedWitnessesFromIssuers = mapset.NewSet()
+	result.FetchedWitnessesFromDLT = mapset.NewSet()
 	return result
 }
 

@@ -60,64 +60,64 @@
 		 "debug" : "false"
 	 },
 	 "exp": {
-		 "exp_1000_100_0.1_4_run2": {
-			 "totalVCs": "1000",
-			 "revokedVCs": "100",
-			 "revocationBatchSize": "1",
-			 "falsePositiveRate": "0.1",
-			 "mtLevelInDLT": "4",
-			 "mtHeight": "10"
-		 },
-		 "exp_1000_100_0.1_5_run2": {
-			 "totalVCs": "1000",
+
+		 "exp_10000_100_0.1_5_run1": {
+			 "totalVCs": "10000",
 			 "revokedVCs": "100",
 			 "revocationBatchSize": "1",
 			 "falsePositiveRate": "0.1",
 			 "mtLevelInDLT": "5",
-			 "mtHeight": "10"
+			 "mtHeight": "14"
 		 },
-		 "exp_1000_100_0.1_6_run2": {
-			 "totalVCs": "1000",
-
+		 "exp_10000_100_0.1_6_run1": {
+			 "totalVCs": "10000",
 			 "revokedVCs": "100",
 			 "revocationBatchSize": "1",
 			 "falsePositiveRate": "0.1",
 			 "mtLevelInDLT": "6",
-			 "mtHeight": "10"
+			 "mtHeight": "14"
 		 },
-		 "exp_1000_100_0.1_7_run2": {
-			 "totalVCs": "1000",
+		 "exp_10000_100_0.1_7_run1": {
+			 "totalVCs": "10000",
 			 "revokedVCs": "100",
 			 "revocationBatchSize": "1",
 			 "falsePositiveRate": "0.1",
 			 "mtLevelInDLT": "7",
-			 "mtHeight": "10"
+			 "mtHeight": "14"
 		 },
 
-		 "exp_1000_100_0.1_8_run2": {
-			 "totalVCs": "1000",
+		 "exp_10000_100_0.1_8_run1": {
+			 "totalVCs": "10000",
 			 "revokedVCs": "100",
 			 "revocationBatchSize": "1",
 			 "falsePositiveRate": "0.1",
 			 "mtLevelInDLT": "8",
-			 "mtHeight": "10"
+			 "mtHeight": "14"
 		 },
 
-		 "exp_1000_100_0.1_9_run2": {
-			 "totalVCs": "1000",
+		 "exp_10000_100_0.1_9_run1": {
+			 "totalVCs": "10000",
 			 "revokedVCs": "100",
 			 "revocationBatchSize": "1",
 			 "falsePositiveRate": "0.1",
 			 "mtLevelInDLT": "9",
-			 "mtHeight": "10"
+			 "mtHeight": "14"
 		 },
-		 "exp_1000_100_0.1_10_run2": {
-			 "totalVCs": "1000",
+		 "exp_10000_100_0.1_10_run1": {
+			 "totalVCs": "10000",
 			 "revokedVCs": "100",
 			 "revocationBatchSize": "1",
 			 "falsePositiveRate": "0.1",
 			 "mtLevelInDLT": "10",
-			 "mtHeight": "10"
+			 "mtHeight": "14"
+		 },
+		 "exp_10000_100_0.1_11_run1": {
+			 "totalVCs": "10000",
+			 "revokedVCs": "100",
+			 "revocationBatchSize": "1",
+			 "falsePositiveRate": "0.1",
+			 "mtLevelInDLT": "11",
+			 "mtHeight": "14"
 		 }
 	 }
  }

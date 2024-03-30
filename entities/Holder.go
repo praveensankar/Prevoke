@@ -183,7 +183,7 @@ func (h *Holder) ShareallVPs(results *common.Results){
 			results.FalsePositiveResults.Add(vc.GetId())
 		}
 		if fromDLT == true{
-			results.FetchedWitnessesFromIssuers.Add(vc.GetId())
+			results.FetchedWitnessesFromDLT.Add(vc.GetId())
 		}
 		if h.Debug==true {
 			zap.S().Infoln("HOLDER - verification result: ", status)
@@ -306,7 +306,7 @@ func StartHolder(config config.Config){
 			}
 			for elem := range it.C {
 			if affectedVCIDs.Contains(elem)==true{
-				if result.FetchedWitnessesFromIssuers.Contains(elem)==true{
+				if result.FetchedWitnessesFromDLT.Contains(elem)==true{
 					zap.S().Infoln("something went wrong with verification: check ",elem)
 				}
 			}

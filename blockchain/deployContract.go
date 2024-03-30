@@ -61,12 +61,14 @@ func DeployContract(config config.Config, counter int) (string, int64, error){
 	if err != nil {
 		zap.S().Infof("Failed to deploy contract: %v", err)
 	}
-	zap.L().Info("\n\n------------------------------------------------------- deploying smart contract --------------------------------------------------")
 
-	zap.S().Infoln("BLOCKCHAIN- \t  smart contract address: ", addresss.String())
-	zap.S().Infoln("BLOCKCHAIN- \t tx hash: ", tx.Hash())
-	zap.S().Infoln("BLOCKCHAIN - \t gas used: ",gasUsed)
-	zap.L().Info("********************************************************************************************************************************\n")
+	if config.DEBUG==true {
+		zap.L().Info("\n\n------------------------------------------------------- deploying smart contract --------------------------------------------------")
 
+		zap.S().Infoln("BLOCKCHAIN- \t  smart contract address: ", addresss.String())
+		zap.S().Infoln("BLOCKCHAIN- \t tx hash: ", tx.Hash())
+		zap.S().Infoln("BLOCKCHAIN - \t gas used: ", gasUsed)
+		zap.L().Info("********************************************************************************************************************************\n")
+	}
 	return addresss.String(), gasUsed, err
 }
