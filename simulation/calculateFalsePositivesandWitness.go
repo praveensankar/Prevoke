@@ -63,45 +63,44 @@ func InsertIntoMT(conf config.Config, vcIDs []string, mtAcc *techniques.MerkleTr
 
 
 func GenerateRevokedVCIDs(conf config.Config, vcIDs []string, revocationMode RevocationMode) ([]string) {
-	revocationBatchSize := int(conf.RevocationBatchSize)
+
 
 	totalRevokedVCs := int(conf.ExpectedNumberofRevokedVCs)
 	var revokedVCs []string
 
-
+	//stores revoked vc IDs
+	revokedVCIDs := make(map[string]bool)
 	//totalVCs := int(config.ExpectedNumberOfTotalVCs)
-	for batch := 0; batch < int(int64(math.Ceil(float64(totalRevokedVCs/revocationBatchSize)))); batch++ {
-		revokedVCsInBatch := make([]string, 0)
-		for i, counter := 0, 0; counter < revocationBatchSize; {
+	i:=0
+	if revocationMode==Random{
+		for counter := 0; counter < totalRevokedVCs; counter++ {
+			for
+			{
+				rand.Seed(time.Now().UnixNano())
+				i = rand.Intn(int(conf.ExpectedNumberOfTotalVCs))
 
-
-			for {
 				vcID := fmt.Sprintf("%v", vcIDs[i])
-				isalreadyRevoked := false
-				for _, revokedId := range revokedVCs {
-					if vcID == revokedId {
-						isalreadyRevoked = true
-						break
-					}
+
+				if revokedVCIDs[vcID]==true{
+					continue
 				}
-				if isalreadyRevoked == false {
-					revokedVCsInBatch = append(revokedVCsInBatch, vcID)
+				if revokedVCIDs[vcID]==false{
 					revokedVCs = append(revokedVCs, vcID)
-					counter++
+					revokedVCIDs[vcID]=true
 					break
 				}
-
-				if revocationMode==Random{
-					rand.Seed(time.Now().UnixNano())
-					i = rand.Intn(int(conf.ExpectedNumberOfTotalVCs))
-				}
-				if revocationMode==Oldest{
-					i++
-				}
-
 			}
 		}
 	}
+	if revocationMode==Oldest{
+		for counter := 0; counter < totalRevokedVCs; counter++ {
+			vcID := fmt.Sprintf("%v", vcIDs[i])
+			revokedVCs = append(revokedVCs, vcID)
+			i++
+		}
+	}
+
+
 	return revokedVCs
 }
 
