@@ -175,7 +175,7 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 	expStart := time.Now()
 	totalVCs:=[]int{10000, 50000, 100000, 1000000}
-	//revocationPercentages = 1 to 100 (increment by 1%)
+	revocationPercentages := []int{1,2,3,4,5,10,20,30,40}
 
 	revocationModes := []RevocationMode{Random, Oldest}
 	falsePositiveRates:= []float64{0.1,0.01,0.001,0.0001}
@@ -203,18 +203,19 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 		mtHeight := int(math.Ceil(math.Log2(float64(totalVC))))
 		//SetUpExpParamters(&config, *exp)
 		//exp.MtHeight=1
-
-
+		conf.ExpectedNumberOfTotalVCs = uint(totalVC)
+		conf.MTHeight = uint(mtHeight)
+		vcIDs := GenerateVCIDs(conf)
 
 		for j := 0; j < len(falsePositiveRates); j++ {
 
 			for mtLevelInDLT := 1; mtLevelInDLT <= mtHeight; mtLevelInDLT++ {
 
-				for revocationPercentage := 1; revocationPercentage <= 100; revocationPercentage = revocationPercentage+5 {
+				for revocationPercentageCounter := 0; revocationPercentageCounter<len(revocationPercentages); revocationPercentageCounter++{
 
 					for k := 0; k < len(revocationModes); k++ {
 
-						revokedVCCount := int(math.Ceil(float64(totalVC * revocationPercentage / 100)))
+						revokedVCCount := int(math.Ceil(float64(totalVC * revocationPercentages[revocationPercentageCounter] / 100)))
 						falsePositiveRate := falsePositiveRates[j]
 						revocationMode := revocationModes[k]
 						exp:= config.Experiment{
@@ -225,6 +226,7 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 							MtHeight:            mtHeight,
 							RevocationBatchSize: 1,
 							RevocationMode: string(revocationMode),
+							VCIDs: vcIDs,
 						}
 						exps = append(exps, exp)
 
@@ -245,6 +247,8 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 		conf.FalsePositiveRate = exp.FalsePositiveRate
 		conf.MtLevelInDLT = uint(exp.MtLevelInDLT)
 		conf.RevocationBatchSize = 1
+
+		vcIDs := exp.VCIDs
 		var revocationMode RevocationMode
 		if exp.RevocationMode==string(Oldest){
 			revocationMode = Oldest
@@ -256,10 +260,10 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 		wg.Add(1)
 
-		go func(conf config.Config, mode RevocationMode, expCounter int, totalExps int) {
+		go func(conf config.Config, vcIDs []string, mode RevocationMode, expCounter int, totalExps int) {
 			defer wg.Done()
-			container.PerformCalculation(conf, mode, expCounter, totalExps)
-		}(conf, revocationMode,i+1, len(exps))
+			container.PerformCalculation(conf, vcIDs, mode, expCounter, totalExps)
+		}(conf, vcIDs, revocationMode,i+1, len(exps))
 
 
 		goRountineCounter++
@@ -276,7 +280,7 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 	zap.S().Infoln("Total time to run the experiments: ", expEnd.Minutes(), "  minutes")
 }
 
-func (c *Container) PerformCalculation(conf config.Config, revocationMode RevocationMode,  expCounter int, totalExps int) {
+func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, revocationMode RevocationMode,  expCounter int, totalExps int) {
 	numberOfVCsRetrievingVCsFromDLT := 0
 	numberOfFalsePositives := 0
 
@@ -289,7 +293,6 @@ func (c *Container) PerformCalculation(conf config.Config, revocationMode Revoca
 	bf := techniques.CreateBloomFilter(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
 
 
-	vcIDs := GenerateVCIDs(conf)
 
 	mtIndexStore := InsertIntoMT(conf, vcIDs, mtAcc)
 	//zap.S().Infoln("mt index store: ", mtIndexStore)
