@@ -10,6 +10,7 @@ import (
 	"math"
 	"math/rand"
 	"strconv"
+	"sync"
 	"time"
 )
 
@@ -22,6 +23,20 @@ const (
 	Random    RevocationMode = "random"
 	Oldest = "oldest"
 )
+
+type FPandWitnessResult struct {
+	NumberOfFalsePositives int
+	NumberOfVCsRetrievingVCsFromDLT int
+	VcIDsFromDLT []string
+	FpVCIDs []string
+	AffectedVCIDs []string
+}
+
+type Container struct {
+	mu       sync.Mutex
+	Results []common.FalsePositiveAndWitnessUpdateResults
+	RawResults []common.FalsePositiveAndWitnessUpdateResults
+}
 
 func GenerateVCIDs(conf config.Config) ([]string) {
 	remainingSpace := int(math.Pow(2, float64(conf.MTHeight)))-int(conf.ExpectedNumberOfTotalVCs)
@@ -179,6 +194,10 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 	var rawResults []common.FalsePositiveAndWitnessUpdateResults
 
 
+	container := Container{}
+	var wg sync.WaitGroup
+
+
 	for i:=0;i< len(totalVCs);i++ {
 
 		totalVC := totalVCs[i]
@@ -210,83 +229,103 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 						conf.RevocationBatchSize = 1
 						//zap.S().Infoln("ISSUER - updated config with experiment config: ", exp.String())
 
-						numberOfVCsRetrievingVCsFromDLT := 0
-						numberOfFalsePositives := 0
+						wg.Add(1)
 
-						//zap.S().Infoln("vc ids: ", vcIDs)
-						var vcIDsFromDLT []string
-						var fpVCIDs []string
+						go func(conf config.Config, mode RevocationMode) {
+							defer wg.Done()
+							container.PerformCalculation(conf, vcIDs, mode)
+						}(conf, revocationMode)
 
-						mtAcc := techniques.CreateMerkleTreeAccumulator(conf)
-						bf := techniques.CreateBloomFilter(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
 
-						mtIndexStore := InsertIntoMT(conf, vcIDs, mtAcc)
-						//zap.S().Infoln("mt index store: ", mtIndexStore)
 
-						//mtAcc.PrintTree()
 
-						revokedVcIDs := GenerateRevokedVCIDs(conf, vcIDs, revocationMode)
-						//zap.S().Infoln("revoked vc ids: ", revokedVcIDs)
-
-						revokedVCIDMaps, affectedIndexes := RevokeVCs(conf, bf, mtAcc, revokedVcIDs)
-						//zap.S().Infoln("affected indexes: ", affectedIndexes)
-
-						affectedVCs := make(map[int]string)
-						var affectedVCIDs []string
-						for x := 0; x < len(vcIDs); x++ {
-							if affectedIndexes.Contains(mtIndexStore[vcIDs[x]]) == true {
-								affectedVCs[mtIndexStore[vcIDs[x]]] = vcIDs[x]
-								affectedVCIDs = append(affectedVCIDs, vcIDs[x])
-							}
-						}
-						//zap.S().Infoln("affected vc ids: ", affectedVCs)
-
-						for y := 0; y < int(conf.ExpectedNumberOfTotalVCs); y++ {
-							vcId := vcIDs[y]
-							if bf.CheckStatusInBloomFilter(vcId) == false {
-								if revokedVCIDMaps[vcId] == false {
-									fpVCIDs = append(fpVCIDs, vcId)
-									numberOfFalsePositives++
-									mtIndex := mtIndexStore[vcId]
-									if affectedIndexes.Contains(mtIndex) == false {
-										numberOfVCsRetrievingVCsFromDLT++
-										vcIDsFromDLT = append(vcIDsFromDLT, vcId)
-									}
-								}
-							}
-						}
-						//zap.S().Infoln("false positive vc ids: ",fpVCIDs)
-						//zap.S().Infoln("VCs that would retrieve witness from DLTs: ", vcIDsFromDLT)
-						//zap.S().Infoln("number of vcs affected by z levels: ",affectedIndexes.Cardinality())
-						zap.S().Infoln("total vc: ", totalVC, " revoked vcs: ", revokedVCCount, "false positive rate: ",
-							falsePositiveRate, "mt level in dlt: ", mtLevelInDLT, "revocation mode: ", revocationMode,
-							"number of false positives: ", numberOfFalsePositives, "\t number of vcs retrieved witness"+
-								"from dlts: ", numberOfVCsRetrievingVCsFromDLT)
-
-						result := common.CreateFalsePositiveAndWitnessUpdateResults()
-						result.TotalVCs = totalVC
-						result.RevokedVCs = revokedVCCount
-						result.FalsePositiveRate = falsePositiveRate
-						result.MTHeight = mtHeight
-						result.MtLevelInDLT = mtLevelInDLT
-						result.NumberOfFalsePositives = numberOfFalsePositives
-						result.NumberOfVCsRetrievedWitnessFromDLT = numberOfVCsRetrievingVCsFromDLT
-						result.RevocationMode = string(revocationMode)
-						results = append(results, *result)
-						result.AffectedVCIDs = affectedVCIDs
-						result.FalsePositiveResults = fpVCIDs
-						result.FetchedWitnessesFromDLT = vcIDsFromDLT
-						rawResults = append(rawResults, *result)
 
 					}
 				}
 			}
 		}
 	}
+	wg.Wait()
 	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(rawFilename, rawResults)
 	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(resultFileName, results)
 	expEnd := time.Since(expStart)
 	zap.S().Infoln("Total time to run the experiments: ", expEnd.Minutes(), "  minutes")
+}
+
+func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, revocationMode RevocationMode) {
+	numberOfVCsRetrievingVCsFromDLT := 0
+	numberOfFalsePositives := 0
+
+	//zap.S().Infoln("vc ids: ", vcIDs)
+	var vcIDsFromDLT []string
+	var fpVCIDs []string
+
+
+	mtAcc := techniques.CreateMerkleTreeAccumulator(conf)
+	bf := techniques.CreateBloomFilter(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
+
+	mtIndexStore := InsertIntoMT(conf, vcIDs, mtAcc)
+	//zap.S().Infoln("mt index store: ", mtIndexStore)
+
+	//mtAcc.PrintTree()
+
+	revokedVcIDs := GenerateRevokedVCIDs(conf, vcIDs, revocationMode)
+	//zap.S().Infoln("revoked vc ids: ", revokedVcIDs)
+
+	revokedVCIDMaps, affectedIndexes := RevokeVCs(conf, bf, mtAcc, revokedVcIDs)
+	//zap.S().Infoln("affected indexes: ", affectedIndexes)
+
+	affectedVCs := make(map[int]string)
+	var affectedVCIDs []string
+	for x := 0; x < len(vcIDs); x++ {
+		if affectedIndexes.Contains(mtIndexStore[vcIDs[x]]) == true {
+			affectedVCs[mtIndexStore[vcIDs[x]]] = vcIDs[x]
+			affectedVCIDs = append(affectedVCIDs, vcIDs[x])
+		}
+	}
+	//zap.S().Infoln("affected vc ids: ", affectedVCs)
+
+	for y := 0; y < int(conf.ExpectedNumberOfTotalVCs); y++ {
+		vcId := vcIDs[y]
+		if bf.CheckStatusInBloomFilter(vcId) == false {
+			if revokedVCIDMaps[vcId] == false {
+				fpVCIDs = append(fpVCIDs, vcId)
+				numberOfFalsePositives++
+				mtIndex := mtIndexStore[vcId]
+				if affectedIndexes.Contains(mtIndex) == false {
+					numberOfVCsRetrievingVCsFromDLT++
+					vcIDsFromDLT = append(vcIDsFromDLT, vcId)
+				}
+			}
+		}
+	}
+	//zap.S().Infoln("false positive vc ids: ",fpVCIDs)
+	//zap.S().Infoln("VCs that would retrieve witness from DLTs: ", vcIDsFromDLT)
+	//zap.S().Infoln("number of vcs affected by z levels: ",affectedIndexes.Cardinality())
+	zap.S().Infoln("total vc: ", conf.ExpectedNumberOfTotalVCs, " revoked vcs: ", conf.ExpectedNumberofRevokedVCs,
+		" false positive rate: ", conf.FalsePositiveRate, " mt level in dlt: ", conf.MtLevelInDLT,
+		" revocation mode: ", revocationMode, " number of false positives: ", numberOfFalsePositives, " number of vcs retrieved witness"+
+			"from dlts: ", numberOfVCsRetrievingVCsFromDLT)
+
+	result := common.CreateFalsePositiveAndWitnessUpdateResults()
+	result.TotalVCs = int(conf.ExpectedNumberOfTotalVCs)
+	result.RevokedVCs = int(conf.ExpectedNumberofRevokedVCs)
+	result.FalsePositiveRate =  conf.FalsePositiveRate
+	result.MTHeight = int(conf.MTHeight)
+	result.MtLevelInDLT = int(conf.MtLevelInDLT)
+	result.NumberOfFalsePositives = numberOfFalsePositives
+	result.NumberOfVCsRetrievedWitnessFromDLT = numberOfVCsRetrievingVCsFromDLT
+	result.RevocationMode = string(revocationMode)
+
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	c.Results = append(c.Results, *result)
+	result.AffectedVCIDs = affectedVCIDs
+	result.FalsePositiveResults = fpVCIDs
+	result.FetchedWitnessesFromDLT = vcIDsFromDLT
+	c.RawResults = append(c.RawResults, *result)
+
+
 }
 
 
