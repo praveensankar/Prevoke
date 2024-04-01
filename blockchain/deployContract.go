@@ -9,14 +9,14 @@ import (
 	_ "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/praveensankar/Revocation-Service/config"
+	common2 "github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/contracts"
 	"go.uber.org/zap"
 	"math/big"
 	_ "time"
 )
 //
-func DeployContract(config config.Config, counter int) (string, int64, error){
+func DeployContract(config common2.Config, counter int) (string, int64, error){
 	client, err :=  ethclient.Dial(config.BlockchainRpcEndpoint)
 	if err != nil {
 		zap.S().Fatalln("ERROR in deploying contract",err)

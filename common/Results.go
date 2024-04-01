@@ -247,7 +247,7 @@ func BloomFilterConfigurationGenerators(totalNumberOfVCs uint, falsePositiveRate
 
 func ConstructResults(config config.Config, start  time.Time, result *Results){
 	//zap.S().Infoln("RESULT - \t indexes of VCs that retrieved witnesses from entities: ", result.FetchedWitnessesFromIssuers)
-	_, k := BloomFilterConfigurationGenerators(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
+	_, k := bloom.EstimateParameters(config.ExpectedNumberofRevokedVCs,config.FalsePositiveRate)
 	// Code to measure
 	end := time.Since(start)
 	zap.S().Infof("SIMULATOR : \t total time to run the experiment: %f", end.Seconds())

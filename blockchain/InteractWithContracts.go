@@ -6,7 +6,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/praveensankar/Revocation-Service/config"
+	common2 "github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/contracts"
 	"go.uber.org/zap"
 	"math/big"
@@ -18,7 +18,7 @@ const key = `<<json object from keystore>>`
 
 
 
-func ReadFromContract(config config.Config) {
+func ReadFromContract(config common2.Config) {
 
 	// step 1: connect to a blockchain node using RPC endpoint
 	ethClient, err := ethclient.Dial(config.BlockchainRpcEndpoint)
@@ -54,7 +54,7 @@ func ReadFromContract(config config.Config) {
 
 
 
-func SubscribeToEvents(config config.Config){
+func SubscribeToEvents(config common2.Config){
 	client, err :=  ethclient.Dial(config.BlockchainWebSocketEndPoint)
 	if err != nil {
 		zap.S().Fatalln(err)

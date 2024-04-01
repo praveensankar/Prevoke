@@ -11,7 +11,7 @@ import (
 	_ "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/praveensankar/Revocation-Service/config"
+	common2 "github.com/praveensankar/Revocation-Service/config"
 	"github.com/praveensankar/Revocation-Service/contracts"
 	"github.com/praveensankar/Revocation-Service/techniques"
 	"go.uber.org/zap"
@@ -67,7 +67,7 @@ type RevocationService struct{
 
 
 
-func CreateRevocationService(config config.Config) *RevocationService {
+func CreateRevocationService(config common2.Config) *RevocationService {
 	rs := RevocationService{}
 	rs.blockchainRPCEndpoint = config.BlockchainRpcEndpoint
 	rs.merkleTreeAcc = techniques.CreateMerkleTreeAccumulator(config)

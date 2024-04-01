@@ -195,18 +195,16 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 	container := Container{}
 	var wg sync.WaitGroup
 
+	var exps []config.Experiment
 
 	for i:=0;i< len(totalVCs);i++ {
 
 		totalVC := totalVCs[i]
 		mtHeight := int(math.Ceil(math.Log2(float64(totalVC))))
-
 		//SetUpExpParamters(&config, *exp)
 		//exp.MtHeight=1
 
-		conf.ExpectedNumberOfTotalVCs = uint(totalVC)
-		conf.MTHeight = uint(mtHeight)
-		vcIDs := GenerateVCIDs(conf)
+
 
 		for j := 0; j < len(falsePositiveRates); j++ {
 
@@ -219,30 +217,58 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 						revokedVCCount := int(math.Ceil(float64(totalVC * revocationPercentage / 100)))
 						falsePositiveRate := falsePositiveRates[j]
 						revocationMode := revocationModes[k]
-						conf.ExpectedNumberofRevokedVCs = uint(revokedVCCount)
-
-						conf.FalsePositiveRate = falsePositiveRate
-						conf.MTHeight = uint(mtHeight)
-						conf.MtLevelInDLT = uint(mtLevelInDLT)
-						conf.RevocationBatchSize = 1
-						//zap.S().Infoln("ISSUER - updated config with experiment config: ", exp.String())
-
-						wg.Add(1)
-
-						go func(conf config.Config, mode RevocationMode) {
-							defer wg.Done()
-							container.PerformCalculation(conf, vcIDs, mode)
-						}(conf, revocationMode)
-
-
-
-
+						exp:= config.Experiment{
+							TotalVCs:            totalVC,
+							RevokedVCs:          revokedVCCount,
+							FalsePositiveRate:   falsePositiveRate,
+							MtLevelInDLT:        mtLevelInDLT,
+							MtHeight:            mtHeight,
+							RevocationBatchSize: 1,
+							RevocationMode: string(revocationMode),
+						}
+						exps = append(exps, exp)
 
 					}
 				}
 			}
 		}
 	}
+
+	goRountineCounter:=0
+	for i:=0;i< len(exps);i++ {
+
+		exp := exps[i]
+		conf.ExpectedNumberOfTotalVCs = uint(exp.TotalVCs)
+		conf.MTHeight = uint(exp.MtHeight)
+		conf.ExpectedNumberofRevokedVCs = uint(exp.RevokedVCs)
+
+		conf.FalsePositiveRate = exp.FalsePositiveRate
+		conf.MtLevelInDLT = uint(exp.MtLevelInDLT)
+		conf.RevocationBatchSize = 1
+		var revocationMode RevocationMode
+		if exp.RevocationMode==string(Oldest){
+			revocationMode = Oldest
+		}
+		if exp.RevocationMode==string(Random){
+			revocationMode=Random
+		}
+		//zap.S().Infoln("ISSUER - updated config with experiment config: ", exp.String())
+
+		wg.Add(1)
+
+		go func(conf config.Config, mode RevocationMode, expCounter int, totalExps int) {
+			defer wg.Done()
+			container.PerformCalculation(conf, mode, expCounter, totalExps)
+		}(conf, revocationMode,i+1, len(exps))
+
+
+		goRountineCounter++
+		if goRountineCounter==100{
+			wg.Wait()
+			goRountineCounter=0
+		}
+	}
+
 	wg.Wait()
 	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(rawFilename, container.RawResults)
 	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(resultFileName, container.Results)
@@ -250,7 +276,7 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 	zap.S().Infoln("Total time to run the experiments: ", expEnd.Minutes(), "  minutes")
 }
 
-func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, revocationMode RevocationMode) {
+func (c *Container) PerformCalculation(conf config.Config, revocationMode RevocationMode,  expCounter int, totalExps int) {
 	numberOfVCsRetrievingVCsFromDLT := 0
 	numberOfFalsePositives := 0
 
@@ -261,6 +287,9 @@ func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, revoc
 
 	mtAcc := techniques.CreateMerkleTreeAccumulator(conf)
 	bf := techniques.CreateBloomFilter(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
+
+
+	vcIDs := GenerateVCIDs(conf)
 
 	mtIndexStore := InsertIntoMT(conf, vcIDs, mtAcc)
 	//zap.S().Infoln("mt index store: ", mtIndexStore)
@@ -300,7 +329,7 @@ func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, revoc
 	//zap.S().Infoln("false positive vc ids: ",fpVCIDs)
 	//zap.S().Infoln("VCs that would retrieve witness from DLTs: ", vcIDsFromDLT)
 	//zap.S().Infoln("number of vcs affected by z levels: ",affectedIndexes.Cardinality())
-	zap.S().Infoln("total vc: ", conf.ExpectedNumberOfTotalVCs, " revoked vcs: ", conf.ExpectedNumberofRevokedVCs,
+	zap.S().Infoln("exp: ",expCounter,"/",totalExps," total vc: ", conf.ExpectedNumberOfTotalVCs, " revoked vcs: ", conf.ExpectedNumberofRevokedVCs,
 		" false positive rate: ", conf.FalsePositiveRate, " mt level in dlt: ", conf.MtLevelInDLT,
 		" revocation mode: ", revocationMode, " number of false positives: ", numberOfFalsePositives, " number of vcs retrieved witness"+
 			"from dlts: ", numberOfVCsRetrievingVCsFromDLT)

@@ -12,6 +12,7 @@ type Experiment struct {
 	MtLevelInDLT int `json:"mtLevelInDLT"`
 	MtHeight int `json:"mtHeight"`
 	RevocationBatchSize int `json:"revocation_batch_size"`
+	RevocationMode string `json:"revocation_mode"`
 
 }
 

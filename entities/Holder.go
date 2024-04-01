@@ -324,56 +324,7 @@ func StartHolder(config config.Config){
 }
 
 
-func CalculateWitness(config config.Config){
 
-	experiments := config.ExpParamters
-
-	counter:=1
-	expStart := time.Now()
-	for _, exp := range experiments {
-
-		//SetUpExpParamters(&config, *exp)
-		//exp.MtHeight=1
-
-		if exp.TotalVCs != 0 {
-
-			zap.S().Infoln("Experiment: ",counter,"/", len(experiments),"  running")
-			counter++
-			holder := NewHolder(config)
-			holder.issuerAddress = config.IssuerAddress
-			holder.verifierAddress = config.VerifierAddress
-			holder.totalVCs = exp.TotalVCs
-			holder.MTHeight= int(exp.MtHeight)
-			holder.MTLevelInDLT = int(exp.MtLevelInDLT)
-
-			config.ExpectedNumberOfTotalVCs = uint(exp.TotalVCs)
-			config.ExpectedNumberofRevokedVCs = uint(exp.RevokedVCs)
-			config.FalsePositiveRate = exp.FalsePositiveRate
-			config.MTHeight = uint(exp.MtHeight)
-			config.MtLevelInDLT = uint(exp.MtLevelInDLT)
-			config.RevocationBatchSize = uint(exp.RevocationBatchSize)
-			holder.RevocationService = revocation_service.CreateRevocationService(config)
-			result := common.CreateResult()
-			start := time.Now()
-			numberOfFalsePositives, numberOfVCsRetrievingVCsFromDLT := holder.CalculateVCsThatWouldRetrieveWitnessFromDLT(holder.issuerAddress, exp)
-			zap.S().Infoln("HOLDER - false positives: ", numberOfFalsePositives, "\t number of vcs retrieving witness from dlt: ", numberOfVCsRetrievingVCsFromDLT)
-			result.NumberOfVCsRetrievedWitnessFromDLT = int(numberOfVCsRetrievingVCsFromDLT)
-			result.NumberOfFalsePositives = numberOfFalsePositives
-			common.ConstructResults(config, start, result)
-			common.WriteToFile( *result)
-		}
-	}
-
-	expEnd := time.Since(expStart)
-	zap.S().Infoln("HOLDER - Total time to run the experiment: ", expEnd.Hours(), "  hours")
-	timer1 := time.NewTimer(30 * time.Second)
-	<-timer1.C
-
-}
-
-func StartWorkLoad(config config.Config){
-
-}
 
 
 
