@@ -12,6 +12,7 @@ type FalsePositiveAndWitnessUpdateResults struct {
 	TotalVCs int `json:"total_issued_vcs"`
 	RevokedVCs int `json:"total_revoked_vcs"`
 	RevocationBatchSize int `json:"revocation_batch_size"`
+	RevocationMode string `json:"revocation_mode"`
 	MtLevelInDLT int `json:"mt_level_in_dlt"`
 	MTHeight int `json:"mt_height"`
 	FalsePositiveRate float64 `json:"false_positive_rate"`
@@ -35,6 +36,7 @@ func (r FalsePositiveAndWitnessUpdateResults) String() string{
 	response = response + "Total VCs : "+fmt.Sprintf("%d",r.TotalVCs)+ "\n"
 	response = response + "Total Revoked VCs : "+fmt.Sprintf("%d",r.RevokedVCs)+ "\n"
 	response = response + "revocation Batch size : "+fmt.Sprintf("%d",r.RevocationBatchSize)+ "\n"
+	response = response + "revocation mode : "+fmt.Sprintf("%s",r.RevocationMode)+ "\n"
 	response = response + "False Positive Rate : "+fmt.Sprintf("%f",r.FalsePositiveRate)+ "\n"
 	response = response + "Merkle Tree Accumulator height : "+fmt.Sprintf("%d",r.MTHeight)+ "\n"
 	response = response + "Merkle Tree Accumulator Level Stored in DLT : "+fmt.Sprintf("%d",r.MtLevelInDLT)+ "\n \n"
