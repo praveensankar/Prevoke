@@ -263,7 +263,7 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 
 		goRountineCounter++
-		if goRountineCounter==100{
+		if goRountineCounter==30{
 			wg.Wait()
 			goRountineCounter=0
 		}
