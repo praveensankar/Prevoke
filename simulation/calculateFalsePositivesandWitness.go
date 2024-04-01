@@ -177,6 +177,8 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 	resultFileName := fmt.Sprintf("results/results_computed.json")
 	var results []common.FalsePositiveAndWitnessUpdateResults
 	var rawResults []common.FalsePositiveAndWitnessUpdateResults
+
+
 	for i:=0;i< len(totalVCs);i++ {
 
 		totalVC := totalVCs[i]
@@ -191,7 +193,7 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 		for j := 0; j < len(falsePositiveRates); j++ {
 
-			for mtLevelInDLT := 0; mtLevelInDLT <= mtHeight; mtLevelInDLT++ {
+			for mtLevelInDLT := 1; mtLevelInDLT <= mtHeight; mtLevelInDLT++ {
 
 				for revocationPercentage := 1; revocationPercentage <= 100; revocationPercentage = revocationPercentage+5 {
 
