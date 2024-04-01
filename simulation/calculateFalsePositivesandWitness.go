@@ -190,8 +190,6 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 	rawFilename := fmt.Sprintf("results/results_computed_raw.json")
 	resultFileName := fmt.Sprintf("results/results_computed.json")
-	var results []common.FalsePositiveAndWitnessUpdateResults
-	var rawResults []common.FalsePositiveAndWitnessUpdateResults
 
 
 	container := Container{}
@@ -246,8 +244,8 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 		}
 	}
 	wg.Wait()
-	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(rawFilename, rawResults)
-	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(resultFileName, results)
+	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(rawFilename, container.RawResults)
+	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(resultFileName, container.Results)
 	expEnd := time.Since(expStart)
 	zap.S().Infoln("Total time to run the experiments: ", expEnd.Minutes(), "  minutes")
 }
