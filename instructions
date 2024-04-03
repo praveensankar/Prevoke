@@ -39,3 +39,6 @@ tmux
 then inside the terminal run:  go run github.com/praveensankar/Revocation-Service
 use ctrl+b and d.
 to restore type tmux attach
+
+5) zip file
+ zip -r <file.zip> <file>

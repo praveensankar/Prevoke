@@ -177,7 +177,8 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 	totalVCs:=[]int{50000}
 	//totalVCs:=[]int{100000}
 	//totalVCs:=[]int{1000000}
-	revocationPercentages := []int{1,2,3,4,5,6,7,8,9,10,20,30,40,50}
+	processRawData := false
+	revocationPercentages := []int{1,2,3,4,5,6,7,8,9,10,20,30,40}
 
 	revocationModes := []RevocationMode{Random, Oldest}
 	falsePositiveRates:= []float64{0.1,0.01,0.001,0.0001}
@@ -199,6 +200,10 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 	var exps []config.Experiment
 
+	/*
+	Construct the parameters for the experiments
+	 */
+
 	for i:=0;i< len(totalVCs);i++ {
 
 		totalVC := totalVCs[i]
@@ -208,6 +213,10 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 		conf.ExpectedNumberOfTotalVCs = uint(totalVC)
 		conf.MTHeight = uint(mtHeight)
 		vcIDs := GenerateVCIDs(conf)
+
+		if totalVC>100000{
+			revocationPercentages = []int{1,2,3,4,5,10,20,30}
+		}
 
 		for j := 0; j < len(falsePositiveRates); j++ {
 
@@ -233,6 +242,10 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 						exps = append(exps, exp)
 
 					}
+				}
+
+				if totalVC>100000{
+					mtLevelInDLT++
 				}
 			}
 		}
@@ -262,10 +275,10 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 		wg.Add(1)
 
-		go func(conf config.Config, vcIDs []string, mode RevocationMode, expCounter int, totalExps int) {
+		go func(conf config.Config, vcIDs []string, processRawData bool, mode RevocationMode, expCounter int, totalExps int) {
 			defer wg.Done()
-			container.PerformCalculation(conf, vcIDs, mode, expCounter, totalExps)
-		}(conf, vcIDs, revocationMode,i+1, len(exps))
+			container.PerformCalculation(conf, vcIDs, processRawData, mode, expCounter, totalExps)
+		}(conf, vcIDs, processRawData, revocationMode,i+1, len(exps))
 
 
 		goRountineCounter++
@@ -276,13 +289,15 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 	}
 
 	wg.Wait()
-	common.WriteFalsePositiveAndWitnessUpdateRawResultsToFile(rawFilename, container.RawResults)
+	if processRawData==true {
+		common.WriteFalsePositiveAndWitnessUpdateRawResultsToFile(rawFilename, container.RawResults)
+	}
 	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(resultFileName, container.Results)
 	expEnd := time.Since(expStart)
 	zap.S().Infoln("Total time to run the experiments: ", expEnd.Minutes(), "  minutes")
 }
 
-func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, revocationMode RevocationMode,  expCounter int, totalExps int) {
+func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, processRawData bool, revocationMode RevocationMode,  expCounter int, totalExps int) {
 	numberOfVCsRetrievingVCsFromDLT := 0
 	numberOfFalsePositives := 0
 
@@ -309,10 +324,13 @@ func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, revoc
 
 	affectedVCs := make(map[int]string)
 	var affectedVCIDs []string
-	for x := 0; x < len(vcIDs); x++ {
-		if affectedIndexes.Contains(mtIndexStore[vcIDs[x]]) == true {
-			affectedVCs[mtIndexStore[vcIDs[x]]] = vcIDs[x]
-			affectedVCIDs = append(affectedVCIDs, vcIDs[x])
+
+	if processRawData==true {
+		for x := 0; x < len(vcIDs); x++ {
+			if affectedIndexes.Contains(mtIndexStore[vcIDs[x]]) == true {
+				affectedVCs[mtIndexStore[vcIDs[x]]] = vcIDs[x]
+				affectedVCIDs = append(affectedVCIDs, vcIDs[x])
+			}
 		}
 	}
 	//zap.S().Infoln("affected vc ids: ", affectedVCs)
@@ -321,12 +339,16 @@ func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, revoc
 		vcId := vcIDs[y]
 		if bf.CheckStatusInBloomFilter(vcId) == false {
 			if revokedVCIDMaps[vcId] == false {
-				fpVCIDs = append(fpVCIDs, vcId)
+				if processRawData==true {
+					fpVCIDs = append(fpVCIDs, vcId)
+				}
 				numberOfFalsePositives++
 				mtIndex := mtIndexStore[vcId]
 				if affectedIndexes.Contains(mtIndex) == false {
 					numberOfVCsRetrievingVCsFromDLT++
-					vcIDsFromDLT = append(vcIDsFromDLT, vcId)
+					if processRawData==true {
+						vcIDsFromDLT = append(vcIDsFromDLT, vcId)
+					}
 				}
 			}
 		}
@@ -355,11 +377,13 @@ func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, revoc
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	c.Results = append(c.Results, *result)
-	result.AffectedVCIDs = affectedVCIDs
-	result.FalsePositiveResults = fpVCIDs
-	result.FetchedWitnessesFromDLT = vcIDsFromDLT
-	c.RawResults = append(c.RawResults, *result)
 
+	if processRawData==true {
+		result.AffectedVCIDs = affectedVCIDs
+		result.FalsePositiveResults = fpVCIDs
+		result.FetchedWitnessesFromDLT = vcIDsFromDLT
+		c.RawResults = append(c.RawResults, *result)
+	}
 
 }
 
