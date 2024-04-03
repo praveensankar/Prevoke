@@ -174,8 +174,8 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 	expStart := time.Now()
 	//totalVCs:=[]int{10000}
-	totalVCs:=[]int{50000}
-	//totalVCs:=[]int{100000}
+	//totalVCs:=[]int{50000}
+	totalVCs:=[]int{100000}
 	//totalVCs:=[]int{1000000}
 	processRawData := false
 	revocationPercentages := []int{1,2,3,4,5,6,7,8,9,10,20,30,40}
