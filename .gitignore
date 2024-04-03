@@ -31,3 +31,4 @@ contracts/build/RevocationService.bin
 contracts/build/RevocationService.abi
 artifacts/RevocationService_metadata.json
 .DS_Store
+/results/computation raw data
