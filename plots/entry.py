@@ -71,11 +71,21 @@ def parse_entry(file):
         revokedVCs = entry['total_revoked_vcs']
         falsePositiveRate = entry['false_positive_rate']
         mtLevelInDLT = entry['mt_level_in_dlt']
-        bloomFilterSize = entry['bloom_filter_size']
-        bloomFilterIndexesPerEntry = entry['bloom_filter_indexes_per_entry']
 
-        if "mt_accumulator_per_update_cost_in_gwei" in entry:
-            mtAccumulatorPerUpdateCost = entry['mt_accumulator_per_update_cost_in_gwei']
+        if "bloom_filter_size" in entry:
+            bloomFilterSize = entry['bloom_filter_size']
+        else:
+            bloomFilterSize = 0
+
+        if "bloom_filter_indexes_per_entry" in entry:
+            bloomFilterIndexesPerEntry = entry['bloom_filter_indexes_per_entry']
+        else:
+            bloomFilterIndexesPerEntry = 0
+
+
+
+        if "revocation_cost_in_wei" in entry:
+            mtAccumulatorPerUpdateCost = entry['revocation_cost_in_wei']
         else:
             mtAccumulatorPerUpdateCost = 0
 

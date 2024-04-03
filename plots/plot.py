@@ -3,6 +3,8 @@ import pandas as pd
 import json
 
 from matplotlib import pyplot as plt
+
+import revocation_cost
 from fpr_vs_bf_size_and_witness_updates import plot_fpr_vs_bfsize_and_witUpdates
 from indy_vs_ours import plot_witness_updates_vc_indy
 from entry import Entry, parse_entry
@@ -13,9 +15,12 @@ from setting import Setting
 def main():
 
     entries = parse_entry("results2.json")
+    revocationCostEntries = revocation_cost.parse_revocation_cost_entry("results_revocation_cost.json")
+    revocation_cost.plot_revocation_cost(revocationCostEntries)
+
     # plot_fpr_vs_bfsize_and_witUpdates(entries)
     # plot_false_positives(entries)
-    plot_merkle_tree_accumulator_cost(entries)
+    # plot_merkle_tree_accumulator_cost(entries)
     # plot_witness_updates_vc_indy(entries)
     # plot_witness_updates(entries)
     # plot_witness_update_saves(entries)

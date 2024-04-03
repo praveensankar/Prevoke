@@ -34,3 +34,8 @@ ganache-cli -h 158.39.48.29 -l 100000000 --account="0x1c804da8039c8ce928391bc45d
 Note: upgrade ganache from v6 to v7. otherwise, it would give op code error.
 
 
+4) running processes in the background in ssh
+tmux
+then inside the terminal run:  go run github.com/praveensankar/Revocation-Service
+use ctrl+b and d.
+to restore type tmux attach

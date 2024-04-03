@@ -173,8 +173,11 @@ First, it computes the list of valid vcs that are affected by the bloom filter
 func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 	expStart := time.Now()
-	totalVCs:=[]int{10000, 50000, 100000, 1000000}
-	revocationPercentages := []int{1,2,3,4,5,10,20,30,40}
+	totalVCs:=[]int{10000}
+	//totalVCs:=[]int{50000}
+	//totalVCs:=[]int{100000}
+	//totalVCs:=[]int{1000000}
+	revocationPercentages := []int{1,2,3,4,5,6,7,8,9,10,20,30,40,50}
 
 	revocationModes := []RevocationMode{Random, Oldest}
 	falsePositiveRates:= []float64{0.1,0.01,0.001,0.0001}
@@ -187,8 +190,8 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 	//falsePositiveRates= []float64{0.1}
 
 
-	rawFilename := fmt.Sprintf("results/results_computed_raw.json")
-	resultFileName := fmt.Sprintf("results/results_computed.json")
+	rawFilename := fmt.Sprintf("results/results_computed_raw_10000.json")
+	resultFileName := fmt.Sprintf("results/results_computed_10000.json")
 
 
 	container := Container{}
@@ -331,10 +334,13 @@ func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, revoc
 	//zap.S().Infoln("false positive vc ids: ",fpVCIDs)
 	//zap.S().Infoln("VCs that would retrieve witness from DLTs: ", vcIDsFromDLT)
 	//zap.S().Infoln("number of vcs affected by z levels: ",affectedIndexes.Cardinality())
-	zap.S().Infoln("exp: ",expCounter,"/",totalExps," total vc: ", conf.ExpectedNumberOfTotalVCs, " revoked vcs: ", conf.ExpectedNumberofRevokedVCs,
-		" false positive rate: ", conf.FalsePositiveRate, " mt level in dlt: ", conf.MtLevelInDLT,
-		" revocation mode: ", revocationMode, " number of false positives: ", numberOfFalsePositives, " number of vcs retrieved witness"+
-			"from dlts: ", numberOfVCsRetrievingVCsFromDLT)
+	zap.S().Infof("exp: %d/%d  time: %d:%d total vcs:%d revoked vcs:%d  false positive rate:%f  mt level in dlt:%d  revocation mode:%s  number of false positives:%d  number of vcs retrieved witness from dlt:%d",
+		expCounter, totalExps, time.Now().Hour(), time.Now().Second(), conf.ExpectedNumberOfTotalVCs, conf.ExpectedNumberofRevokedVCs,
+		conf.FalsePositiveRate, conf.MtLevelInDLT, revocationMode, numberOfFalsePositives, numberOfVCsRetrievingVCsFromDLT)
+	//zap.S().Infoln("exp: ",expCounter,"/",totalExps," timestamp: ", time.Now().Hour(),":",time.Now().Minute(), "total vc: ", conf.ExpectedNumberOfTotalVCs, " revoked vcs: ", conf.ExpectedNumberofRevokedVCs,
+	//	" false positive rate: ", conf.FalsePositiveRate, " mt level in dlt: ", conf.MtLevelInDLT,
+	//	" revocation mode: ", revocationMode, " number of false positives: ", numberOfFalsePositives, " number of vcs retrieved witness"+
+	//		"from dlts: ", numberOfVCsRetrievingVCsFromDLT)
 
 	result := common.CreateFalsePositiveAndWitnessUpdateResults()
 	result.TotalVCs = int(conf.ExpectedNumberOfTotalVCs)
