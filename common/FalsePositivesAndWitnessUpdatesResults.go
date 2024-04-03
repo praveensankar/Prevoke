@@ -83,6 +83,41 @@ func  WriteFalsePositiveAndWitnessUpdateResultsToFile(filename string, result []
 }
 
 
+func  WriteFalsePositiveAndWitnessUpdateRawResultsToFile(filename string, result []FalsePositiveAndWitnessUpdateResults) {
+
+	var results []FalsePositiveAndWitnessUpdateResults
+
+
+	jsonFile, err := os.Open(filename)
+	if err != nil {
+		jsonFile2, err2 := os.Create(filename)
+		if err2 != nil {
+			zap.S().Errorln("ERROR - results.json file creation error")
+		}
+		resJson, _ := ioutil.ReadAll(jsonFile2)
+		json.Unmarshal(resJson, &results)
+		results = append(results, result...)
+	} else{
+		resJson, _ := ioutil.ReadAll(jsonFile)
+		json.Unmarshal(resJson, &results)
+		results = append(results, result...)
+	}
+
+	jsonRes, err3 := json.Marshal(results)
+	if err3 != nil {
+		zap.S().Errorln("ERROR - marshalling the results")
+	}
+
+	//filename := fmt.Sprintf("Simulation/results/result_%v_%v_%v.json",numberOfVcs, numberOfRevokedVcs, mtLevelInDLT)
+	err = ioutil.WriteFile(filename, jsonRes, 0644)
+	if err != nil {
+		zap.S().Errorln("unable to write results to file")
+	}
+	//zap.S().Errorln("RESULTS - successfully written to the file")
+
+}
+
+
 func (r *FalsePositiveAndWitnessUpdateResults) Json() ([]byte, error){
 	//return json.MarshalIndent(r, "","    ")
 	return json.Marshal(r)

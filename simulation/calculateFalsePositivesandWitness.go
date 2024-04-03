@@ -173,8 +173,8 @@ First, it computes the list of valid vcs that are affected by the bloom filter
 func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 	expStart := time.Now()
-	totalVCs:=[]int{10000}
-	//totalVCs:=[]int{50000}
+	//totalVCs:=[]int{10000}
+	totalVCs:=[]int{50000}
 	//totalVCs:=[]int{100000}
 	//totalVCs:=[]int{1000000}
 	revocationPercentages := []int{1,2,3,4,5,6,7,8,9,10,20,30,40,50}
@@ -190,8 +190,8 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 	//falsePositiveRates= []float64{0.1}
 
 
-	rawFilename := fmt.Sprintf("results/results_computed_raw_10000.json")
-	resultFileName := fmt.Sprintf("results/results_computed_10000.json")
+	rawFilename := fmt.Sprintf("results/results_computed_raw_50000.json")
+	resultFileName := fmt.Sprintf("results/results_computed_50000.json")
 
 
 	container := Container{}
@@ -276,7 +276,7 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 	}
 
 	wg.Wait()
-	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(rawFilename, container.RawResults)
+	common.WriteFalsePositiveAndWitnessUpdateRawResultsToFile(rawFilename, container.RawResults)
 	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(resultFileName, container.Results)
 	expEnd := time.Since(expStart)
 	zap.S().Infoln("Total time to run the experiments: ", expEnd.Minutes(), "  minutes")
