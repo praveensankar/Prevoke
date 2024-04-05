@@ -215,7 +215,7 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 		vcIDs := GenerateVCIDs(conf)
 
 		if totalVC>100000{
-			revocationPercentages = []int{1,2,3,4,5,10,20,30}
+			revocationPercentages = []int{1,2,3,4,5}
 		}
 
 		for j := 0; j < len(falsePositiveRates); j++ {
