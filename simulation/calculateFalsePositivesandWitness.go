@@ -188,11 +188,11 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 
 
 	//totalVCs=[]int{100}
-	//falsePositiveRates= []float64{0.1}
+	falsePositiveRates= []float64{0.1}
 
 
-	rawFilename := fmt.Sprintf("results/results_computed_raw_50000.json")
-	resultFileName := fmt.Sprintf("results/results_computed_1M.json")
+	rawFilename := fmt.Sprintf("results/results_computed_raw_10K.json")
+	resultFileName := fmt.Sprintf("results/results_computed_1M_0.1.json")
 
 
 	container := Container{}
