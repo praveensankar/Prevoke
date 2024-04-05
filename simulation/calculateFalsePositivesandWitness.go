@@ -240,6 +240,7 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 							VCIDs: vcIDs,
 						}
 						exps = append(exps, exp)
+						zap.S().Infoln("exp: ",exp)
 
 					}
 				}
