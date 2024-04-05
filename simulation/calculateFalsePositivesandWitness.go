@@ -239,8 +239,9 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 							RevocationMode: string(revocationMode),
 							VCIDs: vcIDs,
 						}
+						zap.S().Infoln("exp: ",exp.String())
 						exps = append(exps, exp)
-						zap.S().Infoln("exp: ",exp)
+
 
 					}
 				}
