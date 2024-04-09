@@ -24,19 +24,65 @@ def calculate_average(entries):
     for entry in entries:
         if entry.setting in values:
             setting = Setting(totalVCs=entry.setting.totalVCs, revokedVCs=entry.setting.revokedVCs, falsePositiveRate=entry.setting.falsePositiveRate,
-                              mtLevelInDLT=entry.setting.mtLevelInDLT, bloomFilterSize=entry.setting.bloomFilterSize,
-                              bloomFilterIndexesPerEntry=entry.setting.bloomFilterIndexesPerEntry)
+                              mtLevelInDLT=entry.setting.mtLevelInDLT)
 
 
             value = values[entry.setting]
+
+
+
+            bloomFilterSize = (value.result.bloomFilterSize + entry.result.bloomFilterSize) / 2
+            bloomFilterIndexesPerEntry = (value.result.bloomFilterIndexesPerEntry + entry.result.bloomFilterIndexesPerEntry) / 2
+            merkTreeSizeTotal = (value.result.merkTreeSizeTotal + entry.result.merkTreeSizeTotal) / 2
+
+            merkTreeSizeInDLT = (value.result.merkTreeSizeInDLT + entry.result.merkTreeSizeInDLT) / 2
+            merkleTreeNodesCountInDLT = (value.result.merkleTreeNodesCountInDLT + entry.result.merkleTreeNodesCountInDLT) / 2
+
             numberOfActualFalsePositives = (value.result.numberOfActualFalsePositives +entry.result.numberOfActualFalsePositives)/2
-            numberOfVCsRetrievedWitnessFromIssuer = (value.result.numberOfVCsRetrievedWitnessFromIssuer + entry.result.numberOfVCsRetrievedWitnessFromIssuer) / 2
-            numberOfVCsAffectedByMTAccumulator = (value.result.numberOfVCsAffectedByMTAccumulator + entry.result.numberOfVCsAffectedByMTAccumulator) / 2
-            mtAccumulatorPerUpdateCost = (value.result.mtAccumulatorPerUpdateCost + entry.result.mtAccumulatorPerUpdateCost) / 2
-            result = Result(mtAccumulatorPerUpdateCost=mtAccumulatorPerUpdateCost,
-                            numberOfActualFalsePositives=numberOfActualFalsePositives,
-                            numberOfVCsRetrievedWitnessFromIssuer=numberOfVCsRetrievedWitnessFromIssuer,
-                            numberOfVCsAffectedByMTAccumulator=numberOfVCsAffectedByMTAccumulator)
+            numberOfVCsRetrievedWitnessFromIssuer = (value.result.numberOfVCsRetrievedWitnessFromIssuer +entry.result.numberOfVCsRetrievedWitnessFromIssuer)/2
+            numberOfVCsRetrievedWitnessFromDLT = (value.result.numberOfVCsRetrievedWitnessFromDLT + entry.result.numberOfVCsRetrievedWitnessFromDLT) / 2
+            avgRevocationTimePerVC = (value.result.avgRevocationTimePerVC + entry.result.avgRevocationTimePerVC) / 2
+            verificationTimePerValidVC = (value.result.verificationTimePerValidVC + entry.result.verificationTimePerValidVC) / 2
+            verificationTimePerValidVCRawData = (value.result.verificationTimePerValidVCRawData + entry.result.verificationTimePerValidVCRawData)
+            verificationTimePerFalsePositiveOrRevokedVC = (value.result.verificationTimePerFalsePositiveOrRevokedVC + entry.result.verificationTimePerFalsePositiveOrRevokedVC) / 2
+            verificationTimePerFalsePositiveOrRevokedVCRawData = (value.result.verificationTimePerFalsePositiveOrRevokedVCRawData + entry.result.verificationTimePerFalsePositiveOrRevokedVCRawData)
+            avgTimeToFetchWitnessFromIssuer = (value.result.avgTimeToFetchWitnessFromIssuer + entry.result.avgTimeToFetchWitnessFromIssuer) / 2
+            avgTimeToFetchWitnessFromIssuerRawData = (value.result.avgTimeToFetchWitnessFromIssuerRawData + entry.result.avgTimeToFetchWitnessFromIssuerRawData)
+            avgTimeToFetchWitnessFromDLT = (value.result.avgTimeToFetchWitnessFromDLT + entry.result.avgTimeToFetchWitnessFromDLT) / 2
+            avgTimeToFetchWitnessFromDLTRawData = (value.result.avgTimeToFetchWitnessFromDLTRawData + entry.result.avgTimeToFetchWitnessFromDLTRawData)
+            bbsProofGenerationTime = (value.result.bbsProofGenerationTime + entry.result.bbsProofGenerationTime) / 2
+            bbsVerificationTime = (value.result.bbsVerificationTime + entry.result.bbsVerificationTime) / 2
+
+            contractDeploymentCost = (value.result.contractDeploymentCost + entry.result.contractDeploymentCost) / 2
+            bulkIssuanceCost = (value.result.bulkIssuanceCost + entry.result.bulkIssuanceCost) / 2
+            avgRevocationCostInGas = (value.result.avgRevocationCostInGas + entry.result.avgRevocationCostInGas) / 2
+            avgRevocationCostInGasRawData = (value.result.avgRevocationCostInGasRawData + entry.result.avgRevocationCostInGasRawData)
+
+            result = Result(bloomFilterSize=bloomFilterSize,
+                            bloomFilterIndexesPerEntry=bloomFilterIndexesPerEntry,
+                            merkTreeSizeTotal=merkTreeSizeTotal,
+                            merkTreeSizeInDLT=merkTreeSizeInDLT,
+                            merkleTreeNodesCountInDLT=merkleTreeNodesCountInDLT,
+                            numberOfActualFalsePositives=merkleTreeNodesCountInDLT,
+                            numberOfVCsRetrievedWitnessFromIssuer=numberOfActualFalsePositives,
+                            numberOfVCsRetrievedWitnessFromDLT=numberOfVCsRetrievedWitnessFromDLT,
+                            avgRevocationTimePerVC=avgRevocationTimePerVC,
+                            verificationTimePerValidVC=verificationTimePerValidVC,
+                            verificationTimePerValidVCRawData=verificationTimePerValidVCRawData,
+                            verificationTimePerFalsePositiveOrRevokedVC=verificationTimePerFalsePositiveOrRevokedVC,
+                            verificationTimePerFalsePositiveOrRevokedVCRawData=verificationTimePerFalsePositiveOrRevokedVCRawData,
+                            avgTimeToFetchWitnessFromIssuer=avgTimeToFetchWitnessFromIssuer,
+                            avgTimeToFetchWitnessFromIssuerRawData=avgTimeToFetchWitnessFromIssuerRawData,
+                            avgTimeToFetchWitnessFromDLT=avgTimeToFetchWitnessFromDLT,
+                            avgTimeToFetchWitnessFromDLTRawData=avgTimeToFetchWitnessFromDLTRawData,
+                            bbsProofGenerationTime=bbsProofGenerationTime,
+                            bbsVerificationTime=bbsVerificationTime,
+                            contractDeploymentCost=contractDeploymentCost,
+                            bulkIssuanceCost=bulkIssuanceCost,
+                            avgRevocationCostInGas=avgRevocationCostInGas,
+                            avgRevocationCostInGasRawData=avgRevocationCostInGasRawData)
+
+
 
             entry1 = Entry(setting=setting, result=result)
             values[entry.setting]=entry1
@@ -61,6 +107,8 @@ def handle_duplicates(entries):
 
     return values
 
+
+
 def parse_entry(file):
     with open(file) as f:
         json_data = json.load(f)
@@ -72,42 +120,71 @@ def parse_entry(file):
         falsePositiveRate = entry['false_positive_rate']
         mtLevelInDLT = entry['mt_level_in_dlt']
 
-        if "bloom_filter_size" in entry:
-            bloomFilterSize = entry['bloom_filter_size']
-        else:
-            bloomFilterSize = 0
+        setting = Setting(totalVCs=totalVCs, revokedVCs=revokedVCs, falsePositiveRate=falsePositiveRate,
+                          mtLevelInDLT= mtLevelInDLT)
 
-        if "bloom_filter_indexes_per_entry" in entry:
-            bloomFilterIndexesPerEntry = entry['bloom_filter_indexes_per_entry']
-        else:
-            bloomFilterIndexesPerEntry = 0
+        bloomFilterSize = entry['bloom_filter_size']
+        bloomFilterIndexesPerEntry = entry['bloom_filter_indexes_per_entry']
+        merkTreeSizeTotal = entry['merkle_tree_size_total']
+        merkTreeSizeInDLT = entry['merkle_tree_size_in_dlt']
+        merkleTreeNodesCountInDLT = entry['merkle_tree_nodes_count_in_dlt']
 
-
-
-        if "revocation_cost_in_wei" in entry:
-            mtAccumulatorPerUpdateCost = entry['revocation_cost_in_wei']
-        else:
-            mtAccumulatorPerUpdateCost = 0
 
         numberOfActualFalsePositives = entry['number_of_false_positives']
         numberOfVCsRetrievedWitnessFromIssuer = entry['number_of_vcs_retrieved_witness_from_issuer']
+        numberOfVCsRetrievedWitnessFromDLT = entry['number_of_vcs_retrieved_witness_from_dlt']
+        avgRevocationTimePerVC = entry['revocation_timeper_vc']
+        verificationTimePerValidVC = entry['verification_time_per_valid_vc']
+        verificationTimePerValidVCRawData = entry['verification_time_per_valid_vc_raw_data']
+        verificationTimePerFalsePositiveOrRevokedVC = entry['verification_time_per_false_positive_or_revoked_vc']
+        verificationTimePerFalsePositiveOrRevokedVCRawData = entry['verification_time_per_revokedor_false_positive_vc_raw_data']
+        avgTimeToFetchWitnessFromIssuer = entry['avg_time_to_fetch_witness_from_issuer']
+        avgTimeToFetchWitnessFromIssuerRawData = entry['avg_time_to_fetch_witness_from_issuer_raw_data']
+        avgTimeToFetchWitnessFromDLT = entry['avg_time_to_fetch_witness_from_smart_contract']
+        avgTimeToFetchWitnessFromDLTRawData = entry['avg_time_to_fetch_witness_from_smart_contract_raw_data']
+        bbsProofGenerationTime = entry['bbs_proof_generation_time']
+        bbsVerificationTime = entry['bbs_verification_time']
 
-        if "number_of_affected_vcs_by_MT_accumulator" in entry:
-            numberOfVCsAffectedByMTAccumulator = entry['number_of_affected_vcs_by_MT_accumulator']
+        contractDeploymentCost = entry['contract_deployment_cost']
+        bulkIssuanceCost = entry['bulk_issuance_cost']
+        avgRevocationCostInGas = entry['revocation_cost_in_wei']
+        avgRevocationCostInGasRawData = entry['revocation_cost_raw_data']
 
-        if "number_of_vcs_affected_by_revocation_due_to_storing_optimized_MT_accumulator_in_DLT" in entry:
-            numberOfVCsAffectedByMTAccumulator = entry['number_of_vcs_affected_by_revocation_due_to_storing_optimized_MT_accumulator_in_DLT']
 
-        setting = Setting(totalVCs=totalVCs, revokedVCs=revokedVCs, falsePositiveRate=falsePositiveRate,
-                          mtLevelInDLT= mtLevelInDLT, bloomFilterSize=bloomFilterSize,
-                          bloomFilterIndexesPerEntry=bloomFilterIndexesPerEntry)
-        result = Result(mtAccumulatorPerUpdateCost=mtAccumulatorPerUpdateCost, numberOfActualFalsePositives=numberOfActualFalsePositives,
-                        numberOfVCsRetrievedWitnessFromIssuer=numberOfVCsRetrievedWitnessFromIssuer, numberOfVCsAffectedByMTAccumulator=numberOfVCsAffectedByMTAccumulator)
+
+
+        result = Result(bloomFilterSize=bloomFilterSize,
+                        bloomFilterIndexesPerEntry = bloomFilterIndexesPerEntry,
+                        merkTreeSizeTotal =merkTreeSizeTotal,
+                        merkTreeSizeInDLT = merkTreeSizeInDLT,
+                        merkleTreeNodesCountInDLT = merkleTreeNodesCountInDLT,
+                        numberOfActualFalsePositives = merkleTreeNodesCountInDLT,
+                        numberOfVCsRetrievedWitnessFromIssuer = numberOfActualFalsePositives,
+                        numberOfVCsRetrievedWitnessFromDLT = numberOfVCsRetrievedWitnessFromDLT,
+                        avgRevocationTimePerVC = avgRevocationTimePerVC,
+                        verificationTimePerValidVC = verificationTimePerValidVC,
+                        verificationTimePerValidVCRawData= verificationTimePerValidVCRawData,
+                        verificationTimePerFalsePositiveOrRevokedVC= verificationTimePerFalsePositiveOrRevokedVC,
+                        verificationTimePerFalsePositiveOrRevokedVCRawData=verificationTimePerFalsePositiveOrRevokedVCRawData,
+                        avgTimeToFetchWitnessFromIssuer=avgTimeToFetchWitnessFromIssuer,
+                        avgTimeToFetchWitnessFromIssuerRawData=avgTimeToFetchWitnessFromIssuerRawData,
+                        avgTimeToFetchWitnessFromDLT= avgTimeToFetchWitnessFromDLT,
+                        avgTimeToFetchWitnessFromDLTRawData=avgTimeToFetchWitnessFromDLTRawData,
+                        bbsProofGenerationTime=bbsProofGenerationTime,
+                        bbsVerificationTime=bbsVerificationTime,
+                        contractDeploymentCost=contractDeploymentCost,
+                        bulkIssuanceCost=bulkIssuanceCost,
+                        avgRevocationCostInGas=avgRevocationCostInGas,
+                        avgRevocationCostInGasRawData=avgRevocationCostInGasRawData)
+
         entry = Entry(setting=setting, result=result)
         entries.append(entry)
 
-    entries_without_duplicates = calculate_average(entries)
-    print(entries_without_duplicates)
+    entries_avg = calculate_average(entries)
 
-    return entries_without_duplicates
+    for entry in entries_avg:
+        print(entry.__str__())
+
+
+    return entries_avg
 
