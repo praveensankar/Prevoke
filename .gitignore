@@ -32,3 +32,9 @@ contracts/build/RevocationService.abi
 artifacts/RevocationService_metadata.json
 .DS_Store
 /results/computation raw data
+plots/results/computation raw data/results_computed_raw_10000_run1.zip
+plots/results/computation raw data/results_computed_raw_10000_run2.zip
+plots/results/computation raw data/results_computed_raw_10000_run3.zip
+plots/results/computation raw data/results_computed_raw_50000_run1.zip
+plots/results/computation raw data/results_computed_raw_50000_run2.zip
+plots/results/computation raw data/results_computed_raw_50000_run3.zip

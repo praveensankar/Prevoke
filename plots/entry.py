@@ -1,4 +1,8 @@
 import json
+import math
+import os
+
+import numpy as np
 
 from result import Result
 from setting import Setting
@@ -28,7 +32,7 @@ def calculate_average(entries):
 
 
             value = values[entry.setting]
-
+            print(value.result.avgRevocationCostInGasRawData)
 
 
             bloomFilterSize = (value.result.bloomFilterSize + entry.result.bloomFilterSize) / 2
@@ -43,20 +47,50 @@ def calculate_average(entries):
             numberOfVCsRetrievedWitnessFromDLT = (value.result.numberOfVCsRetrievedWitnessFromDLT + entry.result.numberOfVCsRetrievedWitnessFromDLT) / 2
             avgRevocationTimePerVC = (value.result.avgRevocationTimePerVC + entry.result.avgRevocationTimePerVC) / 2
             verificationTimePerValidVC = (value.result.verificationTimePerValidVC + entry.result.verificationTimePerValidVC) / 2
-            verificationTimePerValidVCRawData = (value.result.verificationTimePerValidVCRawData + entry.result.verificationTimePerValidVCRawData)
+
+
             verificationTimePerFalsePositiveOrRevokedVC = (value.result.verificationTimePerFalsePositiveOrRevokedVC + entry.result.verificationTimePerFalsePositiveOrRevokedVC) / 2
-            verificationTimePerFalsePositiveOrRevokedVCRawData = (value.result.verificationTimePerFalsePositiveOrRevokedVCRawData + entry.result.verificationTimePerFalsePositiveOrRevokedVCRawData)
             avgTimeToFetchWitnessFromIssuer = (value.result.avgTimeToFetchWitnessFromIssuer + entry.result.avgTimeToFetchWitnessFromIssuer) / 2
-            avgTimeToFetchWitnessFromIssuerRawData = (value.result.avgTimeToFetchWitnessFromIssuerRawData + entry.result.avgTimeToFetchWitnessFromIssuerRawData)
             avgTimeToFetchWitnessFromDLT = (value.result.avgTimeToFetchWitnessFromDLT + entry.result.avgTimeToFetchWitnessFromDLT) / 2
-            avgTimeToFetchWitnessFromDLTRawData = (value.result.avgTimeToFetchWitnessFromDLTRawData + entry.result.avgTimeToFetchWitnessFromDLTRawData)
+
             bbsProofGenerationTime = (value.result.bbsProofGenerationTime + entry.result.bbsProofGenerationTime) / 2
             bbsVerificationTime = (value.result.bbsVerificationTime + entry.result.bbsVerificationTime) / 2
 
             contractDeploymentCost = (value.result.contractDeploymentCost + entry.result.contractDeploymentCost) / 2
             bulkIssuanceCost = (value.result.bulkIssuanceCost + entry.result.bulkIssuanceCost) / 2
             avgRevocationCostInGas = (value.result.avgRevocationCostInGas + entry.result.avgRevocationCostInGas) / 2
-            avgRevocationCostInGasRawData = (value.result.avgRevocationCostInGasRawData + entry.result.avgRevocationCostInGasRawData)
+
+
+
+            verTimeValidVCnpArray = np.asarray(entry.result.verificationTimePerValidVCRawData, dtype=np.float32)
+            verTimeValidVCnpArray = np.delete(verTimeValidVCnpArray, [i for i in range(math.ceil(10*verTimeValidVCnpArray.size/100))])
+            verificationTimePerValidVCRawData = np.concatenate((value.result.verificationTimePerValidVCRawData, verTimeValidVCnpArray), dtype=float)
+
+            verTimeFalsePositiveOrRevokedVCnpArray = np.asarray(entry.result.verificationTimePerFalsePositiveOrRevokedVCRawData, dtype=np.float32)
+            verTimeFalsePositiveOrRevokedVCnpArray = np.delete(verTimeFalsePositiveOrRevokedVCnpArray, [i for i in range(math.ceil(10 * verTimeFalsePositiveOrRevokedVCnpArray.size / 100))])
+            verificationTimePerFalsePositiveOrRevokedVCRawData = np.concatenate((value.result.verificationTimePerFalsePositiveOrRevokedVCRawData, verTimeFalsePositiveOrRevokedVCnpArray), dtype=float)
+
+            avgTimeToFetchWitnessFromDLTnpArray = np.asarray(entry.result.avgTimeToFetchWitnessFromDLTRawData, dtype=np.float32)
+            avgTimeToFetchWitnessFromDLTRawData = np.concatenate((value.result.avgTimeToFetchWitnessFromDLTRawData, avgTimeToFetchWitnessFromDLTnpArray), dtype=float)
+
+            revocationTimePerVCRawDatanpArray = np.asarray(entry.result.revocationTimePerVCRawData, dtype=np.float32)
+            revocationTimePerVCRawDatanpArray = np.delete(revocationTimePerVCRawDatanpArray, [i for i in range(math.ceil(20 * revocationTimePerVCRawDatanpArray.size / 100))])
+            revocationTimePerVCRawData = np.concatenate((value.result.revocationTimePerVCRawData,
+                                                                 revocationTimePerVCRawDatanpArray), dtype=float)
+
+            avgTimeToFetchWitnessFromIssuernpArray = np.asarray(entry.result.avgTimeToFetchWitnessFromIssuerRawData,
+                                                                dtype=np.float32)
+            avgTimeToFetchWitnessFromIssuerRawData = np.concatenate(
+                (value.result.avgTimeToFetchWitnessFromIssuerRawData,
+                 avgTimeToFetchWitnessFromIssuernpArray), dtype=float)
+
+
+            avgRevocationCostInGasRawDatanpArray = np.asarray(entry.result.avgRevocationCostInGasRawData, dtype=int)
+            avgRevocationCostInGasRawDatanpArray = np.delete(avgRevocationCostInGasRawDatanpArray,
+                                              [i for i in range(math.ceil(20 * avgRevocationCostInGasRawDatanpArray.size / 100))])
+            avgRevocationCostInGasRawData = np.concatenate((value.result.avgRevocationCostInGasRawData,
+                                                                 avgRevocationCostInGasRawDatanpArray), dtype=int)
+
 
             result = Result(bloomFilterSize=bloomFilterSize,
                             bloomFilterIndexesPerEntry=bloomFilterIndexesPerEntry,
@@ -67,6 +101,7 @@ def calculate_average(entries):
                             numberOfVCsRetrievedWitnessFromIssuer=numberOfActualFalsePositives,
                             numberOfVCsRetrievedWitnessFromDLT=numberOfVCsRetrievedWitnessFromDLT,
                             avgRevocationTimePerVC=avgRevocationTimePerVC,
+                            revocationTimePerVCRawData=revocationTimePerVCRawData,
                             verificationTimePerValidVC=verificationTimePerValidVC,
                             verificationTimePerValidVCRawData=verificationTimePerValidVCRawData,
                             verificationTimePerFalsePositiveOrRevokedVC=verificationTimePerFalsePositiveOrRevokedVC,
@@ -91,6 +126,8 @@ def calculate_average(entries):
         values[entry.setting]=entry
         keys[entry.setting]=entry.setting
 
+
+
     return values.values()
 
 
@@ -110,6 +147,18 @@ def handle_duplicates(entries):
 
 
 def parse_entry(file):
+
+    # gives the path of demo.py
+    path = os.path.realpath(__file__)
+
+    # gives the directory where demo.py
+    # exists
+    dir = os.path.dirname(path)
+    dir  = dir.replace('plots', 'results')
+    os.chdir(dir)
+
+
+
     with open(file) as f:
         json_data = json.load(f)
 
@@ -134,6 +183,7 @@ def parse_entry(file):
         numberOfVCsRetrievedWitnessFromIssuer = entry['number_of_vcs_retrieved_witness_from_issuer']
         numberOfVCsRetrievedWitnessFromDLT = entry['number_of_vcs_retrieved_witness_from_dlt']
         avgRevocationTimePerVC = entry['revocation_timeper_vc']
+        revocationTimePerVCRawData = entry['revocation_time_raw_data']
         verificationTimePerValidVC = entry['verification_time_per_valid_vc']
         verificationTimePerValidVCRawData = entry['verification_time_per_valid_vc_raw_data']
         verificationTimePerFalsePositiveOrRevokedVC = entry['verification_time_per_false_positive_or_revoked_vc']
@@ -142,6 +192,9 @@ def parse_entry(file):
         avgTimeToFetchWitnessFromIssuerRawData = entry['avg_time_to_fetch_witness_from_issuer_raw_data']
         avgTimeToFetchWitnessFromDLT = entry['avg_time_to_fetch_witness_from_smart_contract']
         avgTimeToFetchWitnessFromDLTRawData = entry['avg_time_to_fetch_witness_from_smart_contract_raw_data']
+        if avgTimeToFetchWitnessFromDLTRawData is None:
+            avgTimeToFetchWitnessFromDLTRawData = np.array([])
+        print("raw data:", avgTimeToFetchWitnessFromDLTRawData)
         bbsProofGenerationTime = entry['bbs_proof_generation_time']
         bbsVerificationTime = entry['bbs_verification_time']
 
@@ -162,6 +215,7 @@ def parse_entry(file):
                         numberOfVCsRetrievedWitnessFromIssuer = numberOfActualFalsePositives,
                         numberOfVCsRetrievedWitnessFromDLT = numberOfVCsRetrievedWitnessFromDLT,
                         avgRevocationTimePerVC = avgRevocationTimePerVC,
+                        revocationTimePerVCRawData=revocationTimePerVCRawData,
                         verificationTimePerValidVC = verificationTimePerValidVC,
                         verificationTimePerValidVCRawData= verificationTimePerValidVCRawData,
                         verificationTimePerFalsePositiveOrRevokedVC= verificationTimePerFalsePositiveOrRevokedVC,
@@ -183,8 +237,11 @@ def parse_entry(file):
     entries_avg = calculate_average(entries)
 
     for entry in entries_avg:
-        print(entry.__str__())
+        print(entry.setting)
 
 
+
+    dir  = dir.replace('results','plots')
+    os.chdir(dir)
     return entries_avg
 

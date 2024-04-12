@@ -1,7 +1,9 @@
 import json
+import math
 
 import numpy as np
 from matplotlib import pyplot as plt
+from scipy.stats import sem
 
 
 class RevocationCostEntry:
@@ -35,9 +37,17 @@ def calculate_average(entries):
     for entry in entries:
         if entry.__hash__() in keys:
             value = values[entry]
-            value.revocationCost = (value.revocationCost+entry.revocationCost)/2
+            values[entry].revocationCost = (value.revocationCost+entry.revocationCost)/2
+            rawData = np.asarray(entry.revocationCostRawData)
+            rawData = np.delete(rawData, [i for i in range(math.ceil(10 * rawData.size / 100))])
+            existingRawData = np.asarray(value.revocationCostRawData)
+            values[entry].revocationCostRawData = np.concatenate((existingRawData, rawData), dtype=int)
+            continue
 
         values[entry]=entry
+        values[entry].revocationCostRawData = np.asarray(entry.revocationCostRawData)
+        values[entry].revocationCostRawData = np.delete(values[entry].revocationCostRawData,
+                                          [i for i in range(math.ceil(10 * values[entry].revocationCostRawData.size / 100))])
         keys.add(entry.__hash__())
 
     return values.values()
@@ -75,26 +85,27 @@ def parse_revocation_cost_entry(file):
 
 
 
-def plot_revocation_cost(entries):
+def plot_revocation_cost():
+    entries = parse_revocation_cost_entry("results_revocation_cost.json")
     costsfor01 = {}
     costsfor001 = {}
     costsfor0001 = {}
     costsfor00001 = {}
     for entry in entries:
         if entry.falsePositiveRate==0.1:
-            costsfor01[entry.mtLevelInDLT]=entry.revocationCost
+            costsfor01[entry.mtLevelInDLT]=np.mean(entry.revocationCostRawData)
             # mtlevels.append(entry.setting.mtLevelInDLT)
             # costs.append(entry.result.mtAccumulatorPerUpdateCost)
             # entry.result.mtAccumulatorPerUpdateCost / 1000000
 
         if entry.falsePositiveRate == 0.01:
-            costsfor001[entry.mtLevelInDLT] = entry.revocationCost
+            costsfor001[entry.mtLevelInDLT] = np.mean(entry.revocationCostRawData)
 
         if entry.falsePositiveRate == 0.001:
-            costsfor0001[entry.mtLevelInDLT] = entry.revocationCost
+            costsfor0001[entry.mtLevelInDLT] = np.mean(entry.revocationCostRawData)
 
         if entry.falsePositiveRate == 0.0001:
-            costsfor00001[entry.mtLevelInDLT] = entry.revocationCost
+            costsfor00001[entry.mtLevelInDLT] = np.mean(entry.revocationCostRawData)
 
 
     costsfor01 = dict(sorted(costsfor01.items()))
@@ -109,6 +120,12 @@ def plot_revocation_cost(entries):
     costsfor00001 = dict(sorted(costsfor00001.items()))
     x4points = np.array(list(costsfor00001.keys()))
     y4points = np.array(list(costsfor00001.values()))
+
+    y1error = sem(y1points)
+    y2error = sem(y2points)
+    y3error = sem(y3points)
+    y4error = sem(y4points)
+
     print(x1points)
     print(y1points)
     print(x2points)
@@ -121,15 +138,15 @@ def plot_revocation_cost(entries):
     yRange = np.linspace(start=0, stop=max(costsfor00001.values()),
                            num=25)
 
-    yRange =[i*10000 for i in range(1,28)]
-    ylabel = [str(i*10)+"k" for i in range(1,28)]
+    yRange =[i*10000 for i in (5,7,9,11,13,15,17,19,21,23,25,27,29,31,33)]
+    ylabel = [str(i*10)+"k" for i in (5,7,9,11,13,15,17,19,21,23,25,27,29,31,33)]
     print(yRange)
     # font = {'fontname':'Times New Roman', 'color': 'darkred', 'size': 10}
     font = {'fontname': 'Times New Roman', 'size': 15, 'weight': 'bold'}
-    plt.plot(x1points, y1points, marker='o', label="fpr=0.1")
-    plt.plot(x2points, y2points, marker='d', label="fpr=0.01")
-    plt.plot(x3points, y3points, marker='*', label="fpr=0.001")
-    plt.plot(x4points, y4points, marker='+', label="fpr=0.0001")
+    plt.errorbar(x1points, y1points, marker='o', color='#614415', label="fpr=0.1", yerr=y1error)
+    plt.errorbar(x2points, y2points, marker='d', color='#0072b2', label="fpr=0.01", yerr=y2error)
+    plt.errorbar(x3points, y3points, marker='*', color='#d55e00', label="fpr=0.001", yerr=y3error)
+    plt.errorbar(x4points, y4points, marker='+', color='#009e73', label="fpr=0.0001", yerr=y4error)
     plt.yticks(yRange, ylabel)
     plt.xticks(x1points)
     # plt.title('gas cost per ', font)

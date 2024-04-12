@@ -5,29 +5,36 @@ import json
 from matplotlib import pyplot as plt
 
 import revocation_cost
+from bbs_time import calculate_bbs_time
+from fpr_impact import *
 from fpr_vs_bf_size_and_witness_updates import plot_fpr_vs_bfsize_and_witUpdates
 from indy_vs_ours import plot_witness_updates_vc_indy
 from entry import Entry, parse_entry
 from result import Result
+from scale_revocation import scale_revocations
 from setting import Setting
+from verification_time import *
 
 
 def main():
 
-    entries = parse_entry("results2.json")
-    revocationCostEntries = revocation_cost.parse_revocation_cost_entry("results_revocation_cost.json")
-    revocation_cost.plot_revocation_cost(revocationCostEntries)
 
-    # plot_fpr_vs_bfsize_and_witUpdates(entries)
-    # plot_false_positives(entries)
-    # plot_merkle_tree_accumulator_cost(entries)
-    # plot_witness_updates_vc_indy(entries)
-    # plot_witness_updates(entries)
-    # plot_witness_update_saves(entries)
-    # plot_witness_update_saved_for_different_false_positives(entries)
-    # plot_witness_update_saved_due_to_levels_in_dlt(entries)
-#     plot_witness_updates_vc_indy(entries, totalVCs=1000, totalRevocations=100)
-#     plot_witness_updates_vc_indy(entries, totalVCs=5000, totalRevocations=500)
+    # revocation_cost.plot_revocation_cost()
+    plot_verification_time()
+    # calculate_bbs_time()
+    # plot_impact_of_fpr("10K",1000, "random")
+    # plot_impact_of_fpr("10K",1000, "oldest")
+    # plot_impact_of_fpr("10K",500, "random")
+    # plot_impact_of_fpr("10K", 500, "oldest")
+    # plot_impact_of_fpr("100K",10000, "random")
+    # plot_impact_of_fpr("100K",10000, "oldest")
+    # plot_impact_of_fpr("100K",5000, "random")
+    # plot_impact_of_fpr("100K",5000, "oldest")
+    # plot_impact_of_fpr_with_false_positive("100K",10000, "oldest", 0.1)
+    # plot_impact_of_fpr_with_false_positive("100K",10000, "random", 0.1)
+    # plot_impact_of_fpr_with_false_positive("100K",10000, "oldest", 0.001)
+    # plot_impact_of_fpr_with_false_positive("100K",10000, "random", 0.001)
+    # scale_revocations("100K")
 
 
 

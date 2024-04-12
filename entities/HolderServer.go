@@ -127,6 +127,8 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 
 		TimeTofetchWitnessFromSCStart := time.Now()
 		mTree := holder.RevocationService.FetchMerkleTree()
+		TimeTofetchWitnessFromSC := time.Since(TimeTofetchWitnessFromSCStart).Seconds()
+		results.AddAvgTimeToFetchWitnessFromSmartContract(TimeTofetchWitnessFromSC)
 		//zap.S().Infoln("HOLDER - merkle tree from smart contract: ", mTree)
 		localMerkleProof := holder.merkleProofStore[vcID]
 		ancesstorIndex := localMerkleProof.AncesstorIndex
@@ -148,6 +150,8 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 		//	}
 		//}
 		if localMerkleProof.AncesstorValue == mTree[ancesstorIndex]{
+
+			TimeToComputeWitnessFromSCStart := time.Now()
 			if holder.Debug==true {
 				zap.S().Infoln("HOLDER - fetches witness from the smart contract: vc id: ", vcID)
 			}
@@ -158,9 +162,10 @@ func(holder *Holder) sendVP(vcID string, vp models.VerifiablePresentation, addre
 				}
 			}
 			localMerkleProof.OrderedWitnesses = techniques.OrderWitnesses(localMerkleProof)
-			TimeTofetchWitnessFromSC := time.Since(TimeTofetchWitnessFromSCStart).Seconds()
+			TimeToComputeWitness := time.Since(TimeToComputeWitnessFromSCStart).Seconds()
+			results.AddAvgTimeToComputeCorrectWitnessAtHolder(TimeToComputeWitness)
 			results.IncrementNumberofVCsRetrievedWitnessesFromDLT()
-			results.AddAvgTimeToFetchWitnessFromSmartContract(TimeTofetchWitnessFromSC)
+
 			fromDLT = true
 		} else{
 			// step 8 - Holder can't update the witness using smart contract. Holder contacts the issuer to retreive the

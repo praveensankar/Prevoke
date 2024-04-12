@@ -6,7 +6,7 @@ from setting import Setting
 class Result:
     def __init__(self, bloomFilterSize, bloomFilterIndexesPerEntry, merkTreeSizeTotal,
                  merkTreeSizeInDLT, merkleTreeNodesCountInDLT, numberOfActualFalsePositives, numberOfVCsRetrievedWitnessFromIssuer,
-                 numberOfVCsRetrievedWitnessFromDLT, avgRevocationTimePerVC, verificationTimePerValidVC, verificationTimePerValidVCRawData,
+                 numberOfVCsRetrievedWitnessFromDLT, avgRevocationTimePerVC, revocationTimePerVCRawData, verificationTimePerValidVC, verificationTimePerValidVCRawData,
                  verificationTimePerFalsePositiveOrRevokedVC, verificationTimePerFalsePositiveOrRevokedVCRawData,
                  avgTimeToFetchWitnessFromIssuer, avgTimeToFetchWitnessFromIssuerRawData, avgTimeToFetchWitnessFromDLT,
                  avgTimeToFetchWitnessFromDLTRawData, bbsProofGenerationTime, bbsVerificationTime, contractDeploymentCost,
@@ -22,6 +22,7 @@ class Result:
         self.numberOfVCsRetrievedWitnessFromIssuer = numberOfVCsRetrievedWitnessFromIssuer
         self.numberOfVCsRetrievedWitnessFromDLT = numberOfVCsRetrievedWitnessFromDLT
         self.avgRevocationTimePerVC = avgRevocationTimePerVC
+        self.revocationTimePerVCRawData = revocationTimePerVCRawData
         self.verificationTimePerValidVC = verificationTimePerValidVC
         self.verificationTimePerValidVCRawData = verificationTimePerValidVCRawData
         self.verificationTimePerFalsePositiveOrRevokedVC = verificationTimePerFalsePositiveOrRevokedVC

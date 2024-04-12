@@ -41,6 +41,8 @@ type Results struct {
 	AvgTimeToFetchWitnessFromIssuerRawData []float64 `json:"avg_time_to_fetch_witness_from_issuer_raw_data"`
 	AvgTimeToFetchWitnessFromSmartContract float64 `json:"avg_time_to_fetch_witness_from_smart_contract"`
 	AvgTimeToFetchWitnessFromSmartContractRawData []float64 `json:"avg_time_to_fetch_witness_from_smart_contract_raw_data"`
+	AvgTimeToComputeCorrectWitnessAtHolder float64 `json:"avg_time_to_compute_correct_witness_at_holder"`
+	AvgTimeToComputeCorrectWitnessAtHolderRawData []float64 `json:"avg_time_to_compute_correct_witness_at_holder_raw_data"`
 	VerificationTimeTotalRevokedorFalsePositiveVCs float64 `json:"verification_time_total_false_positive_and_revoked_vcs"`
 	VerificationTimeTotal float64 `json:"verification_time_total"`
 	BBSProoGenerationTimePerVP float64 `json:"bbs_proof_generation_time"`
@@ -126,6 +128,16 @@ func (r *Results) AddAvgTimeToFetchWitnessFromSmartContract(timeToFetch float64)
 	} else {
 		r.AvgTimeToFetchWitnessFromSmartContract = r.AvgTimeToFetchWitnessFromSmartContract + timeToFetch
 		r.AvgTimeToFetchWitnessFromSmartContract = r.AvgTimeToFetchWitnessFromSmartContract / 2
+	}
+}
+
+func (r *Results) AddAvgTimeToComputeCorrectWitnessAtHolder(timeToCompute float64) {
+	r.AvgTimeToComputeCorrectWitnessAtHolderRawData = append(r.AvgTimeToComputeCorrectWitnessAtHolderRawData, timeToCompute)
+	if r.AvgTimeToComputeCorrectWitnessAtHolder==0.0{
+		r.AvgTimeToComputeCorrectWitnessAtHolder = r.AvgTimeToComputeCorrectWitnessAtHolder + timeToCompute
+	} else {
+		r.AvgTimeToComputeCorrectWitnessAtHolder = r.AvgTimeToComputeCorrectWitnessAtHolder + timeToCompute
+		r.AvgTimeToComputeCorrectWitnessAtHolder = r.AvgTimeToComputeCorrectWitnessAtHolder / 2
 	}
 }
 

@@ -1,5 +1,5 @@
 class Setting:
-    def __init__(self, totalVCs, revokedVCs, falsePositiveRate, mtLevelInDLT, bloomFilterSize, bloomFilterIndexesPerEntry):
+    def __init__(self, totalVCs, revokedVCs, falsePositiveRate, mtLevelInDLT):
         self.totalVCs = totalVCs
         self.revokedVCs = revokedVCs
         self.falsePositiveRate = falsePositiveRate
