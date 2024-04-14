@@ -39,3 +39,4 @@ plots/results/computation raw data/results_computed_raw_50000_run1.zip
 plots/results/computation raw data/results_computed_raw_50000_run2.zip
 plots/results/computation raw data/results_computed_raw_50000_run3.zip
 config.json
+*.pyc

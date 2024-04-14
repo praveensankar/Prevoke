@@ -37,7 +37,7 @@ def main():
     # plot_impact_of_fpr_with_false_positive_random_vs_oldest("100K", 10000, 0.001)
     # scale_revocations("100K")
     scale_revocations_fixed_bloomFilter("100K")
-    scale_revocations_fixed_bloomFilter_linear_scale_plot("100K")
+    # scale_revocations_fixed_bloomFilter_linear_scale_plot("100K")
 
 
 

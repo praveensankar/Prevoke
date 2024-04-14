@@ -2,10 +2,10 @@ package simulation
 
 import (
 	"fmt"
-	"github.com/deckarep/golang-set"
 	"github.com/Revocation-Service/common"
 	"github.com/Revocation-Service/config"
 	"github.com/Revocation-Service/techniques"
+	"github.com/deckarep/golang-set"
 	"go.uber.org/zap"
 	"math"
 	"math/rand"
@@ -313,17 +313,17 @@ func CalculateRevocationScalability(conf config.Config) {
 	//totalVCs:=[]int{50000}
 	//totalVCs:=[]int{100000}
 	totalVCs:=[]int{100000}
-	totalRevocations := 20000
+	totalRevocations := 10000
 	//totalVCs=[]int{1000}
 	//totalRevocations = 100
-	revocationPercentages := []int{10,20,30,40,50,60,70,80,90,100}
+	revocationPercentages := []int{10,20,30,40,50,60,70,80,90,100, 200}
 
 	falsePositiveRates:= []float64{0.1,0.01,0.001,0.0001}
 
 
 	//
 	//rawFilename := fmt.Sprintf("results/results_computed_raw_10K.json")
-	resultFileName := fmt.Sprintf("results/results_revocation_scalability_100K_20K.json")
+	resultFileName := fmt.Sprintf("results/results_revocation_scalability_100K_10K.json")
 
 
 	container := Container{}
@@ -494,7 +494,7 @@ func (c *Container) CalculateFalsePositives(conf config.Config, vcIDs []string, 
 
 
 	bf := techniques.CreateBloomFilter(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
-
+	conf.ExpectedNumberofRevokedVCs = 20000
 
 	revokedVcIDs := GenerateRevokedVCIDs(conf, vcIDs, Oldest)
 	revokedVCIDMaps := make(map[string]bool)

@@ -27,9 +27,9 @@ Then update the contract address in config.json. The contract is returned by tru
 
 3) starting ganache blockchain cli
 
-ssh –i revocation_service ubuntu@158.39.48.29
+ssh –i revocation_service ubuntu@<ip_address_blockchain>
 
-ganache-cli -h 158.39.48.29 -l 100000000 --account="0x1c804da8039c8ce928391bc45dad7405615d42e2672fa9fc282cccce246c251a,100000000000000000000000000000"
+ganache-cli -h <ip_address_blockchain> -l 100000000 --account="0x1c804da8039c8ce928391bc45dad7405615d42e2672fa9fc282cccce246c251a,100000000000000000000000000000"
 
 Note: upgrade ganache from v6 to v7. otherwise, it would give op code error.
 

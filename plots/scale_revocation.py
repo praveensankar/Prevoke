@@ -358,7 +358,7 @@ def scale_revocations_fixed_bloomFilter_linear_scale_plot(totalVCs):
 def scale_revocations_fixed_bloomFilter(totalVCs):
 
         if totalVCs == "100K":
-            res = parse_fpr_impact_entry("results_revocation_scalability_100K.json")
+            res = parse_fpr_impact_entry("results_revocation_scalability_100K_10K.json")
 
         for r in res:
             print(r)
@@ -368,7 +368,7 @@ def scale_revocations_fixed_bloomFilter(totalVCs):
         fp3 = {}
         fp4 = {}
 
-        revocationPercentages = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+        revocationPercentages = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200]
 
         for entry in res:
             t = []
@@ -475,15 +475,15 @@ def scale_revocations_fixed_bloomFilter(totalVCs):
         if totalVCs == "100K":
             ax.minorticks_off()
             ax.set_yscale('log')
-            ax.set_ylim(1, 12000)
+            ax.set_ylim(1, 50000)
             ax.yaxis.set_major_formatter(ScalarFormatter())
-            ax.set_yticks([1, 5, 10, 100, 500, 1000, 5000, 10000])
+            ax.set_yticks([1, 5, 10, 100, 500, 1000, 5000, 10000, 20000, 30000,50000])
 
             ax.xaxis.set_major_formatter(ScalarFormatter())
 
             # ax.set_yticks(np.arange(0, 10000, step=1000))
-            xlabel = [str(i) + "K" for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
-            ax.set_xticks([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], xlabel)
+            xlabel = [str(i) + "K" for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20]]
+            ax.set_xticks([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20], xlabel)
 
         # print(yRange)
 
@@ -497,7 +497,7 @@ def scale_revocations_fixed_bloomFilter(totalVCs):
         # plt.yticks(yRange, ylabel)
         # plt.xticks(x1points, xlabel)
         plt.title(r'$\it{n}$: ' + str(totalVCs) + ", BF capacity: 10K", font)
-        plt.xlabel(r'$\it{r}$- number of revoked VCs', font)
+        plt.xlabel(r'number of revoked VCs', font)
         plt.ylabel('number of false positives', font)
         plt.legend(fontsize="13")
-        plt.savefig("graphs/result_scalability_revocation_fixed_bloomfilter.png")
+        plt.savefig("graphs/result_scalability_revocation_fixed_bloomfilter_2.png")
