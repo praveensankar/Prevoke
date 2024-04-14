@@ -2,8 +2,8 @@ package common
 
 import (
 	"encoding/json"
-	"github.com/praveensankar/Revocation-Service/models"
-	"github.com/praveensankar/Revocation-Service/techniques"
+	"github.com/Revocation-Service/models"
+	"github.com/Revocation-Service/techniques"
 	"net"
 )
 type RequestType string

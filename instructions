@@ -36,7 +36,7 @@ Note: upgrade ganache from v6 to v7. otherwise, it would give op code error.
 
 4) running processes in the background in ssh
 tmux
-then inside the terminal run:  go run github.com/praveensankar/Revocation-Service
+then inside the terminal run:  go run github.com/Revocation-Service
 use ctrl+b and d.
 to restore type tmux attach
 

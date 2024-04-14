@@ -9,7 +9,7 @@ import (
 	cryptoUtils "github.com/iden3/go-iden3-crypto/utils"
 	"github.com/iden3/go-merkletree-sql/v2"
 	"github.com/iden3/go-merkletree-sql/v2/db/memory"
-	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/Revocation-Service/config"
 	"go.uber.org/zap"
 	"math"
 	"math/big"

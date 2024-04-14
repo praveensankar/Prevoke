@@ -11,7 +11,7 @@ from fpr_vs_bf_size_and_witness_updates import plot_fpr_vs_bfsize_and_witUpdates
 from indy_vs_ours import plot_witness_updates_vc_indy
 from entry import Entry, parse_entry
 from result import Result
-from scale_revocation import scale_revocations
+from scale_revocation import *
 from setting import Setting
 from verification_time import *
 
@@ -20,7 +20,7 @@ def main():
 
 
     # revocation_cost.plot_revocation_cost()
-    plot_verification_time()
+    # plot_verification_time()
     # calculate_bbs_time()
     # plot_impact_of_fpr("10K",1000, "random")
     # plot_impact_of_fpr("10K",1000, "oldest")
@@ -34,7 +34,11 @@ def main():
     # plot_impact_of_fpr_with_false_positive("100K",10000, "random", 0.1)
     # plot_impact_of_fpr_with_false_positive("100K",10000, "oldest", 0.001)
     # plot_impact_of_fpr_with_false_positive("100K",10000, "random", 0.001)
+    # plot_impact_of_fpr_with_false_positive_random_vs_oldest("100K", 10000, 0.001)
     # scale_revocations("100K")
+    scale_revocations_fixed_bloomFilter("100K")
+    scale_revocations_fixed_bloomFilter_linear_scale_plot("100K")
+
 
 
 

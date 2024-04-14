@@ -3,9 +3,9 @@ package entities
 import (
 	"encoding/gob"
 	"encoding/json"
-	"github.com/praveensankar/Revocation-Service/blockchain"
-	"github.com/praveensankar/Revocation-Service/common"
-	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/Revocation-Service/blockchain"
+	"github.com/Revocation-Service/common"
+	"github.com/Revocation-Service/config"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"math"

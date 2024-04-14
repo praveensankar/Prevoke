@@ -135,6 +135,10 @@ def plot_revocation_cost():
     print(x4points)
     print(y4points)
 
+    print("0.1: \t avg: ",y1points.mean(), "\t min: ", y1points.min(), "\t max: ", y1points.max())
+    print("0.01: \t avg: ", y2points.mean(), "\t min: ", y2points.min(), "\t max: ", y2points.max())
+    print("0.001: \t avg: ", y3points.mean(), "\t min: ", y3points.min(), "\t max: ", y3points.max())
+    print("0.0001: \t avg: ", y4points.mean(), "\t min: ", y4points.min(), "\t max: ", y4points.max())
     yRange = np.linspace(start=0, stop=max(costsfor00001.values()),
                            num=25)
 
@@ -143,13 +147,14 @@ def plot_revocation_cost():
     print(yRange)
     # font = {'fontname':'Times New Roman', 'color': 'darkred', 'size': 10}
     font = {'fontname': 'Times New Roman', 'size': 15, 'weight': 'bold'}
-    plt.errorbar(x1points, y1points, marker='o', color='#614415', label="fpr=0.1", yerr=y1error)
-    plt.errorbar(x2points, y2points, marker='d', color='#0072b2', label="fpr=0.01", yerr=y2error)
-    plt.errorbar(x3points, y3points, marker='*', color='#d55e00', label="fpr=0.001", yerr=y3error)
-    plt.errorbar(x4points, y4points, marker='+', color='#009e73', label="fpr=0.0001", yerr=y4error)
+
+    plt.errorbar(x1points, y1points, marker='o', color='#614415', label=r'$\it{p}:0.1$', yerr=y1error)
+    plt.errorbar(x2points, y2points, marker='d', color='#0072b2', label=r'$\it{p}:0.01$', yerr=y2error)
+    plt.errorbar(x3points, y3points, marker='*', color='#d55e00', label=r'$\it{p}:0.001$', yerr=y3error)
+    plt.errorbar(x4points, y4points, marker='+', color='#009e73', label=r'$\it{p}:0.0001$', yerr=y4error)
     plt.yticks(yRange, ylabel)
     plt.xticks(x1points)
-    # plt.title('gas cost per ', font)
+    plt.title(r'$\it{r}:10$K', font)
     plt.xlabel('merkle tree accumulator levels stored in DLT', font)
     plt.ylabel('amount of gas', font)
     plt.legend(fontsize="13")

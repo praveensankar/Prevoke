@@ -2,10 +2,10 @@ package entities
 
 import (
 	"encoding/gob"
-	"github.com/praveensankar/Revocation-Service/common"
-	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/techniques"
-	"github.com/praveensankar/Revocation-Service/vc"
+	"github.com/Revocation-Service/common"
+	"github.com/Revocation-Service/config"
+	"github.com/Revocation-Service/techniques"
+	"github.com/Revocation-Service/vc"
 	"go.uber.org/zap"
 	"net"
 	"time"

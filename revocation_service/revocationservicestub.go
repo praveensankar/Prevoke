@@ -2,8 +2,8 @@ package revocation_service
 
 import (
 	_ "github.com/ethereum/go-ethereum/core/types"
-	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/techniques"
+	"github.com/Revocation-Service/config"
+	"github.com/Revocation-Service/techniques"
 	"go.uber.org/zap"
 	"math"
 	"math/big"

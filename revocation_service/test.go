@@ -2,9 +2,9 @@ package revocation_service
 
 import (
 	"fmt"
-	"github.com/praveensankar/Revocation-Service/blockchain"
-	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/signature"
+	"github.com/Revocation-Service/blockchain"
+	"github.com/Revocation-Service/config"
+	"github.com/Revocation-Service/signature"
 	"go.uber.org/zap"
 	"math"
 )

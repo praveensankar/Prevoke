@@ -2,7 +2,7 @@ package techniques
 
 import (
 	"encoding/hex"
-	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/Revocation-Service/config"
 	"go.uber.org/zap"
 	"math"
 	"strconv"

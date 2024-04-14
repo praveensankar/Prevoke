@@ -50,26 +50,74 @@ def plot_verification_time():
 
 
     validVCVerTime = {}
+    validVCVerTimeError = {}
     revokedAndFPVCVerTime = {}
-    holderwitnesscomputationtime = {}
+    revokedAndFPVCVerTimeError = {}
     revocationTime = {}
+    revocationTimeError = {}
+    witFromDLTTime = {}
+    witFromDLTTimeError = {}
+    witFromIssuerTime = {}
+    witFromIssuerError = {}
 
     for entry in res:
+
         if entry.setting.mtLevelInDLT in validVCVerTime.keys():
             validVCVerTime[entry.setting.mtLevelInDLT] = (validVCVerTime[entry.setting.mtLevelInDLT] + np.mean(entry.result.verificationTimePerValidVCRawData))/2
             revocationTime[entry.setting.mtLevelInDLT] = (revocationTime[entry.setting.mtLevelInDLT] + np.mean(entry.result.revocationTimePerVCRawData)) / 2
             revokedAndFPVCVerTime[entry.setting.mtLevelInDLT] = (revokedAndFPVCVerTime[entry.setting.mtLevelInDLT] + np.mean(entry.result.verificationTimePerFalsePositiveOrRevokedVCRawData)) / 2
-            holderwitnesscomputationtime[entry.setting.mtLevelInDLT] = (holderwitnesscomputationtime[entry.setting.mtLevelInDLT]+ np.mean(entry.result.avgTimeToFetchWitnessFromDLTRawData))/2
+            witFromDLTTime[entry.setting.mtLevelInDLT] = (witFromDLTTime[entry.setting.mtLevelInDLT]+ np.mean(entry.result.avgTimeToFetchWitnessFromDLTRawData))/2
+            witFromIssuerTime[entry.setting.mtLevelInDLT] = (witFromIssuerTime[entry.setting.mtLevelInDLT] + np.mean(entry.result.avgTimeToFetchWitnessFromIssuerRawData)) / 2
+            if entry.result.avgTimeToFetchWitnessFromDLTRawData.size > 0:
+                witFromDLTTimeError[entry.setting.mtLevelInDLT] = np.append(witFromDLTTimeError[entry.setting.mtLevelInDLT], np.array(entry.result.avgTimeToFetchWitnessFromDLTRawData))
+            if entry.result.avgTimeToFetchWitnessFromIssuerRawData.size > 0:
+                witFromIssuerError[entry.setting.mtLevelInDLT] = np.append(witFromDLTTimeError[entry.setting.mtLevelInDLT],np.array(entry.result.avgTimeToFetchWitnessFromIssuerRawData))
+            validVCVerTimeError[entry.setting.mtLevelInDLT] = np.append(validVCVerTimeError[entry.setting.mtLevelInDLT],np.array(entry.result.verificationTimePerValidVCRawData))
+            revokedAndFPVCVerTimeError[entry.setting.mtLevelInDLT] = np.append(revokedAndFPVCVerTimeError[entry.setting.mtLevelInDLT], np.array(entry.result.verificationTimePerFalsePositiveOrRevokedVCRawData))
+            revocationTimeError[entry.setting.mtLevelInDLT] = np.append(revocationTimeError[entry.setting.mtLevelInDLT],np.array(entry.result.revocationTimePerVCRawData))
         else:
             validVCVerTime[entry.setting.mtLevelInDLT] = np.mean(entry.result.verificationTimePerValidVCRawData)
+            validVCVerTimeError[entry.setting.mtLevelInDLT] = np.array(entry.result.verificationTimePerValidVCRawData)
             revokedAndFPVCVerTime[entry.setting.mtLevelInDLT] = np.mean(entry.result.verificationTimePerFalsePositiveOrRevokedVCRawData)
+            revokedAndFPVCVerTimeError[entry.setting.mtLevelInDLT] = np.array(entry.result.verificationTimePerFalsePositiveOrRevokedVCRawData)
             revocationTime[entry.setting.mtLevelInDLT] =  np.mean(entry.result.revocationTimePerVCRawData)
+            revocationTimeError[entry.setting.mtLevelInDLT] = np.array(entry.result.revocationTimePerVCRawData)
             if entry.result.avgTimeToFetchWitnessFromDLTRawData.size>0:
-                holderwitnesscomputationtime[entry.setting.mtLevelInDLT] = np.mean(entry.result.avgTimeToFetchWitnessFromDLTRawData)
+                witFromDLTTime[entry.setting.mtLevelInDLT] = np.mean(entry.result.avgTimeToFetchWitnessFromDLTRawData)
+                witFromDLTTimeError[entry.setting.mtLevelInDLT] = np.array(entry.result.avgTimeToFetchWitnessFromDLTRawData)
             else:
-                holderwitnesscomputationtime[entry.setting.mtLevelInDLT] = 0
+                witFromDLTTime[entry.setting.mtLevelInDLT] = 0
+                witFromDLTTimeError[entry.setting.mtLevelInDLT] = np.array([0])
+            if entry.result.avgTimeToFetchWitnessFromIssuerRawData.size > 0:
+                witFromIssuerTime[entry.setting.mtLevelInDLT] = np.mean(entry.result.avgTimeToFetchWitnessFromIssuerRawData)
+                witFromIssuerError[entry.setting.mtLevelInDLT] = np.array(entry.result.avgTimeToFetchWitnessFromIssuerRawData)
+            else:
+                witFromIssuerTime[entry.setting.mtLevelInDLT] = 0
+                witFromIssuerError[entry.setting.mtLevelInDLT] = np.array([0])
+
     print(validVCVerTime)
     print(revokedAndFPVCVerTime)
+
+    validVCVerTimeErrorPoints = {}
+    revokedAndFPVCVerTimeErrorPoints = {}
+    revocationTimeErrorPoints = {}
+    witFromDLTErrorPoints = {}
+    witFromIssuerrrorPoints = {}
+
+    for key, value in validVCVerTimeError.items():
+        validVCVerTimeErrorPoints[key] = sem(value)
+
+    for key, value in revokedAndFPVCVerTimeError.items():
+        revokedAndFPVCVerTimeErrorPoints[key] = sem(value)
+
+    for key, value in revocationTimeError.items():
+        revocationTimeErrorPoints[key] = sem(value)
+
+    for key, value in witFromDLTTimeError.items():
+        witFromDLTErrorPoints[key] = sem(value)
+
+    for key, value in witFromIssuerError.items():
+        witFromIssuerrrorPoints[key] = sem(value)
 
     validVCVerTime = dict(sorted(validVCVerTime.items()))
     x1points = np.array(list(validVCVerTime.keys()))
@@ -78,21 +126,42 @@ def plot_verification_time():
     revokedAndFPVCVerTime = dict(sorted(revokedAndFPVCVerTime.items()))
     x2points = np.array(list(revokedAndFPVCVerTime.keys()))
     y2points = np.array(list(revokedAndFPVCVerTime.values()))
-    y3points = np.array(list(holderwitnesscomputationtime.values()))
+    y3points = np.array(list(witFromDLTTime.values()))
     y2points = y2points * 1000
     y3points = y3points * 1000
-    y2points = y2points - y3points
+
     y4points = np.array(list(revocationTime.values()))
     y4points = y4points * 1000
+
+    y5points = np.array(list(witFromIssuerTime.values()))
+    y5points = y5points * 1000
+
+
+    # y2points = y2points - y3points - y5points
+    # y3points = y3points - y5points
+
     y1error = sem(y1points)
-    y2error = sem(y2points)
-    y3error = sem(y3points)
-    y4error = sem(y4points)
+    y2error = revokedAndFPVCVerTimeErrorPoints
+    y3error = witFromDLTErrorPoints
+    y4error = revocationTimeErrorPoints
+    y5error = witFromIssuerrrorPoints
     print(x1points)
     print(y1points, "\t", y1error)
-    print(y2points, "\t", y2error)
-    print(y3points, "\t", y3error)
+    print(y3points)
+    print("wit from DLT error: ", witFromDLTTimeError)
+    print("wit from DLT error points: ",y3error)
     print(y4points, "\t", y4error)
+    print("wit from issuer time: ", y5points)
+    print("wit from issuer error: ", y5error)
+    print("phase 2 time by Verifier ", y2points)
+
+    print("phase 1 time: \t avg: ", np.mean(y1points), "\t min: ", np.min(y1points), "\t max: ", np.max(y1points))
+    print("phase 2 time: \t avg: ", np.mean(y2points), "\t min: ", np.min(y2points), "\t max: ", np.max(y2points))
+    print("wit from issuer time: \t avg: ", np.average(y5points))
+    print("wit from DLT time: \t avg: ", np.average(y3points), "\t min: ", np.min(y3points), "\t max: ", np.max(y3points))
+    print("revocation time: \t avg: ", np.average(y4points), "\t min: ", np.min(y4points), "\t max: ", np.max(y4points))
+    print("phase 2 time- verifier: \t avg: ", np.average(y2points-y3points-y5points), "\t min: ", np.min(y2points-y3points-y5points), "\t max: ", np.max(y2points-y3points-y5points))
+    print("phase 2 time- verifier: ",y2points-y3points-y5points)
     yRange = np.linspace(start=0.01, stop=math.ceil(max(revokedAndFPVCVerTime.values())),
                            num=25)
 
@@ -119,11 +188,16 @@ def plot_verification_time():
             edgecolor='grey', label='revocation time', yerr=y4error)
     plt.bar(br2, y1points, color='#0072b2', width=barWidth,
             edgecolor='grey', label='Phase 1- time by Verifier', yerr=y1error)
-    plt.bar(br3, y2points, color='#d55e00', width=barWidth, hatch='-',
-            edgecolor='grey', label='Phase 2- time  by Verifier excl. MTAcc retrieval at Holder', yerr=y2error)
+    plt.bar(br3, y5points, color='#614415', width=barWidth,  hatch='o',
+           edgecolor='grey', label='Phase 2- wit. From Issuer ')
+    plt.bar(br3, y3points, color='#009e73', width=barWidth, bottom=y5points, hatch='o',
+           edgecolor='grey', label='Phase 2- MTAcc from DLT', yerr=y3error)
+
+    plt.bar(br3, y2points, color='#d55e00', width=barWidth, bottom=y3points, hatch='-',
+            edgecolor='grey', label='Phase 2- time  by Verifier', yerr=y2error)
     # plt.errorbar(br2, y2points, yerr=y2error, fmt="o", color="#3b3b3b")
-    plt.bar(br3, y3points, color='#009e73', width=barWidth, bottom=y2points, hatch='o',
-           edgecolor='grey', label='Phase 2- time to retrieve MTAcc by Holder')
+
+
 
     plt.xticks([r + barWidth for r in range(len(x1points))],
                x1points)

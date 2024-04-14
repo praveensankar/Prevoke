@@ -1,7 +1,7 @@
 package signature
 
 import (
-	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/Revocation-Service/config"
 	"go.uber.org/zap"
 	"time"
 )

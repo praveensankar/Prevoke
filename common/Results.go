@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
 	mapset "github.com/deckarep/golang-set"
-	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/Revocation-Service/config"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"math"

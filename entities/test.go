@@ -2,11 +2,11 @@ package entities
 
 import (
 	"fmt"
-	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/models"
-	"github.com/praveensankar/Revocation-Service/revocation_service"
-	"github.com/praveensankar/Revocation-Service/signature"
-	"github.com/praveensankar/Revocation-Service/vc"
+	"github.com/Revocation-Service/config"
+	"github.com/Revocation-Service/models"
+	"github.com/Revocation-Service/revocation_service"
+	"github.com/Revocation-Service/signature"
+	"github.com/Revocation-Service/vc"
 	"go.uber.org/zap"
 	"math"
 	"math/rand"

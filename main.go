@@ -39,13 +39,13 @@ import (
 	"flag"
 	"fmt"
 	"github.com/bits-and-blooms/bloom/v3"
-	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/entities"
-	"github.com/praveensankar/Revocation-Service/revocation_service"
-	"github.com/praveensankar/Revocation-Service/signature"
-	"github.com/praveensankar/Revocation-Service/simulation"
-	"github.com/praveensankar/Revocation-Service/techniques"
-	"github.com/praveensankar/Revocation-Service/vc"
+	"github.com/Revocation-Service/config"
+	"github.com/Revocation-Service/entities"
+	"github.com/Revocation-Service/revocation_service"
+	"github.com/Revocation-Service/signature"
+	"github.com/Revocation-Service/simulation"
+	"github.com/Revocation-Service/techniques"
+	"github.com/Revocation-Service/vc"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -109,6 +109,7 @@ func Run(conf config.Config){
 	verifierFlag := flag.Bool("verifier", false, "a bool")
 	IPFSTestFlag := flag.Bool("ipfsTest", false, "a bool")
 	witnessCalculationFlag := flag.Bool("calWitness", false, "a bool")
+	revocationScalabilityFlag := flag.Bool("scaleRevocation", false, "a bool")
 	revocationCostCalculationFlag := flag.Bool("revocationCostCalculation", false, "a bool")
 	flag.Parse()
 
@@ -229,6 +230,14 @@ func Run(conf config.Config){
 		}
 		SetupLogger(conf, filename)
 		simulation.RevocationCostCalculator(conf)
+	}
+
+	if *revocationScalabilityFlag==true{
+		if conf.LoggerOutputMode=="file"{
+			filename = fmt.Sprintf("logs/holder")
+		}
+		SetupLogger(conf, filename)
+		simulation.CalculateRevocationScalability(conf)
 	}
 	//blockchain.TestConnectionToBlockchain(conf)
 	//blockchain.Test(conf)

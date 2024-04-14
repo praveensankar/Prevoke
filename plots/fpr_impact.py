@@ -428,6 +428,8 @@ def plot_impact_of_fpr(totalVCs, revokedVCs, revocationMode):
     plt.savefig(filename)
 
 
+
+
 def plot_impact_of_fpr_with_false_positive(totalVCs, revokedVCs, revocationMode, fp):
     res = list()
 
@@ -624,6 +626,221 @@ def plot_impact_of_fpr_with_false_positive(totalVCs, revokedVCs, revocationMode,
     plt.ylabel('impact of false positive rate', font)
     plt.legend(fontsize="12", loc=2)
     filename = "graphs/result_impact_of_fpr_" + str(fp)+"_"+revocationMode + "_" + str(revokedVCs) + ".png"
+    # plt.grid(axis='y', color = 'green', linestyle = '--', linewidth = 0.5)
+    plt.savefig(filename)
+
+def plot_impact_of_fpr_with_false_positive_random_vs_oldest(totalVCs, revokedVCs, fp):
+    res = list()
+
+    if totalVCs == "10K":
+        res1 = parse_fpr_impact_entry("results_computed_10K_run1.json")
+        res2 = parse_fpr_impact_entry("results_computed_10K_run2.json")
+        res3 = parse_fpr_impact_entry("results_computed_10K_run3.json")
+
+        for result in res1:
+            res.append(result)
+
+        for result in res2:
+            res.append(result)
+
+        for result in res3:
+            res.append(result)
+
+    if totalVCs == "100K":
+        res1 = parse_fpr_impact_entry("results_computed_100K_run1.json")
+        res2 = parse_fpr_impact_entry("results_computed_100K_run2.json")
+        res3 = parse_fpr_impact_entry("results_computed_100K_run3.json")
+
+        for result in res1:
+            res.append(result)
+
+        for result in res2:
+            res.append(result)
+
+        for result in res3:
+            res.append(result)
+
+    # for r in res:
+    #     print(r)
+
+    fp_random = {}
+    n_random = {}
+
+    fp_oldest = {}
+    n_oldest = {}
+
+
+    for entry in res:
+        t = []
+        t.append(entry.numberOfActualFalsePositives)
+        tArray = np.array(t)
+        g = []
+        g.append(entry.numberOfVCsRetrievedWitnessFromDLT)
+        gArray = np.array(g)
+        if entry.revokedVCs == revokedVCs and entry.falsePositiveRate == fp and entry.revocationMode == "random":
+            if entry.mtLevelInDLT in fp_random.keys():
+                fp_random[entry.mtLevelInDLT] = np.append(fp_random[entry.mtLevelInDLT], tArray)
+                n_random[entry.mtLevelInDLT] = np.append(n_random[entry.mtLevelInDLT], gArray)
+            else:
+                fp_random[entry.mtLevelInDLT] = tArray
+                n_random[entry.mtLevelInDLT] = gArray
+        if entry.revokedVCs == revokedVCs and entry.falsePositiveRate == fp and entry.revocationMode == "oldest":
+            if entry.mtLevelInDLT in fp_random.keys():
+                fp_oldest[entry.mtLevelInDLT] = np.append(fp_oldest[entry.mtLevelInDLT], tArray)
+                n_oldest[entry.mtLevelInDLT] = np.append(n_oldest[entry.mtLevelInDLT], gArray)
+            else:
+                fp_oldest[entry.mtLevelInDLT] = tArray
+                n_oldest[entry.mtLevelInDLT] = gArray
+
+
+    falsePositivesrandom = {}
+    numberOfWitFromDLTrandom = {}
+    errorfprandom = {}
+    errornrandom = {}
+
+    falsePositivesoldest = {}
+    numberOfWitFromDLToldest = {}
+    errorfpoldest = {}
+    errornoldest = {}
+
+
+    for key, value in fp_random.items():
+        falsePositivesrandom[key] = np.mean(value)
+        errorfprandom[key] = sem(value)
+
+
+    for key, value in n_random.items():
+        numberOfWitFromDLTrandom[key] = np.mean(value)
+        errornrandom[key] = sem(value)
+
+    for key, value in fp_oldest.items():
+        falsePositivesoldest[key] = np.mean(value)
+        errorfpoldest[key] = sem(value)
+
+
+    for key, value in n_oldest.items():
+        numberOfWitFromDLToldest[key] = np.mean(value)
+        errornoldest[key] = sem(value)
+
+
+    falsePositivesRandom = dict(sorted(falsePositivesrandom.items()))
+    falsePositivesOldest = dict(sorted(falsePositivesoldest.items()))
+
+    x1points = np.array(list(falsePositivesRandom.keys()))
+    y1points = np.array(list(falsePositivesRandom.values()))
+
+    y2points = np.array(list(falsePositivesOldest.values()))
+
+    # print(falsePositives1Krandom1)
+    # print(numberOfWitFromDLT1Krandom1)
+    # print(x1points)
+    # print(y1points)
+    # print("revoked VCs: ", revokedVCs, "\t revocation mode: ", revocationMode)
+    x1points = np.delete(x1points, [0, 2, 4, 6, 8, 10, 12])
+    y1points = np.delete(y1points, [0, 2, 4, 6, 8, 10, 12])
+    y2points = np.delete(y2points, [0, 2, 4, 6, 8, 10, 12])
+    y1points = np.ceil(y1points)
+    y2points = np.ceil(y2points)
+    print("fp- random: ", y1points)
+    print("fp- oldest: ", y2points)
+
+    errorfprandom = dict(sorted(errorfprandom.items()))
+    errorfprandomPoints = np.array(list(errorfprandom.values()))
+    errorfprandomPoints = np.delete(errorfprandomPoints, [0, 2, 4, 6, 8, 10, 12])
+
+    errorfpoldest = dict(sorted(errorfpoldest.items()))
+    errorfpoldestPoints = np.array(list(errorfpoldest.values()))
+    errorfpoldestPoints = np.delete(errorfpoldestPoints, [0, 2, 4, 6, 8, 10, 12])
+
+
+    print("error- fp random points: ", errorfprandomPoints)
+    print("error- fp oldest points: ", errorfpoldestPoints)
+
+    errornrandom = dict(sorted(errornrandom.items()))
+    errornrandomPoints = np.array(list(errornrandom.values()))
+    errornrandomPoints = np.delete(errornrandomPoints, [0, 2, 4, 6, 8, 10, 12])
+
+    numberOfWitFromDLTrandom = dict(sorted(numberOfWitFromDLTrandom.items()))
+
+
+    z1points = np.array(list(numberOfWitFromDLTrandom.values()))
+    z1points = np.delete(z1points, [0, 2, 4, 6, 8, 10, 12])
+    z1points = np.ceil(z1points)
+
+
+    print("numberOfWitFromDLTrandom: ", z1points)
+    print("numberOfWitFromDLTrandom-error: ", errornrandomPoints)
+
+    numberOfWitFromDLToldest = dict(sorted(numberOfWitFromDLToldest.items()))
+    z2points = np.array(list(numberOfWitFromDLToldest.values()))
+    z2points = np.delete(z2points, [0, 2, 4, 6, 8, 10, 12])
+    z2points = np.ceil(z2points)
+
+    errornoldest = dict(sorted(errornoldest.items()))
+    errornoldestPoints = np.array(list(errornoldest.values()))
+    errornoldestPoints = np.delete(errornoldestPoints, [0, 2, 4, 6, 8, 10, 12])
+
+    y1points = y1points - z1points
+    print("y1-z1:", y1points)
+
+    y2points = y2points - z2points
+
+    font = {'fontname': 'Times New Roman', 'size': 15, 'weight': 'bold'}
+    fig, ax = plt.subplots(layout='constrained')
+
+
+    barWidth = 0.4
+    br1 = np.arange(len(x1points))
+    br2 = [x + barWidth for x in br1]
+
+    if fp==0.1:
+        colorCode = '#614415'
+        errorBarColorCode = '#010C10'
+
+    if fp==0.01:
+        colorCode = '#0072b2'
+        errorBarColorCode = '#010C10'
+
+    if fp==0.001:
+        colorCode = '#d55e00'
+        errorBarColorCode = '#010C10'
+
+    if fp==0.0001:
+        colorCode = '#009e73'
+        errorBarColorCode = '#010C10'
+
+    colorCode1 = '#d55e00'
+    errorBarColorCode1 = '#010C10'
+    colorCode2 = '#0072b2'
+    errorBarColorCode2 = '#010C10'
+
+    plt.bar(br1, y1points, color=colorCode1, width=barWidth, hatch="//",
+            edgecolor='grey', label='random- no. of witnesses from Issuer')
+    plt.errorbar(br1, y1points, color=errorBarColorCode1, yerr=errorfprandomPoints, fmt="o", capsize=3, capthick=1)
+
+    plt.bar(br1, z1points, color='#555056', width=barWidth, bottom=y1points, hatch='o',
+            edgecolor='grey')
+    plt.errorbar(br1, z1points, color='#C44B64', yerr=errornrandomPoints, fmt="*", capsize=3, capthick=1)
+
+    plt.bar(br2, y2points, color=colorCode2, width=barWidth, hatch="-",
+            edgecolor='grey', label='oldest- no. of witnesses from Issuer')
+    plt.errorbar(br2, y2points, color=errorBarColorCode2, yerr=errorfpoldestPoints, fmt="o", capsize=3, capthick=1)
+
+    plt.bar(br2, z2points, color='#555056', width=barWidth, bottom=y2points, hatch='o',
+            edgecolor='grey', label='no. of witnesses from DLT')
+    plt.errorbar(br2, z2points, color='#C44B64', yerr=errornoldestPoints, fmt="*", capsize=3, capthick=1)
+
+    print(x1points)
+    plt.xticks([r for r in range(len(x1points))],
+               x1points)
+
+    # title = "Total VCs:" + str(totalVCs) + " Revoked VCs:" + str(revokedVCs) + " Revocation mode:" + revocationMode+" fpr: "+str(fp)
+    title = " Revocation mode: random vs oldest"
+    plt.title(title, font)
+    plt.xlabel('merkle tree accumulator levels stored in DLT', font)
+    plt.ylabel('impact of false positive rate', font)
+    plt.legend(fontsize="12",  loc=(0,0.6))
+    filename = "graphs/result_impact_of_fpr_" + str(fp)+ "_" + str(revokedVCs) + ".png"
     # plt.grid(axis='y', color = 'green', linestyle = '--', linewidth = 0.5)
     plt.savefig(filename)
 

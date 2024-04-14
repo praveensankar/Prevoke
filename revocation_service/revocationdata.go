@@ -1,7 +1,7 @@
 package revocation_service
 
 import (
-	"github.com/praveensankar/Revocation-Service/techniques"
+	"github.com/Revocation-Service/techniques"
 	"go.uber.org/zap"
 	"math/big"
 )

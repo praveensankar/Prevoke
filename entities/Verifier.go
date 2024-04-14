@@ -2,12 +2,12 @@ package entities
 
 import (
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/praveensankar/Revocation-Service/common"
-	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/models"
-	"github.com/praveensankar/Revocation-Service/revocation_service"
-	"github.com/praveensankar/Revocation-Service/techniques"
-	"github.com/praveensankar/Revocation-Service/vc"
+	"github.com/Revocation-Service/common"
+	"github.com/Revocation-Service/config"
+	"github.com/Revocation-Service/models"
+	"github.com/Revocation-Service/revocation_service"
+	"github.com/Revocation-Service/techniques"
+	"github.com/Revocation-Service/vc"
 	"github.com/suutaku/go-bbs/pkg/bbs"
 	"go.uber.org/zap"
 	"math/big"

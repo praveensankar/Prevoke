@@ -1,4 +1,4 @@
-module github.com/praveensankar/Revocation-Service
+module github.com/Revocation-Service
 
 go 1.19
 

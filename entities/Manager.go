@@ -1,7 +1,7 @@
 package entities
 
 import (
-	"github.com/praveensankar/Revocation-Service/common"
+	"github.com/Revocation-Service/common"
 	"net"
 	"sync"
 )

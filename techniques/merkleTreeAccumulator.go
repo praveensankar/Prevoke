@@ -4,7 +4,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/Revocation-Service/config"
 	"go.uber.org/zap"
 	"golang.org/x/crypto/sha3"
 	"math"

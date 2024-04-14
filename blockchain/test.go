@@ -1,7 +1,7 @@
 package blockchain
 
 import (
-	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/Revocation-Service/config"
 	"sync"
 )
 

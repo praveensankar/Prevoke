@@ -3,9 +3,9 @@ package simulation
 import (
 	"fmt"
 	"github.com/deckarep/golang-set"
-	"github.com/praveensankar/Revocation-Service/common"
-	"github.com/praveensankar/Revocation-Service/config"
-	"github.com/praveensankar/Revocation-Service/techniques"
+	"github.com/Revocation-Service/common"
+	"github.com/Revocation-Service/config"
+	"github.com/Revocation-Service/techniques"
 	"go.uber.org/zap"
 	"math"
 	"math/rand"
@@ -299,6 +299,105 @@ func CalculateNumberOfVCsWouldRetrieveWitnessFromDLT(conf config.Config) {
 	zap.S().Infoln("Total time to run the experiments: ", expEnd.Minutes(), "  minutes")
 }
 
+
+/*
+CalculateNumberOfVCsWouldRetrieveWitnessFromDLT
+revokes vc in a batch from one till the bloomfilter capacity is reacher
+and checks number of false positives for each batch
+
+*/
+func CalculateRevocationScalability(conf config.Config) {
+
+	expStart := time.Now()
+	//totalVCs:=[]int{10000}
+	//totalVCs:=[]int{50000}
+	//totalVCs:=[]int{100000}
+	totalVCs:=[]int{100000}
+	totalRevocations := 20000
+	//totalVCs=[]int{1000}
+	//totalRevocations = 100
+	revocationPercentages := []int{10,20,30,40,50,60,70,80,90,100}
+
+	falsePositiveRates:= []float64{0.1,0.01,0.001,0.0001}
+
+
+	//
+	//rawFilename := fmt.Sprintf("results/results_computed_raw_10K.json")
+	resultFileName := fmt.Sprintf("results/results_revocation_scalability_100K_20K.json")
+
+
+	container := Container{}
+	var wg sync.WaitGroup
+	var vcIDs[] string
+	var exps []config.Experiment
+
+	/*
+		Construct the parameters for the experiments
+	*/
+
+	for i:=0;i< len(totalVCs);i++ {
+
+		totalVC := totalVCs[i]
+		zap.S().Infoln("VC count: ",totalVC)
+		//SetUpExpParamters(&config, *exp)
+		//exp.MtHeight=1
+		conf.ExpectedNumberOfTotalVCs = uint(totalVC)
+		conf.MTHeight = uint(int(math.Ceil(math.Log2(float64(totalVC)))))
+		vcIDs = GenerateVCIDs(conf)
+
+		for j := 0; j < len(falsePositiveRates); j++ {
+
+				for revocationPercentageCounter := 0; revocationPercentageCounter<len(revocationPercentages); revocationPercentageCounter++{
+
+						revokedVCCount := int(math.Ceil(float64(totalRevocations * revocationPercentages[revocationPercentageCounter] / 100)))
+						falsePositiveRate := falsePositiveRates[j]
+
+						exp:= config.Experiment{
+							TotalVCs:            totalVC,
+							RevokedVCs:          totalRevocations,
+							FalsePositiveRate:   falsePositiveRate,
+							RevocationBatchSize: revokedVCCount,
+						}
+						exps = append(exps, exp)
+				}
+		}
+	}
+
+
+	goRountineCounter:=0
+	for i:=0;i< len(exps);i++ {
+
+		exp := exps[i]
+		conf.ExpectedNumberOfTotalVCs = uint(exp.TotalVCs)
+		conf.ExpectedNumberofRevokedVCs = uint(totalRevocations)
+		conf.FalsePositiveRate = exp.FalsePositiveRate
+
+		numberOfRevocations := exp.RevocationBatchSize
+
+
+		//zap.S().Infoln("ISSUER - updated config with experiment config: ", exp.String())
+
+		wg.Add(1)
+
+		go func(conf config.Config, vcIDs []string, numberOfRevocations int, expCounter int, totalExps int) {
+			defer wg.Done()
+			container.CalculateFalsePositives(conf, vcIDs, numberOfRevocations, expCounter, totalExps)
+		}(conf, vcIDs, numberOfRevocations, i+1, len(exps))
+
+
+		goRountineCounter++
+		if goRountineCounter==30{
+			wg.Wait()
+			goRountineCounter=0
+		}
+	}
+
+	wg.Wait()
+	common.WriteFalsePositiveAndWitnessUpdateResultsToFile(resultFileName, container.Results)
+	expEnd := time.Since(expStart)
+	zap.S().Infoln("Total time to run the experiments: ", expEnd.Minutes(), "  minutes")
+}
+
 func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, processRawData bool, revocationMode RevocationMode,  expCounter int, totalExps int) {
 	numberOfVCsRetrievingVCsFromDLT := 0
 	numberOfFalsePositives := 0
@@ -389,4 +488,55 @@ func (c *Container) PerformCalculation(conf config.Config, vcIDs []string, proce
 
 }
 
+func (c *Container) CalculateFalsePositives(conf config.Config, vcIDs []string, numberOfRevocations int, expCounter int, totalExps int) {
+
+	numberOfFalsePositives := 0
+
+
+	bf := techniques.CreateBloomFilter(conf.ExpectedNumberofRevokedVCs, conf.FalsePositiveRate)
+
+
+	revokedVcIDs := GenerateRevokedVCIDs(conf, vcIDs, Oldest)
+	revokedVCIDMaps := make(map[string]bool)
+
+
+	for i := 0; i < numberOfRevocations; i++ {
+		revokedVCIDMaps[revokedVcIDs[i]]=true
+		bf.RevokeInBloomFilter(revokedVcIDs[i])
+	}
+
+	//zap.S().Infoln("affected vc ids: ", affectedVCs)
+
+	for y := 0; y < int(conf.ExpectedNumberOfTotalVCs); y++ {
+		vcId := vcIDs[y]
+		if bf.CheckStatusInBloomFilter(vcId) == false {
+			if revokedVCIDMaps[vcId] == false {
+				numberOfFalsePositives++
+			}
+		}
+	}
+	//zap.S().Infoln("false positive vc ids: ",fpVCIDs)
+	//zap.S().Infoln("VCs that would retrieve witness from DLTs: ", vcIDsFromDLT)
+	//zap.S().Infoln("number of vcs affected by z levels: ",affectedIndexes.Cardinality())
+	zap.S().Infof("exp: %d/%d  time: %d:%d total vcs:%d bloom filter capacity (in VCs):%d revoked VCs: %d false positive rate:%f   number of false positives:%d",
+		expCounter, totalExps, time.Now().Hour(), time.Now().Second(), conf.ExpectedNumberOfTotalVCs, conf.ExpectedNumberofRevokedVCs, numberOfRevocations,
+		conf.FalsePositiveRate,  numberOfFalsePositives)
+	//zap.S().Infoln("exp: ",expCounter,"/",totalExps," timestamp: ", time.Now().Hour(),":",time.Now().Minute(), "total vc: ", conf.ExpectedNumberOfTotalVCs, " revoked vcs: ", conf.ExpectedNumberofRevokedVCs,
+	//	" false positive rate: ", conf.FalsePositiveRate, " mt level in dlt: ", conf.MtLevelInDLT,
+	//	" revocation mode: ", revocationMode, " number of false positives: ", numberOfFalsePositives, " number of vcs retrieved witness"+
+	//		"from dlts: ", numberOfVCsRetrievingVCsFromDLT)
+
+	result := common.CreateFalsePositiveAndWitnessUpdateResults()
+	result.TotalVCs = int(conf.ExpectedNumberOfTotalVCs)
+	result.RevokedVCs = numberOfRevocations
+	result.FalsePositiveRate =  conf.FalsePositiveRate
+	result.NumberOfFalsePositives = numberOfFalsePositives
+
+
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	c.Results = append(c.Results, *result)
+
+
+}
 

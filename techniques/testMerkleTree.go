@@ -2,7 +2,7 @@ package techniques
 
 import (
 	"github.com/iden3/go-merkletree-sql/v2"
-	"github.com/praveensankar/Revocation-Service/config"
+	"github.com/Revocation-Service/config"
 	"go.uber.org/zap"
 	"math/big"
 )
