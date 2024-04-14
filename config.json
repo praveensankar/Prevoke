@@ -8,7 +8,7 @@
 	},
 	 "issuer" : {
 		 "name": "university",
-		 "address": "158.39.77.174:8000",
+		 "address": "<ip_address>:8000",
 		 "totalVCs": "6",
 		 "revokedVCs": "5",
 		 "falsePositiveRate": "0.1",
@@ -17,7 +17,7 @@
 		 "revocationBatchSize": "1",
 		 "comment": "number of hash functions: 7 if fpr==0.01, 6 if fpr==0.02,0.03, 5 if fpr==0.04,0.05, 4 if fpr is 0.1, 3 if fpr is 0.2, 2 if fpr is 0.3,0.4,0.5, 1 if fpr is 0.6 or more ",
 		 "_comment": "revocationBatchSize - 'x' - x revocation performed together. 1 if each revocation needs to be performed one by one. ",
-		 "_addressNREC": "158.39.77.174:8000",
+		 "_addressNREC": "<ip_address>:8000",
 		 "addressLocal": "127.0.0.1:8000"
 	 },
 	 "holder" : {
@@ -26,8 +26,8 @@
 	 },
 	 "verifier" : {
 		 "name": "employer",
-		 "address": "158.39.77.211:8020",
-		 "_addressNREC": "158.39.77.211:8020",
+		 "address": "<ip_address>:8020",
+		 "_addressNREC": "<ip_address>:8020",
 		 "_addressLocal": "127.0.0.1:8020"
 	 },
 	 "manager" : {
@@ -36,9 +36,9 @@
 	 },
 	 "test" : "test",
 	"blockchain" : {
-		"rpcEndpoint" : "http://158.39.48.29:8545",
-		"wsEndPoint" : "ws://158.39.48.29:8545",
-		"comment2": "158.39.48.29:8545 corresponds to ganache blockchain running at nrec",
+		"rpcEndpoint" : "http://<ip_address>:8545",
+		"wsEndPoint" : "ws://<ip_address>:8545",
+		"comment2": "<ip_address>:8545 corresponds to ganache blockchain running at nrec",
 		"_comment" : "use ganache blockchain address (deployed locally) as endpoint"
 
 	},
