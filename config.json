@@ -10,7 +10,7 @@
 		 "name": "university",
 		 "address": "158.39.77.174:8000",
 		 "totalVCs": "6",
-		 "revokedVCs": "2",
+		 "revokedVCs": "5",
 		 "falsePositiveRate": "0.1",
 		 "mtLevelInDLT": "2",
 		 "mtHeight": "3",
