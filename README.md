@@ -29,8 +29,10 @@ This repository implements the proof of concept of Prevoke in a sandboxed enviro
 
 # Table of contents
 
-* [Prevoke- Revocation technique](README.md)
-* [Tutorial - Verifiable Credentials](tutorial-verifiable-credentials/README.md)
-  * [BBS Signature](tutorial-verifiable-credentials/bbs-signature.md)
-  * [Complete Verifiable Credential](tutorial-verifiable-credentials/complete-verifiable-credential.md)
-* [Page 1](page-1.md)
+# Table of contents
+
+
+* [Tutorial - Verifiable Credentials](docs/tutorial-verifiable-credentials/README.md)
+  * [BBS Signature](docs/tutorial-verifiable-credentials/bbs-signature.md)
+  * [Complete Verifiable Credential](docs/tutorial-verifiable-credentials/complete-verifiable-credential.md)
+
